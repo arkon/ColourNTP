@@ -82,7 +82,7 @@ ul#mostVisited {
   background-color: #fff;
   border-radius: 5px;
   font-size: 0;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0.5rem;
   text-align: center;
@@ -117,4 +117,8 @@ ul#mostVisited {
     #mostVisited a:hover {
       box-shadow: 0 0 0 2px #777;
       color: #0e0e0e;
+    }
+
+    #mostVisited a:active {
+      transform: scale(0.95);
     }
