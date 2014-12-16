@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+
+  "name": "Colour New Tab Page",
+  "short_name": "ColourNTP",
+  "description": "Based on http://whatcolourisit.scn9a.org/",
+  "version": "0.0.1",
+
+  "chrome_url_overrides" : {
+    "newtab": "colours.html"
+  },
+  "icons": { "16": "/img/icon16.png", "48": "/img/icon48.png", "128": "/img/icon128.png" }
+}
