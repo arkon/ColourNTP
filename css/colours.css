@@ -25,6 +25,11 @@ body {
   text-align: center;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
 #time {
   display: table-cell;
   vertical-align: middle;
@@ -50,3 +55,51 @@ h1 {
   h1 { font-size: 7em; }
   h2 { font-size: 2em; }
 }
+
+#chrome-contents-toggle {
+  color: rgba(255,255,255,.4);
+  display: block;
+  margin-top: 4em;
+  transition: color 0.3s;
+}
+
+  #chrome-contents-toggle:hover {
+    color: #fff;
+  }
+
+#chrome-contents {
+  background-color: #fff;
+  display: none;
+}
+
+  .show-chrome-contents #chrome-contents {
+    display: block;
+  }
+
+ul#mostVisited {
+  text-align: center;
+}
+
+  #mostVisited li {
+    display: inline-block;
+    list-style: none;
+    text-align: left;
+  }
+
+  #mostVisited a {
+    display: inline-block;
+    height: 2em;
+    width: 6em;
+    margin: 0.5em;
+
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 0.5em center;
+    padding: 1em 1.5em 1em 2em;
+
+    color: #1e1e1e;
+    line-height: 2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
