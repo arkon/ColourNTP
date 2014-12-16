@@ -25,6 +25,7 @@
   setTimeout(doTime, 1000);
 })();
 
+
 /**
  * Handle the showing/hiding of the Most Visited Pages panel.
  */
@@ -41,6 +42,7 @@ mostVisitedToggle.onclick = function() {
   this.innerHTML = visible ? 'Show most visited' : 'Hide most visited';
 };
 
+
 /**
  * Given an array of URLs, build a DOM list of these URLs in the NTP.
  */
@@ -54,9 +56,10 @@ function buildVisitedList(mostVisitedURLs) {
 
     a.style.backgroundImage = 'url(chrome://favicon/' + site.url + ')';
     a.href                  = site.url;
-    a.title                 = site.url;
+    a.title                 = site.title;
     a.innerHTML             = site.title;
   }
 }
 
+// Get most visited sites
 chrome.topSites.get(buildVisitedList);
