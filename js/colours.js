@@ -34,12 +34,17 @@ var mostVisitedToggle = document.getElementById('chrome-contents-toggle');
 mostVisitedToggle.onclick = function() {
   var visible = document.body.classList.contains('show-chrome-contents');
 
+  // Toggle visibility of pages
   if (visible)
     document.body.classList.remove('show-chrome-contents');
   else
     document.body.classList.add('show-chrome-contents');
 
+  // Toggle element text
   this.innerHTML = visible ? 'Show most visited' : 'Hide most visited';
+
+  // Save state
+  chrome.storage.sync.set({ 'ntp_panel_visible': !visible });
 };
 
 
@@ -63,3 +68,12 @@ function buildVisitedList(mostVisitedURLs) {
 
 // Get most visited sites
 chrome.topSites.get(buildVisitedList);
+
+// Display panel depending on synced state
+chrome.storage.sync.get('ntp_panel_visible', function (result) {
+  if (result.ntp_panel_visible) {
+    document.body.classList.add('show-chrome-contents');
+    mostVisitedToggle.innerHTML = 'Hide most visited';
+  }
+});
+
