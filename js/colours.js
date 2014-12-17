@@ -72,7 +72,7 @@ getConfig('max_visited', function (max) {
     // Consider the user's set maximum (default 10)
     visitedURLs = visitedURLs.slice(0, Number(max) || 10);
 
-    for (var i = 0; i < visitedURLs.length; i++) {
+    for (var i in visitedURLs) {
       var li   = visitedList.appendChild(document.createElement('li'));
       var a    = li.appendChild(document.createElement('a'));
       var site = visitedURLs[i];
@@ -97,7 +97,7 @@ getConfig('max_closed', function (max) {
     function (sessions) {
       var closedList = $('closed');
 
-      for (var i = 0; i < sessions.length; i++) {
+      for (var i in sessions) {
         var li      = closedList.appendChild(document.createElement('li'));
         var a       = li.appendChild(document.createElement('a'));
         var session = sessions[i];
@@ -160,9 +160,9 @@ chrome.management.getAll(function (list) {
 
 // Finds an 128px x 128px icon for an app
 function find128Image(icons) {
-  for (var icon in icons) {
-    if (icons[icon].size == '128') {
-      return icons[icon].url;
+  for (var i in icons) {
+    if (icons[i].size == '128') {
+      return icons[i].url;
     }
   }
 
