@@ -57,7 +57,27 @@ h2 {
   h2 { font-size: 1.25em; }
 }
 
-#chrome-contents-toggle {
+
+#options {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  background: url('chrome-extension://__MSG_@@extension_id__/img/gear.png') no-repeat center center / 12px 12px;
+  text-indent: -3000em;
+  display: block;
+  height: 40px;
+  width: 40px;
+
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+  #options:hover {
+    opacity: 1;
+  }
+
+#panel-toggle {
   color: rgba(255,255,255,.4);
   display: block;
   font-size: 0.9em;
@@ -65,16 +85,16 @@ h2 {
   transition: color 0.3s;
 }
 
-  #chrome-contents-toggle:hover {
+  #panel-toggle:hover {
     color: #fff;
   }
 
-#chrome-contents {
+#panel {
   display: none;
   margin-top: 1em;
 }
 
-  .show-chrome-contents #chrome-contents {
+  .show-panel #panel {
     display: block;
   }
 
