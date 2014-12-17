@@ -25,6 +25,8 @@
   setTimeout(doTime, 1000);
 })();
 
+// 16 777 215 / 86 400 = 194.180729167
+
 
 /**
  * Handle the showing/hiding of the panel and its contents.
@@ -56,7 +58,7 @@ function togglePanel(id) {
 }
 
 // Display panel depending on synced state
-getConfig('ntp_panel_visible', togglePanel);
+getConfigCallback('ntp_panel_visible', togglePanel);
 
 
 /**
@@ -65,7 +67,7 @@ getConfig('ntp_panel_visible', togglePanel);
 function buildVisitedList(visitedURLs) {
   var visitedList = document.getElementById('visited');
 
-  // visitedURLs.slice(0, getConfig('number_top'))
+  visitedURLs = visitedURLs.slice(0, getConfig('number_top') || 10);
 
   for (var i = 0; i < visitedURLs.length; i++) {
     var li   = visitedList.appendChild(document.createElement('li'));
@@ -105,7 +107,7 @@ function buildClosedList(sessions) {
 }
 
 // Get recently closed sessions
-chrome.sessions.getRecentlyClosed(buildClosedList);
+chrome.sessions.getRecentlyClosed({ maxResults: getConfig('max_results') || 10 }, buildClosedList);
 
 
 /**
@@ -121,7 +123,7 @@ function buildAppsList(list) {
 
   // Sort them alphabetically
   list.sort(function (a, b) {
-    if (a.name < b.name) { return -1; }
+    if (a.name < b.name)      { return -1; }
     else if (a.name > b.name) { return 1; }
     else                      { return 0; }
   });
@@ -169,7 +171,13 @@ chrome.management.getAll(buildAppsList);
 /**
  * Storage helper
  */
-function getConfig(key, callback) {
+function getConfig(key) {
+  chrome.storage.sync.get(key, function (result) {
+    return result[key];
+  });
+}
+
+function getConfigCallback(key, callback) {
   chrome.storage.sync.get(key, function (result) {
     callback(result[key]);
   });
