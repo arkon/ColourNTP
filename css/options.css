@@ -1,0 +1,15 @@
+h2 {
+  margin: 1em 0 0.5em;
+}
+
+label {
+  display: block;
+  margin: 0.5em 0;
+}
+
+#options {
+  display: table-cell;
+  padding: 2em;
+  text-align: left;
+  width: 100%;
+}

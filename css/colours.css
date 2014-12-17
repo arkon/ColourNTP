@@ -1,46 +1,4 @@
 /**
- * Core styling
- */
-
-@font-face {
-  font-family: 'Open Sans Light';
-  src: url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Light.ttf') format('truetype');
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-::selection {
-  background-color: #fff;
-}
-
-html,
-body {
-  height: 100vh;
-}
-
-body {
-  color: #fff;
-  display: table;
-  font: 300 16px "Open Sans Light", sans-serif;
-  transition: background-color 0.8s;
-  text-align: center;
-}
-
-a {
-  color: #fff;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-li {
-  list-style: none;
-}
-
-
-/**
  * Main time/hex display
  */
 
