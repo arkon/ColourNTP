@@ -26,18 +26,19 @@
 })();
 
 // 16 777 215 / 86 400 = 194.180729167
+// hexString = yourNumber.toString(16);
 
 
 /**
  * Handle the showing/hiding of the panel and its contents.
  */
-var visitedToggle   = document.getElementById('panel-toggle-visited'),
-    closedToggle    = document.getElementById('panel-toggle-closed'),
-    appsToggle      = document.getElementById('panel-toggle-apps');
+var visitedToggle = document.getElementById('panel-toggle-visited'),
+    closedToggle  = document.getElementById('panel-toggle-closed'),
+    appsToggle    = document.getElementById('panel-toggle-apps');
 
-visitedToggle.onclick   = function() { togglePanel(0); };
-closedToggle.onclick    = function() { togglePanel(1); };
-appsToggle.onclick      = function() { togglePanel(2); };
+visitedToggle.onclick = function() { togglePanel(0); };
+closedToggle.onclick  = function() { togglePanel(1); };
+appsToggle.onclick    = function() { togglePanel(2); };
 
 function togglePanel(id) {
   if (id == -1) return;
@@ -75,9 +76,9 @@ function buildVisitedList(visitedURLs) {
     var site = visitedURLs[i];
 
     a.style.backgroundImage = 'url(chrome://favicon/' + site.url + ')';
-    a.href                  = site.url;
-    a.title                 = site.title;
-    a.innerHTML             = site.title;
+    a.href      = site.url;
+    a.title     = site.title;
+    a.innerHTML = site.title;
   }
 }
 
@@ -100,8 +101,8 @@ function buildClosedList(sessions) {
       session.tab = session.window.tabs[0];
 
     a.style.backgroundImage = session.tab ? 'url(chrome://favicon/' + session.tab.url + ')' : null;
-    a.href  = session.tab ? session.tab.url : null;
-    a.title = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
+    a.href      = session.tab ? session.tab.url : null;
+    a.title     = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
     a.innerHTML = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
   }
 }
@@ -147,7 +148,7 @@ function buildAppsList(list) {
     name.innerHTML = extInf.name;
   }
 
-  var store       = appsList.appendChild(document.createElement('a'));
+  var store = appsList.appendChild(document.createElement('a'));
   store.id        = 'store-link';
   store.href      = 'https://chrome.google.com/webstore';
   store.innerHTML = 'Chrome Web Store';
