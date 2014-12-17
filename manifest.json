@@ -13,6 +13,9 @@
   "permissions": [
     "topSites",
     "management",
+    "bookmarks",
+    "tabs",
+    "sessions",
     "storage",
     "chrome://favicon/"
   ],
