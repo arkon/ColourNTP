@@ -17,8 +17,8 @@
 
   var hex = '#' + hours + mins + secs;
 
-  document.getElementById('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
-  document.getElementById('h').innerHTML = hex;
+  $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
+  $('h').innerHTML = hex;
 
   document.body.style.background = hex;
 
@@ -32,9 +32,9 @@
 /**
  * Handle the showing/hiding of the panel and its contents.
  */
-var visitedToggle = document.getElementById('panel-toggle-visited'),
-    closedToggle  = document.getElementById('panel-toggle-closed'),
-    appsToggle    = document.getElementById('panel-toggle-apps');
+var visitedToggle = $('panel-toggle-visited'),
+    closedToggle  = $('panel-toggle-closed'),
+    appsToggle    = $('panel-toggle-apps');
 
 visitedToggle.onclick = function() { togglePanel(0); };
 closedToggle.onclick  = function() { togglePanel(1); };
@@ -43,7 +43,7 @@ appsToggle.onclick    = function() { togglePanel(2); };
 function togglePanel(id) {
   if (id == -1) return;
 
-  var toggle  = document.body.classList.contains('panel-' + id);
+  var toggle = document.body.classList.contains('panel-' + id);
 
   document.body.className = '';
 
@@ -65,10 +65,11 @@ getConfigCallback('ntp_panel_visible', togglePanel);
 /**
  * Given an array of URLs, build a DOM list of these URLs.
  */
-function buildVisitedList(visitedURLs) {
-  var visitedList = document.getElementById('visited');
+function buildVisitedList(visitedURLs, max) {
+  var visitedList = $('visited');
 
-  visitedURLs = visitedURLs.slice(0, getConfig('number_top') || 10);
+  // Consider the user's set maximum (default 10)
+  visitedURLs = visitedURLs.slice(0, Number(max) || 10);
 
   for (var i = 0; i < visitedURLs.length; i++) {
     var li   = visitedList.appendChild(document.createElement('li'));
@@ -83,14 +84,18 @@ function buildVisitedList(visitedURLs) {
 }
 
 // Get most visited sites
-chrome.topSites.get(buildVisitedList);
+getConfigCallback('max_visited', function (val) {
+  chrome.topSites.get(function (list) {
+    buildVisitedList(list, val);
+  });
+});
 
 
 /**
  * Given an array of recently closed sessions, build a DOM list of the pages.
  */
 function buildClosedList(sessions) {
-  var closedList = document.getElementById('closed');
+  var closedList = $('closed');
 
   for (var i = 0; i < sessions.length; i++) {
     var li      = closedList.appendChild(document.createElement('li'));
@@ -107,15 +112,17 @@ function buildClosedList(sessions) {
   }
 }
 
-// Get recently closed sessions
-chrome.sessions.getRecentlyClosed({ maxResults: getConfig('max_results') || 10 }, buildClosedList);
+// Get recently closed sessions with user's set maximum (default 10)
+getConfigCallback('max_closed', function (val) {
+  chrome.sessions.getRecentlyClosed({ maxResults: Number(val) || 10 }, buildClosedList);
+});
 
 
 /**
  * Given an array of apps, build a DOM list of the apps.
  */
 function buildAppsList(list) {
-  var appsList = document.getElementById('apps');
+  var appsList = $('apps');
 
   // Only get active apps (no extensions)
   list = list.filter(function(a) {
@@ -167,19 +174,3 @@ function find128Image(icons) {
 
 // Get apps
 chrome.management.getAll(buildAppsList);
-
-
-/**
- * Storage helper
- */
-function getConfig(key) {
-  chrome.storage.sync.get(key, function (result) {
-    return result[key];
-  });
-}
-
-function getConfigCallback(key, callback) {
-  chrome.storage.sync.get(key, function (result) {
-    callback(result[key]);
-  });
-}

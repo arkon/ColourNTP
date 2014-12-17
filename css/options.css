@@ -13,3 +13,12 @@ label {
   text-align: left;
   width: 100%;
 }
+
+#save {
+  background-color: #fff;
+  border-radius: 5px;
+  color: #111115;
+  display: inline-block;
+  margin: 1em 0;
+  padding: 0.25em 1em;
+}
