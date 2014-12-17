@@ -27,37 +27,47 @@
 
 
 /**
- * Handle the showing/hiding of the Most Visited Pages panel.
+ * Handle the showing/hiding of the panel and its contents.
  */
-var mostVisited       = document.getElementById('panel');
-var mostVisitedToggle = document.getElementById('panel-toggle');
-mostVisitedToggle.onclick = function() {
-  var visible = document.body.classList.contains('show-panel');
+var visitedToggle   = document.getElementById('panel-toggle-visited'),
+    bookmarksToggle = document.getElementById('panel-toggle-bookmarks'),
+    closedToggle    = document.getElementById('panel-toggle-closed'),
+    appsToggle      = document.getElementById('panel-toggle-apps');
 
-  // Toggle visibility of pages
-  if (visible)
-    document.body.classList.remove('show-panel');
-  else
+visitedToggle.onclick   = function() { togglePanel(0); };
+bookmarksToggle.onclick = function() { togglePanel(1); };
+closedToggle.onclick    = function() { togglePanel(2); };
+appsToggle.onclick      = function() { togglePanel(3); };
+
+function togglePanel(id) {
+  if (id == -1) return;
+
+  var toggle  = document.body.classList.contains('panel-' + id);
+
+  document.body.className = '';
+
+  if (toggle) {
+    id = -1;
+  } else {
     document.body.classList.add('show-panel');
-
-  // Toggle element text
-  this.innerHTML = visible ? 'Show most visited' : 'Hide most visited';
+    document.body.classList.add('panel-' + id);
+  }
 
   // Save state
-  chrome.storage.sync.set({ 'ntp_panel_visible': !visible });
-};
+  chrome.storage.sync.set({ 'ntp_panel_visible': id });
+}
 
 
 /**
  * Given an array of URLs, build a DOM list of these URLs in the NTP.
  */
-function buildVisitedList(mostVisitedURLs) {
-  var visitedList = document.getElementById('mostVisited');
+function buildVisitedList(visitedURLs) {
+  var visitedList = document.getElementById('visited');
 
-  for (var i = 0; i < mostVisitedURLs.length; i++) {
+  for (var i = 0; i < visitedURLs.length; i++) {
     var li   = visitedList.appendChild(document.createElement('li'));
     var a    = li.appendChild(document.createElement('a'));
-    var site = mostVisitedURLs[i];
+    var site = visitedURLs[i];
 
     a.style.backgroundImage = 'url(chrome://favicon/' + site.url + ')';
     a.href                  = site.url;
@@ -71,8 +81,5 @@ chrome.topSites.get(buildVisitedList);
 
 // Display panel depending on synced state
 chrome.storage.sync.get('ntp_panel_visible', function (result) {
-  if (result.ntp_panel_visible) {
-    document.body.classList.add('show-panel');
-    mostVisitedToggle.innerHTML = 'Hide most visited';
-  }
+  togglePanel(result.ntp_panel_visible);
 });

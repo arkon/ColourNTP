@@ -1,3 +1,7 @@
+/**
+ * Core styling
+ */
+
 @font-face {
   font-family: 'Open Sans Light';
   src: url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Light.ttf') format('truetype');
@@ -27,8 +31,18 @@ body {
 
 a {
   color: #fff;
+  cursor: pointer;
   text-decoration: none;
 }
+
+li {
+  list-style: none;
+}
+
+
+/**
+ * Main time/hex display
+ */
 
 #time {
   display: table-cell;
@@ -58,6 +72,10 @@ h2 {
 }
 
 
+/**
+ * Options link
+ */
+
 #options {
   position: fixed;
   top: 0;
@@ -77,30 +95,52 @@ h2 {
     opacity: 1;
   }
 
-#panel-toggle {
+
+/**
+ * Panel toggles
+ */
+
+#panel-toggles {
   color: rgba(255,255,255,.4);
   display: block;
   font-size: 0.9em;
   margin-top: 4em;
-  transition: color 0.3s;
 }
 
-  #panel-toggle:hover {
-    color: #fff;
+  #panel-toggles a {
+    color: rgba(255,255,255,.4);
+    padding: 0.25em;
+    transition: color 0.3s;
   }
 
+
+#panel-toggles a:hover,
+.panel-0 #panel-toggle-visited,
+.panel-1 #panel-toggle-bookmarks,
+.panel-2 #panel-toggle-closed,
+.panel-3 #panel-toggle-apps {
+  color: #fff;
+}
+
+
+/**
+ * Panels
+ */
+
 #panel {
+  background-color: rgba(255,255,255,.8);
+  border-radius: 5px;
   display: none;
   margin-top: 1em;
+  width: auto;
 }
 
   .show-panel #panel {
-    display: block;
+    display: inline-block;
   }
 
-ul#mostVisited {
-  background-color: #fff;
-  border-radius: 5px;
+#panel ul {
+  display: none;
   font-size: 0;
   max-width: 900px;
   margin: 0 auto;
@@ -108,13 +148,19 @@ ul#mostVisited {
   text-align: center;
 }
 
-  #mostVisited li {
+
+/* Most visited (top sites) */
+
+.panel-0 #visited {
+  display: block;
+}
+
+  #visited li {
     display: inline-block;
-    list-style: none;
     text-align: left;
   }
 
-  #mostVisited a {
+  #visited a {
     display: inline-block;
     height: 2em;
     width: 7em;
@@ -134,11 +180,44 @@ ul#mostVisited {
     white-space: nowrap;
   }
 
-    #mostVisited a:hover {
+    #visited a:hover {
       box-shadow: 0 0 0 2px #777;
       color: #0e0e0e;
     }
 
-    #mostVisited a:active {
+    #visited a:active {
       transform: scale(0.95);
     }
+
+
+/* Bookmarks */
+
+.panel-1 #bookmarks {
+  display: block;
+}
+
+  #bookmarks li {
+    font-size: 1rem;
+  }
+
+
+/* Recently closed */
+
+.panel-2 #closed {
+  display: block;
+}
+
+  #closed li {
+    font-size: 1rem;
+  }
+
+
+/* Apps */
+
+.panel-3 #apps {
+  display: block;
+}
+
+  #apps li {
+    font-size: 1rem;
+  }

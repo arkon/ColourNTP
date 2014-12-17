@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <head>
+  <meta charset='UTF-8'>
   <title>New Tab</title>
   <link href='css/colours.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <a id='options' href='options/options.html' target='_blank'>Options</a>
+  <a id='options' href='options/options.html' title='Options' target='_blank'>Options</a>
 
   <div id='time'>
     <h1 id='t'></h1>
     <h2 id='h'></h2>
 
-    <a id='panel-toggle' href='#'>Show most visited</a>
+    <p id='panel-toggles'>
+      <a id='panel-toggle-visited'>Most visited</a>
+      •
+      <a id='panel-toggle-bookmarks'>Bookmarks</a>
+      •
+      <a id='panel-toggle-closed'>Recently closed</a>
+      •
+      <a id='panel-toggle-apps'>Apps</a>
+    </p>
 
     <div id='panel'>
-      <ul id='mostVisited'></ul>
+      <ul id='visited'></ul>
+      <ul id='bookmarks'><li>1</li></ul>
+      <ul id='closed'><li>2</li></ul>
+      <ul id='apps'><li>3</li></ul>
     </div>
   </div>
 
