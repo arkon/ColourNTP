@@ -29,6 +29,31 @@ h2 {
   h2 { font-size: 1.25em; }
 }
 
+li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+li a {
+  display: inline-block;
+  margin: 0.5em;
+
+  background-color: #eee;
+  transition: box-shadow 0.3s;
+
+  color: #1e1e1e;
+  font-size: 1rem;
+}
+
+  li a:hover {
+    box-shadow: 0 0 0 2px #777;
+    color: #0e0e0e;
+  }
+
+  li a:active {
+    transform: scale(0.95);
+  }
+
 
 /**
  * Options link
@@ -114,38 +139,22 @@ h2 {
 }
 
   #visited li {
-    display: inline-block;
     text-align: left;
   }
 
   #visited a {
-    display: inline-block;
     height: 2em;
     width: 7em;
-    margin: 0.5em;
 
-    background-color: #eee;
     background-repeat: no-repeat;
     background-position: 0.5em center;
     padding: 1em 0.5em 1em 1.85em;
-    transition: box-shadow 0.3s;
 
-    color: #1e1e1e;
-    font-size: 1rem;
     line-height: 2em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-
-    #visited a:hover {
-      box-shadow: 0 0 0 2px #777;
-      color: #0e0e0e;
-    }
-
-    #visited a:active {
-      transform: scale(0.95);
-    }
 
 
 /* Bookmarks */
@@ -176,6 +185,14 @@ h2 {
   display: block;
 }
 
-  #apps li {
+  #apps a {
+    height: 11em;
+    width: 15em;
+
+    padding: 1em;
+  }
+
+  .app-name {
+    color: #1e1e1e;
     font-size: 1rem;
   }

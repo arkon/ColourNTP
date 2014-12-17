@@ -7,18 +7,18 @@
   var mins  = d.getMinutes();
   var secs  = d.getSeconds();
 
-  if (hours < 10) { hours = "0" + hours };
-  if (mins < 10)  { mins  = "0" + mins  };
-  if (secs < 10)  { secs  = "0" + secs  };
+  if (hours < 10) { hours = '0' + hours };
+  if (mins < 10)  { mins  = '0' + mins  };
+  if (secs < 10)  { secs  = '0' + secs  };
 
   hours.toString();
   mins.toString();
   secs.toString();
 
-  var hex = "#" + hours + mins + secs;
+  var hex = '#' + hours + mins + secs;
 
-  document.getElementById("t").innerHTML = hours + " : " + mins + " : " + secs;
-  document.getElementById("h").innerHTML = hex;
+  document.getElementById('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
+  document.getElementById('h').innerHTML = hex;
 
   document.body.style.background = hex;
 
@@ -83,3 +83,46 @@ chrome.topSites.get(buildVisitedList);
 chrome.storage.sync.get('ntp_panel_visible', function (result) {
   togglePanel(result.ntp_panel_visible);
 });
+
+
+/**
+ * Given an array of apps, build a DOM list of
+ */
+function buildAppsList(list) {
+  var appsList = document.getElementById('apps');
+
+  for (var i in list) {
+    // Only get active apps (no extensions)
+    var extInf = list[i];
+    if (extInf.isApp && extInf.enabled) {
+      var li = appsList.appendChild(document.createElement('li'));
+      var a  = li.appendChild(document.createElement('a'));
+
+      li.addEventListener('click', (function(ext) {
+        return function() {
+          chrome.management.launchApp(ext.id);
+        };
+      })(extInf));
+
+      var img = a.appendChild(new Image());
+      img.src = find128Image(extInf.icons);
+
+      var name = a.appendChild(document.createElement('div'));
+      name.className = 'app-name';
+      name.innerHTML = extInf.name;
+    }
+  }
+}
+
+function find128Image(icons) {
+  for (var icon in icons) {
+    if (icons[icon].size == '128') {
+      return icons[icon].url;
+    }
+  }
+
+  return '/noicon.png';
+}
+
+// Get apps
+chrome.management.getAll(buildAppsList);
