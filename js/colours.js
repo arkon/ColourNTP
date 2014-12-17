@@ -59,34 +59,29 @@ function togglePanel(id) {
 }
 
 // Display panel depending on synced state
-getConfigCallback('ntp_panel_visible', togglePanel);
+getConfig('ntp_panel_visible', togglePanel);
 
 
 /**
  * Given an array of URLs, build a DOM list of these URLs.
  */
-function buildVisitedList(visitedURLs, max) {
-  var visitedList = $('visited');
+getConfig('max_visited', function (max) {
+  chrome.topSites.get(function (visitedURLs) {
+    var visitedList = $('visited');
 
-  // Consider the user's set maximum (default 10)
-  visitedURLs = visitedURLs.slice(0, Number(max) || 10);
+    // Consider the user's set maximum (default 10)
+    visitedURLs = visitedURLs.slice(0, Number(max) || 10);
 
-  for (var i = 0; i < visitedURLs.length; i++) {
-    var li   = visitedList.appendChild(document.createElement('li'));
-    var a    = li.appendChild(document.createElement('a'));
-    var site = visitedURLs[i];
+    for (var i = 0; i < visitedURLs.length; i++) {
+      var li   = visitedList.appendChild(document.createElement('li'));
+      var a    = li.appendChild(document.createElement('a'));
+      var site = visitedURLs[i];
 
-    a.style.backgroundImage = 'url(chrome://favicon/' + site.url + ')';
-    a.href      = site.url;
-    a.title     = site.title;
-    a.innerHTML = site.title;
-  }
-}
-
-// Get most visited sites
-getConfigCallback('max_visited', function (val) {
-  chrome.topSites.get(function (list) {
-    buildVisitedList(list, val);
+      a.style.backgroundImage = 'url(chrome://favicon/' + site.url + ')';
+      a.href      = site.url;
+      a.title     = site.title;
+      a.innerHTML = site.title;
+    }
   });
 });
 
@@ -94,34 +89,36 @@ getConfigCallback('max_visited', function (val) {
 /**
  * Given an array of recently closed sessions, build a DOM list of the pages.
  */
-function buildClosedList(sessions) {
-  var closedList = $('closed');
+getConfig('max_closed', function (max) {
+  chrome.sessions.getRecentlyClosed(
+    {
+      maxResults: Number(max) || 10
+    },
+    function (sessions) {
+      var closedList = $('closed');
 
-  for (var i = 0; i < sessions.length; i++) {
-    var li      = closedList.appendChild(document.createElement('li'));
-    var a       = li.appendChild(document.createElement('a'));
-    var session = sessions[i];
+      for (var i = 0; i < sessions.length; i++) {
+        var li      = closedList.appendChild(document.createElement('li'));
+        var a       = li.appendChild(document.createElement('a'));
+        var session = sessions[i];
 
-    if (session.window && session.window.tabs.length === 1)
-      session.tab = session.window.tabs[0];
+        if (session.window && session.window.tabs.length === 1)
+          session.tab = session.window.tabs[0];
 
-    a.style.backgroundImage = session.tab ? 'url(chrome://favicon/' + session.tab.url + ')' : null;
-    a.href      = session.tab ? session.tab.url : null;
-    a.title     = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
-    a.innerHTML = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
-  }
-}
-
-// Get recently closed sessions with user's set maximum (default 10)
-getConfigCallback('max_closed', function (val) {
-  chrome.sessions.getRecentlyClosed({ maxResults: Number(val) || 10 }, buildClosedList);
+        a.style.backgroundImage = session.tab ? 'url(chrome://favicon/' + session.tab.url + ')' : null;
+        a.href      = session.tab ? session.tab.url : null;
+        a.title     = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
+        a.innerHTML = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
+      }
+    }
+  );
 });
 
 
 /**
  * Given an array of apps, build a DOM list of the apps.
  */
-function buildAppsList(list) {
+chrome.management.getAll(function (list) {
   var appsList = $('apps');
 
   // Only get active apps (no extensions)
@@ -159,7 +156,7 @@ function buildAppsList(list) {
   store.id        = 'store-link';
   store.href      = 'https://chrome.google.com/webstore';
   store.innerHTML = 'Chrome Web Store';
-}
+});
 
 // Finds an 128px x 128px icon for an app
 function find128Image(icons) {
@@ -171,6 +168,3 @@ function find128Image(icons) {
 
   return '/noicon.png';
 }
-
-// Get apps
-chrome.management.getAll(buildAppsList);

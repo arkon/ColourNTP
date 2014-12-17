@@ -14,9 +14,11 @@ var maxVisited = $('visited-max'),
 /**
  * Load saved settings
  */
-solidColor.value = getConfig('solid_color');
+getConfig('solid_color', function (val) {
+  solidColor.value = val;
+});
 
-getConfigCallback('time', loadTime);
+getConfig('time', loadTime);
 function loadTime(id) {
   switch (id) {
     case 0:
@@ -34,12 +36,12 @@ function loadTime(id) {
   }
 }
 
-getConfigCallback('max_visited', loadMaxVisited);
+getConfig('max_visited', loadMaxVisited);
 function loadMaxVisited(val) {
   maxVisited.value = val || 10;
 }
 
-getConfigCallback('max_closed', loadMaxClosed);
+getConfig('max_closed', loadMaxClosed);
 function loadMaxClosed(val) {
   maxClosed.value = val || 10;
 }
