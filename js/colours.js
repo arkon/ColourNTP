@@ -30,14 +30,12 @@
  * Handle the showing/hiding of the panel and its contents.
  */
 var visitedToggle   = document.getElementById('panel-toggle-visited'),
-    bookmarksToggle = document.getElementById('panel-toggle-bookmarks'),
     closedToggle    = document.getElementById('panel-toggle-closed'),
     appsToggle      = document.getElementById('panel-toggle-apps');
 
 visitedToggle.onclick   = function() { togglePanel(0); };
-bookmarksToggle.onclick = function() { togglePanel(1); };
-closedToggle.onclick    = function() { togglePanel(2); };
-appsToggle.onclick      = function() { togglePanel(3); };
+closedToggle.onclick    = function() { togglePanel(1); };
+appsToggle.onclick      = function() { togglePanel(2); };
 
 function togglePanel(id) {
   if (id == -1) return;
@@ -169,7 +167,7 @@ chrome.management.getAll(buildAppsList);
 
 
 /**
- * Storage helpers
+ * Storage helper
  */
 function getConfig(key, callback) {
   chrome.storage.sync.get(key, function (result) {

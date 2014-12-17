@@ -99,9 +99,8 @@ li a {
 
 #panel-toggles a:hover,
 .panel-0 #panel-toggle-visited,
-.panel-1 #panel-toggle-bookmarks,
-.panel-2 #panel-toggle-closed,
-.panel-3 #panel-toggle-apps {
+.panel-1 #panel-toggle-closed,
+.panel-2 #panel-toggle-apps {
   color: #fff;
 }
 
@@ -157,20 +156,9 @@ li a {
   }
 
 
-/* Bookmarks */
-
-.panel-1 #bookmarks {
-  display: block;
-}
-
-  #bookmarks li {
-    font-size: 1rem;
-  }
-
-
 /* Recently closed */
 
-.panel-2 #closed {
+.panel-1 #closed {
   display: block;
 }
 
@@ -195,7 +183,7 @@ li a {
 
 /* Apps */
 
-.panel-3 #apps {
+.panel-2 #apps {
   display: block;
 }
 
