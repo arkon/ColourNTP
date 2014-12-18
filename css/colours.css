@@ -2,6 +2,10 @@
  * Main time/hex display
  */
 
+body {
+  will-change: background;
+}
+
 #time {
   display: table-cell;
   padding: 1.5em;
@@ -50,8 +54,9 @@ li a {
   margin: 0.5em;
 
   background-color: #eee;
-  border: 1px solid #ddd  ;
+  border: 1px solid #ddd;
   transition: box-shadow 0.3s;
+  will-change: box-shadow;
 
   color: #1e1e1e;
   font-size: 1rem;
@@ -84,6 +89,7 @@ li a {
 
   opacity: 0.4;
   transition: opacity 0.3s;
+  will-change: opacity;
 }
 
   #options:hover {
@@ -106,6 +112,7 @@ li a {
     color: rgba(255,255,255,.4);
     padding: 0.25em;
     transition: color 0.3s;
+    will-change: color;
   }
 
   #panel-toggles a + a:before {
