@@ -25,21 +25,24 @@ getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
     if (secs < 10)  { secs  = '0' + secs  };
 
     // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
-    var hex = '#' + hours + mins + secs;
+    if (!result['time_solid']) {
+      var hex = '#' + hours + mins + secs;
 
-    /*
-      Full spectrum (go from #000000 -> #FFFFFF in 1 day (approx))
-      16 777 215 hex values
-          86 400 seconds in a day
-    */
-    if (result['time_full']) {
-      var seconds = ((parseInt(hours, 10) * 60 * 60) + (parseInt(mins, 10) * 60) + parseInt(secs, 10));
-      hex = secondToHexColour(seconds);
+      /*
+        Full spectrum (go from #000000 -> #FFFFFF in 1 day (approx))
+        16 777 215 hex values
+            86 400 seconds in a day
+      */
+      if (result['time_full']) {
+        var seconds = ((parseInt(hours, 10) * 60 * 60) + (parseInt(mins, 10) * 60) + parseInt(secs, 10));
+        var hex = secondToHexColour(seconds);
+      }
+
+      $('h').innerHTML = hex;
+      document.body.style.background = hex;
     }
 
     $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
-    $('h').innerHTML = hex;
-    document.body.style.background = hex;
 
     setTimeout(doTime, 1000);
   })();
