@@ -24,27 +24,23 @@ getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
     if (mins < 10)  { mins  = '0' + mins  };
     if (secs < 10)  { secs  = '0' + secs  };
 
-    if (!result['time_solid']) {
-      // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
-      if (result['time_normal']) {
-        var hex = '#' + hours + mins + secs;
-      }
+    // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
+    var hex = '#' + hours + mins + secs;
 
-      /*
-        Full spectrum (go from #000000 -> #FFFFFF in 1 day (approx))
-        16 777 215 hex values
-            86 400 seconds in a day
-      */
-      if (result['time_full']) {
-        var seconds = ((parseInt(hours, 10) * 60 * 60) + (parseInt(mins, 10) * 60) + parseInt(secs, 10));
-        var hex = secondToHexColour(seconds);
-      }
-
-      $('h').innerHTML = hex;
-      document.body.style.background = hex;
+    /*
+      Full spectrum (go from #000000 -> #FFFFFF in 1 day (approx))
+      16 777 215 hex values
+          86 400 seconds in a day
+    */
+    if (result['time_full']) {
+      var seconds = ((parseInt(hours, 10) * 60 * 60) + (parseInt(mins, 10) * 60) + parseInt(secs, 10));
+      var hex = secondToHexColour(seconds);
     }
 
     $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
+    $('h').innerHTML = hex;
+    document.body.style.background = hex;
+
 
     setTimeout(doTime, 1000);
   })();
@@ -67,19 +63,21 @@ var visitedToggle = $('panel-toggle-visited'),
     appsToggle    = $('panel-toggle-apps');
 
 getConfig(['panel_visited', 'panel_closed', 'panel_apps', 'ntp_panel_visible'], function (results) {
-  if (!results['panel_visited']) {
+  if (results['panel_visited'] === false) {
     visitedToggle.remove();
   }
 
-  if (!results['panel_closed']) {
+  if (!results['panel_closed'] === false) {
     closedToggle.remove();
   }
 
-  if (!results['panel_apps']) {
+  if (!results['panel_apps'] === false) {
     appsToggle.remove();
   }
 
-  if (results['panel_visited'] || results['panel_closed'] || results['panel_apps']) {
+  if (results['panel_visited'] !== false ||
+      results['panel_closed'] !== false ||
+      results['panel_apps'] !== false) {
     visitedToggle.onclick = function() { togglePanel(0); };
     closedToggle.onclick  = function() { togglePanel(1); };
     appsToggle.onclick    = function() { togglePanel(2); };

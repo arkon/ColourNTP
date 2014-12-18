@@ -17,14 +17,14 @@ var maxVisited = $('visited-max'),
 getConfig(['time_normal', 'time_full', 'time_solid', 'solid_color',
            'panel_visited', 'panel_closed', 'panel_apps',
            'max_visited', 'max_closed'], function (results) {
-  timeNormal.checked = results['time_normal'];
+  timeNormal.checked = results['time_normal'] !== false;
   timeFull.checked   = results['time_full'];
   timeSolid.checked  = results['time_solid'];
   solidColor.value   = results['solid_color'];
 
-  panelVisited.checked = results['panel_visited'];
-  panelClosed.checked  = results['panel_closed'];
-  panelApps.checked    = results['panel_apps'];
+  panelVisited.checked = results['panel_visited'] !== false;
+  panelClosed.checked  = results['panel_closed'] !== false;
+  panelApps.checked    = results['panel_apps'] !== false;
 
   maxVisited.value = results['max_visited'] || 10;
   maxClosed.value  = results['max_closed'] || 10;
