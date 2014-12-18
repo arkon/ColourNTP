@@ -34,14 +34,10 @@ getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
         Full spectrum (go from #000000 -> #FFFFFF in 1 day (approx))
         16 777 215 hex values
             86 400 seconds in a day
-
-        16 777 215 / 86 400 = 194.180729167
       */
       if (result['time_full']) {
-        var seconds = ((parseInt(hours, 10) * 60 * 60) +
-                       (parseInt(mins, 10) * 60) +
-                       parseInt(secs, 10)) * 194;
-        var hex = '#' + seconds.toString(16);
+        var seconds = ((parseInt(hours, 10) * 60 * 60) + (parseInt(mins, 10) * 60) + parseInt(secs, 10));
+        var hex = secondToHexColour(seconds);
       }
 
       $('h').innerHTML = hex;
@@ -54,6 +50,14 @@ getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
   })();
 });
 
+/**
+ * "Converts" the second to a hex value, from 0x000000 to 0xFFFFFF.
+ * 00:00:00 corresponds to #000000 and 23:59:59 corresponds to 0xFFFFFF.
+ * Returns it as a hex colour value (e.g. #1fd531).
+ */
+function secondToHexColour(secondInDay) {
+  return '#' + ('00000' + (secondInDay / (24 * 60 * 60 - 1) * 0xFFFFFF | 0).toString(16)).slice(-6);
+}
 
 /**
  * Handle the showing/hiding of the panel and its contents.
