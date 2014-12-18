@@ -54,6 +54,7 @@ getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
   })();
 });
 
+
 /**
  * Handle the showing/hiding of the panel and its contents.
  */
@@ -61,48 +62,46 @@ var visitedToggle = $('panel-toggle-visited'),
     closedToggle  = $('panel-toggle-closed'),
     appsToggle    = $('panel-toggle-apps');
 
-getConfig('panel_visited', function (visible) {
-  if (!visible) {
+getConfig(['panel_visited', 'panel_closed', 'panel_apps'], function (results) {
+  if (!results['panel_visited']) {
     visitedToggle.remove();
   }
-});
 
-getConfig('panel_closed', function (visible) {
-  if (!visible) {
+  if (!results['panel_closed']) {
     closedToggle.remove();
   }
-});
 
-getConfig('panel_apps', function (visible) {
-  if (!visible) {
+  if (!results['panel_apps']) {
     appsToggle.remove();
   }
-});
 
-visitedToggle.onclick = function() { togglePanel(0); };
-closedToggle.onclick  = function() { togglePanel(1); };
-appsToggle.onclick    = function() { togglePanel(2); };
+  if (results['panel_visited'] || results['panel_closed'] || results['panel_apps']) {
+    visitedToggle.onclick = function() { togglePanel(0); };
+    closedToggle.onclick  = function() { togglePanel(1); };
+    appsToggle.onclick    = function() { togglePanel(2); };
 
-function togglePanel(id) {
-  if (id == -1) return;
+    function togglePanel(id) {
+      if (id == -1) return;
 
-  var toggle = document.body.classList.contains('panel-' + id);
+      var toggle = document.body.classList.contains('panel-' + id);
 
-  document.body.className = '';
+      document.body.className = '';
 
-  if (toggle) {
-    id = -1;
-  } else {
-    document.body.classList.add('show-panel');
-    document.body.classList.add('panel-' + id);
+      if (toggle) {
+        id = -1;
+      } else {
+        document.body.classList.add('show-panel');
+        document.body.classList.add('panel-' + id);
+      }
+
+      // Save state
+      chrome.storage.sync.set({ 'ntp_panel_visible': id });
+    }
+
+    // Display panel depending on synced state
+    getConfig('ntp_panel_visible', togglePanel);
   }
-
-  // Save state
-  chrome.storage.sync.set({ 'ntp_panel_visible': id });
-}
-
-// Display panel depending on synced state
-getConfig('ntp_panel_visible', togglePanel);
+});
 
 
 /**
@@ -201,7 +200,10 @@ chrome.management.getAll(function (list) {
   store.innerHTML = 'Chrome Web Store';
 });
 
-// Finds an 128px x 128px icon for an app
+
+/**
+ * Finds an 128px x 128px icon for an app.
+ */
 function find128Image(icons) {
   for (var i in icons) {
     if (icons[i].size == '128') {
