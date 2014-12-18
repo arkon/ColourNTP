@@ -34,13 +34,12 @@ getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
     */
     if (result['time_full']) {
       var seconds = ((parseInt(hours, 10) * 60 * 60) + (parseInt(mins, 10) * 60) + parseInt(secs, 10));
-      var hex = secondToHexColour(seconds);
+      hex = secondToHexColour(seconds);
     }
 
     $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
     $('h').innerHTML = hex;
     document.body.style.background = hex;
-
 
     setTimeout(doTime, 1000);
   })();
