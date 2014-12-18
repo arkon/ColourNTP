@@ -40,6 +40,7 @@ getConfig('time_normal', function (normal) {
     setTimeout(doTime, 1000);
   })();
 });
+
 // 16 777 215 / 86 400 = 194.180729167
 // hexString = yourNumber.toString(16);
 
@@ -50,6 +51,24 @@ getConfig('time_normal', function (normal) {
 var visitedToggle = $('panel-toggle-visited'),
     closedToggle  = $('panel-toggle-closed'),
     appsToggle    = $('panel-toggle-apps');
+
+getConfig('panel_visited', function (visible) {
+  if (!visible) {
+    visitedToggle.remove();
+  }
+});
+
+getConfig('panel_closed', function (visible) {
+  if (!visible) {
+    closedToggle.remove();
+  }
+});
+
+getConfig('panel_apps', function (visible) {
+  if (!visible) {
+    appsToggle.remove();
+  }
+});
 
 visitedToggle.onclick = function() { togglePanel(0); };
 closedToggle.onclick  = function() { togglePanel(1); };

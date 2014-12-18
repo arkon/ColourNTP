@@ -96,6 +96,12 @@ li a {
     transition: color 0.3s;
   }
 
+  #panel-toggles a + a:before {
+    color: rgba(255,255,255,.4);
+    content: '•';
+    margin-right: 0.5em;
+  }
+
 
 #panel-toggles a:hover,
 .panel-0 #panel-toggle-visited,

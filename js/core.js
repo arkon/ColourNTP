@@ -11,3 +11,7 @@ function getConfig(key, callback) {
 function $(id) {
   return document.getElementById(id);
 }
+
+Element.prototype.remove = function() {
+  this.parentElement.removeChild(this);
+}
