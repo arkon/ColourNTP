@@ -56,7 +56,9 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function 
 /**
  * "Converts" the second to a hex value, from 0x000000 to 0xFFFFFF.
  * 00:00:00 corresponds to #000000 and 23:59:59 corresponds to 0xFFFFFF.
- * Returns it as a hex colour value (e.g. #1fd531).
+ *
+ * @param   Number  secondInDay   The current second in the day.
+ * @return  String                The hex colour value (e.g. #1fd531).
  */
 function secondToHexColour(secondInDay) {
   return '#' + ('00000' + (secondInDay / (24 * 60 * 60 - 1) * 0xFFFFFF | 0).toString(16)).slice(-6);
@@ -76,15 +78,15 @@ function secondToHexColour(secondInDay) {
 function hslToRgb(h, s, l){
   var r, g, b;
 
-  if(s == 0){
-    r = g = b = l; // achromatic
+  if (s == 0){
+    r = g = b = l;  // Achromatic
   } else {
     function hue2rgb(p, q, t){
-      if(t < 0) t += 1;
-      if(t > 1) t -= 1;
-      if(t < 1/6) return p + (q - p) * 6 * t;
-      if(t < 1/2) return q;
-      if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+      if (t < 0) t++;
+      if (t > 1) t--;
+      if (t < 1/6) return p + (q - p) * 6 * t;
+      if (t < 1/2) return q;
+      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
       return p;
     }
 
@@ -102,7 +104,7 @@ function hslToRgb(h, s, l){
  * Converts RGB values to a hex colour string
  */
 function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
 /**
