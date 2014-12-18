@@ -111,7 +111,7 @@ function rgbToHex(r, g, b) {
  */
 function secondToHueColour(secondInDay) {
   var hue = secondInDay / (24 * 60 * 60);
-  return rgbToHex.apply(null, (hslToRgb(hue, 1, 0.5)));
+  return rgbToHex.apply(null, hslToRgb(hue, 1, 0.5));
 }
 
 /**
