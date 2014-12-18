@@ -1,7 +1,8 @@
-var timeNormal = $('time-normal'),
-    timeFull   = $('time-full'),
-    timeSolid  = $('time-solid'),
-    solidColor = $('time-solid-color');
+var timeNormal  = $('time-normal'),
+    timeFull    = $('time-full-hex'),
+    timeFullHue = $('time-full-hue'),
+    timeSolid   = $('time-solid'),
+    solidColor  = $('time-solid-color');
 
 var panelVisited = $('panel-visited'),
     panelClosed  = $('panel-closed'),
@@ -14,13 +15,14 @@ var maxVisited = $('visited-max'),
 /**
  * Load saved settings
  */
-getConfig(['time_normal', 'time_full', 'time_solid', 'solid_color',
+getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'solid_color',
            'panel_visited', 'panel_closed', 'panel_apps',
            'max_visited', 'max_closed'], function (results) {
-  timeNormal.checked = results['time_normal'] !== false;
-  timeFull.checked   = results['time_full'];
-  timeSolid.checked  = results['time_solid'];
-  solidColor.value   = results['solid_color'];
+  timeNormal.checked  = results['time_normal'] !== false;
+  timeFull.checked    = results['time_full'];
+  timeFullHue.checked = results['time_full_hue'];
+  timeSolid.checked   = results['time_solid'];
+  solidColor.value    = results['solid_color'];
 
   panelVisited.checked = results['panel_visited'] !== false;
   panelClosed.checked  = results['panel_closed'] !== false;
@@ -36,17 +38,18 @@ getConfig(['time_normal', 'time_full', 'time_solid', 'solid_color',
  */
 $('save').onclick = function() {
   chrome.storage.sync.set({
-    'time_normal'  : timeNormal.checked,
-    'time_full'    : timeFull.checked,
-    'time_solid'   : timeSolid.checked,
-    'solid_color'  : solidColor.value,
+    'time_normal'   : timeNormal.checked,
+    'time_full'     : timeFull.checked,
+    'time_full_hue' : timeFullHue.checked,
+    'time_solid'    : timeSolid.checked,
+    'solid_color'   : solidColor.value,
 
-    'panel_visited': panelVisited.checked,
-    'panel_closed' : panelClosed.checked,
-    'panel_apps'   : panelApps.checked,
+    'panel_visited' : panelVisited.checked,
+    'panel_closed'  : panelClosed.checked,
+    'panel_apps'    : panelApps.checked,
 
-    'max_visited'  : maxVisited.value,
-    'max_closed'   : maxClosed.value
+    'max_visited'   : maxVisited.value,
+    'max_closed'    : maxClosed.value
   });
 
   this.innerHTML = 'Saved';
