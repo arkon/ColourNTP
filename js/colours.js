@@ -24,21 +24,24 @@ getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
     if (mins < 10)  { mins  = '0' + mins  };
     if (secs < 10)  { secs  = '0' + secs  };
 
-    hours.toString();
-    mins.toString();
-    secs.toString();
-
-    // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
     if (!result['time_solid']) {
+      // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
       if (result['time_normal']) {
         var hex = '#' + hours + mins + secs;
       }
 
+      /*
+        Full spectrum (go from #000000 -> #FFFFFF in 1 day (approx))
+        16 777 215 hex values
+            86 400 seconds in a day
+
+        16 777 215 / 86 400 = 194.180729167
+      */
       if (result['time_full']) {
-        var seconds_today = hours * 60 * 60 + mins * 60 + secs;
-        var hex_sec = seconds_today * 194;
-        var hex_str = hex_sec.toString(16);
-        var hex = '#' + hex_str;
+        var seconds = ((parseInt(hours, 10) * 60 * 60) +
+                       (parseInt(mins, 10) * 60) +
+                       parseInt(secs, 10)) * 194;
+        var hex = '#' + seconds.toString(16);
       }
 
       $('h').innerHTML = hex;
@@ -50,10 +53,6 @@ getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
     setTimeout(doTime, 1000);
   })();
 });
-
-// 16 777 215 / 86 400 = 194.180729167
-// hexString = yourNumber.toString(16);
-
 
 /**
  * Handle the showing/hiding of the panel and its contents.

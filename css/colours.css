@@ -123,7 +123,7 @@ li a {
  */
 
 #panel {
-  background-color: rgba(255,255,255,.8);
+  background-color: rgba(255,255,255,.75);
   border-radius: 5px;
   display: none;
   margin-top: 1em;
