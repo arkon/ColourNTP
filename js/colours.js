@@ -66,11 +66,11 @@ getConfig(['panel_visited', 'panel_closed', 'panel_apps', 'ntp_panel_visible'], 
     visitedToggle.remove();
   }
 
-  if (!results['panel_closed'] === false) {
+  if (results['panel_closed'] === false) {
     closedToggle.remove();
   }
 
-  if (!results['panel_apps'] === false) {
+  if (results['panel_apps'] === false) {
     appsToggle.remove();
   }
 
