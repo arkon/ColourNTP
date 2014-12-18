@@ -1,30 +1,45 @@
 /**
- * Calculates and displays the time and corresponding (hexadecimal) colour.
+ * If solid background mode is chosen, use that colour.
  */
-(function doTime() {
-  var d     = new Date();
-  var hours = d.getHours();
-  var mins  = d.getMinutes();
-  var secs  = d.getSeconds();
+getConfig('time_solid', function (solid) {
+  if (solid) {
+    getConfig('solid_color', function (hex) {
+      document.body.style.background = hex;
+    });
+  }
+});
 
-  if (hours < 10) { hours = '0' + hours };
-  if (mins < 10)  { mins  = '0' + mins  };
-  if (secs < 10)  { secs  = '0' + secs  };
 
-  hours.toString();
-  mins.toString();
-  secs.toString();
+/**
+ * Calculates and displays the time.
+ */
+getConfig('time_normal', function (normal) {
+  (function doTime() {
+    var d     = new Date();
+    var hours = d.getHours();
+    var mins  = d.getMinutes();
+    var secs  = d.getSeconds();
 
-  var hex = '#' + hours + mins + secs;
+    if (hours < 10) { hours = '0' + hours };
+    if (mins < 10)  { mins  = '0' + mins  };
+    if (secs < 10)  { secs  = '0' + secs  };
 
-  $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
-  $('h').innerHTML = hex;
+    hours.toString();
+    mins.toString();
+    secs.toString();
 
-  document.body.style.background = hex;
+    // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
+    if (normal) {
+      var hex = '#' + hours + mins + secs;
+      $('h').innerHTML = hex;
+      document.body.style.background = hex;
+    }
 
-  setTimeout(doTime, 1000);
-})();
+    $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
 
+    setTimeout(doTime, 1000);
+  })();
+});
 // 16 777 215 / 86 400 = 194.180729167
 // hexString = yourNumber.toString(16);
 

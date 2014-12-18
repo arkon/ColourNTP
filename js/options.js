@@ -14,37 +14,41 @@ var maxVisited = $('visited-max'),
 /**
  * Load saved settings
  */
+getConfig('time_normal', function (val) {
+  timeNormal.checked = val;
+});
+
+getConfig('time_full', function (val) {
+  timeFull.checked = val;
+});
+
+getConfig('time_solid', function (val) {
+  timeSolid.checked = val;
+});
+
 getConfig('solid_color', function (val) {
   solidColor.value = val;
 });
 
-getConfig('time', loadTime);
-function loadTime(id) {
-  switch (id) {
-    case 0:
-      timeNormal.checked = true;
-      break;
-    case 1:
-      timeFull.checked = true;
-      break;
-    case 2:
-      timeSolid.checked = true;
-      break;
-    default:
-      timeNormal.checked = true;
-      break;
-  }
-}
+getConfig('panel_visited', function (val) {
+  panelVisited.checked = val;
+});
 
-getConfig('max_visited', loadMaxVisited);
-function loadMaxVisited(val) {
+getConfig('panel_closed', function (val) {
+  panelClosed.checked = val;
+});
+
+getConfig('panel_apps', function (val) {
+  panelApps.checked = val;
+});
+
+getConfig('max_visited', function (val) {
   maxVisited.value = val || 10;
-}
+});
 
-getConfig('max_closed', loadMaxClosed);
-function loadMaxClosed(val) {
+getConfig('max_closed', function (val) {
   maxClosed.value = val || 10;
-}
+});
 
 
 /**
@@ -52,13 +56,19 @@ function loadMaxClosed(val) {
  */
 $('save').onclick = function() {
   chrome.storage.sync.set({
-    'solid_color': solidColor.value,
-    'max_visited': maxVisited.value,
-    'max_closed':  maxClosed.value
+    'time_normal'  : timeNormal.checked,
+    'time_full'    : timeFull.checked,
+    'time_solid'   : timeSolid.checked,
+    'solid_color'  : solidColor.value,
+    'panel_visited': panelVisited.checked,
+    'panel_closed' : panelClosed.checked,
+    'panel_apps'   : panelApps.checked,
+    'max_visited'  : maxVisited.value,
+    'max_closed'   : maxClosed.value
   });
 
   this.innerHTML = 'Saved';
-  window.setTimeout(function() {
+  setTimeout(function() {
     $('save').innerHTML = 'Save';
   }, 1000);
 }
