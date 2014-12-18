@@ -66,7 +66,7 @@ var visitedToggle = $('panel-toggle-visited'),
     closedToggle  = $('panel-toggle-closed'),
     appsToggle    = $('panel-toggle-apps');
 
-getConfig(['panel_visited', 'panel_closed', 'panel_apps'], function (results) {
+getConfig(['panel_visited', 'panel_closed', 'panel_apps', 'ntp_panel_visible'], function (results) {
   if (!results['panel_visited']) {
     visitedToggle.remove();
   }
@@ -103,7 +103,7 @@ getConfig(['panel_visited', 'panel_closed', 'panel_apps'], function (results) {
     }
 
     // Display panel depending on synced state
-    getConfig('ntp_panel_visible', togglePanel);
+    togglePanel(results['ntp_panel_visible']);
   }
 });
 
