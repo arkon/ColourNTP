@@ -1,19 +1,19 @@
 /**
- * If solid background mode is chosen, use that colour.
+ * Calculates and displays the time.
  */
-getConfig('time_solid', function (solid) {
-  if (solid) {
+getConfig(['time_normal', 'time_full', 'time_solid'], function (result) {
+  // To add text shadows for full spectrum
+  if (result['time_full']) {
+    $('time').classList.add('full');
+  }
+
+  // If solid background mode is chosen, use that colour
+  if (result['time_solid']) {
     getConfig('solid_color', function (hex) {
       document.body.style.background = hex;
     });
   }
-});
 
-
-/**
- * Calculates and displays the time.
- */
-getConfig('time_normal', function (normal) {
   (function doTime() {
     var d     = new Date();
     var hours = d.getHours();
@@ -29,8 +29,18 @@ getConfig('time_normal', function (normal) {
     secs.toString();
 
     // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
-    if (normal) {
-      var hex = '#' + hours + mins + secs;
+    if (!result['time_solid']) {
+      if (result['time_normal']) {
+        var hex = '#' + hours + mins + secs;
+      }
+
+      if (result['time_full']) {
+        var seconds_today = hours * 60 * 60 + mins * 60 + secs;
+        var hex_sec = seconds_today * 194;
+        var hex_str = hex_sec.toString(16);
+        var hex = '#' + hex_str;
+      }
+
       $('h').innerHTML = hex;
       document.body.style.background = hex;
     }

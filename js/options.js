@@ -14,40 +14,20 @@ var maxVisited = $('visited-max'),
 /**
  * Load saved settings
  */
-getConfig('time_normal', function (val) {
-  timeNormal.checked = val;
-});
+getConfig(['time_normal', 'time_full', 'time_solid', 'solid_color',
+           'panel_visited', 'panel_closed', 'panel_apps',
+           'max_visited', 'max_closed'], function (results) {
+  timeNormal.checked = results['time_normal'];
+  timeFull.checked   = results['time_full'];
+  timeSolid.checked  = results['time_solid'];
+  solidColor.value   = results['solid_color'];
 
-getConfig('time_full', function (val) {
-  timeFull.checked = val;
-});
+  panelVisited.checked = results['panel_visited'];
+  panelClosed.checked  = results['panel_closed'];
+  panelApps.checked    = results['panel_apps'];
 
-getConfig('time_solid', function (val) {
-  timeSolid.checked = val;
-});
-
-getConfig('solid_color', function (val) {
-  solidColor.value = val;
-});
-
-getConfig('panel_visited', function (val) {
-  panelVisited.checked = val;
-});
-
-getConfig('panel_closed', function (val) {
-  panelClosed.checked = val;
-});
-
-getConfig('panel_apps', function (val) {
-  panelApps.checked = val;
-});
-
-getConfig('max_visited', function (val) {
-  maxVisited.value = val || 10;
-});
-
-getConfig('max_closed', function (val) {
-  maxClosed.value = val || 10;
+  maxVisited.value = results['max_visited'] || 10;
+  maxClosed.value  = results['max_closed'] || 10;
 });
 
 
@@ -60,9 +40,11 @@ $('save').onclick = function() {
     'time_full'    : timeFull.checked,
     'time_solid'   : timeSolid.checked,
     'solid_color'  : solidColor.value,
+
     'panel_visited': panelVisited.checked,
     'panel_closed' : panelClosed.checked,
     'panel_apps'   : panelApps.checked,
+
     'max_visited'  : maxVisited.value,
     'max_closed'   : maxClosed.value
   });

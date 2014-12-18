@@ -29,6 +29,13 @@ h2 {
   h2 { font-size: 1.25em; }
 }
 
+/* Protects against light backgrounds when using full spectrum */
+.full h1,
+.full h2,
+.full #panel-toggles {
+  text-shadow: 0 1px 4px #555;
+}
+
 li {
   display: inline-block;
   vertical-align: top;
