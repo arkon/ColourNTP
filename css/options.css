@@ -1,10 +1,14 @@
+abbr {
+  border-bottom: 1px dotted #aaa;
+}
+
 h2 {
   margin: 1em 0 0.5em;
 }
 
 label {
   display: block;
-  margin: 0.5em 0;
+  margin: 0.75em 0;
 }
 
 #options {

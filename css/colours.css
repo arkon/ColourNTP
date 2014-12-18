@@ -50,6 +50,7 @@ li a {
   margin: 0.5em;
 
   background-color: #eee;
+  border: 1px solid #ddd  ;
   transition: box-shadow 0.3s;
 
   color: #1e1e1e;
@@ -205,10 +206,15 @@ li a {
 }
 
   #apps li a {
-    height: 11em;
-    width: 15em;
+    height: 8.5em;
+    width: 12em;
 
     padding: 1em;
+  }
+
+  #apps img {
+    height: 5em;
+    margin-bottom: 0.5em;
   }
 
   .app-name {
