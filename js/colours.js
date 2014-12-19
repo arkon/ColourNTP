@@ -1,5 +1,6 @@
 /**
- * Calculates and displays the time.
+ * Calculates and displays the time, along with the appropriate
+ * background colour.
  */
 getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function (result) {
   // To add text shadows for full spectrum
@@ -28,11 +29,6 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function 
     if (!result['time_solid']) {
       var hex = '#' + hours + mins + secs;
 
-      /*
-        Full spectrum (go from #000000 -> #FFFFFF in 1 day (approx))
-        16 777 215 hex values
-            86 400 seconds in a day
-      */
       if (result['time_full']) {
         var seconds = ((parseInt(hours, 10) * 60 * 60) + (parseInt(mins, 10) * 60) + parseInt(secs, 10));
         var hex = secondToHexColour(seconds);
@@ -53,9 +49,10 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function 
   })();
 });
 
+
 /**
  * "Converts" the second to a hex value, from 0x000000 to 0xFFFFFF.
- * 00:00:00 corresponds to #000000 and 23:59:59 corresponds to 0xFFFFFF.
+ * 00:00:00 corresponds to #000000 and 23:59:59 corresponds to #ffffff.
  *
  * @param   Number  secondInDay   The current second in the day.
  * @return  String                The hex colour value (e.g. #1fd531).
@@ -64,16 +61,17 @@ function secondToHexColour(secondInDay) {
   return '#' + ('00000' + (secondInDay / (24 * 60 * 60 - 1) * 0xFFFFFF | 0).toString(16)).slice(-6);
 }
 
+
 /**
  * Converts an HSL color value to RGB. Conversion formula
  * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
  * Assumes h, s, and l are contained in the set [0, 1] and
  * returns r, g, and b in the set [0, 255].
  *
- * @param   Number  h       The hue
- * @param   Number  s       The saturation
- * @param   Number  l       The lightness
- * @return  Array           The RGB representation
+ * @param   Number  h       The hue.
+ * @param   Number  s       The saturation.
+ * @param   Number  l       The lightness.
+ * @return  Array           The RGB representation.
  */
 function hslToRgb(h, s, l){
   var r, g, b;
@@ -100,21 +98,24 @@ function hslToRgb(h, s, l){
   return [r * 255, g * 255, b * 255];
 }
 
+
 /**
- * Converts RGB values to a hex colour string
+ * Converts RGB values to a hex colour string.
  */
 function rgbToHex(r, g, b) {
   return '#' + (((1 << 24) + (r << 16) + (g << 8) + b) | 0).toString(16).slice(1);
 }
 
+
 /**
  * "Converts" the second to a hex value, as a point along the hue spectrum.
- * 00:00:00 corresponds to #ff0000, 12:00:00 corresponds to #00feff
+ * 00:00:00 corresponds to #ff0000, 12:00:00 corresponds to #00feff.
  */
 function secondToHueColour(secondInDay) {
   var hue = secondInDay / (24 * 60 * 60);
   return rgbToHex.apply(null, hslToRgb(hue, 1, 0.5));
 }
+
 
 /**
  * Handle the showing/hiding of the panel and its contents.
