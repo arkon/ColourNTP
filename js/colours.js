@@ -49,8 +49,9 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function 
       $('history').innerHTML = '';
       for (var i = 0; i < 10; i++) {
         var past = $('history').append('div');
-        past.className = 'past-colour';
         past.style.backgroundColor = stack.get(i);
+        past.dataset.hex           = stack.get(i) || "Hold on...";
+        past.className             = 'past-colour';
       }
     }
 

@@ -243,18 +243,58 @@ li a {
  */
 
 #history {
+  font-size: 0;
   position: fixed;
   bottom: 0;
   left: 0;
-  text-align: left;
   width: 100%;
-  background-color: #fff;
 }
 
   .past-colour {
+    background-color: #aad;
     box-sizing: border-box;
     border-left: 1px solid #fff;
     display: inline-block;
-    height: 5px;
+    height: 6px;
     width: 10%;
+    position: relative;
+  }
+
+  .past-colour:first-child {
+    border-left: none;
+  }
+
+  .past-colour::after {
+    content: attr(data-hex);
+    font-size: 1rem;
+    position: absolute;
+    bottom: 300%;
+    left: 0;
+    background: #242424;
+    padding: 5px 15px;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  .past-colour::before {
+    content: "";
+    font-size: 1rem;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid #242424;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    opacity: 0;
+    left: 0;
+    bottom: 200%;
+    z-index: -1;
+  }
+
+  .past-colour:hover::after,
+  .past-colour:hover::before {
+    opacity: 1;
+    z-index: 0;
   }
