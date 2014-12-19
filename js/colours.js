@@ -15,6 +15,8 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function 
     });
   }
 
+  var stack = new FixedStack(10, new Array(10));
+
   (function doTime() {
     var d     = new Date();
     var hours = d.getHours();
@@ -39,8 +41,17 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function 
         var hex = secondToHueColour(seconds);
       }
 
+      stack.push(hex);
+
       $('h').innerHTML = hex;
       document.body.style.background = hex;
+
+      $('history').innerHTML = '';
+      for (var i = 0; i < 10; i++) {
+        var past = $('history').append('div');
+        past.className = 'past-colour';
+        past.style.backgroundColor = stack.get(i);
+      }
     }
 
     $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
@@ -276,10 +287,4 @@ function find128Image(icons) {
   }
 
   return '/noicon.png';
-}
-
-
-for (var i = 0; i < 10; i++) {
-  var past = $('history').append('div');
-  past.className = 'past-colour';
 }

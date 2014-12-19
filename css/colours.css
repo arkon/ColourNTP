@@ -248,12 +248,13 @@ li a {
   left: 0;
   text-align: left;
   width: 100%;
+  background-color: #fff;
 }
 
   .past-colour {
-    background-color: #000;
+    box-sizing: border-box;
+    border-left: 1px solid #fff;
     display: inline-block;
-    font-size: 0;
     height: 5px;
     width: 10%;
   }
