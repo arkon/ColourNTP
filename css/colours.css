@@ -236,3 +236,24 @@ li a {
     margin: 0.5em 0;
     text-align: center;
   }
+
+
+/**
+ * History (past colours)
+ */
+
+#history {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: left;
+  width: 100%;
+}
+
+  .past-colour {
+    background-color: #000;
+    display: inline-block;
+    font-size: 0;
+    height: 5px;
+    width: 10%;
+  }

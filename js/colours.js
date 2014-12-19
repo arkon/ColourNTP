@@ -179,8 +179,8 @@ getConfig('max_visited', function (max) {
     visitedURLs = visitedURLs.slice(0, Number(max) || 10);
 
     for (var i in visitedURLs) {
-      var li   = visitedList.appendChild(document.createElement('li'));
-      var a    = li.appendChild(document.createElement('a'));
+      var li   = visitedList.append('li');
+      var a    = li.append('a');
       var site = visitedURLs[i];
 
       a.style.backgroundImage = 'url(chrome://favicon/' + site.url + ')';
@@ -204,8 +204,8 @@ getConfig('max_closed', function (max) {
       var closedList = $('closed');
 
       for (var i in sessions) {
-        var li      = closedList.appendChild(document.createElement('li'));
-        var a       = li.appendChild(document.createElement('a'));
+        var li      = closedList.append('li');
+        var a       = li.append('a');
         var session = sessions[i];
 
         if (session.window && session.window.tabs.length === 1)
@@ -240,8 +240,8 @@ chrome.management.getAll(function (list) {
   });
 
   for (var i in list) {
-    var li = appsList.appendChild(document.createElement('li'));
-    var a  = li.appendChild(document.createElement('a'));
+    var li = appsList.append('li');
+    var a  = li.append('a');
     var extInf = list[i];
 
     li.addEventListener('click', (function(ext) {
@@ -253,12 +253,12 @@ chrome.management.getAll(function (list) {
     var img = a.appendChild(new Image());
     img.src = find128Image(extInf.icons);
 
-    var name = a.appendChild(document.createElement('div'));
+    var name = a.append('div');
     name.className = 'app-name';
     name.innerHTML = extInf.name;
   }
 
-  var store = appsList.appendChild(document.createElement('a'));
+  var store = appsList.append('a');
   store.id        = 'store-link';
   store.href      = 'https://chrome.google.com/webstore';
   store.innerHTML = 'Chrome Web Store';
@@ -276,4 +276,10 @@ function find128Image(icons) {
   }
 
   return '/noicon.png';
+}
+
+
+for (var i = 0; i < 10; i++) {
+  var past = $('history').append('div');
+  past.className = 'past-colour';
 }
