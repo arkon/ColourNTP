@@ -2,7 +2,8 @@ var timeNormal  = $('time-normal'),
     timeFull    = $('time-full-hex'),
     timeFullHue = $('time-full-hue'),
     timeSolid   = $('time-solid'),
-    solidColor  = $('time-solid-color');
+    solidColor  = $('time-solid-color'),
+    showHistory = $('history');
 
 var panelVisited = $('panel-visited'),
     panelClosed  = $('panel-closed'),
@@ -13,9 +14,9 @@ var maxVisited = $('visited-max'),
 
 
 /**
- * Load saved settings
+ * Load saved settings on page load.
  */
-getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'solid_color',
+getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'solid_color', 'history',
            'panel_visited', 'panel_closed', 'panel_apps',
            'max_visited', 'max_closed'], function (results) {
   timeNormal.checked  = results['time_normal'] !== false;
@@ -23,6 +24,7 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'solid_col
   timeFullHue.checked = results['time_full_hue'];
   timeSolid.checked   = results['time_solid'];
   solidColor.value    = results['solid_color'];
+  showHistory.checked = results['history'];
 
   panelVisited.checked = results['panel_visited'] !== false;
   panelClosed.checked  = results['panel_closed'] !== false;
@@ -34,7 +36,7 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'solid_col
 
 
 /**
- * Save button
+ * Saves all options.
  */
 $('save').onclick = function() {
   chrome.storage.sync.set({
@@ -43,6 +45,7 @@ $('save').onclick = function() {
     'time_full_hue' : timeFullHue.checked,
     'time_solid'    : timeSolid.checked,
     'solid_color'   : solidColor.value,
+    'history'       : showHistory.checked,
 
     'panel_visited' : panelVisited.checked,
     'panel_closed'  : panelClosed.checked,

@@ -2,7 +2,7 @@
  * Calculates and displays the time, along with the appropriate
  * background colour.
  */
-getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function (result) {
+getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'history'], function (result) {
   // To add text shadows for full spectrum
   if (result['time_full'] || result['time_full_hue']) {
     $('time').classList.add('full');
@@ -15,7 +15,11 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function 
     });
   }
 
-  var stack = new FixedStack(10, new Array(10));
+  // Stack for past colours
+  else if (result['history']) {
+    var stack = new FixedStack(10, new Array(10));
+  }
+
 
   (function doTime() {
     var d     = new Date();
@@ -41,17 +45,23 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid'], function 
         var hex = secondToHueColour(seconds);
       }
 
-      stack.push(hex);
-
       $('h').innerHTML = hex;
       document.body.style.background = hex;
 
-      $('history').innerHTML = '';
-      for (var i = 0; i < 10; i++) {
-        var past = $('history').append('div');
-        past.style.backgroundColor = stack.get(i);
-        past.dataset.hex           = stack.get(i) || "Hold on...";
-        past.className             = 'past-colour';
+      if (result['history']) {
+        stack.push(hex);
+
+        $('history').innerHTML = '';
+        for (var i = 0; i < 10; i++) {
+          var past = $('history').append('div');
+          past.style.backgroundColor = stack.get(i);
+          past.dataset.hex           = stack.get(i) || "Hold on...";
+          past.className             = 'past-colour';
+
+          past.addEventListener('click', function() {
+            window.prompt("Copy to clipboard: Ctrl/Cmd+C, Enter", stack.get(i));
+          });
+        }
       }
     }
 
