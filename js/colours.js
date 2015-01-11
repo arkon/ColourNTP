@@ -59,7 +59,7 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'history']
           past.className             = 'past-colour';
 
           past.addEventListener('click', function() {
-            window.prompt("Copy to clipboard: Ctrl/Cmd+C, Enter", stack.get(i));
+            prompt("Copy to clipboard: Ctrl/⌘+C, Enter", this.dataset.hex);
           });
         }
       }
