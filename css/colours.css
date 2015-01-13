@@ -80,21 +80,39 @@ li a {
   position: fixed;
   top: 0;
   right: 0;
-
-  background: url('chrome-extension://__MSG_@@extension_id__/img/gear.png') no-repeat center center / 12px 12px;
-  text-indent: -3000em;
-  display: block;
+  display: inline-block;
   height: 40px;
   width: 40px;
+  overflow: hidden;
 
   opacity: 0.4;
-  transition: opacity 0.3s;
-  will-change: opacity;
+  transition: opacity 0.3s, width 0.3s;
+  will-change: opacity, width;
 }
+
+  #options span {
+    display: inline-block;
+    margin: 0.6em 0 0 2.5em;
+  }
+
+  #options::before {
+    background: url('chrome-extension://__MSG_@@extension_id__/img/gear.png') no-repeat center center / 12px 12px;
+    content: '';
+    display: inline-block;
+    height: 40px;
+    position: fixed;
+    width: 40px;
+    transition: transform 0.3s;
+  }
 
   #options:hover {
     opacity: 1;
+    width: 120px;
   }
+
+    #options:hover::before {
+      transform: rotate(-45deg);
+    }
 
 
 /**
