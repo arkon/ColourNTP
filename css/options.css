@@ -26,7 +26,8 @@ input[type='number'] {
 }
 
 #options {
-  display: table-cell;
+  margin: 0 auto;
+  max-width: 650px;
   padding: 2em;
   text-align: left;
   width: 100%;
@@ -40,3 +41,18 @@ input[type='number'] {
   margin: 1em 0;
   padding: 0.25em 1em;
 }
+
+#credits {
+  display: block;
+  font-size: 0.85em;
+}
+
+  #credits a {
+    color: #888;
+    display: block;
+    transition: color 0.3s;
+  }
+
+    #credits a:hover {
+      color: #fff;
+    }
