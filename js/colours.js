@@ -2,7 +2,7 @@
  * Calculates and displays the time, along with the appropriate
  * background colour.
  */
-getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'history'], function (result) {
+getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue', 'time_solid', 'history'], function (result) {
   // To add text shadows for full spectrum
   if (result['time_full'] || result['time_full_hue']) {
     $('time').classList.add('full');
@@ -27,9 +27,13 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'history']
     var mins  = d.getMinutes();
     var secs  = d.getSeconds();
 
-    if (hours < 10) { hours = '0' + hours };
-    if (mins < 10)  { mins  = '0' + mins  };
-    if (secs < 10)  { secs  = '0' + secs  };
+    var twentyFourHourTime = result['24-hour-time'];
+    var isPM = hours > 12;
+    hours = twentyFourHourTime ? hours : hours % 12;
+
+    if (hours < 10) { hours = '0' + hours; }
+    if (mins < 10)  { mins  = '0' + mins;  }
+    if (secs < 10)  { secs  = '0' + secs;  }
 
     // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
     if (!result['time_solid']) {
@@ -66,6 +70,10 @@ getConfig(['time_normal', 'time_full', 'time_full_hue', 'time_solid', 'history']
     }
 
     $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
+
+    if (!twentyFourHourTime) {
+      $('t').setAttribute('time-postfix', isPM ? 'PM' : 'AM');
+    }
 
     setTimeout(doTime, 1000);
   })();
