@@ -2,7 +2,9 @@
  * Calculates and displays the time, along with the appropriate
  * background colour.
  */
-getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue', 'time_solid', 'history'], function (result) {
+getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
+           'time_solid', 'history'], function (result) {
+
   // To add text shadows for full spectrum
   if (result['time_full'] || result['time_full_hue']) {
     $('time').classList.add('full');
@@ -34,7 +36,7 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue', 'time_so
         hours -= 12;
       }
 
-      // instead of reading as 00 AM or PM, read as 12 AM/PM
+      // Instead of reading as 00 AM or PM, read as 12 AM/PM
       hours = hours === 0 ? 12 : hours;
     }
 
@@ -70,7 +72,7 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue', 'time_so
           past.className             = 'past-colour';
 
           past.addEventListener('click', function() {
-            prompt("Copy to clipboard: Ctrl/⌘+C, Enter", this.dataset.hex);
+            prompt('Copy to clipboard: Ctrl/⌘+C, Enter', this.dataset.hex);
           });
         }
       }
@@ -161,7 +163,8 @@ var visitedToggle = $('panel-toggle-visited'),
     closedToggle  = $('panel-toggle-closed'),
     appsToggle    = $('panel-toggle-apps');
 
-getConfig(['panel_visited', 'panel_closed', 'panel_apps', 'ntp_panel_visible'], function (results) {
+getConfig(['panel_visited', 'panel_closed', 'panel_apps',
+           'ntp_panel_visible'], function (results) {
   if (results['panel_visited'] === false) {
     visitedToggle.remove();
   }

@@ -19,9 +19,11 @@ var maxVisited = $('visited-max'),
  * Load saved settings on page load.
  */
 getConfig(['24-hour-time',
-           'time_normal', 'time_full', 'time_full_hue', 'time_solid', 'solid_color', 'history',
+           'time_normal', 'time_full', 'time_full_hue',
+           'time_solid', 'solid_color', 'history',
            'panel_visited', 'panel_closed', 'panel_apps',
            'max_visited', 'max_closed'], function (results) {
+
   twentyFourHourTime.checked  = results['24-hour-time'] !== false;
 
   timeNormal.checked          = results['time_normal'] !== false;

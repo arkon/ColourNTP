@@ -25,15 +25,15 @@ h2 {
   position: relative;
 }
 
-#t:after {
-  content: attr(time-postfix);
-  font-size: .4em;
+  #t::after {
+    content: attr(time-postfix);
+    font-size: .4em;
 
-  width: 0;
-  position: absolute;
-  margin-left: 20px;
-  top: 1.62em;
-}
+    position: absolute;
+    margin-left: 20px;
+    top: 1.62em;
+    width: 0;
+  }
 
 h2 {
   font-size: 2em;
@@ -41,7 +41,7 @@ h2 {
 
 @media all and (max-width: 700px) {
   #t { font-size: 3.5em; }
-  #t:after { margin-left: 15px; }
+  #t::after { margin-left: 15px; }
 
   #h { font-size: 1.25em; }
 }
