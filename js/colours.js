@@ -28,8 +28,15 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue', 'time_so
     var secs  = d.getSeconds();
 
     var twentyFourHourTime = result['24-hour-time'];
-    var isPM = hours > 12;
-    hours = twentyFourHourTime ? hours : hours % 12;
+    var isPM = hours >= 12;
+    if (!twentyFourHourTime) {
+      if (isPM) {
+        hours -= 12;
+      }
+
+      // instead of reading as 00 AM or PM, read as 12 AM/PM
+      hours = hours === 0 ? 12 : hours;
+    }
 
     if (hours < 10) { hours = '0' + hours; }
     if (mins < 10)  { mins  = '0' + mins;  }
