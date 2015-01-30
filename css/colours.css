@@ -19,9 +19,20 @@ h2 {
   transition: font-size 0.3s;
 }
 
-h1 {
+#t {
   font-size: 7em;
   margin-bottom: 3rem;
+  position: relative;
+}
+
+#t:after {
+  content: attr(time-postfix);
+  font-size: .4em;
+
+  width: 0;
+  position: absolute;
+  margin-left: 20px;
+  top: 1.62em;
 }
 
 h2 {
@@ -29,8 +40,10 @@ h2 {
 }
 
 @media all and (max-width: 700px) {
-  h1 { font-size: 3.5em; }
-  h2 { font-size: 1.25em; }
+  #t { font-size: 3.5em; }
+  #t:after { margin-left: 15px; }
+
+  #h { font-size: 1.25em; }
 }
 
 /* Protects against light backgrounds when using full spectrum */
