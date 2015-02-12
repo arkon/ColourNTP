@@ -9,8 +9,9 @@ Some code based on code from [New-App-Launcher][cred-1] and [HumbleNewTabPage][c
 
 ### Contributors
 
-- [Spencer Elliott][spencer]: Full Spectrum Hexadecimal/Hue options
-- [Alexander Biggs][biggs]: 12-hour option
+- [Spencer Elliott](http://github.com/elliottsj/): Full Spectrum Hexadecimal/Hue options
+- [Alexander Biggs](https://github.com/akbiggs): 12-hour option
+- [Alec Brunelle](https://github.com/aleccool213): Options page tooltips
 
 
 [chrome-store]: https://chrome.google.com/webstore/detail/colour-new-tab-page/hniakoleggfkjjoncnnhinhdbgffkdmd
@@ -18,5 +19,3 @@ Some code based on code from [New-App-Launcher][cred-1] and [HumbleNewTabPage][c
 [author]: http://jemurphy.org/
 [cred-1]: https://github.com/PaulKinlan/New-App-Launcher
 [cred-2]: https://github.com/quodroc/HumbleNewTabPage
-[spencer]: http://github.com/elliottsj/
-[biggs]: https://github.com/akbiggs
