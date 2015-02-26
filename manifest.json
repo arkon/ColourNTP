@@ -4,7 +4,7 @@
   "name": "Colour New Tab",
   "short_name": "ColourNTP",
   "description": "Based on http://whatcolourisit.scn9a.org/",
-  "version": "1.8.3",
+  "version": "1.9",
   "options_page": "options.html",
 
   "chrome_url_overrides" : {
@@ -19,5 +19,9 @@
     "chrome://favicon/"
   ],
 
-  "icons": { "16": "/img/icon16.png", "48": "/img/icon48.png", "128": "/img/icon128.png" }
+  "icons": {
+    "16": "/img/icon16.png",
+    "48": "/img/icon48.png",
+    "128": "/img/icon128.png"
+  }
 }

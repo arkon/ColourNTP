@@ -1,4 +1,23 @@
 /**
+ * Inject custom font.
+ */
+getConfig(['font'], function (result) {
+  if (result['font'] && result['font'].indexOf('Default') <= -1) {
+
+    document.head +=
+      '<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=' +
+      result['font'] +
+      '">';
+
+    var style = document.createElement('style');
+    style.innerHTML += '*{font-family:' + result['font'] + '!important;}';
+
+    document.head.appendChild(style);
+  }
+});
+
+
+/**
  * Calculates and displays the time, along with the appropriate
  * background colour.
  */
@@ -29,7 +48,7 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
     var mins  = d.getMinutes();
     var secs  = d.getSeconds();
 
-    var twentyFourHourTime = result['24-hour-time'];
+    var twentyFourHourTime = result['24-hour-time'] !== false;
     var isPM = hours >= 12;
     if (!twentyFourHourTime) {
       if (isPM) {

@@ -5,6 +5,11 @@ abbr::after {
   margin-left: 0.75em;
 }
 
+h1 {
+  border-bottom: 1px solid #777;
+  padding-bottom: 0.5em;
+}
+
 h2 {
   margin: 1em 0 0.5em;
 }

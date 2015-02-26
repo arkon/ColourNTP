@@ -1,4 +1,5 @@
-var twentyFourHourTime = $('24-hour-time');
+var twentyFourHourTime = $('24-hour-time'),
+    font               = $('fonts');
 
 var timeNormal  = $('time-normal'),
     timeFull    = $('time-full-hex'),
@@ -18,13 +19,14 @@ var maxVisited = $('visited-max'),
 /**
  * Load saved settings on page load.
  */
-getConfig(['24-hour-time',
+getConfig(['24-hour-time', 'font',
            'time_normal', 'time_full', 'time_full_hue',
            'time_solid', 'solid_color', 'history',
            'panel_visited', 'panel_closed', 'panel_apps',
            'max_visited', 'max_closed'], function (results) {
 
   twentyFourHourTime.checked  = results['24-hour-time'] !== false;
+  font.value                  = results['font'] || 'Default (Open Sans)';
 
   timeNormal.checked          = results['time_normal'] !== false;
   timeFull.checked            = results['time_full'];
@@ -48,6 +50,7 @@ getConfig(['24-hour-time',
 $('save').onclick = function() {
   chrome.storage.sync.set({
     '24-hour-time'  : twentyFourHourTime.checked,
+    'font'          : font.value,
 
     'time_normal'   : timeNormal.checked,
     'time_full'     : timeFull.checked,
@@ -69,3 +72,23 @@ $('save').onclick = function() {
     $('save').innerHTML = 'Save';
   }, 1000);
 }
+
+
+/**
+ * Fonts list
+ */
+var fonts = ['Anonymous Pro', 'Arial', 'Arvo', 'Droid Sans', 'Droid Serif', 'Maven Pro',
+             'Ovo', 'PT Mono', 'PT Sans', 'PT Serif', 'Raleway', 'Roboto',
+             'Roboto Condensed', 'Roboto Slab', 'Source Code Pro', 'Source Sans Pro',
+             'Tahoma', 'Times', 'Ubuntu'];
+
+(function loadFonts() {
+
+  var x = document.getElementById('fonts');
+
+  for (i = 0; i < fonts.length; i++) {
+    var option = document.createElement('option');
+    option.text = fonts[i];
+    x.add(option);
+  }
+})();
