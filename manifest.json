@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "Colour New Tab Page",
+  "name": "Colour New Tab",
   "short_name": "ColourNTP",
   "description": "Based on http://whatcolourisit.scn9a.org/",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "options_page": "options.html",
 
   "chrome_url_overrides" : {
