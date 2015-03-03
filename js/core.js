@@ -12,8 +12,8 @@ function getConfig(key, callback) {
   });
 }
 
-function $(id) {
-  return document.getElementById(id);
+function $(selectors) {
+  return document.querySelector(selectors);
 }
 
 Element.prototype.remove = function () {

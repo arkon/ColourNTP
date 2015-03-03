@@ -26,7 +26,7 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
 
   // To add text shadows for full spectrum
   if (result['time_full'] || result['time_full_hue']) {
-    $('time').classList.add('full');
+    $('#time').classList.add('full');
   }
 
   // If solid background mode is chosen, use that colour
@@ -77,15 +77,15 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
         var hex = secondToHueColour(seconds);
       }
 
-      $('h').innerHTML = hex;
+      $('#h').innerHTML = hex;
       document.body.style.background = hex;
 
       if (result['history']) {
         stack.push(hex);
 
-        $('history').innerHTML = '';
+        $('#history').innerHTML = '';
         for (var i = 0; i < 10; i++) {
-          var past = $('history').append('div');
+          var past = $('#history').append('div');
           past.style.backgroundColor = stack.get(i);
           past.dataset.hex           = stack.get(i) || "Hold on...";
           past.className             = 'past-colour';
@@ -97,10 +97,10 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
       }
     }
 
-    $('t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
+    $('#t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
 
     if (!twentyFourHourTime) {
-      $('t').setAttribute('time-postfix', isPM ? 'PM' : 'AM');
+      $('#t').setAttribute('time-postfix', isPM ? 'PM' : 'AM');
     }
 
     setTimeout(doTime, 1000);
@@ -178,9 +178,9 @@ function secondToHueColour(secondInDay) {
 /**
  * Handle the showing/hiding of the panel and its contents.
  */
-var visitedToggle = $('panel-toggle-visited'),
-    closedToggle  = $('panel-toggle-closed'),
-    appsToggle    = $('panel-toggle-apps');
+var visitedToggle = $('#panel-toggle-visited'),
+    closedToggle  = $('#panel-toggle-closed'),
+    appsToggle    = $('#panel-toggle-apps');
 
 getConfig(['panel_visited', 'panel_closed', 'panel_apps',
            'ntp_panel_visible'], function (results) {
@@ -232,7 +232,7 @@ getConfig(['panel_visited', 'panel_closed', 'panel_apps',
  */
 getConfig('max_visited', function (max) {
   chrome.topSites.get(function (visitedURLs) {
-    var visitedList = $('visited');
+    var visitedList = $('#visited');
 
     // Consider the user's set maximum (default 10)
     visitedURLs = visitedURLs.slice(0, Number(max) || 10);
@@ -260,7 +260,7 @@ getConfig('max_closed', function (max) {
       maxResults: Number(max) || 10
     },
     function (sessions) {
-      var closedList = $('closed');
+      var closedList = $('#closed');
 
       for (var i in sessions) {
         var li      = closedList.append('li');
@@ -284,7 +284,7 @@ getConfig('max_closed', function (max) {
  * Given an array of apps, build a DOM list of the apps.
  */
 chrome.management.getAll(function (list) {
-  var appsList = $('apps');
+  var appsList = $('#apps');
 
   // Only get active apps (no extensions)
   list = list.filter(function(a) {

@@ -1,19 +1,19 @@
-var twentyFourHourTime = $('24-hour-time'),
-    font               = $('fonts');
+var twentyFourHourTime = $('#24-hour-time'),
+    font               = $('#fonts');
 
-var timeNormal  = $('time-normal'),
-    timeFull    = $('time-full-hex'),
-    timeFullHue = $('time-full-hue'),
-    timeSolid   = $('time-solid'),
-    solidColor  = $('time-solid-color'),
-    showHistory = $('history');
+var timeNormal  = $('#time-normal'),
+    timeFull    = $('#time-full-hex'),
+    timeFullHue = $('#time-full-hue'),
+    timeSolid   = $('#time-solid'),
+    solidColor  = $('#time-solid-color'),
+    showHistory = $('#history');
 
-var panelVisited = $('panel-visited'),
-    panelClosed  = $('panel-closed'),
-    panelApps    = $('panel-apps');
+var panelVisited = $('#panel-visited'),
+    panelClosed  = $('#panel-closed'),
+    panelApps    = $('#panel-apps');
 
-var maxVisited = $('visited-max'),
-    maxClosed  = $('closed-max');
+var maxVisited = $('#visited-max'),
+    maxClosed  = $('#closed-max');
 
 
 /**
@@ -47,7 +47,7 @@ getConfig(['24-hour-time', 'font',
 /**
  * Saves all options.
  */
-$('save').onclick = function() {
+$('#save').onclick = function() {
   chrome.storage.sync.set({
     '24-hour-time'  : twentyFourHourTime.checked,
     'font'          : font.value,
@@ -69,7 +69,7 @@ $('save').onclick = function() {
 
   this.innerHTML = 'Saved';
   setTimeout(function() {
-    $('save').innerHTML = 'Save';
+    $('#save').innerHTML = 'Save';
   }, 1000);
 }
 
@@ -84,7 +84,7 @@ var fonts = ['Anonymous Pro', 'Arial', 'Arvo', 'Droid Sans', 'Droid Serif', 'Mav
 
 (function loadFonts() {
 
-  var x = document.getElementById('fonts');
+  var x = $('#fonts');
 
   for (i = 0; i < fonts.length; i++) {
     var option = document.createElement('option');
