@@ -1,4 +1,4 @@
-var twentyFourHourTime = $('#24-hour-time'),
+var twentyFourHourTime = $('#time-24-hours'),
     font               = $('#fonts');
 
 var timeNormal  = $('#time-normal'),
@@ -83,12 +83,9 @@ var fonts = ['Anonymous Pro', 'Arial', 'Arvo', 'Droid Sans', 'Droid Serif', 'Mav
              'Tahoma', 'Times', 'Ubuntu'];
 
 (function loadFonts() {
-
-  var x = $('#fonts');
-
   for (i = 0; i < fonts.length; i++) {
     var option = document.createElement('option');
     option.text = fonts[i];
-    x.add(option);
+    font.add(option);
   }
 })();
