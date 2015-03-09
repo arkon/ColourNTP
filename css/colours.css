@@ -99,7 +99,7 @@ li a {
   overflow: hidden;
 
   opacity: 0.4;
-  transition: opacity 0.3s, width 0.3s;
+  transition: opacity 0.3s, width 0.4s ease-out;
   will-change: opacity, width;
 }
 
@@ -115,7 +115,7 @@ li a {
     height: 40px;
     position: fixed;
     width: 40px;
-    transition: transform 0.3s;
+    transition: transform 0.4s ease-out;
   }
 
   #options:hover {

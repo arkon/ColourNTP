@@ -19,13 +19,17 @@ label {
   margin: 0.75em 0;
 }
 
+select,
 input[type='number'],
 input[type='color'] {
+  background: #fff;
   border: 1px solid #555;
   border-radius: 3px;
+  font: 300 14px "Open Sans Light", sans-serif;
   margin-left: 0.75em;
 }
 
+select,
 input[type='number'] {
   padding: 0.25em 0.5em;
 }
@@ -77,17 +81,19 @@ abbr:hover span::before {
   color: #111115;
   display: inline-block;
   margin: 1em 0;
-  padding: 0.25em 1em;
+  padding: 0.5em 1.5em;
 }
 
 #credits {
   display: block;
   font-size: 0.85em;
+  margin-top: 1em;
 }
 
   #credits a {
     color: #888;
     display: block;
+    margin: 0.5em 0;
     transition: color 0.3s;
   }
 
