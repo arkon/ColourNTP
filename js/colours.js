@@ -325,9 +325,15 @@ getConfig('max_closed', function (max) {
 
         a.style.backgroundImage = session.tab ? 'url(chrome://favicon/' + session.tab.url + ')' : null;
         a.className = 'item-' + i;
-        a.href      = session.tab ? session.tab.url : null;
         a.title     = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
         a.innerHTML = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
+
+        a.addEventListener('click', (function(session) {
+          return function() {
+            chrome.sessions.restore(session.window ? session.window.sessionId : session.tab.sessionId, null);
+            return false;
+          };
+        })(session));
       }
     }
   );
