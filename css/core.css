@@ -9,7 +9,7 @@
 }
 
 ::selection {
-  background-color: #fff;
+  background-color: #777;
 }
 
 html,
@@ -21,9 +21,7 @@ body {
 body {
   background-color: #111115;
   color: #fff;
-  display: table;
   font: 300 16px "Open Sans Light", sans-serif;
-  transition: background-color 0.8s;
   text-align: center;
 }
 

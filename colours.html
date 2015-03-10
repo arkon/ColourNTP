@@ -6,32 +6,34 @@
   <link href='css/colours.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <a id='options' href='options.html' target='_blank'><span>Options</span></a>
+  <div id='contents'>
+    <a id='options' href='options.html' target='_blank'><span>Options</span></a>
 
-  <div id='time'>
-    <h1 id='t'></h1>
-    <h2 id='h'></h2>
+    <div id='time'>
+      <h1 id='t'></h1>
+      <h2 id='h'></h2>
 
-    <p id='panel-toggles'>
-      <a id='panel-toggle-visited'>Most visited</a>
-      <a id='panel-toggle-closed'>Recently closed</a>
-      <a id='panel-toggle-apps'>Apps</a>
-    </p>
+      <p id='panel-toggles'>
+        <a id='panel-toggle-visited'>Most visited</a>
+        <a id='panel-toggle-closed'>Recently closed</a>
+        <a id='panel-toggle-apps'>Apps</a>
+      </p>
 
-    <div id='panel'>
-      <ul id='visited'></ul>
-      <ul id='closed'></ul>
-      <ul id='apps'></ul>
+      <div id='panel'>
+        <ul id='visited'></ul>
+        <ul id='closed'></ul>
+        <ul id='apps'></ul>
+      </div>
     </div>
+
+    <div id='history'></div>
+
+    <!-- <ul class="tabs">
+      <li><a data-action="chrome" data-path="bookmarks">Bookmarks</a></li>
+      <li><a data-action="chrome" data-path="extensions">Extensions</a></li>
+      <li><a data-action="chrome" data-path="settings">Settings</a></li>
+    </ul> -->
   </div>
-
-  <div id='history'></div>
-
-  <!-- <ul class="tabs">
-    <li><a data-action="chrome" data-path="bookmarks">Bookmarks</a></li>
-    <li><a data-action="chrome" data-path="extensions">Extensions</a></li>
-    <li><a data-action="chrome" data-path="settings">Settings</a></li>
-  </ul> -->
 
   <script type='text/javascript' src='js/core.js'></script>
   <script type='text/javascript' src='js/colours.js'></script>

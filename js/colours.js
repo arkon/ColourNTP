@@ -1,8 +1,10 @@
+var isOnline = navigator.onLine;
+
 /**
  * Inject custom font.
  */
 getConfig(['font'], function (result) {
-  if (result['font'] && result['font'].indexOf('Default') <= -1) {
+  if (isOnline && result['font'] && result['font'].indexOf('Default') <= -1) {
 
     document.head +=
       '<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=' +
@@ -21,8 +23,22 @@ getConfig(['font'], function (result) {
  * Calculates and displays the time, along with the appropriate
  * background colour.
  */
-getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
-           'time_solid', 'history'], function (result) {
+getConfig(['24-hour-time', 'bg', 'bg_image', 'bg_opacity',
+           'time_normal', 'time_full', 'time_full_hue', 'time_solid',
+           'history'], function (result) {
+
+  var bgOpacity = 1;
+
+  // Custom background image (only if online)
+  if (isOnline) {
+    if (result['bg'] && result['bg_image']) {
+      document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
+    }
+
+    if (result['bg_opacity']) {
+      bgOpacity = result['bg_opacity'] / 100;
+    }
+  }
 
   // To add text shadows for full spectrum
   if (result['time_full'] || result['time_full_hue']) {
@@ -32,7 +48,11 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
   // If solid background mode is chosen, use that colour
   if (result['time_solid']) {
     getConfig('solid_color', function (hex) {
-      document.body.style.background = hex;
+      if (bgOpacity !== 1 && result['bg']) {
+        $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
+      } else {
+        $('#contents').style.backgroundColor = hex;
+      }
     });
   }
 
@@ -41,7 +61,7 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
     var stack = new FixedStack(10, new Array(10));
   }
 
-
+  // Time + colours
   (function doTime() {
     var d     = new Date();
     var hours = d.getHours();
@@ -78,7 +98,12 @@ getConfig(['24-hour-time', 'time_normal', 'time_full', 'time_full_hue',
       }
 
       $('#h').innerHTML = hex;
-      document.body.style.background = hex;
+
+      if (bgOpacity !== 1 && result['bg']) {
+        $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
+      } else {
+        $('#contents').style.backgroundColor = hex;
+      }
 
       if (result['history']) {
         stack.push(hex);
@@ -166,12 +191,32 @@ function rgbToHex(r, g, b) {
 
 
 /**
+ * Converts a hex colour string to an array of RGB values.
+ */
+function hexToRGB(hex) {
+  var r = parseInt(hex, 16) >> 16;
+  var g = parseInt(hex, 16) >> 8 & 0xFF;
+  var b = parseInt(hex, 16) & 0xFF;
+  return [r,g,b];
+}
+
+
+/**
  * "Converts" the second to a hex value, as a point along the hue spectrum.
  * 00:00:00 corresponds to #ff0000, 12:00:00 corresponds to #00feff.
  */
 function secondToHueColour(secondInDay) {
   var hue = secondInDay / (24 * 60 * 60);
   return rgbToHex.apply(null, hslToRgb(hue, 1, 0.5));
+}
+
+
+/**
+ * Converts a hex colour to an RGBA string with the provided alpha value.
+ */
+function rgba(hex, a) {
+  var colour = hexToRGB(hex.substring(1, 7));
+  return 'rgba(' + colour[0] + ',' + colour[1] + ',' + colour[2] + ',' + a + ')';
 }
 
 

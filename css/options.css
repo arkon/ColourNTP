@@ -20,20 +20,19 @@ label {
 }
 
 select,
-input[type='number'],
-input[type='color'] {
+input {
   background: #fff;
   border: 1px solid #555;
   border-radius: 3px;
+  font: 300 14px "Open Sans Light", sans-serif;
+  padding: 0.25em 0.5em;
 }
 
-select,
-input[type='file'],
-input[type='color'],
+#fonts,
+#time-solid-color,
+#bg-url,
 input[type='number'] {
-  font: 300 14px "Open Sans Light", sans-serif;
   margin-left: 0.75em;
-  padding: 0.25em 0.5em;
 }
 
 input[type='range'] {
@@ -42,7 +41,7 @@ input[type='range'] {
   border-radius: 3px;
   height: 5px;
   margin: 0.75em;
-  width: 300px;
+  padding: 0;
 }
 
   input[type='range']::-webkit-slider-thumb {
@@ -97,6 +96,18 @@ abbr:hover span::before {
   border-bottom: 10px solid transparent;
   left: -8px;
   top: 1.25em;
+}
+
+#fonts {
+  width: 15em;
+}
+
+#bg-url {
+  width: 20em;
+}
+
+#bg-opacity {
+  width: 15em;
 }
 
 #save {

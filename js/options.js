@@ -1,19 +1,25 @@
 var twentyFourHourTime = $('#time-24-hours'),
     font               = $('#fonts');
 
-var timeNormal  = $('#time-normal'),
-    timeFull    = $('#time-full-hex'),
-    timeFullHue = $('#time-full-hue'),
-    timeSolid   = $('#time-solid'),
-    solidColor  = $('#time-solid-color'),
-    showHistory = $('#history');
+var timeNormal   = $('#time-normal'),
+    timeFull     = $('#time-full-hex'),
+    timeFullHue  = $('#time-full-hue'),
+    timeSolid    = $('#time-solid'),
+    solidColor   = $('#time-solid-color'),
+    showHistory  = $('#history');
+
+var background   = $('#bg'),
+    bgImage      = $('#bg-url'),
+    bgOpacity    = $('#bg-opacity'),
+    bgOpacityVal = $('#bg-opacity-value');
+
 
 var panelVisited = $('#panel-visited'),
     panelClosed  = $('#panel-closed'),
     panelApps    = $('#panel-apps');
 
-var maxVisited = $('#visited-max'),
-    maxClosed  = $('#closed-max');
+var maxVisited   = $('#visited-max'),
+    maxClosed    = $('#closed-max');
 
 
 /**
@@ -22,25 +28,31 @@ var maxVisited = $('#visited-max'),
 getConfig(['24-hour-time', 'font',
            'time_normal', 'time_full', 'time_full_hue',
            'time_solid', 'solid_color', 'history',
+           'bg', 'bg_image', 'bg_opacity',
            'panel_visited', 'panel_closed', 'panel_apps',
            'max_visited', 'max_closed'], function (results) {
 
-  twentyFourHourTime.checked  = results['24-hour-time'] !== false;
-  font.value                  = results['font'] || 'Default (Open Sans)';
+  twentyFourHourTime.checked = results['24-hour-time'] !== false;
+  font.value                 = results['font'] || 'Default (Open Sans)';
 
-  timeNormal.checked          = results['time_normal'] !== false;
-  timeFull.checked            = results['time_full'];
-  timeFullHue.checked         = results['time_full_hue'];
-  timeSolid.checked           = results['time_solid'];
-  solidColor.value            = results['solid_color'];
-  showHistory.checked         = results['history'];
+  timeNormal.checked         = results['time_normal'] !== false;
+  timeFull.checked           = results['time_full'];
+  timeFullHue.checked        = results['time_full_hue'];
+  timeSolid.checked          = results['time_solid'];
+  solidColor.value           = results['solid_color'];
+  showHistory.checked        = results['history'];
 
-  panelVisited.checked = results['panel_visited'] !== false;
-  panelClosed.checked  = results['panel_closed'] !== false;
-  panelApps.checked    = results['panel_apps'] !== false;
+  background.checked         = results['bg'] !== false;
+  bgImage.value              = results['bg_image'] || '';
+  bgOpacity.value            = results['bg_opacity'];
+  bgOpacityVal.innerHTML     = results['bg_opacity'];
 
-  maxVisited.value = results['max_visited'] || 10;
-  maxClosed.value  = results['max_closed'] || 10;
+  panelVisited.checked       = results['panel_visited'] !== false;
+  panelClosed.checked        = results['panel_closed'] !== false;
+  panelApps.checked          = results['panel_apps'] !== false;
+
+  maxVisited.value           = results['max_visited'] || 10;
+  maxClosed.value            = results['max_closed'] || 10;
 });
 
 
@@ -58,6 +70,10 @@ $('#save').onclick = function() {
     'time_solid'    : timeSolid.checked,
     'solid_color'   : solidColor.value,
     'history'       : showHistory.checked,
+
+    'bg'            : background.checked,
+    'bg_image'      : bgImage.value,
+    'bg_opacity'    : bgOpacity.value,
 
     'panel_visited' : panelVisited.checked,
     'panel_closed'  : panelClosed.checked,
@@ -89,3 +105,11 @@ var fonts = ['Anonymous Pro', 'Arial', 'Arvo', 'Droid Sans', 'Droid Serif', 'Mav
     font.add(option);
   }
 })();
+
+
+/**
+ * Opacity slider
+ */
+bgOpacity.addEventListener('input', function () {
+  bgOpacityVal.innerHTML = bgOpacity.value;
+}, false);
