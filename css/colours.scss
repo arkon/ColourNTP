@@ -190,7 +190,8 @@ li {
 #panel-toggles a:hover,
 .panel-0 #panel-toggle-visited,
 .panel-1 #panel-toggle-closed,
-.panel-2 #panel-toggle-apps {
+.panel-2 #panel-toggle-apps,
+.panel-3 #panel-toggle-shortcuts {
   color: #fff;
 }
 
@@ -308,6 +309,23 @@ li {
     margin: 0.5em 0;
     text-align: center;
   }
+
+
+/* Shortcuts */
+
+#shortcuts {
+  .panel-3 & {
+    display: block;
+  }
+
+  a {
+    height: 2em;
+    width: 8em;
+
+    line-height: 2em;
+    padding: 1em;
+  }
+}
 
 
 /**

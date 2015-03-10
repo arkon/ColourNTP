@@ -223,11 +223,12 @@ function rgba(hex, a) {
 /**
  * Handle the showing/hiding of the panel and its contents.
  */
-var visitedToggle = $('#panel-toggle-visited'),
-    closedToggle  = $('#panel-toggle-closed'),
-    appsToggle    = $('#panel-toggle-apps');
+var visitedToggle   = $('#panel-toggle-visited'),
+    closedToggle    = $('#panel-toggle-closed'),
+    appsToggle      = $('#panel-toggle-apps'),
+    shortcutsToggle = $('#panel-toggle-shortcuts');
 
-getConfig(['panel_visited', 'panel_closed', 'panel_apps',
+getConfig(['panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
            'ntp_panel_visible'], function (results) {
   if (results['panel_visited'] === false) {
     visitedToggle.remove();
@@ -241,12 +242,18 @@ getConfig(['panel_visited', 'panel_closed', 'panel_apps',
     appsToggle.remove();
   }
 
+  if (results['panel_shortcuts'] === false) {
+    shortcutsToggle.remove();
+  }
+
   if (results['panel_visited'] !== false ||
       results['panel_closed'] !== false ||
-      results['panel_apps'] !== false) {
-    visitedToggle.onclick = function() { togglePanel(0); };
-    closedToggle.onclick  = function() { togglePanel(1); };
-    appsToggle.onclick    = function() { togglePanel(2); };
+      results['panel_apps'] !== false ||
+      results['panel_shortcuts'] !== false) {
+    visitedToggle.onclick   = function() { togglePanel(0); };
+    closedToggle.onclick    = function() { togglePanel(1); };
+    appsToggle.onclick      = function() { togglePanel(2); };
+    shortcutsToggle.onclick = function() { togglePanel(3); };
 
     function togglePanel(id) {
       if (id == -1) return;

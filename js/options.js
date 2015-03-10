@@ -1,25 +1,26 @@
 var twentyFourHourTime = $('#time-24-hours'),
     font               = $('#fonts');
 
-var timeNormal   = $('#time-normal'),
-    timeFull     = $('#time-full-hex'),
-    timeFullHue  = $('#time-full-hue'),
-    timeSolid    = $('#time-solid'),
-    solidColor   = $('#time-solid-color'),
-    showHistory  = $('#history');
+var timeNormal         = $('#time-normal'),
+    timeFull           = $('#time-full-hex'),
+    timeFullHue        = $('#time-full-hue'),
+    timeSolid          = $('#time-solid'),
+    solidColor         = $('#time-solid-color'),
+    showHistory        = $('#history');
 
-var background   = $('#bg'),
-    bgImage      = $('#bg-url'),
-    bgOpacity    = $('#bg-opacity'),
-    bgOpacityVal = $('#bg-opacity-value');
+var background         = $('#bg'),
+    bgImage            = $('#bg-url'),
+    bgOpacity          = $('#bg-opacity'),
+    bgOpacityVal       = $('#bg-opacity-value');
 
 
-var panelVisited = $('#panel-visited'),
-    panelClosed  = $('#panel-closed'),
-    panelApps    = $('#panel-apps');
+var panelVisited       = $('#panel-visited'),
+    panelClosed        = $('#panel-closed'),
+    panelApps          = $('#panel-apps'),
+    panelShortcuts     = $('#panel-shortcuts');
 
-var maxVisited   = $('#visited-max'),
-    maxClosed    = $('#closed-max');
+var maxVisited         = $('#visited-max'),
+    maxClosed          = $('#closed-max');
 
 
 /**
@@ -29,7 +30,7 @@ getConfig(['24-hour-time', 'font',
            'time_normal', 'time_full', 'time_full_hue',
            'time_solid', 'solid_color', 'history',
            'bg', 'bg_image', 'bg_opacity',
-           'panel_visited', 'panel_closed', 'panel_apps',
+           'panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
            'max_visited', 'max_closed'], function (results) {
 
   twentyFourHourTime.checked = results['24-hour-time'] !== false;
@@ -50,6 +51,7 @@ getConfig(['24-hour-time', 'font',
   panelVisited.checked       = results['panel_visited'] !== false;
   panelClosed.checked        = results['panel_closed'] !== false;
   panelApps.checked          = results['panel_apps'] !== false;
+  panelShortcuts.checked     = results['panel_shortcuts'] !== false;
 
   maxVisited.value           = results['max_visited'] || 10;
   maxClosed.value            = results['max_closed'] || 10;
@@ -61,26 +63,27 @@ getConfig(['24-hour-time', 'font',
  */
 $('#save').onclick = function() {
   chrome.storage.sync.set({
-    '24-hour-time'  : twentyFourHourTime.checked,
-    'font'          : font.value,
+    '24-hour-time'    : twentyFourHourTime.checked,
+    'font'            : font.value,
 
-    'time_normal'   : timeNormal.checked,
-    'time_full'     : timeFull.checked,
-    'time_full_hue' : timeFullHue.checked,
-    'time_solid'    : timeSolid.checked,
-    'solid_color'   : solidColor.value,
-    'history'       : showHistory.checked,
+    'time_normal'     : timeNormal.checked,
+    'time_full'       : timeFull.checked,
+    'time_full_hue'   : timeFullHue.checked,
+    'time_solid'      : timeSolid.checked,
+    'solid_color'     : solidColor.value,
+    'history'         : showHistory.checked,
 
-    'bg'            : background.checked,
-    'bg_image'      : bgImage.value,
-    'bg_opacity'    : bgOpacity.value,
+    'bg'              : background.checked,
+    'bg_image'        : bgImage.value,
+    'bg_opacity'      : bgOpacity.value,
 
-    'panel_visited' : panelVisited.checked,
-    'panel_closed'  : panelClosed.checked,
-    'panel_apps'    : panelApps.checked,
+    'panel_visited'   : panelVisited.checked,
+    'panel_closed'    : panelClosed.checked,
+    'panel_apps'      : panelApps.checked,
+    'panel_shortcuts' : panelShortcuts.checked,
 
-    'max_visited'   : maxVisited.value,
-    'max_closed'    : maxClosed.value
+    'max_visited'     : maxVisited.value,
+    'max_closed'      : maxClosed.value
   });
 
   this.innerHTML = 'Saved';
