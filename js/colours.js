@@ -363,11 +363,11 @@ chrome.management.getAll(function (list) {
     var a  = li.append('a');
     var extInf = list[i];
 
-    li.addEventListener('click', (function(ext) {
+    li.addEventListener('click', (function(id) {
       return function() {
-        chrome.management.launchApp(ext.id);
+        chrome.management.launchApp(id);
       };
-    })(extInf));
+    })(extInf.id));
 
     a.className = 'item-' + i;
 
@@ -398,3 +398,51 @@ function find128Image(icons) {
 
   return '/noicon.png';
 }
+
+
+/**
+ * Creates shortcuts list
+ */
+(function createShortcuts() {
+  var shortcutsList = $('#shortcuts');
+
+  var shortcuts = [
+    {
+      title: 'Bookmarks',
+      url: 'chrome://bookmarks/'
+    },
+    {
+      title: 'History',
+      url: 'chrome://history/'
+    },
+    {
+      title: 'Downloads',
+      url: 'chrome://downloads/'
+    },
+    {
+      title: 'Extensions',
+      url: 'chrome://extensions/'
+    },
+    {
+      title: 'Settings',
+      url: 'chrome://settings/'
+    }
+  ];
+
+  for (var i in shortcuts) {
+    var li = shortcutsList.append('li');
+    var a  = li.append('a');
+    var shortcutItem = shortcuts[i];
+
+    li.addEventListener('click', (function(url) {
+      return function() {
+        chrome.tabs.update(null, { url: url });
+      };
+    })(shortcutItem.url));
+
+    a.style.backgroundImage = 'url("chrome://favicon/' + shortcutItem.url + '")';
+    a.className = 'item-' + i;
+    a.title     = shortcutItem.title;
+    a.innerHTML = shortcutItem.title;
+  }
+})();

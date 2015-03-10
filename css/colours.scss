@@ -113,11 +113,10 @@ li {
 
 @for $i from 0 through 50 {
   .item-#{$i} {
-    -webkit-animation: shiftUp 0.5s ease-out ($i * 0.04s) forwards;
+    -webkit-animation: shiftUp 0.3s ease-out ($i * 0.05s) forwards;
     opacity: 0;
   }
 }
-
 
 
 /**
@@ -164,7 +163,6 @@ li {
 }
 
 
-
 /**
  * Panel toggles
  */
@@ -188,8 +186,6 @@ li {
     }
   }
 }
-
-
 
 #panel-toggles a:hover,
 .panel-0 #panel-toggle-visited,
@@ -225,14 +221,9 @@ li {
   }
 }
 
-
-/* Most visited (top sites) */
-
-#visited {
-  .panel-0 & {
-    display: block;
-  }
-
+#visited,
+#closed,
+#shortcuts {
   li {
     text-align: left;
   }
@@ -243,6 +234,7 @@ li {
 
     background-repeat: no-repeat;
     background-position: 0.5em center;
+    background-size: 16px 16px;
     padding: 1em 0.5em 1em 1.85em;
 
     line-height: 2em;
@@ -253,31 +245,17 @@ li {
 }
 
 
+/* Most visited (top sites) */
+
+.panel-0 #visited {
+  display: block;
+}
+
 
 /* Recently closed */
 
-#closed {
-  .panel-1 & {
-    display: block;
-  }
-
-  li {
-    text-align: left;
-  }
-
-  a {
-    height: 2em;
-    width: 7em;
-
-    background-repeat: no-repeat;
-    background-position: 0.5em center;
-    padding: 1em 0.5em 1em 1.85em;
-
-    line-height: 2em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+.panel-1 #closed {
+  display: block;
 }
 
 
@@ -317,18 +295,8 @@ li {
 
 /* Shortcuts */
 
-#shortcuts {
-  .panel-3 & {
-    display: block;
-  }
-
-  a {
-    height: 2em;
-    width: 8em;
-
-    line-height: 2em;
-    padding: 1em;
-  }
+.panel-3 #shortcuts {
+  display: block;
 }
 
 
@@ -398,10 +366,5 @@ li {
 
 @-webkit-keyframes shiftUp {
   0%   { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0px); }
-}
-
-@-webkit-keyframes shiftDown {
-  0%   { opacity: 0; transform: translateY(-60px); }
   100% { opacity: 1; transform: translateY(0px); }
 }
