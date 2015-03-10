@@ -109,7 +109,7 @@ li {
 
 @for $i from 0 through 50 {
   .item-#{$i} {
-    -webkit-animation: shiftUp .5s ease-out #{$i}05ms forwards;
+    -webkit-animation: shiftUp .5s ease-out ($i * .05s) forwards;
     opacity: 0;
   }
 }
