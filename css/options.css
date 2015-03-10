@@ -25,14 +25,38 @@ input[type='color'] {
   background: #fff;
   border: 1px solid #555;
   border-radius: 3px;
-  font: 300 14px "Open Sans Light", sans-serif;
-  margin-left: 0.75em;
 }
 
 select,
+input[type='file'],
+input[type='color'],
 input[type='number'] {
+  font: 300 14px "Open Sans Light", sans-serif;
+  margin-left: 0.75em;
   padding: 0.25em 0.5em;
 }
+
+input[type='range'] {
+  -webkit-appearance: none;
+  background: #ccc;
+  border-radius: 3px;
+  height: 5px;
+  margin: 0.75em;
+  width: 300px;
+}
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #bbb;
+    border: 1px solid #777;
+    border-radius: 10px;
+    height: 15px;
+    width: 15px;
+  }
+
+  input[type='range']::-webkit-slider-thumb:hover {
+    background: #ccc;
+  }
 
 #options {
   margin: 0 auto;

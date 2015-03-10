@@ -243,6 +243,7 @@ getConfig('max_visited', function (max) {
       var site = visitedURLs[i];
 
       a.style.backgroundImage = 'url(chrome://favicon/' + site.url + ')';
+      a.className = 'item-' + i;
       a.href      = site.url;
       a.title     = site.title;
       a.innerHTML = site.title;
@@ -271,6 +272,7 @@ getConfig('max_closed', function (max) {
           session.tab = session.window.tabs[0];
 
         a.style.backgroundImage = session.tab ? 'url(chrome://favicon/' + session.tab.url + ')' : null;
+        a.className = 'item-' + i;
         a.href      = session.tab ? session.tab.url : null;
         a.title     = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
         a.innerHTML = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
@@ -308,6 +310,8 @@ chrome.management.getAll(function (list) {
         chrome.management.launchApp(ext.id);
       };
     })(extInf));
+
+    a.className = 'item-' + i;
 
     var img = a.appendChild(new Image());
     img.src = find128Image(extInf.icons);
