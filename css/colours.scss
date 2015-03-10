@@ -5,22 +5,25 @@
 body {
   background-position: center center;
   background-size: cover;
+
+  transition: background 0.8s;
 }
 
 #contents {
   display: table;
   height: 100vh;
   width: 100%;
+
   transition: background-color 0.8s;
   will-change: background-color;
 }
 
-#time {
-  display: table-cell;
-  padding: 1.5em;
-  vertical-align: middle;
-  width: 100vw;
-}
+  #time {
+    display: table-cell;
+    padding: 1.5em;
+    vertical-align: middle;
+    width: 100vw;
+  }
 
 h1,
 h2 {
@@ -36,8 +39,9 @@ h2 {
   font-size: 7em;
   margin-bottom: 3rem;
   position: relative;
+
+  -webkit-animation: shiftUp 0.5s ease-out forwards;
   opacity: 0;
-  -webkit-animation: shiftUp .5s ease-out forwards;
 
   &::after {
     content: attr(time-postfix);
@@ -51,8 +55,8 @@ h2 {
 }
 
 #h {
+  -webkit-animation: shiftUp 0.5s ease-out 0.15s forwards;
   opacity: 0;
-  -webkit-animation: shiftUp .5s ease-out .15s forwards;
 }
 
 @media all and (max-width: 700px) {
@@ -109,7 +113,7 @@ li {
 
 @for $i from 0 through 50 {
   .item-#{$i} {
-    -webkit-animation: shiftUp .5s ease-out ($i * .05s) forwards;
+    -webkit-animation: shiftUp 0.5s ease-out ($i * 0.04s) forwards;
     opacity: 0;
   }
 }
