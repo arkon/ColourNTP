@@ -16,8 +16,7 @@
     "tabs",
     "sessions",
     "storage",
-    "chrome://favicon/",
-    "file:///*"
+    "chrome://favicon/"
   ],
 
   "icons": {
