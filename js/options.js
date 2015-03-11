@@ -1,5 +1,6 @@
 var twentyFourHourTime = $('#time-24-hours'),
-    font               = $('#fonts');
+    font               = $('#fonts'),
+    animations         = $('#animations');
 
 var timeNormal         = $('#time-normal'),
     timeFull           = $('#time-full-hex'),
@@ -26,7 +27,7 @@ var maxVisited         = $('#visited-max'),
 /**
  * Load saved settings on page load.
  */
-getConfig(['24-hour-time', 'font',
+getConfig(['24-hour-time', 'font', 'animations',
            'time_normal', 'time_full', 'time_full_hue',
            'time_solid', 'solid_color', 'history',
            'bg', 'bg_image', 'bg_opacity',
@@ -35,6 +36,7 @@ getConfig(['24-hour-time', 'font',
 
   twentyFourHourTime.checked = results['24-hour-time'] !== false;
   font.value                 = results['font'] || 'Default (Open Sans)';
+  animations.checked         = results['animations'] !== false;
 
   timeNormal.checked         = results['time_normal'] !== false;
   timeFull.checked           = results['time_full'];
@@ -65,6 +67,7 @@ $('#save').onclick = function() {
   chrome.storage.sync.set({
     '24-hour-time'    : twentyFourHourTime.checked,
     'font'            : font.value,
+    'animations'      : animations.checked,
 
     'time_normal'     : timeNormal.checked,
     'time_full'       : timeFull.checked,

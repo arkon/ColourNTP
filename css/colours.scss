@@ -9,6 +9,12 @@ body {
   transition: background 0.8s;
 }
 
+body.notransition * {
+  transition: none !important;
+  -webkit-animation: none !important;
+  opacity: 1 !important;
+}
+
 #contents {
   display: table;
   height: 100vh;
@@ -113,7 +119,7 @@ li {
 
 @for $i from 0 through 50 {
   .item-#{$i} {
-    -webkit-animation: shiftUp 0.3s ease-out ($i * 0.05s) forwards;
+    -webkit-animation: shiftUp 0.3s ease-out ($i * 0.03s) forwards;
     opacity: 0;
   }
 }
@@ -258,6 +264,13 @@ li {
   display: block;
 }
 
+#no-closed {
+  color: #1e1e1e;
+  font-size: 0.9rem;
+  padding: 0.5em 1em;
+  text-align: center;
+}
+
 
 /* Apps */
 
@@ -287,7 +300,7 @@ li {
   #store-link {
     color: #1e1e1e;
     display: block;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0.5em 0;
     text-align: center;
   }

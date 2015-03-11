@@ -24,6 +24,28 @@ Element.prototype.append = function (type) {
   return this.appendChild(document.createElement(type));
 }
 
+Element.prototype.hasClass = function (className) {
+  return this.classList.contains(className);
+}
+
+Element.prototype.addClass = function (className) {
+  this.classList.add(className);
+}
+
+Element.prototype.removeClass = function (className) {
+  this.classList.remove(className);
+}
+
+Element.prototype.removeClassByPrefix = function (prefix) {
+  var classes = this.classList;
+  for (var i = 0; i < classes.length; i++) {
+    var className = classes[i];
+    if (className.startsWith(prefix)) {
+      this.removeClass(className);
+    }
+  }
+}
+
 
 /**
  * A "stack" with a fixed size. If an item is pushed to the stack and

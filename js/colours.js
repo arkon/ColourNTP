@@ -23,7 +23,7 @@ getConfig(['font'], function (result) {
  * Calculates and displays the time, along with the appropriate
  * background colour.
  */
-getConfig(['24-hour-time', 'bg', 'bg_image', 'bg_opacity',
+getConfig(['24-hour-time', 'bg', 'bg_image', 'bg_opacity', 'animations',
            'time_normal', 'time_full', 'time_full_hue', 'time_solid',
            'history'], function (result) {
 
@@ -40,18 +40,24 @@ getConfig(['24-hour-time', 'bg', 'bg_image', 'bg_opacity',
     }
   }
 
-  // To add text shadows for full spectrum
-  if (result['time_full'] || result['time_full_hue']) {
-    $('#time').classList.add('full');
+  if (result['animations'] === false) {
+    document.body.addClass('notransition');
+  }
+
+  // Add text shadows to protect against backgroundss
+  if (bgOpacity <= 0.25 || result['time_full'] || result['time_full_hue']) {
+    $('#time').addClass('full');
   }
 
   // If solid background mode is chosen, use that colour
   if (result['time_solid']) {
     getConfig('solid_color', function (hex) {
-      if (bgOpacity !== 1 && result['bg']) {
-        $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
-      } else {
-        $('#contents').style.backgroundColor = hex;
+      if (bgOpacity !== 0) {
+        if (bgOpacity !== 1 && result['bg']) {
+          $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
+        } else {
+          $('#contents').style.backgroundColor = hex;
+        }
       }
     });
   }
@@ -99,10 +105,12 @@ getConfig(['24-hour-time', 'bg', 'bg_image', 'bg_opacity',
 
       $('#h').innerHTML = hex;
 
-      if (bgOpacity !== 1 && result['bg']) {
-        $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
-      } else {
-        $('#contents').style.backgroundColor = hex;
+      if (bgOpacity !== 0) {
+        if (bgOpacity !== 1 && result['bg']) {
+          $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
+        } else {
+          $('#contents').style.backgroundColor = hex;
+        }
       }
 
       if (result['history']) {
@@ -159,7 +167,7 @@ function secondToHexColour(secondInDay) {
 function hslToRgb(h, s, l){
   var r, g, b;
 
-  if (s == 0){
+  if (s === 0){
     r = g = b = l;  // Achromatic
   } else {
     function hue2rgb(p, q, t){
@@ -256,17 +264,18 @@ getConfig(['panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
     shortcutsToggle.onclick = function() { togglePanel(3); };
 
     function togglePanel(id) {
-      if (id == -1) return;
+      if (id === -1) return;
 
-      var toggle = document.body.classList.contains('panel-' + id);
+      var toggle = document.body.hasClass('panel-' + id);
 
-      document.body.className = '';
+      document.body.removeClass('show-panel');
+      document.body.removeClassByPrefix('panel-');
 
       if (toggle) {
         id = -1;
       } else {
-        document.body.classList.add('show-panel');
-        document.body.classList.add('panel-' + id);
+        document.body.addClass('show-panel');
+        document.body.addClass('panel-' + id);
       }
 
       // Save state
@@ -314,6 +323,12 @@ getConfig('max_closed', function (max) {
     },
     function (sessions) {
       var closedList = $('#closed');
+
+      if (sessions.length === 0) {
+        var p = closedList.append('p');
+        p.id = 'no-closed'
+        p.innerHTML = 'No recently closed sessions to show';
+      }
 
       for (var i in sessions) {
         var li      = closedList.append('li');
@@ -391,7 +406,7 @@ chrome.management.getAll(function (list) {
  */
 function find128Image(icons) {
   for (var i in icons) {
-    if (icons[i].size == '128') {
+    if (icons[i].size === 128) {
       return icons[i].url;
     }
   }
