@@ -45,10 +45,10 @@ getConfig(['24-hour-time', 'font', 'animations',
   solidColor.value           = results['solid_color'];
   showHistory.checked        = results['history'];
 
-  background.checked         = results['bg'] !== false;
+  background.checked         = results['bg'];
   bgImage.value              = results['bg_image'] || '';
-  bgOpacity.value            = results['bg_opacity'];
-  bgOpacityVal.innerHTML     = results['bg_opacity'];
+  bgOpacity.value            = results['bg_opacity'] || 80;
+  bgOpacityVal.innerHTML     = results['bg_opacity'] || 80;
 
   panelVisited.checked       = results['panel_visited'] !== false;
   panelClosed.checked        = results['panel_closed'] !== false;
