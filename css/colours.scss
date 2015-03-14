@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /**
  * Main time/hex display
  */
@@ -94,6 +96,10 @@ li {
   display: inline-block;
   vertical-align: top;
 
+  &:active {
+    transform: scale(0.95);
+  }
+
   a {
     display: inline-block;
     margin: 0.5em;
@@ -109,10 +115,6 @@ li {
     &:hover {
       box-shadow: 0 0 0 2px #777;
       color: #0e0e0e;
-    }
-
-    &:active {
-      transform: scale(0.95);
     }
   }
 }
