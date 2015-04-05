@@ -10,6 +10,7 @@ var timeNormal         = $('#time-normal'),
     showHistory        = $('#history');
 
 var background         = $('#bg'),
+    bgReddit           = $('#bg-reddit'),
     bgImage            = $('#bg-url'),
     bgOpacity          = $('#bg-opacity'),
     bgOpacityVal       = $('#bg-opacity-value');
@@ -30,7 +31,7 @@ var maxVisited         = $('#visited-max'),
 getConfig(['24-hour-time', 'font', 'animations',
            'time_normal', 'time_full', 'time_full_hue',
            'time_solid', 'solid_color', 'history',
-           'bg', 'bg_image', 'bg_opacity',
+           'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
            'panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
            'max_visited', 'max_closed'], function (results) {
 
@@ -46,6 +47,7 @@ getConfig(['24-hour-time', 'font', 'animations',
   showHistory.checked        = results['history'];
 
   background.checked         = results['bg'];
+  bgReddit.checked           = results['bg_reddit'];
   bgImage.value              = results['bg_image'] || '';
   bgOpacity.value            = results['bg_opacity'] || 80;
   bgOpacityVal.innerHTML     = results['bg_opacity'] || 80;
@@ -77,6 +79,7 @@ $('#save').onclick = function() {
     'history'         : showHistory.checked,
 
     'bg'              : background.checked,
+    'bg_reddit'       : bgReddit.checked,
     'bg_image'        : bgImage.value,
     'bg_opacity'      : bgOpacity.value,
 

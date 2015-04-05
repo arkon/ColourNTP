@@ -2,7 +2,7 @@
  * Helper functions
  */
 
-function getConfig(key, callback) {
+function getConfig (key, callback) {
   chrome.storage.sync.get(key, function (result) {
     if (key instanceof Array) {
       callback(result);
@@ -12,7 +12,7 @@ function getConfig(key, callback) {
   });
 }
 
-function $(selectors) {
+function $ (selectors) {
   return document.querySelector(selectors);
 }
 
@@ -52,7 +52,7 @@ Element.prototype.removeClassByPrefix = function (prefix) {
  * the stack is "full", the first item is removed.
  */
 
-function FixedStack(maxSize, initialValues) {
+function FixedStack (maxSize, initialValues) {
   this.stack   = initialValues || [];
   this.maxSize = maxSize;
 }
@@ -66,3 +66,29 @@ FixedStack.prototype.push = function (item) {
 FixedStack.prototype.get = function (index) {
   return this.stack[index];
 }
+
+
+/**
+ * Gets a JSON object via a GET request.
+ * Code from https://mathiasbynens.be/notes/xhr-responsetype-json
+ */
+
+function getJSON (url, successHandler, errorHandler) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('get', url, true);
+  xhr.onreadystatechange = function () {
+    var status, data;
+
+    if (xhr.readyState === 4) {
+      status = xhr.status;
+      if (status === 200) {
+        data = JSON.parse(xhr.responseText);
+        successHandler && successHandler(data);
+      } else {
+        errorHandler && errorHandler(status);
+      }
+    }
+  };
+
+  xhr.send();
+};

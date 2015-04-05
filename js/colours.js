@@ -23,7 +23,7 @@ getConfig(['font'], function (result) {
  * Calculates and displays the time, along with the appropriate
  * background colour.
  */
-getConfig(['24-hour-time', 'bg', 'bg_image', 'bg_opacity', 'animations',
+getConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity', 'animations',
            'time_normal', 'time_full', 'time_full_hue', 'time_solid',
            'history'], function (result) {
 
@@ -31,8 +31,12 @@ getConfig(['24-hour-time', 'bg', 'bg_image', 'bg_opacity', 'animations',
 
   // Custom background image (only if online)
   if (isOnline) {
-    if (result['bg'] && result['bg_image']) {
-      document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
+    if (result['bg']) {
+      if (result['bg_reddit']) {
+        getRedditImage();
+      } else if (result['bg_image']) {
+        document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
+      }
     }
 
     if (result['bg_opacity']) {
@@ -225,6 +229,19 @@ function secondToHueColour(secondInDay) {
 function rgba(hex, a) {
   var colour = hexToRGB(hex.substring(1, 7));
   return 'rgba(' + colour[0] + ',' + colour[1] + ',' + colour[2] + ',' + a + ')';
+}
+
+
+/**
+ * Gets the top wallpaper from /r/wallpapers and sets it as the background image.
+ */
+function getRedditImage() {
+  getJSON('http://www.reddit.com/r/wallpapers/hot.json?sort=new&limit=1', function (data) {
+    var img = data.data.children[0].data.url;
+    document.body.style.backgroundImage = 'url("' + img + '")';
+  }, function (status) {
+    console.log('Something went wrong while fetching from Reddit.');
+  });
 }
 
 
