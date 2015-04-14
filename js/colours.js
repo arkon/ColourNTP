@@ -11,6 +11,8 @@
   else
     localStorage['date'] = date;
 
+  var dl_btn = document.getElementById('download');
+
 
   /**
    * Inject custom font.
@@ -47,11 +49,16 @@
         if (result['bg_reddit']) {
           if (!new_day && localStorage['reddit_img']) {
             document.body.style.backgroundImage = 'url("' + localStorage['reddit_img'] + '")';
+            dl_btn.href = localStorage['reddit_img'];
           } else {
             getRedditImage();
           }
-        } else if (result['bg_image']) {
-          document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
+        } else {
+          dl_btn.remove();
+
+          if (result['bg_image']) {
+            document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
+          }
         }
       }
 
@@ -259,6 +266,8 @@
       localStorage['reddit_img'] = img;
 
       document.body.style.backgroundImage = 'url("' + img + '")';
+
+      dl_btn.href = img;
     }, function (status) {
       console.log('Something went wrong while fetching from Reddit.');
     });

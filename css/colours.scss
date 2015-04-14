@@ -131,7 +131,7 @@ li {
  * Options link
  */
 
-#options {
+.opt {
   position: fixed;
   top: 0;
   right: 0;
@@ -151,22 +151,45 @@ li {
   }
 
   &::before {
-    background: url('chrome-extension://__MSG_@@extension_id__/img/gear.png') no-repeat center center / 12px 12px;
+    background: no-repeat center center / 12px 12px;
     content: '';
     display: inline-block;
     height: 40px;
     position: fixed;
     width: 40px;
-    transition: transform 0.35s;
   }
 
   &:hover {
     opacity: 1;
+  }
+}
+
+#options {
+  top: 0;
+
+  &::before {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/img/gear.png');
+    transition: transform 0.35s;
+  }
+
+  &:hover {
     width: 120px;
 
     &::before {
       transform: rotate(-45deg);
     }
+  }
+}
+
+#download {
+  top: 30px;
+
+  &::before {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/img/gear.png');
+  }
+
+  &:hover {
+    width: 185px;
   }
 }
 
