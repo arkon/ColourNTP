@@ -9,12 +9,16 @@ body {
   background-size: cover;
 
   transition: background 0.8s;
-}
 
-body.notransition * {
-  transition: none !important;
-  -webkit-animation: none !important;
-  opacity: 1 !important;
+  &.notransition {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      -webkit-animation: none !important;
+      opacity: 1 !important;
+    }
+  }
 }
 
 #contents {
@@ -189,7 +193,7 @@ li {
   }
 
   &:hover {
-    width: 185px;
+    width: 155px;
   }
 }
 
