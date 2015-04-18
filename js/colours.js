@@ -262,6 +262,11 @@
     getJSON('http://www.reddit.com/r/wallpapers/hot.json?sort=new&limit=1', function (data) {
       var img = data.data.children[0].data.url;
 
+      // Imgur link, but directly to image file
+      if (img.indexOf('imgur.com') >= 0 && (img.indexOf('.png') < 0 || img.indexOf('.jpg') < 0)) {
+        img += '.png';
+      }
+
       // "Cache" the image URL in local storage
       localStorage['reddit_img'] = img;
 
