@@ -54,8 +54,6 @@
             getRedditImage();
           }
         } else {
-          dl_btn.remove();
-
           if (result['bg_image']) {
             document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
           }
@@ -65,6 +63,10 @@
       if (result['bg_opacity']) {
         bgOpacity = result['bg_opacity'] / 100;
       }
+    }
+
+    if (!isOnline || !result['bg']) {
+      dl_btn.remove();
     }
 
     if (result['animations'] === false) {
@@ -157,7 +159,9 @@
         }
       }
 
-      $('#t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
+      $('#t-hour').innerHTML = hours + ' : ';
+      $('#t-min').innerHTML = mins + ' : ';
+      $('#t-sec').innerHTML = secs;
 
       if (!twentyFourHourTime) {
         $('#t').setAttribute('time-postfix', isPM ? 'PM' : 'AM');
