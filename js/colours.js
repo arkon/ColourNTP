@@ -37,25 +37,21 @@
     if (isOnline) {
       if (result['bg']) {
         if (result['bg_reddit']) {
+          getLocalConfig(['date', 'reddit_img', 'reddit_img_url'], function (result) {
+            // Check if new day (to limit requests)
+            var new_day = true;
 
-          // Check if new day (to limit requests)
-          var date = new Date().getDay();
-          var new_day = true;
-
-          getLocalConfig('date', function (result) {
-            if (result == date)
+            if (result['date'] == new Date().getDay())
               new_day = false;
             else
               chrome.storage.local.set({ 'date': date });
 
-            getLocalConfig(['reddit_img', 'reddit_img_url'], function (result) {
-              if (!new_day && result['reddit_img'] && result['reddit_img_url']) {
-                document.body.style.backgroundImage = 'url("' + result['reddit_img'] + '")';
-                dl_btn.href = result['reddit_img_url'];
-              } else {
-                getRedditImage();
-              }
-            });
+            if (!new_day && result['reddit_img'] && result['reddit_img_url']) {
+              document.body.style.backgroundImage = 'url("' + result['reddit_img'] + '")';
+              dl_btn.href = result['reddit_img_url'];
+            } else {
+              getRedditImage();
+            }
           });
 
         } else {
@@ -239,7 +235,7 @@
     var r = parseInt(hex, 16) >> 16;
     var g = parseInt(hex, 16) >> 8 & 0xFF;
     var b = parseInt(hex, 16) & 0xFF;
-    return [r,g,b];
+    return [r, g, b];
   }
 
 
@@ -267,21 +263,25 @@
    */
   function getRedditImage() {
     getJSON('http://www.reddit.com/r/wallpapers/hot.json?sort=new&limit=1', function (data) {
-      var img = data.data.children[0].data.url;
+      var url = data.data.children[0].data.url;
 
       // Imgur link, but directly to image file
-      if (img.indexOf('imgur.com') >= 0 && (img.indexOf('.png') < 0 || img.indexOf('.jpg') < 0)) {
-        img += '.png';
+      if (url.indexOf('imgur.com') >= 0 &&
+          (url.indexOf('.png') < 0 || url.indexOf('.jpg') < 0)) {
+        url += '.png';
       }
 
       // "Cache" the image URL in local storage
-      convertImgToBase64URL(img, function (base64url) {
-        chrome.storage.local.set({ 'reddit_img': base64url });
-        chrome.storage.local.set({ 'reddit_img_url': img });
+      convertImgToBase64URL(url, function (base64url) {
+        chrome.storage.local.set({
+          'reddit_img': base64url,
+          'reddit_img_url': url
+        });
+
         document.body.style.backgroundImage = 'url("' + base64url + '")';
       });
 
-      dl_btn.href = img;
+      dl_btn.href = url;
     }, function (status) {
       console.log('Something went wrong while fetching from Reddit.');
     });
