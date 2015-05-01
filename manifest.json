@@ -4,7 +4,7 @@
   "name": "Colour New Tab",
   "short_name": "ColourNTP",
   "description": "Based on http://whatcolourisit.scn9a.org/",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "options_page": "options.html",
 
   "chrome_url_overrides" : {

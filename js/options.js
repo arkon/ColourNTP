@@ -28,7 +28,7 @@ var maxVisited         = $('#visited-max'),
 /**
  * Load saved settings on page load.
  */
-getConfig(['24-hour-time', 'font', 'animations',
+getSyncConfig(['24-hour-time', 'font', 'animations',
            'time_normal', 'time_full', 'time_full_hue',
            'time_solid', 'solid_color', 'history',
            'bg', 'bg_reddit', 'bg_image', 'bg_opacity',

@@ -1,23 +1,13 @@
 (function() {
 
   var isOnline = navigator.onLine;
-
-  // Check if new day (to limit getting a new Reddit background)
-  var date = new Date().getDay();
-  var new_day = false;
-
-  if (localStorage['date'] == date)
-    new_day = true;
-  else
-    localStorage['date'] = date;
-
   var dl_btn = document.getElementById('download');
 
 
   /**
    * Inject custom font.
    */
-  getConfig(['font'], function (result) {
+  getSyncConfig(['font'], function (result) {
     if (isOnline && result['font'] && result['font'].indexOf('Default') <= -1) {
 
       document.head +=
@@ -37,7 +27,7 @@
    * Calculates and displays the time, along with the appropriate
    * background colour.
    */
-  getConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity', 'animations',
+  getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity', 'animations',
              'time_normal', 'time_full', 'time_full_hue', 'time_solid',
              'history'], function (result) {
 
@@ -47,12 +37,27 @@
     if (isOnline) {
       if (result['bg']) {
         if (result['bg_reddit']) {
-          if (!new_day && localStorage['reddit_img']) {
-            document.body.style.backgroundImage = 'url("' + localStorage['reddit_img'] + '")';
-            dl_btn.href = localStorage['reddit_img'];
-          } else {
-            getRedditImage();
-          }
+
+          // Check if new day (to limit requests)
+          var date = new Date().getDay();
+          var new_day = true;
+
+          getLocalConfig('date', function (result) {
+            if (result == date)
+              new_day = false;
+            else
+              chrome.storage.local.set({ 'date': date });
+
+            getLocalConfig(['reddit_img', 'reddit_img_url'], function (result) {
+              if (!new_day && result['reddit_img'] && result['reddit_img_url']) {
+                document.body.style.backgroundImage = 'url("' + result['reddit_img'] + '")';
+                dl_btn.href = result['reddit_img_url'];
+              } else {
+                getRedditImage();
+              }
+            });
+          });
+
         } else {
           if (result['bg_image']) {
             document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
@@ -80,7 +85,7 @@
 
     // If solid background mode is chosen, use that colour
     if (result['time_solid']) {
-      getConfig('solid_color', function (hex) {
+      getSyncConfig('solid_color', function (hex) {
         if (bgOpacity !== 0) {
           if (bgOpacity !== 1 && result['bg']) {
             $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
@@ -159,9 +164,7 @@
         }
       }
 
-      $('#t-hour').innerHTML = hours + ' : ';
-      $('#t-min').innerHTML = mins + ' : ';
-      $('#t-sec').innerHTML = secs;
+      $('#t').innerHTML = hours + ' : ' + mins + ' : ' + secs;
 
       if (!twentyFourHourTime) {
         $('#t').setAttribute('time-postfix', isPM ? 'PM' : 'AM');
@@ -272,9 +275,11 @@
       }
 
       // "Cache" the image URL in local storage
-      localStorage['reddit_img'] = img;
-
-      document.body.style.backgroundImage = 'url("' + img + '")';
+      convertImgToBase64URL(img, function (base64url) {
+        chrome.storage.local.set({ 'reddit_img': base64url });
+        chrome.storage.local.set({ 'reddit_img_url': img });
+        document.body.style.backgroundImage = 'url("' + base64url + '")';
+      });
 
       dl_btn.href = img;
     }, function (status) {
@@ -291,7 +296,7 @@
       appsToggle      = $('#panel-toggle-apps'),
       shortcutsToggle = $('#panel-toggle-shortcuts');
 
-  getConfig(['panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
+  getSyncConfig(['panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
              'ntp_panel_visible'], function (results) {
     if (results['panel_visited'] === false) {
       visitedToggle.remove();
@@ -346,7 +351,7 @@
   /**
    * Given an array of URLs, build a DOM list of these URLs.
    */
-  getConfig('max_visited', function (max) {
+  getSyncConfig('max_visited', function (max) {
     chrome.topSites.get(function (visitedURLs) {
       var visitedList = $('#visited');
 
@@ -371,7 +376,7 @@
   /**
    * Given an array of recently closed sessions, build a DOM list of the pages.
    */
-  getConfig('max_closed', function (max) {
+  getSyncConfig('max_closed', function (max) {
     chrome.sessions.getRecentlyClosed(
       {
         maxResults: Number(max) || 10

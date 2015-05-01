@@ -2,7 +2,17 @@
  * Helper functions
  */
 
-function getConfig (key, callback) {
+function getLocalConfig (key, callback) {
+  chrome.storage.local.get(key, function (result) {
+    if (key instanceof Array) {
+      callback(result);
+    } else {
+      callback(result[key]);
+    }
+  });
+}
+
+function getSyncConfig (key, callback) {
   chrome.storage.sync.get(key, function (result) {
     if (key instanceof Array) {
       callback(result);
