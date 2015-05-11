@@ -67,7 +67,7 @@
       }
     }
 
-    if (!isOnline || !result['bg']) {
+    if (!isOnline || result['bg'] !== true) {
       dl_btn.remove();
     }
 
