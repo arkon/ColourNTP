@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
   var isOnline = navigator.onLine;
   var dl_btn = document.getElementById('download');
@@ -39,13 +39,12 @@
         if (result['bg_reddit']) {
           getLocalConfig(['date', 'reddit_img', 'reddit_img_url'], function (result) {
             // Check if new day (to limit requests)
-            var new_day = true;
-            var date = new Date().getDay()
+            var new_day = result['date'] == date;
+            var date = new Date().getDay();
 
-            if (result['date'] == date)
-              new_day = false;
-            else
+            if (!new_day) {
               chrome.storage.local.set({ 'date': date });
+            }
 
             if (!new_day && result['reddit_img'] && result['reddit_img_url']) {
               document.body.style.backgroundImage = 'url("' + result['reddit_img'] + '")';
@@ -54,7 +53,6 @@
               getRedditImage();
             }
           });
-
         } else {
           if (result['bg_image']) {
             document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
@@ -99,7 +97,7 @@
     }
 
     // Time + colours
-    (function doTime() {
+    (function doTime () {
       var d     = new Date();
       var hours = d.getHours();
       var mins  = d.getMinutes();
@@ -151,7 +149,7 @@
           for (var i = 0; i < 10; i++) {
             var past = $('#history').append('div');
             past.style.backgroundColor = stack.get(i);
-            past.dataset.hex           = stack.get(i) || "Hold on...";
+            past.dataset.hex           = stack.get(i) || 'Hold on...';
             past.className             = 'past-colour';
 
             past.addEventListener('click', function() {
@@ -179,7 +177,7 @@
    * @param   Number  secondInDay   The current second in the day.
    * @return  String                The hex colour value (e.g. #1fd531).
    */
-  function secondToHexColour(secondInDay) {
+  function secondToHexColour (secondInDay) {
     return '#' + ('00000' + (secondInDay / (24 * 60 * 60 - 1) * 0xFFFFFF | 0).toString(16)).slice(-6);
   }
 
@@ -195,21 +193,12 @@
    * @param   Number  l       The lightness.
    * @return  Array           The RGB representation.
    */
-  function hslToRgb(h, s, l){
+  function hslToRgb (h, s, l) {
     var r, g, b;
 
     if (s === 0){
       r = g = b = l;  // Achromatic
     } else {
-      function hue2rgb(p, q, t){
-        if (t < 0) t++;
-        if (t > 1) t--;
-        if (t < 1/6) return p + (q - p) * 6 * t;
-        if (t < 1/2) return q;
-        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-        return p;
-      }
-
       var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
       var p = 2 * l - q;
       r = hue2rgb(p, q, h + 1/3);
@@ -221,10 +210,20 @@
   }
 
 
+  function hue2rgb (p, q, t) {
+    if (t < 0) t++;
+    if (t > 1) t--;
+    if (t < 1/6) return p + (q - p) * 6 * t;
+    if (t < 1/2) return q;
+    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+    return p;
+  }
+
+
   /**
    * Converts RGB values to a hex colour string.
    */
-  function rgbToHex(r, g, b) {
+  function rgbToHex (r, g, b) {
     return '#' + (((1 << 24) + (r << 16) + (g << 8) + b) | 0).toString(16).slice(1);
   }
 
@@ -232,7 +231,7 @@
   /**
    * Converts a hex colour string to an array of RGB values.
    */
-  function hexToRGB(hex) {
+  function hexToRGB (hex) {
     var r = parseInt(hex, 16) >> 16;
     var g = parseInt(hex, 16) >> 8 & 0xFF;
     var b = parseInt(hex, 16) & 0xFF;
@@ -244,7 +243,7 @@
    * "Converts" the second to a hex value, as a point along the hue spectrum.
    * 00:00:00 corresponds to #ff0000, 12:00:00 corresponds to #00feff.
    */
-  function secondToHueColour(secondInDay) {
+  function secondToHueColour (secondInDay) {
     var hue = secondInDay / (24 * 60 * 60);
     return rgbToHex.apply(null, hslToRgb(hue, 1, 0.5));
   }
@@ -253,7 +252,7 @@
   /**
    * Converts a hex colour to an RGBA string with the provided alpha value.
    */
-  function rgba(hex, a) {
+  function rgba (hex, a) {
     var colour = hexToRGB(hex.substring(1, 7));
     return 'rgba(' + colour[0] + ',' + colour[1] + ',' + colour[2] + ',' + a + ')';
   }
@@ -262,7 +261,7 @@
   /**
    * Gets the top wallpaper from /r/wallpapers and sets it as the background image.
    */
-  function getRedditImage() {
+  function getRedditImage () {
     getJSON('http://www.reddit.com/r/wallpapers/hot.json?sort=new&limit=1', function (data) {
       var url = data.data.children[0].data.url;
 
@@ -284,7 +283,7 @@
 
       dl_btn.href = url;
     }, function (status) {
-      console.log('Something went wrong while fetching from Reddit.');
+      console.log('Something went wrong while fetching data from Reddit.');
     });
   }
 
@@ -315,16 +314,14 @@
       shortcutsToggle.remove();
     }
 
-    if (results['panel_visited'] !== false ||
-        results['panel_closed'] !== false ||
-        results['panel_apps'] !== false ||
-        results['panel_shortcuts'] !== false) {
-      visitedToggle.onclick   = function() { togglePanel(0); };
-      closedToggle.onclick    = function() { togglePanel(1); };
-      appsToggle.onclick      = function() { togglePanel(2); };
-      shortcutsToggle.onclick = function() { togglePanel(3); };
+    if (results['panel_visited'] !== false || results['panel_closed'] !== false ||
+        results['panel_apps'] !== false || results['panel_shortcuts'] !== false) {
+      visitedToggle.onclick   = function () { togglePanel(0); };
+      closedToggle.onclick    = function () { togglePanel(1); };
+      appsToggle.onclick      = function () { togglePanel(2); };
+      shortcutsToggle.onclick = function () { togglePanel(3); };
 
-      function togglePanel(id) {
+      function togglePanel (id) {
         if (id === -1) return;
 
         var toggle = document.body.hasClass('panel-' + id);
@@ -404,8 +401,8 @@
           a.title     = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
           a.innerHTML = session.tab ? session.tab.title : session.window.tabs.length + ' Tabs';
 
-          a.addEventListener('click', (function(session) {
-            return function() {
+          a.addEventListener('click', (function (session) {
+            return function () {
               chrome.sessions.restore(session.window ? session.window.sessionId : session.tab.sessionId, null);
               return false;
             };
@@ -423,7 +420,7 @@
     var appsList = $('#apps');
 
     // Only get active apps (no extensions)
-    list = list.filter(function(a) {
+    list = list.filter(function (a) {
       return a.enabled && a.type !== 'extension' && a.type !== 'theme' && a.isApp
     });
 
@@ -439,8 +436,8 @@
       var a  = li.append('a');
       var extInf = list[i];
 
-      li.addEventListener('click', (function(id) {
-        return function() {
+      li.addEventListener('click', (function (id) {
+        return function () {
           chrome.management.launchApp(id);
         };
       })(extInf.id));
@@ -465,7 +462,7 @@
   /**
    * Finds an 128px x 128px icon for an app.
    */
-  function find128Image(icons) {
+  function find128Image (icons) {
     for (var i in icons) {
       if (icons[i].size === 128) {
         return icons[i].url;
@@ -479,7 +476,7 @@
   /**
    * Creates shortcuts list
    */
-  (function createShortcuts() {
+  (function createShortcuts () {
     var shortcutsList = $('#shortcuts');
 
     var shortcuts = [
@@ -511,7 +508,7 @@
       var shortcutItem = shortcuts[i];
 
       li.addEventListener('click', (function(url) {
-        return function() {
+        return function () {
           chrome.tabs.update(null, { url: url });
         };
       })(shortcutItem.url));
