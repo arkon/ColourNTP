@@ -40,8 +40,9 @@
           getLocalConfig(['date', 'reddit_img', 'reddit_img_url'], function (result) {
             // Check if new day (to limit requests)
             var new_day = true;
+            var date = new Date().getDay()
 
-            if (result['date'] == new Date().getDay())
+            if (result['date'] == date)
               new_day = false;
             else
               chrome.storage.local.set({ 'date': date });
