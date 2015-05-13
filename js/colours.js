@@ -24,10 +24,20 @@
 
 
   /**
+   * Disables animations/transitions if option is set to.
+   */
+  getSyncConfig(['animations'], function (result) {
+    if (result['animations'] === false) {
+      document.body.addClass('notransition');
+    }
+  });
+
+
+  /**
    * Calculates and displays the time, along with the appropriate
    * background colour.
    */
-  getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity', 'animations',
+  getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
              'time_normal', 'time_full', 'time_full_hue', 'time_solid',
              'history'], function (result) {
 
@@ -39,10 +49,10 @@
         if (result['bg_reddit']) {
           getLocalConfig(['date', 'reddit_img', 'reddit_img_url'], function (result) {
             // Check if new day (to limit requests)
-            var new_day = result['date'] == date;
-            var date = new Date().getDay();
+            var date = new Date().getDate();
+            var new_day = result['date'] !== date;
 
-            if (!new_day) {
+            if (new_day) {
               chrome.storage.local.set({ 'date': date });
             }
 
@@ -67,10 +77,6 @@
 
     if (!isOnline || result['bg'] !== true) {
       dl_btn.remove();
-    }
-
-    if (result['animations'] === false) {
-      document.body.addClass('notransition');
     }
 
     // Add text shadows to protect against backgroundss
@@ -283,7 +289,7 @@
 
       dl_btn.href = url;
     }, function (status) {
-      console.log('Something went wrong while fetching data from Reddit.');
+      console.log('ColourNTP: Something went wrong while fetching data from Reddit.');
     });
   }
 
