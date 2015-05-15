@@ -47,18 +47,18 @@
     if (isOnline) {
       if (result['bg']) {
         if (result['bg_reddit']) {
-          getLocalConfig(['date', 'reddit_img', 'reddit_img_url'], function (result) {
+          getLocalConfig(['date', 'reddit_img', 'reddit_img_url'], function (local_result) {
             // Check if new day (to limit requests)
             var date = new Date().getDate();
-            var new_day = result['date'] !== date;
+            var new_day = local_result['date'] !== date;
 
             if (new_day) {
               chrome.storage.local.set({ 'date': date });
             }
 
-            if (!new_day && result['reddit_img'] && result['reddit_img_url']) {
-              document.body.style.backgroundImage = 'url("' + result['reddit_img'] + '")';
-              dl_btn.href = result['reddit_img_url'];
+            if (!new_day && local_result['reddit_img'] && local_result['reddit_img_url']) {
+              document.body.style.backgroundImage = 'url("' + local_result['reddit_img'] + '")';
+              dl_btn.href = local_result['reddit_img_url'];
             } else {
               getRedditImage();
             }
