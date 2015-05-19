@@ -273,7 +273,7 @@
 
       // Imgur link, but directly to image file
       if (url.indexOf('imgur.com') >= 0 &&
-          (url.indexOf('.png') < 0 || url.indexOf('.jpg') < 0)) {
+          (url.indexOf('.png') < 0 && url.indexOf('.jpg') < 0)) {
         url += '.png';
       }
 
