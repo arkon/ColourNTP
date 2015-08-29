@@ -7,11 +7,11 @@ import React = require('react');
 interface IProps {
     label: string;
     tooltip?: string;
-    value: boolean;
+    value: string;
 }
 
 interface IState {
-    value: boolean;
+    value: string;
 }
 
 class Colour extends React.Component<IProps, IState> {

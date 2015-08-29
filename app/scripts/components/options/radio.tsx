@@ -7,19 +7,19 @@ import React = require('react');
 interface IProps {
     label: string;
     tooltip?: string;
-    options: Array<string>;
+    value: boolean;
 }
 
 interface IState {
-    value: string;
+    value: boolean;
 }
 
-class Dropdown extends React.Component<IProps, IState> {
+class Radio extends React.Component<IProps, IState> {
     constructor (props) {
         super(props);
 
         this.state = {
-            value: this.props.options[0]
+            value: this.props.value
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -27,20 +27,16 @@ class Dropdown extends React.Component<IProps, IState> {
 
     handleChange (e) {
         this.setState({
-            value: e.target.value
+            value: e.target.checked
         });
     }
 
     render () {
         return (
             <label>
+                <input type='radio' checked={this.state.value} onChange={this.handleChange} />
                 <abbr>
                     <span>{this.props.label}</span>
-                    <select value={this.state.value} onChange={this.handleChange}>
-                        {this.props.options.map((item) => {
-                            return <option>{item}</option>;
-                        })}
-                    </select>
                     { this.props.tooltip &&
                         <span>
                             <strong>{this.props.label}</strong>
@@ -53,4 +49,4 @@ class Dropdown extends React.Component<IProps, IState> {
     }
 }
 
-export = Dropdown;
+export = Radio;
