@@ -22,8 +22,8 @@ getSyncConfig(['font'], function (result) {
 
         document.head.appendChild(linkWebFont);
 
-        var style = document.createElement('style');
-        style.textContent += '*{font-family:' + result['font'] + '!important;}';
+        let style = document.createElement('style');
+        style.textContent = `*{font-family: ${result['font']} !important;}`;
 
         document.head.appendChild(style);
     }
@@ -64,7 +64,7 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
                     }
 
                     if (!new_day && local_result['reddit_img'] && local_result['reddit_img_url']) {
-                        document.body.style.backgroundImage = 'url("' + local_result['reddit_img'] + '")';
+                        document.body.style.backgroundImage = `url("${local_result['reddit_img']}")`;
                         dl_btn.href = local_result['reddit_img_url'];
                     } else {
                         getRedditImage();
@@ -72,7 +72,7 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
                 });
             } else {
                 if (result['bg_image']) {
-                    document.body.style.backgroundImage = 'url("' + result['bg_image'] + '")';
+                    document.body.style.backgroundImage = `url("${result['bg_image']}")`;
                 }
             }
         }
@@ -88,7 +88,7 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
 
     // Add text shadows to protect against backgroundss
     if (bgOpacity <= 0.25 || result['time_full'] || result['time_full_hue']) {
-        $('#time').classList.add('full');
+        document.querySelector('#time').classList.add('full');
     }
 
     // If solid background mode is chosen, use that colour
@@ -96,9 +96,9 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
         getSyncConfig('solid_color', function (hex) {
             if (bgOpacity !== 0) {
                 if (bgOpacity !== 1 && result['bg']) {
-                    $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
+                    document.querySelector('#contents').style.backgroundColor = rgba(hex, bgOpacity);
                 } else {
-                    $('#contents').style.backgroundColor = hex;
+                    document.querySelector('#contents').style.backgroundColor = hex;
                 }
             }
         });
@@ -145,22 +145,22 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
                 var hex = secondToHueColour(seconds);
             }
 
-            $('#h').textContent = hex;
+            document.querySelector('#h').textContent = hex;
 
             if (bgOpacity !== 0) {
                 if (bgOpacity !== 1 && result['bg']) {
-                    $('#contents').style.backgroundColor = rgba(hex, bgOpacity);
+                    document.querySelector('#contents').style.backgroundColor = rgba(hex, bgOpacity);
                 } else {
-                    $('#contents').style.backgroundColor = hex;
+                    document.querySelector('#contents').style.backgroundColor = hex;
                 }
             }
 
             if (result['history']) {
                 stack.push(hex);
 
-                $('#history').textContent = '';
+                document.querySelector('#history').textContent = '';
                 for (var i = 0; i < 10; i++) {
-                    var past = $('#history').append('div');
+                    var past = document.querySelector('#history').append('div');
                     past.style.backgroundColor = stack.get(i);
                     past.dataset.hex           = stack.get(i) || 'Hold on...';
                     past.className             = 'past-colour';
@@ -172,10 +172,10 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
             }
         }
 
-        $('#t').textContent = hours + ' : ' + mins + ' : ' + secs;
+        document.querySelector('#t').textContent = hours + ' : ' + mins + ' : ' + secs;
 
         if (!twentyFourHourTime) {
-            $('#t').setAttribute('time-postfix', isPM ? 'PM' : 'AM');
+            document.querySelector('#t').setAttribute('time-postfix', isPM ? 'PM' : 'AM');
         }
 
         setTimeout(doTime, 1000);
@@ -304,10 +304,10 @@ function getRedditImage () {
 /**
  * Handle the showing/hiding of the panel and its contents.
  */
-var visitedToggle   = $('#panel-toggle-visited'),
-        closedToggle    = $('#panel-toggle-closed'),
-        appsToggle      = $('#panel-toggle-apps'),
-        shortcutsToggle = $('#panel-toggle-shortcuts');
+var visitedToggle   = document.querySelector('#panel-toggle-visited'),
+        closedToggle    = document.querySelector('#panel-toggle-closed'),
+        appsToggle      = document.querySelector('#panel-toggle-apps'),
+        shortcutsToggle = document.querySelector('#panel-toggle-shortcuts');
 
 getSyncConfig(['panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
                      'ntp_panel_visible'], function (results) {
@@ -364,7 +364,7 @@ getSyncConfig(['panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
  */
 getSyncConfig('max_visited', function (max) {
     chrome.topSites.get(function (visitedURLs) {
-        var visitedList = $('#visited');
+        var visitedList = document.querySelector('#visited');
 
         // Consider the user's set maximum (default 10)
         visitedURLs = visitedURLs.slice(0, Number(max) || 10);
@@ -393,7 +393,7 @@ getSyncConfig('max_closed', function (max) {
             maxResults: Number(max) || 10
         },
         function (sessions) {
-            var closedList = $('#closed');
+            var closedList = document.querySelector('#closed');
 
             if (sessions.length === 0) {
                 var p = closedList.append('p');
@@ -430,7 +430,7 @@ getSyncConfig('max_closed', function (max) {
  * Given an array of apps, build a DOM list of the apps.
  */
 chrome.management.getAll(function (list) {
-    var appsList = $('#apps');
+    var appsList = document.querySelector('#apps');
 
     // Only get active apps (no extensions)
     list = list.filter(function (a) {
@@ -490,7 +490,7 @@ function find128Image (icons) {
  * Creates shortcuts list
  */
 (function createShortcuts () {
-    var shortcutsList = $('#shortcuts');
+    var shortcutsList = document.querySelector('#shortcuts');
 
     var shortcuts = [
         {

@@ -1,39 +1,46 @@
-var twentyFourHourTime = $('#time-24-hours'),
-        font               = $('#fonts'),
-        animations         = $('#animations');
+///<reference path="types/chrome.d.ts" />
+///<reference path='types/react.d.ts' />
 
-var timeNormal         = $('#time-normal'),
-        timeFull           = $('#time-full-hex'),
-        timeFullHue        = $('#time-full-hue'),
-        timeSolid          = $('#time-solid'),
-        solidColor         = $('#time-solid-color'),
-        showHistory        = $('#history');
-
-var background         = $('#bg'),
-        bgReddit           = $('#bg-reddit'),
-        bgImage            = $('#bg-url'),
-        bgOpacity          = $('#bg-opacity'),
-        bgOpacityVal       = $('#bg-opacity-value');
+import React = require('react');
 
 
-var panelVisited       = $('#panel-visited'),
-        panelClosed        = $('#panel-closed'),
-        panelApps          = $('#panel-apps'),
-        panelShortcuts     = $('#panel-shortcuts');
 
-var maxVisited         = $('#visited-max'),
-        maxClosed          = $('#closed-max');
+getSettings(function (results) {
+    React.render(<Options settings={results} />, document.getElementById('option'));
+});
+
+
+
+var twentyFourHourTime = document.getElementById('time-24-hours'),
+    font               = document.getElementById('fonts'),
+    animations         = document.getElementById('animations');
+
+var timeNormal         = document.getElementById('time-normal'),
+    timeFull           = document.getElementById('time-full-hex'),
+    timeFullHue        = document.getElementById('time-full-hue'),
+    timeSolid          = document.getElementById('time-solid'),
+    solidColor         = document.getElementById('time-solid-color'),
+    showHistory        = document.getElementById('history');
+
+var background         = document.getElementById('bg'),
+    bgReddit           = document.getElementById('bg-reddit'),
+    bgImage            = document.getElementById('bg-url'),
+    bgOpacity          = document.getElementById('bg-opacity'),
+    bgOpacityVal       = document.getElementById('bg-opacity-value');
+
+var panelVisited       = document.getElementById('panel-visited'),
+    panelClosed        = document.getElementById('panel-closed'),
+    panelApps          = document.getElementById('panel-apps'),
+    panelShortcuts     = document.getElementById('panel-shortcuts');
+
+var maxVisited         = document.getElementById('visited-max'),
+    maxClosed          = document.getElementById('closed-max');
 
 
 /**
  * Load saved settings on page load.
  */
-getSyncConfig(['24-hour-time', 'font', 'animations',
-                     'time_normal', 'time_full', 'time_full_hue',
-                     'time_solid', 'solid_color', 'history',
-                     'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
-                     'panel_visited', 'panel_closed', 'panel_apps', 'panel_shortcuts',
-                     'max_visited', 'max_closed'], function (results) {
+getSettings(function (results) {
 
     twentyFourHourTime.checked = results['24-hour-time'] !== false;
     font.value                 = results['font'] || 'Default (Open Sans)';
@@ -50,7 +57,7 @@ getSyncConfig(['24-hour-time', 'font', 'animations',
     bgReddit.checked           = results['bg_reddit'];
     bgImage.value              = results['bg_image'] || '';
     bgOpacity.value            = results['bg_opacity'] || 80;
-    bgOpacityVal.textContent     = results['bg_opacity'] || 80;
+    bgOpacityVal.textContent   = results['bg_opacity'] || 80;
 
     panelVisited.checked       = results['panel_visited'] !== false;
     panelClosed.checked        = results['panel_closed'] !== false;
@@ -65,7 +72,7 @@ getSyncConfig(['24-hour-time', 'font', 'animations',
 /**
  * Saves all options.
  */
-$('#save').onclick = function() {
+document.getElementById('save').onclick = function() {
     chrome.storage.sync.set({
         '24-hour-time'    : twentyFourHourTime.checked,
         'font'            : font.value,
@@ -94,7 +101,7 @@ $('#save').onclick = function() {
 
     this.textContent = 'Saved';
     setTimeout(function() {
-        $('#save').textContent = 'Save';
+        document.getElementById('save').textContent = 'Save';
     }, 1000);
 }
 
@@ -103,9 +110,9 @@ $('#save').onclick = function() {
  * Fonts list
  */
 var fonts = ['Anonymous Pro', 'Arial', 'Arvo', 'Droid Sans', 'Droid Serif', 'Maven Pro',
-                         'Ovo', 'PT Mono', 'PT Sans', 'PT Serif', 'Raleway', 'Roboto',
-                         'Roboto Condensed', 'Roboto Slab', 'Source Code Pro', 'Source Sans Pro',
-                         'Tahoma', 'Times', 'Ubuntu'];
+             'Ovo', 'PT Mono', 'PT Sans', 'PT Serif', 'Raleway', 'Roboto',
+             'Roboto Condensed', 'Roboto Slab', 'Source Code Pro', 'Source Sans Pro',
+             'Tahoma', 'Times', 'Ubuntu'];
 
 (function loadFonts() {
     for (var i = 0; i < fonts.length; i++) {

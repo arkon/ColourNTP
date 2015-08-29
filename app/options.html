@@ -1,180 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='UTF-8'>
-  <title>Options</title>
-  <link href='styles/options.css' rel='stylesheet' type='text/css'>
+    <meta charset='UTF-8'>
+    <title>Options</title>
+    <link rel='stylesheet' href='styles/options.css'>
 </head>
 <body>
-  <div id='options'>
-
-    <h1>Colour New Tab</h1>
-
-    <h2>General</h2>
-
-    <label>
-      <abbr>
-        Font:
-        <select id='fonts'>
-          <option>Default (Open Sans)</option>
-        </select>
-        <span>
-          <strong>Custom font</strong><br>
-          Custom fonts are fetched from Google Fonts, so you must be online for this to work.
-        </span>
-      </abbr>
-    </label>
-
-    <label>
-      <input type='checkbox' id='time-24-hours' value='24-hour-time' checked>
-      <abbr>
-        24-hour time
-        <span>
-          <strong>24-hour time</strong><br>
-          Shows the time using the 24-hour clock (no AM or PM).
-        </span>
-      </abbr>
-    </label>
-
-    <label>
-      <input type='checkbox' id='animations' value='animations' checked>
-      Animations
-    </label>
-
-
-    <h2>Colours</h2>
-
-    <label>
-      <input type='radio' name='time' id='time-normal' value='time-normal' checked>
-      <abbr>
-        Regular
-        <span>
-          <strong>Regular</strong><br>
-          Shows the corresponding colour based on the 24 hour clock.
-        </span>
-      </abbr>
-    </label>
-
-    <label>
-      <input type='radio' name='time' id='time-full-hex' value='time-full-hex'>
-      <abbr>
-          Full spectrum hexadecimal
-        <span>
-          <strong>Full spectrum hexadecimal</strong><br>
-          A new colour for every second, going from #000000 to #ffffff in one day.
-        </span>
-      </abbr>
-    </label>
-
-    <label>
-      <input type='radio' name='time' id='time-full-hue' value='time-full-hue'>
-      <abbr>
-        Full spectrum hue
-        <span>
-          <strong>Full spectrum hue</strong><br>
-          A slow shift across the entire hue spectrum, going from #ff0000 to #00ffff and back in one day.
-        </span>
-      </abbr>
-    </label>
-
-    <label>
-      <input type='radio' name='time' id='time-solid' value='time-solid'>
-      Solid:
-      <input type='color' id='time-solid-color' value='#111115'>
-    </label>
-
-    <label>
-      <input type='checkbox' id='history'>
-      <abbr>
-        Show ticker of past colours
-        <span>
-          <strong>Show ticker of past colours</strong><br>
-          Only available for non-solid backgrounds.
-        </span>
-      </abbr>
-    </label>
-
-
-
-    <h2>Background image</h2>
-
-    <label>
-      <input type='checkbox' id='bg'>
-      <abbr>
-        Custom background image
-        <span>
-          <strong>Custom background image</strong><br>
-          You must use an online image (and be online).
-        </span>
-      </abbr>
-    </label>
-
-    <label>
-      <input type='checkbox' id='bg-reddit'>
-      <abbr>
-        Top wallpaper from /r/wallpapers
-        <span>
-          <strong>Top wallpaper from /r/wallpapers</strong><br>
-          Fetch the top wallpaper from the wallpapers subreddit.
-        </span>
-      </abbr>
-    </label>
-
-    <label>
-      Image URL:
-      <input type='url' id='bg-url'>
-    </label>
-
-    <label>
-      Colour overlay opacity:
-      <input id='bg-opacity' type='range' min='0' max='100' step='1' value='75' />
-      (<span id='bg-opacity-value'>75</span>%)
-    </label>
-
-
-
-    <h2>Panels</h2>
-
-    <label>
-      <input type='checkbox' id='panel-visited' checked>
-      Most visited
-    </label>
-
-    <label>
-      <input type='checkbox' id='panel-closed' checked>
-      Recently closed
-    </label>
-
-    <label>
-      <input type='checkbox' id='panel-apps' checked>
-      Apps
-    </label>
-
-    <label>
-      <input type='checkbox' id='panel-shortcuts' checked>
-      Shortcuts
-    </label>
-
-    <label>
-      Max number of most visited pages:
-      <input type='number' id='visited-max' min='1' max='20' value='10'>
-    </label>
-
-    <label>
-      Max number of recently closed pages:
-      <input type='number' id='closed-max' min='1' max='25' value='10'>
-    </label>
-
-    <a id='save'>Save</a>
+    <div id='options'></div>
 
     <div id='credits'>
-      <a href='https://github.com/arkon/ColourNTP'>Source code on GitHub</a>
-      <a href='http://whatcolourisit.scn9a.org/'>Original concept by J.E. Murphy</a>
-      <a href='http://echeung.me/'>Chrome extension by Eugene Cheung</a>
+        <a href='https://github.com/arkon/ColourNTP'>Source code on GitHub</a>
+        <a href='http://whatcolourisit.scn9a.org/'>Original concept by J.E. Murphy</a>
+        <a href='http://echeung.me/'>Chrome extension by Eugene Cheung</a>
     </div>
-  </div>
 
-  <script type='text/javascript' src='scripts/core.js'></script>
-  <script type='text/javascript' src='scripts/options.js'></script>
+    <script src='scripts/options.js'></script>
 </body>
 </html>
