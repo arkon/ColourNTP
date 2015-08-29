@@ -1,45 +1,19 @@
-///<reference path="types/chrome.d.ts" />
+///<reference path='types/chrome.d.ts' />
 ///<reference path='types/react.d.ts' />
 
 import React = require('react');
 
+import ChromeStorage = require('./modules/chromestorage');
+
+import Options = require('./components/options/options');
 
 
-getSettings(function (results) {
+new ChromeStorage().getSettings(function (results) {
     React.render(<Options settings={results} />, document.getElementById('option'));
 });
 
 
-
-var twentyFourHourTime = document.getElementById('time-24-hours'),
-    font               = document.getElementById('fonts'),
-    animations         = document.getElementById('animations');
-
-var timeNormal         = document.getElementById('time-normal'),
-    timeFull           = document.getElementById('time-full-hex'),
-    timeFullHue        = document.getElementById('time-full-hue'),
-    timeSolid          = document.getElementById('time-solid'),
-    solidColor         = document.getElementById('time-solid-color'),
-    showHistory        = document.getElementById('history');
-
-var background         = document.getElementById('bg'),
-    bgReddit           = document.getElementById('bg-reddit'),
-    bgImage            = document.getElementById('bg-url'),
-    bgOpacity          = document.getElementById('bg-opacity'),
-    bgOpacityVal       = document.getElementById('bg-opacity-value');
-
-var panelVisited       = document.getElementById('panel-visited'),
-    panelClosed        = document.getElementById('panel-closed'),
-    panelApps          = document.getElementById('panel-apps'),
-    panelShortcuts     = document.getElementById('panel-shortcuts');
-
-var maxVisited         = document.getElementById('visited-max'),
-    maxClosed          = document.getElementById('closed-max');
-
-
-/**
- * Load saved settings on page load.
- */
+/*
 getSettings(function (results) {
 
     twentyFourHourTime.checked = results['24-hour-time'] !== false;
@@ -69,9 +43,6 @@ getSettings(function (results) {
 });
 
 
-/**
- * Saves all options.
- */
 document.getElementById('save').onclick = function() {
     chrome.storage.sync.set({
         '24-hour-time'    : twentyFourHourTime.checked,
@@ -104,28 +75,4 @@ document.getElementById('save').onclick = function() {
         document.getElementById('save').textContent = 'Save';
     }, 1000);
 }
-
-
-/**
- * Fonts list
- */
-var fonts = ['Anonymous Pro', 'Arial', 'Arvo', 'Droid Sans', 'Droid Serif', 'Maven Pro',
-             'Ovo', 'PT Mono', 'PT Sans', 'PT Serif', 'Raleway', 'Roboto',
-             'Roboto Condensed', 'Roboto Slab', 'Source Code Pro', 'Source Sans Pro',
-             'Tahoma', 'Times', 'Ubuntu'];
-
-(function loadFonts() {
-    for (var i = 0; i < fonts.length; i++) {
-        var option = document.createElement('option');
-        option.text = fonts[i];
-        font.add(option);
-    }
-})();
-
-
-/**
- * Opacity slider
- */
-bgOpacity.addEventListener('input', function () {
-    bgOpacityVal.textContent = bgOpacity.value;
-}, false);
+*/

@@ -35,7 +35,7 @@ class Colour extends React.Component<IProps, IState> {
         return (
             <label>
                 {this.props.label}
-                <input type='color' value={this.state.value} onChange={this.handleChange}>
+                <input type='color' value={this.state.value} onChange={this.handleChange} />
             </label>
         );
     }

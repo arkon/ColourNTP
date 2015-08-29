@@ -4,7 +4,8 @@
 // Dependencies                                                               //
 ////////////////////////////////////////////////////////////////////////////////
 
-var del         = require('del'),
+var browserify  = require('browserify'),
+    del         = require('del'),
     gulp        = require('gulp'),
     minifyCss   = require('gulp-minify-css'),
     runSequence = require('run-sequence'),

@@ -16,9 +16,9 @@ getSyncConfig(['font'], function (result) {
     if (isOnline && result['font'] && result['font'].indexOf('Default') <= -1) {
 
         let linkWebFont = document.createElement('link');
-        link.type = 'text/css';
-        link.rel = 'stylesheet';
-        link.href = `https://fonts.googleapis.com/css?family=${result['font']}`;
+        linkWebFont.type = 'text/css';
+        linkWebFont.rel = 'stylesheet';
+        linkWebFont.href = `https://fonts.googleapis.com/css?family=${result['font']}`;
 
         document.head.appendChild(linkWebFont);
 
