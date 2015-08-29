@@ -4,17 +4,28 @@
 // Dependencies                                                               //
 ////////////////////////////////////////////////////////////////////////////////
 
-var del          = require('del'),
-    gulp         = require('gulp'),
-    minifyCss    = require('gulp-minify-css'),
-    runSequence  = require('run-sequence'),
-    sass         = require('gulp-sass'),
-    uglify       = require('gulp-uglify');
+var del         = require('del'),
+    gulp        = require('gulp'),
+    minifyCss   = require('gulp-minify-css'),
+    runSequence = require('run-sequence'),
+    sass        = require('gulp-sass'),
+    ts          = require('gulp-typescript'),
+    uglify      = require('gulp-uglify');
 
 
 ////////////////////////////////////////////////////////////////////////////////
 // Misc. configs                                                              //
 ////////////////////////////////////////////////////////////////////////////////
+
+// TypeScript settings
+var tsProject = ts.createProject({
+    typescript       : require('typescript'),
+    removeComments   : true,
+    target           : 'ES5',
+    module           : 'commonjs',
+    declarationFiles : false,
+    jsx              : 'react'
+});
 
 // Various source and destination paths
 var paths = {
@@ -22,7 +33,7 @@ var paths = {
     src_assets_dir  : 'app/assets',
     src_assets      : 'app/assets/**/*',
     src_styles      : 'app/styles/**/*.scss',
-    src_scripts     : 'app/scripts/**/*.js',
+    src_scripts     : 'app/scripts/**/*.{ts,tsx}',
     dest            : 'build',
     dest_assets     : 'build/assets',
     dest_styles     : 'build/styles',
@@ -59,9 +70,10 @@ gulp.task('scss', function () {
         .pipe(gulp.dest(paths.dest_styles));
 });
 
-// Process JavaScript files
-gulp.task('js', function () {
+// Process TypeScript files
+gulp.task('ts', function () {
     return gulp.src(paths.src_scripts)
+        .pipe(ts(tsProject))
         .pipe(uglify())
         .pipe(gulp.dest(paths.dest_scripts));
 });
@@ -72,7 +84,7 @@ gulp.task('js', function () {
 
 // Build project
 gulp.task('default', function () {
-    runSequence('clean', ['copy:root', 'copy:assets', 'scss', 'js']);
+    runSequence('clean', ['copy:root', 'copy:assets', 'scss', 'ts']);
 });
 
 // Watch for changes
@@ -80,5 +92,5 @@ gulp.task('watch', ['default'], function () {
     gulp.watch(paths.src_root, ['copy:root']);
     gulp.watch(paths.src_assets, ['copy:assets']);
     gulp.watch(paths.src_styles, ['scss']);
-    gulp.watch(paths.src_scripts, ['js']);
+    gulp.watch(paths.src_scripts, ['ts']);
 });

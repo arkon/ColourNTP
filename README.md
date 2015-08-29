@@ -2,6 +2,7 @@ Colour New Tab Page
 ===================
 
 Install it from the [Chrome Web Store][chrome-store]!
+
 Based on [What colour is it?][original] by [J.E. Murphy][author].
 
 Some code based on code from [New-App-Launcher][cred-1] and [HumbleNewTabPage][cred-2],

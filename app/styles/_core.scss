@@ -1,38 +1,49 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: 'Open Sans Light';
-  src: url('../assets/fonts/OpenSans-Light.ttf') format('truetype');
+    font-family: 'Open Sans Light';
+    src: url('../assets/fonts/OpenSans-Light.ttf') format('truetype');
 }
 
 * {
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 ::selection {
-  background-color: #777;
+    background-color: #777;
 }
 
 html,
 body {
-  height: 100vh;
-  width: 100%;
+    height: 100vh;
+    width: 100%;
 }
 
 body {
-  background-color: #111115;
-  color: #fff;
-  font: 300 16px "Open Sans Light", sans-serif;
-  text-align: center;
+    background-color: #111;
+    color: #fff;
+    font: 300 16px/1.5 'Open Sans Light', 'Helvetica', 'Arial', sans-serif;
+    text-align: center;
 }
 
 a {
-  color: #fff;
-  cursor: pointer;
-  text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-li {
-  list-style: none;
+ul {
+    list-style: none;
+}
+
+h1,
+h2 {
+    font-weight: 300;
+    transition: font-size 0.3s;
+}
+
+h2 {
+    font-size: 2em;
 }
