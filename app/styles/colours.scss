@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@import 'core';
 
 /**
  * Main time/hex display
@@ -171,7 +171,7 @@ li {
   top: 0;
 
   &::before {
-    background-image: url('chrome-extension://__MSG_@@extension_id__/img/gear.png');
+    background-image: url('../assets/img/gear.png');
     transition: transform 0.35s;
   }
 
@@ -188,7 +188,7 @@ li {
   top: 30px;
 
   &::before {
-    background-image: url('chrome-extension://__MSG_@@extension_id__/img/download.png');
+    background-image: url('../assets/img/download.png');
   }
 
   &:hover {

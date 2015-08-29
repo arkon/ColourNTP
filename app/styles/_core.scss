@@ -1,6 +1,8 @@
+@charset "UTF-8";
+
 @font-face {
   font-family: 'Open Sans Light';
-  src: url('chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Light.ttf') format('truetype');
+  src: url('../assets/fonts/OpenSans-Light.ttf') format('truetype');
 }
 
 * {
