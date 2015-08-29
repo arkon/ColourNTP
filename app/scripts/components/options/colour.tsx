@@ -14,7 +14,7 @@ interface IState {
     value: boolean;
 }
 
-class Checkbox extends React.Component<IProps, IState> {
+class Colour extends React.Component<IProps, IState> {
     constructor (props) {
         super(props);
 
@@ -27,26 +27,18 @@ class Checkbox extends React.Component<IProps, IState> {
 
     handleChange (e) {
         this.setState({
-            value: e.target.checked
+            value: e.target.value
         });
     }
 
     render () {
         return (
             <label>
-                <input type='checkbox' checked={this.state.value} onChange={this.handleChange} />
-                <abbr>
-                    <span>{this.props.label}</span>
-                    { this.props.tooltip &&
-                        <span>
-                            <strong>{this.props.label}</strong>
-                            <p>{this.props.tooltip}</p>
-                        </span>
-                    }
-                </abbr>
+                {this.props.label}
+                <input type='color' value={this.state.value} onChange={this.handleChange}>
             </label>
         );
     }
 }
 
-export = Checkbox;
+export = Colour;

@@ -1,4 +1,5 @@
-///<reference path='../vendor/react.d.ts' />
+///<reference path='../../types/react.d.ts' />
+///<reference path='../../types/settings.d.ts' />
 
 import React = require('react');
 
