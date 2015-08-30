@@ -192,19 +192,19 @@ li {
  */
 
 #panel-toggles {
-    color: rgba(255,255,255,.4);
+    color: rgba($white, 0.4);
     display: block;
     font-size: 0.9em;
     margin-top: 4em;
 
     a {
-        color: rgba(255,255,255,.4);
+        color: rgba($white, 0.4);
         padding: 0.25em;
         transition: color 0.3s;
         will-change: color;
 
         & + a:before {
-            color: rgba(255,255,255,.4);
+            color: rgba($white, 0.4);
             content: '•';
             margin-right: 0.5em;
         }
@@ -216,7 +216,7 @@ li {
 .panel-1 #panel-toggle-closed,
 .panel-2 #panel-toggle-apps,
 .panel-3 #panel-toggle-shortcuts {
-    color: #fff;
+    color: $white;
 }
 
 
@@ -225,7 +225,7 @@ li {
  */
 
 #panel {
-    background-color: rgba(255,255,255,.75);
+    background-color: rgba($white, 0.75);
     border-radius: 5px;
     display: none;
     margin-top: 1em;
@@ -342,7 +342,7 @@ li {
 
     .past-colour {
         background-color: rgba(0,0,0,.25);
-        border-left: 1px solid rgba(255,255,255,.25);
+        border-left: 1px solid rgba($white, 0.25);
         box-sizing: border-box;
         display: inline-block;
         height: 6px;
@@ -356,7 +356,7 @@ li {
         &::after {
             background: #242424;
             bottom: 300%;
-            color: #fff;
+            color: $white;
             content: attr(data-hex);
             font-size: 1rem;
             left: 0;
@@ -369,9 +369,9 @@ li {
 
         &::before {
             content: '';
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 20px solid #242424;
+            border-left: 0.75em solid transparent;
+            border-right: 0.75em solid transparent;
+            border-top: 0.75em solid #242424;
             bottom: 200%;
             font-size: 1rem;
             height: 0;

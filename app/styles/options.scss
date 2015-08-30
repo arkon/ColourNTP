@@ -11,20 +11,20 @@
     padding-top: 0;
 
     a {
-        color: #888;
+        color: $light-grey;
         display: block;
         font-size: 0.85em;
         margin: 0.5em 0;
         transition: color 0.3s;
 
         &:hover {
-            color: #fff;
+            color: $white;
         }
     }
 }
 
 h1 {
-    border-bottom: 1px solid #777;
+    border-bottom: 1px solid $light-grey;
     padding-bottom: 0.5em;
 }
 
@@ -39,7 +39,7 @@ label {
 
 select,
 input {
-    background: #fff;
+    background: $white;
     border: 1px solid #555;
     border-radius: 3px;
     font: inherit;
@@ -63,67 +63,73 @@ input[type='text'] {
 }
 
 input[type='color'] {
+    height: 1.5em;
     padding: 0;
 }
 
 input[type='range'] {
     -webkit-appearance: none;
-    background: #ccc;
-    border-radius: 3px;
-    height: 5px;
-    margin: 0.75em;
+    background: $light-grey;
+    border-radius: 1em;
+    display: inline-block;
+    height: 0.3em;
+    margin: 0 0.75em;
     padding: 0;
     width: 15em;
+    vertical-align: middle;
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        background: #bbb;
-        border: 1px solid #777;
-        border-radius: 10px;
-        height: 15px;
-        width: 15px;
+        background: $white;
+        border: 1px solid $light-grey;
+        border-radius: 50%;
+        height: 1em;
+        width: 1em;
 
         &:hover {
-            background: #ccc;
+            border-width: 2px;
         }
     }
 }
 
 abbr {
+    user-select: none;
+
     strong {
         line-height: 1.25em;
     }
 
     div {
+        border: 1px solid $light-grey;
         display: none;
         margin-left: 2.5em;
-        max-width: 300px;
         margin-top: -1em;
+        max-width: 300px;
         padding: 0.5em 1.25em;
         z-index: 10;
     }
 
     &::after {
-        color: #777;
+        color: $light-grey;
         content: '[?]';
         font-size: 0.8em;
         margin-left: 0.75em;
     }
 
     &:hover div {
-        background: #fffaf0;
-        color: #111;
+        background: $white;
+        color: $dark-grey;
         display: inline-block;
         position: absolute;
 
         &::before {
-            border-bottom: 10px solid transparent;
-            border-right: 10px solid #fffaf0;
-            border-top: 10px solid transparent;
+            border-bottom: 0.75em solid transparent;
+            border-right: 0.75em solid $white;
+            border-top: 0.75em solid transparent;
             content: '';
             font-size: 1rem;
             height: 0;
-            left: -8px;
+            left: -0.5em;
             position: absolute;
             top: 1.25em;
             width: 0;

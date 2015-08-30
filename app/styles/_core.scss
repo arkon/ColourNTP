@@ -5,6 +5,10 @@
     src: url('../assets/fonts/OpenSans-Light.ttf') format('truetype');
 }
 
+$white: #fff;
+$dark-grey: #111;
+$light-grey: lighten($dark-grey, 50%);
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,7 +16,7 @@
 }
 
 ::selection {
-    background-color: #777;
+    background-color: $light-grey;
 }
 
 html,
@@ -22,13 +26,13 @@ body {
 }
 
 body {
-    background-color: #111;
-    color: #fff;
+    background-color: $dark-grey;
+    color: $white;
     font: 300 16px/1.5 'Open Sans Light', 'Helvetica', 'Arial', sans-serif;
 }
 
 a {
-    color: #fff;
+    color: $white;
     cursor: pointer;
     text-decoration: none;
 }
