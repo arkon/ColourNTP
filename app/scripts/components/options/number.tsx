@@ -3,6 +3,8 @@
 
 import React = require('react');
 
+import ChromeStorage = require('../../modules/chromestorage');
+
 
 interface IProps {
     label: string;
@@ -14,6 +16,8 @@ interface IState {
 }
 
 class Checkbox extends React.Component<IProps, IState> {
+    private Storage;
+
     constructor (props) {
         super(props);
 
@@ -22,12 +26,17 @@ class Checkbox extends React.Component<IProps, IState> {
         };
 
         this.handleChange = this.handleChange.bind(this);
+
+        this.Storage = new ChromeStorage();
     }
 
     handleChange (e) {
-        this.setState({
-            value: e.target.value
-        });
+        let key   = this.props.optkey,
+            value = e.target.value;
+
+        this.Storage.set(key, value);
+
+        this.setState({ value: value });
     }
 
     render () {

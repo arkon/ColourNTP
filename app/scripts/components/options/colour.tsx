@@ -3,11 +3,13 @@
 
 import React = require('react');
 
+import ChromeStorage = require('../../modules/chromestorage');
+
 
 interface IProps {
     label: string;
-    tooltip?: string;
     value: string;
+    optkey: string;
 }
 
 interface IState {
@@ -15,6 +17,8 @@ interface IState {
 }
 
 class Colour extends React.Component<IProps, IState> {
+    private Storage;
+
     constructor (props) {
         super(props);
 
@@ -23,12 +27,17 @@ class Colour extends React.Component<IProps, IState> {
         };
 
         this.handleChange = this.handleChange.bind(this);
+
+        this.Storage = new ChromeStorage();
     }
 
     handleChange (e) {
-        this.setState({
-            value: e.target.value
-        });
+        let key   = this.props.optkey,
+            value = e.target.value;
+
+        this.Storage.set(key, value);
+
+        this.setState({ value: value });
     }
 
     render () {

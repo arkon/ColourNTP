@@ -8,6 +8,7 @@ interface IProps {
     label: string;
     tooltip: string;
     options: Array<string>;
+    value: string;
 }
 
 interface IState {
@@ -19,7 +20,7 @@ class Dropdown extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
-            value: this.props.options[0]
+            value: this.props.value
         };
 
         this.handleChange = this.handleChange.bind(this);
