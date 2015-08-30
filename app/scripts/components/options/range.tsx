@@ -9,6 +9,7 @@ import ChromeStorage = require('../../modules/chromestorage');
 interface IProps {
     label: string;
     value: number;
+    optkey: string;
 }
 
 interface IState {
@@ -43,7 +44,7 @@ class Range extends React.Component<IProps, IState> {
         return (
             <label>
                 <span>{this.props.label}:</span>
-                <input type='range' min='0' max='100' step='1' value={this.state.value} onChange={this.handleChange} />
+                <input type='range' min='0' max='100' step='1' value={this.state.value.toString()} onChange={this.handleChange} />
                 <span>({this.state.value}%)</span>
             </label>
         );

@@ -10,6 +10,7 @@ interface IProps {
     label: string;
     tooltip: string;
     value: boolean;
+    optkey: string;
 }
 
 interface IState {

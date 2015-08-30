@@ -9,6 +9,7 @@ import ChromeStorage = require('../../modules/chromestorage');
 interface IProps {
     label: string;
     value: string;
+    optkey: string;
 }
 
 interface IState {

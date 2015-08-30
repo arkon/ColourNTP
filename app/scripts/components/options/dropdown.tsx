@@ -11,6 +11,7 @@ interface IProps {
     tooltip: string;
     options: Array<string>;
     value: string;
+    optkey: string;
 }
 
 interface IState {
@@ -48,7 +49,7 @@ class Dropdown extends React.Component<IProps, IState> {
                     <span>{this.props.label}:</span>
                     <select value={this.state.value} onChange={this.handleChange}>
                         {this.props.options.map((item, index) => {
-                            return <option key={index} value={index}>{item}</option>;
+                            return <option key={index} value={index.toString()}>{item}</option>;
                         })}
                     </select>
                     <div>

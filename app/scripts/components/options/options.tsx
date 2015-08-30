@@ -98,7 +98,7 @@ class Options extends React.Component<IProps, {}> {
                     optkey='panelClosed'
                     value={this.props.settings.panelClosed} />
                 <Checkbox label='Apps'
-                    tooltop='Your installed Chrome apps.'
+                    tooltip='Your installed Chrome apps.'
                     optkey='panelApps'
                     value={this.props.settings.panelApps} />
                 <Checkbox label='Shortcuts'
