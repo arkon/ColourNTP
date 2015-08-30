@@ -1,6 +1,11 @@
 @import 'core';
 @import 'animations';
 
+h1,
+h2 {
+    transition: font-size 0.3s;
+}
+
 /**
  * Main time/hex display
  */

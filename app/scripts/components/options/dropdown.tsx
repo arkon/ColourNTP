@@ -35,7 +35,7 @@ class Dropdown extends React.Component<IProps, IState> {
         return (
             <label>
                 <abbr>
-                    {this.props.label}
+                    <span>{this.props.label}:</span>
                     <select value={this.state.value} onChange={this.handleChange}>
                         {this.props.options.map((item) => {
                             return <option>{item}</option>;
