@@ -1,15 +1,15 @@
-///<reference path='types/chrome.d.ts' />
-///<reference path='types/react.d.ts' />
+///<reference path='../types/chrome.d.ts' />
+///<reference path='../types/react.d.ts' />
 
 import React = require('react');
 
-import ChromeStorage = require('./modules/chromestorage');
+import ChromeStorage = require('../modules/chromestorage');
 
-import Options = require('./components/options/options');
+import Options = require('../components/options/options');
 
 
 new ChromeStorage().getSettings(function (results) {
-    React.render(<Options settings={results} />, document.getElementById('option'));
+    React.render(<Options settings={results} />, document.getElementById('options'));
 });
 
 

@@ -1,5 +1,5 @@
-///<reference path="types/chrome.d.ts" />
-///<reference path='types/react.d.ts' />
+///<reference path='../types/chrome.d.ts' />
+///<reference path='../types/react.d.ts' />
 
 'use strict';
 
@@ -64,7 +64,7 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
                     }
 
                     if (!new_day && local_result['reddit_img'] && local_result['reddit_img_url']) {
-                        document.body.style.backgroundImage = `url("${local_result['reddit_img']}")`;
+                        document.body.style.backgroundImage = `url('${local_result['reddit_img']}')`;
                         dl_btn.href = local_result['reddit_img_url'];
                     } else {
                         getRedditImage();
@@ -72,7 +72,7 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
                 });
             } else {
                 if (result['bg_image']) {
-                    document.body.style.backgroundImage = `url("${result['bg_image']}")`;
+                    document.body.style.backgroundImage = `url('${result['bg_image']}')`;
                 }
             }
         }
@@ -131,7 +131,7 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
         if (mins < 10)  { mins  = '0' + mins;  }
         if (secs < 10)  { secs  = '0' + secs;  }
 
-        // "What colour is it?"/normal mode: display corresponding (hexadecimal) colour
+        // 'What colour is it?'/normal mode: display corresponding (hexadecimal) colour
         if (!result['time_solid']) {
             var hex = '#' + hours + mins + secs;
 
@@ -184,7 +184,7 @@ getSyncConfig(['24-hour-time', 'bg', 'bg_reddit', 'bg_image', 'bg_opacity',
 
 
 /**
- * "Converts" the second to a hex value, from 0x000000 to 0xFFFFFF.
+ * 'Converts' the second to a hex value, from 0x000000 to 0xFFFFFF.
  * 00:00:00 corresponds to #000000 and 23:59:59 corresponds to #ffffff.
  *
  * @param   Number  secondInDay   The current second in the day.
@@ -253,7 +253,7 @@ function hexToRGB (hex) {
 
 
 /**
- * "Converts" the second to a hex value, as a point along the hue spectrum.
+ * 'Converts' the second to a hex value, as a point along the hue spectrum.
  * 00:00:00 corresponds to #ff0000, 12:00:00 corresponds to #00feff.
  */
 function secondToHueColour (secondInDay) {
@@ -284,14 +284,14 @@ function getRedditImage () {
             url += '.png';
         }
 
-        // "Cache" the image URL in local storage
+        // 'Cache' the image URL in local storage
         convertImgToBase64URL(url, function (base64url) {
             chrome.storage.local.set({
                 'reddit_img': base64url,
                 'reddit_img_url': url
             });
 
-            document.body.style.backgroundImage = 'url("' + base64url + '")';
+            document.body.style.backgroundImage = `url('${base64url}')`;
         });
 
         dl_btn.href = url;
@@ -526,7 +526,7 @@ function find128Image (icons) {
             };
         })(shortcutItem.url));
 
-        a.style.backgroundImage = 'url("chrome://favicon/' + shortcutItem.url + '")';
+        a.style.backgroundImage = `url('chrome://favicon/${shortcutItem.url}')`;
         a.className = 'item-' + i;
         a.title     = shortcutItem.title;
         a.textContent = shortcutItem.title;

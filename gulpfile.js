@@ -5,11 +5,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 var browserify  = require('browserify'),
+    buffer      = require('vinyl-buffer'),
     del         = require('del'),
+    fs          = require('fs'),
     gulp        = require('gulp'),
     minifyCss   = require('gulp-minify-css'),
     runSequence = require('run-sequence'),
     sass        = require('gulp-sass'),
+    source      = require('vinyl-source-stream'),
+    transform   = require('vinyl-transform'),
     ts          = require('gulp-typescript'),
     uglify      = require('gulp-uglify');
 
@@ -36,6 +40,7 @@ var paths = {
     src_styles      : 'app/styles/**/*.scss',
     src_scripts     : 'app/scripts/**/*.{ts,tsx}',
     dest            : 'build',
+    dest_temp       : 'build/temp',
     dest_assets     : 'build/assets',
     dest_styles     : 'build/styles',
     dest_scripts    : 'build/scripts'
@@ -71,12 +76,30 @@ gulp.task('scss', function () {
         .pipe(gulp.dest(paths.dest_styles));
 });
 
-// Process TypeScript files
-gulp.task('ts', function () {
+gulp.task('ts:compile', function () {
     return gulp.src(paths.src_scripts)
         .pipe(ts(tsProject))
-        .pipe(uglify())
-        .pipe(gulp.dest(paths.dest_scripts));
+        .js.pipe(gulp.dest(paths.dest_temp));
+});
+
+gulp.task('ts:bundle', function () {
+    var TS_BUNDLES = fs.readdirSync('app/scripts/bundles').map(function (filename) {
+        return filename.substring(0, filename.lastIndexOf('.'));
+    });
+
+    TS_BUNDLES.forEach(function (entry) {
+        return browserify(paths.dest_temp + '/bundles/' + entry + '.js')
+            .bundle()
+            .pipe(source(entry + '.js'))
+            .pipe(buffer())
+            //.pipe(uglify())
+            .pipe(gulp.dest(paths.dest_scripts));
+    });
+});
+
+// Process TypeScript files
+gulp.task('ts', function () {
+    runSequence('ts:compile', 'ts:bundle');
 });
 
 ////////////////////////////////////////////////////////////////////////////////

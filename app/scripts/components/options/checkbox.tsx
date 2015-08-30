@@ -36,7 +36,7 @@ class Checkbox extends React.Component<IProps, IState> {
             <label>
                 <input type='checkbox' checked={this.state.value} onChange={this.handleChange} />
                 <abbr>
-                    <span>{this.props.label}</span>
+                    {this.props.label}
                     { this.props.tooltip &&
                         <span>
                             <strong>{this.props.label}</strong>
