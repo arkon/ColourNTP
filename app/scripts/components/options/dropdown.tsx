@@ -3,6 +3,8 @@
 
 import React = require('react');
 
+import ChromeStorage = require('../../modules/chromestorage');
+
 
 interface IProps {
     label: string;
@@ -16,6 +18,8 @@ interface IState {
 }
 
 class Dropdown extends React.Component<IProps, IState> {
+    private Storage;
+
     constructor (props) {
         super(props);
 
@@ -24,12 +28,17 @@ class Dropdown extends React.Component<IProps, IState> {
         };
 
         this.handleChange = this.handleChange.bind(this);
+
+        this.Storage = new ChromeStorage();
     }
 
     handleChange (e) {
-        this.setState({
-            value: e.target.value
-        });
+        let key   = this.props.optkey,
+            value = e.target.value;
+
+        this.Storage.set(key, value);
+
+        this.setState({ value: value });
     }
 
     render () {
@@ -38,8 +47,8 @@ class Dropdown extends React.Component<IProps, IState> {
                 <abbr>
                     <span>{this.props.label}:</span>
                     <select value={this.state.value} onChange={this.handleChange}>
-                        {this.props.options.map((item) => {
-                            return <option>{item}</option>;
+                        {this.props.options.map((item, index) => {
+                            return <option key={index} value={index}>{item}</option>;
                         })}
                     </select>
                     <div>
