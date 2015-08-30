@@ -6,7 +6,7 @@ import React = require('react');
 
 interface IProps {
     label: string;
-    tooltip?: string;
+    tooltip: string;
     value: boolean;
 }
 
@@ -36,13 +36,11 @@ class Checkbox extends React.Component<IProps, IState> {
             <label>
                 <input type='checkbox' checked={this.state.value} onChange={this.handleChange} />
                 <abbr>
-                    {this.props.label}
-                    { this.props.tooltip &&
-                        <span>
-                            <strong>{this.props.label}</strong>
-                            <p>{this.props.tooltip}</p>
-                        </span>
-                    }
+                    <span>{this.props.label}</span>
+                    <div>
+                        <strong>{this.props.label}</strong>
+                        <p>{this.props.tooltip}</p>
+                    </div>
                 </abbr>
             </label>
         );

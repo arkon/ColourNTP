@@ -6,7 +6,7 @@ import React = require('react');
 
 interface IProps {
     label: string;
-    tooltip?: string;
+    tooltip: string;
     value: boolean;
 }
 
@@ -37,12 +37,10 @@ class Radio extends React.Component<IProps, IState> {
                 <input type='radio' checked={this.state.value} onChange={this.handleChange} />
                 <abbr>
                     <span>{this.props.label}</span>
-                    { this.props.tooltip &&
-                        <span>
-                            <strong>{this.props.label}</strong>
-                            <p>{this.props.tooltip}</p>
-                        </span>
-                    }
+                    <div>
+                        <strong>{this.props.label}</strong>
+                        <p>{this.props.tooltip}</p>
+                    </div>
                 </abbr>
             </label>
         );

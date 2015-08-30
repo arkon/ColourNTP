@@ -37,8 +37,10 @@ class Options extends React.Component<IProps, {}> {
                     tooltip='Custom fonts fetched from Google Fonts.'
                     options={this.fonts} />
                 <Checkbox label='24-hour format'
+                    tooltip='Toggle between 12-hour and 24-hour formats.'
                     value={this.props.settings.time24hr} />
                 <Checkbox label='Animations'
+                    tooltip='Enables animations.'
                     value={this.props.settings.animations} />
 
                 <h2>Colours</h2>
@@ -52,10 +54,12 @@ class Options extends React.Component<IProps, {}> {
                     tooltip='A slow shift across the entire hue spectrum, from #ff0000 to #00ffff and back in one day.'
                     value={this.props.settings.colourHue} />
                 <Radio label='Solid colour'
+                    tooltip='A solid, non-changing colour.'
                     value={this.props.settings.colourSolid} />
                 <Colour label='Solid colour'
                     value={this.props.settings.colourSolidHex} />
                 <Checkbox label='Show ticker of past colours'
+                    tooltip='Shows last 10 colours in a ticker at the bottom of the page.'
                     value={this.props.settings.ticker} />
 
                 <h2>Background image</h2>
@@ -72,12 +76,16 @@ class Options extends React.Component<IProps, {}> {
 
                 <h2>Panels</h2>
                 <Checkbox label='Most visited'
+                    tooltip='Your most visited pages.'
                     value={this.props.settings.panelVisited} />
                 <Checkbox label='Recently closed'
+                    tooltip='Recently closed tabs and windows.'
                     value={this.props.settings.panelClosed} />
                 <Checkbox label='Apps'
+                    tooltop='Your installed Chrome apps.'
                     value={this.props.settings.panelApps} />
                 <Checkbox label='Shortcuts'
+                    tooltip='Various Chrome shortcuts.'
                     value={this.props.settings.panelShortcuts} />
                 <Number label='Max number of most visited pages'
                     value={this.props.settings.maxVisited} />
