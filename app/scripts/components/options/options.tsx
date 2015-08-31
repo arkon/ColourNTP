@@ -64,29 +64,37 @@ class Options extends React.Component<IProps, {}> {
                     tooltip='A solid, non-changing colour.'
                     optkey='colourSolid'
                     value={this.props.settings.colourSolid} />
-                <Colour label='Solid colour'
-                    optkey='colourSolidHex'
-                    value={this.props.settings.colourSolidHex} />
-                <Checkbox label='Show ticker of past colours'
-                    tooltip='Shows last 10 colours in a ticker at the bottom of the page.'
-                    optkey='ticker'
-                    value={this.props.settings.ticker} />
+                { this.props.settings.colourSolid &&
+                    <Colour label='Solid colour'
+                        optkey='colourSolidHex'
+                        value={this.props.settings.colourSolidHex} />
+                }
+                { !this.props.settings.colourSolid &&
+                    <Checkbox label='Show ticker of past colours'
+                        tooltip='Shows last 10 colours in a ticker at the bottom of the page.'
+                        optkey='ticker'
+                        value={this.props.settings.ticker} />
+                }
 
                 <h2>Background image</h2>
                 <Checkbox label='Custom background image'
                     tooltip='You must use an online image.'
                     optkey='bg'
                     value={this.props.settings.bg} />
-                <Checkbox label='Top wallpapers from /r/wallpapers'
-                    tooltip='Fetch the top wallpaper from the wallpapers subredit everyday.'
-                    optkey='bgReddit'
-                    value={this.props.settings.bgReddit} />
-                <Textbox label='Image URL'
-                    optkey='bgUrl'
-                    value={this.props.settings.bgUrl} />
-                <Range label='Colour overlay opacity'
-                    optkey='bgOpacity'
-                    value={this.props.settings.bgOpacity} />
+                { this.props.settings.bg &&
+                    <div>
+                        <Checkbox label='Top wallpapers from /r/wallpapers'
+                            tooltip='Fetch the top wallpaper from the wallpapers subreddit everyday.'
+                            optkey='bgReddit'
+                            value={this.props.settings.bgReddit} />
+                        <Textbox label='Image URL'
+                            optkey='bgUrl'
+                            value={this.props.settings.bgUrl} />
+                        <Range label='Colour overlay opacity'
+                            optkey='bgOpacity'
+                            value={this.props.settings.bgOpacity} />
+                    </div>
+                }
 
                 <h2>Panels</h2>
                 <Checkbox label='Most visited'
@@ -105,12 +113,16 @@ class Options extends React.Component<IProps, {}> {
                     tooltip='Various Chrome shortcuts.'
                     optkey='panelShortcuts'
                     value={this.props.settings.panelShortcuts} />
-                <Number label='Max number of most visited pages'
-                    optkey='maxVisited'
-                    value={this.props.settings.maxVisited} />
-                <Number label='Max number of recently closed pages'
-                    optkey='maxClosed'
-                    value={this.props.settings.maxClosed} />
+                { this.props.settings.panelVisited &&
+                    <Number label='Max number of most visited pages'
+                        optkey='maxVisited'
+                        value={this.props.settings.maxVisited} />
+                }
+                { this.props.settings.panelClosed &&
+                    <Number label='Max number of recently closed pages'
+                        optkey='maxClosed'
+                        value={this.props.settings.maxClosed} />
+                }
             </div>
         );
     }

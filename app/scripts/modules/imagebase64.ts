@@ -1,4 +1,4 @@
-class Image {
+class ImageBase64 {
 
     /**
      * Convert an image to a base64 url.
@@ -29,4 +29,4 @@ class Image {
     }
 }
 
-export = Image;
+export = ImageBase64;
