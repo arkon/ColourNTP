@@ -1,21 +1,21 @@
 @import 'core';
 
-.options__wrapper {
+.options {
     margin: 0 auto;
     max-width: 650px;
     padding: 2em;
     width: 100%;
 }
 
-.options__credit {
-    padding-top: 0;
+.options__credits {
+    margin-top: 3em;
 
     a {
         color: $light-grey;
         display: block;
         font-size: 0.85em;
         margin: 0.5em 0;
-        transition: color 0.3s;
+        transition: color 0.25s;
 
         &:hover {
             color: $white;
@@ -23,12 +23,12 @@
     }
 }
 
-h1 {
+.options__header {
     border-bottom: 1px solid $light-grey;
-    padding-bottom: 0.5em;
+    padding-bottom: 1rem;
 }
 
-h2 {
+.options__subheader {
     margin: 1em 0 0.5em;
 }
 
@@ -90,13 +90,17 @@ input[type='range'] {
             border-width: 2px;
         }
     }
+
+    &:focus {
+        outline: none;
+    }
 }
 
 abbr {
     user-select: none;
 
     strong {
-        line-height: 1.25em;
+        line-height: 1.25;
     }
 
     div {
