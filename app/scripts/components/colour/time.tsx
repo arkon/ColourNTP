@@ -8,7 +8,10 @@ interface IProps {
 }
 
 interface IState {
-    time: number;
+    time   : number;
+    hour   : number;
+    minute : number;
+    second : number;
 }
 
 class Time extends React.Component<IProps, IState> {
@@ -17,15 +20,29 @@ class Time extends React.Component<IProps, IState> {
     constructor (props) {
         super(props);
 
+        let now     = Date.now(),
+            nowDate = new Date(now);
+
         this.state = {
-            time: Date.now()
+            time   : now,
+            hour   : nowDate.getHours(),
+            minute : nowDate.getMinutes(),
+            second : nowDate.getSeconds()
         };
 
         this.tick = this.tick.bind(this);
     }
 
     tick () {
-        this.setState({ time: this.state.time + 1 });
+        let now     = this.state.time + 1,
+            nowDate = new Date(now);
+
+        this.setState({ 
+            time   : now,
+            hour   : nowDate.getHours(),
+            minute : nowDate.getMinutes(),
+            second : nowDate.getSeconds()
+        });
     }
 
     componentDidMount () {
@@ -37,10 +54,8 @@ class Time extends React.Component<IProps, IState> {
     }
 
     render () {
-        let time = new Date(this.state.time);
-
         return (
-            <h1 id='t'>{time.getHours()} : {time.getMinutes()} : {time.getSeconds()}</h1>
+            <h1 id='t'>{this.state.hour} : {this.state.minute} : {this.state.second}</h1>
         );
     }
 }
