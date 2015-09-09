@@ -8,10 +8,9 @@ interface IProps {
 }
 
 interface IState {
-    time   : number;
-    hour   : number;
-    minute : number;
-    second : number;
+    hour   : string;
+    minute : string;
+    second : string;
 }
 
 class Time extends React.Component<IProps, IState> {
@@ -20,29 +19,36 @@ class Time extends React.Component<IProps, IState> {
     constructor (props) {
         super(props);
 
-        let now     = Date.now(),
-            nowDate = new Date(now);
+        let nowDate = new Date(),
+            hour    = nowDate.getHours();
+
+        if (!this.props.hourFormat24 && hour >= 12) {
+            hour -= 12;     
+        }
 
         this.state = {
-            time   : now,
-            hour   : nowDate.getHours(),
-            minute : nowDate.getMinutes(),
-            second : nowDate.getSeconds()
+            hour   : this.pad(hour),
+            minute : this.pad(nowDate.getMinutes())
+            second : this.pad(nowDate.getSeconds())
         };
 
         this.tick = this.tick.bind(this);
     }
 
+    // TODO: fix ticking...
     tick () {
-        let now     = this.state.time + 1,
-            nowDate = new Date(now);
+        let nowDate = new Date(),
+            hour    = nowDate.getHours();
 
-        this.setState({ 
-            time   : now,
-            hour   : nowDate.getHours(),
-            minute : nowDate.getMinutes(),
-            second : nowDate.getSeconds()
-        });
+        if (!this.props.hourFormat24 && hour >= 12) {
+            hour -= 12;     
+        }
+
+        this.state = {
+            hour   : this.pad(hour),
+            minute : this.pad(nowDate.getMinutes())
+            second : this.pad(nowDate.getSeconds())
+        };
     }
 
     componentDidMount () {
@@ -53,9 +59,14 @@ class Time extends React.Component<IProps, IState> {
         clearInterval(this.interval);
     }
 
+    pad (n) {
+        return (n < 10) ? `0${n}` : n.toString();
+    }
+
     render () {
         return (
-            <h1 id='t'>{this.state.hour} : {this.state.minute} : {this.state.second}</h1>
+            // TODO: add AM/PM
+            <h1 className='colours__time'>{this.state.hour} : {this.state.minute} : {this.state.second}</h1>
         );
     }
 }
