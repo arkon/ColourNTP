@@ -8,5 +8,9 @@ import ChromeStorage = require('../modules/chromestorage');
 import Time = require('../components/colour/time');
 
 new ChromeStorage().getSettings(function (results) {
-    React.render(<Time hourFormat24={true} />, document.getElementById('colours'));
+    React.render(
+    	<div className='colours'>
+	    	<Time hourFormat24={true} />
+	    </div>, 
+	    document.getElementById('colours'));
 });

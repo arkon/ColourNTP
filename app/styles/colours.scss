@@ -26,9 +26,11 @@ body {
     }
 }
 
-#contents {
-    display: table;
+.colours {
+    align-items: center;
+    display: flex;
     height: 100vh;
+    justify-content: center;
     transition: background-color 0.8s;
     width: 100%;
     will-change: background-color;
@@ -41,7 +43,7 @@ body {
         width: 100vw;
     }
 
-#t {
+.colours__time {
     animation: shiftUp 0.5s ease-out forwards;
     font-size: 7em;
     margin-bottom: 3rem;
