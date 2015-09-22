@@ -19,36 +19,7 @@ class Time extends React.Component<IProps, IState> {
     constructor (props) {
         super(props);
 
-        let nowDate = new Date(),
-            hour    = nowDate.getHours();
-
-        if (!this.props.hourFormat24 && hour >= 12) {
-            hour -= 12;     
-        }
-
-        this.state = {
-            hour   : this.pad(hour),
-            minute : this.pad(nowDate.getMinutes())
-            second : this.pad(nowDate.getSeconds())
-        };
-
-        this.tick = this.tick.bind(this);
-    }
-
-    // TODO: fix ticking...
-    tick () {
-        let nowDate = new Date(),
-            hour    = nowDate.getHours();
-
-        if (!this.props.hourFormat24 && hour >= 12) {
-            hour -= 12;     
-        }
-
-        this.state = {
-            hour   : this.pad(hour),
-            minute : this.pad(nowDate.getMinutes())
-            second : this.pad(nowDate.getSeconds())
-        };
+        this.tick();
     }
 
     componentDidMount () {
@@ -59,8 +30,24 @@ class Time extends React.Component<IProps, IState> {
         clearInterval(this.interval);
     }
 
-    pad (n) {
-        return (n < 10) ? `0${n}` : n.toString();
+    // TODO: fix ticking...
+    tick () {
+        let nowDate = new Date(),
+            hour    = nowDate.getHours();
+
+/*        if (!this.props.hourFormat24 && hour >= 12) {
+            hour -= 12;
+        }*/
+
+        let pad = function (n) {
+            return (n < 10) ? `0${n}` : n.toString();
+        }
+
+        this.state = {
+            hour   : pad(hour),
+            minute : pad(nowDate.getMinutes()),
+            second : pad(nowDate.getSeconds())
+        };
     }
 
     render () {
