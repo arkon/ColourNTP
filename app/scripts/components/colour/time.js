@@ -1,21 +1,7 @@
-///<reference path='../../types/react.d.ts' />
-
-import React = require('react');
+import React from 'react';
 
 
-interface IProps {
-    hourFormat24: boolean;
-}
-
-interface IState {
-    hour   : string;
-    minute : string;
-    second : string;
-}
-
-class Time extends React.Component<IProps, IState> {
-    private interval;
-
+class Time extends React.Component {
     constructor (props) {
         super(props);
 
@@ -58,7 +44,7 @@ class Time extends React.Component<IProps, IState> {
     }
 }
 
-export = Time;
+export default Time;
 
 
 /*

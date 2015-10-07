@@ -8,7 +8,7 @@ class Http {
      * @param  {Function} errorHandler    (Optional) Function callback upon error, with the request status.
      * @param  {boolean}  isJSON          (Optional) True if the data to be retrieved is JSON.
      */
-    get (url: string, successHandler: Function, errorHandler?: Function, isJSON?: boolean): void {
+    get (url, successHandler, errorHandler, isJSON) {
         var xhr = new XMLHttpRequest();
 
         xhr.open('GET', url, true);
@@ -40,9 +40,9 @@ class Http {
      * @param  {Function} successHandler  Function callback upon success, with the response data.
      * @param  {Function} errorHandler    (Optional) Function callback upon error, with the request status.
      */
-    getJSON (url: string, successHandler: Function, errorHandler?: Function): void {
+    getJSON (url, successHandler, errorHandler) {
         this.get(url, successHandler, errorHandler, true);
     }
 }
 
-export = Http;
+export default Http;

@@ -1,24 +1,9 @@
-///<reference path='../../types/react.d.ts' />
-///<reference path='../../types/settings.d.ts' />
+import React from 'react';
 
-import React = require('react');
-
-import ChromeStorage = require('../../modules/chromestorage');
+import ChromeStorage from '../../modules/chromestorage';
 
 
-interface IProps {
-    label: string;
-    value: number;
-    optkey: string;
-}
-
-interface IState {
-    value: number;
-}
-
-class Range extends React.Component<IProps, IState> {
-    private Storage;
-
+class Range extends React.Component {
     constructor (props) {
         super(props);
 
@@ -51,4 +36,4 @@ class Range extends React.Component<IProps, IState> {
     }
 }
 
-export = Range;
+export default Range;

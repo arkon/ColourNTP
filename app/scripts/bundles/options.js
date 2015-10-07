@@ -1,11 +1,8 @@
-///<reference path='../types/chrome.d.ts' />
-///<reference path='../types/react.d.ts' />
+import React from 'react';
 
-import React = require('react');
+import ChromeStorage from '../modules/chromestorage';
 
-import ChromeStorage = require('../modules/chromestorage');
-
-import Options = require('../components/options/options');
+import Options from '../components/options/options';
 
 
 new ChromeStorage().getSettings(function (results) {

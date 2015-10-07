@@ -1,8 +1,6 @@
-///<reference path='../types/chrome.d.ts' />
-
 class ChromeStorage {
 
-    getSettings (callback): void {
+    getSettings (callback) {
         var keys = ['animations', 'bg', 'bgOpacity', 'bgReddit', 'bgUrl', 'colourFull', 'colourHue', 'colourRegular',
             'colourSolid', 'colourSolidHex', 'font', 'maxClosed', 'maxVisited', 'panelApps', 'panelClosed',
             'panelShortcuts', 'panelVisited', 'ticker', 'time24hr'];
@@ -10,7 +8,7 @@ class ChromeStorage {
         chrome.storage.sync.get(keys, callback);
     }
 
-    set (key, value): void {
+    set (key, value) {
         let settingObj = {};
         settingObj[key] = value;
 
@@ -18,4 +16,4 @@ class ChromeStorage {
     }
 }
 
-export = ChromeStorage;
+export default ChromeStorage;

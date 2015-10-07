@@ -1,24 +1,9 @@
-///<reference path='../../types/react.d.ts' />
-///<reference path='../../types/settings.d.ts' />
+import React from 'react';
 
-import React = require('react');
-
-import ChromeStorage = require('../../modules/chromestorage');
+import ChromeStorage from '../../modules/chromestorage';
 
 
-interface IProps {
-    label: string;
-    value: number;
-    optkey: string;
-}
-
-interface IState {
-    value: number;
-}
-
-class Checkbox extends React.Component<IProps, IState> {
-    private Storage;
-
+class Colour extends React.Component {
     constructor (props) {
         super(props);
 
@@ -44,12 +29,10 @@ class Checkbox extends React.Component<IProps, IState> {
         return (
             <label>
                 <span>{this.props.label}:</span>
-                <input type='number' min='1' max='20' value={this.state.value.toString()} onChange={this.handleChange} />
+                <input type='color' value={this.state.value} onChange={this.handleChange} />
             </label>
         );
     }
 }
 
-export = Checkbox;
-
-
+export default Colour;

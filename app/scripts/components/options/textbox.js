@@ -1,24 +1,9 @@
-///<reference path='../../types/react.d.ts' />
-///<reference path='../../types/settings.d.ts' />
+import React from 'react';
 
-import React = require('react');
-
-import ChromeStorage = require('../../modules/chromestorage');
+import ChromeStorage from '../../modules/chromestorage';
 
 
-interface IProps {
-    label: string;
-    value: string;
-    optkey: string;
-}
-
-interface IState {
-    value: string;
-}
-
-class Textbox extends React.Component<IProps, IState> {
-    private Storage;
-
+class Textbox extends React.Component {
     constructor (props) {
         super(props);
 
@@ -50,4 +35,4 @@ class Textbox extends React.Component<IProps, IState> {
     }
 }
 
-export = Textbox;
+export default Textbox;

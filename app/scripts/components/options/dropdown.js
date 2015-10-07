@@ -1,26 +1,9 @@
-///<reference path='../../types/react.d.ts' />
-///<reference path='../../types/settings.d.ts' />
+import React from 'react';
 
-import React = require('react');
-
-import ChromeStorage = require('../../modules/chromestorage');
+import ChromeStorage from '../../modules/chromestorage';
 
 
-interface IProps {
-    label: string;
-    tooltip: string;
-    options: Array<string>;
-    value: string;
-    optkey: string;
-}
-
-interface IState {
-    value: string;
-}
-
-class Dropdown extends React.Component<IProps, IState> {
-    private Storage;
-
+class Dropdown extends React.Component {
     constructor (props) {
         super(props);
 
@@ -62,4 +45,4 @@ class Dropdown extends React.Component<IProps, IState> {
     }
 }
 
-export = Dropdown;
+export default Dropdown;

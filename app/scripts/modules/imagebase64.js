@@ -29,4 +29,4 @@ class ImageBase64 {
     }
 }
 
-export = ImageBase64;
+export default ImageBase64;

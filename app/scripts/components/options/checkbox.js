@@ -1,25 +1,9 @@
-///<reference path='../../types/react.d.ts' />
-///<reference path='../../types/settings.d.ts' />
+import React from 'react';
 
-import React = require('react');
-
-import ChromeStorage = require('../../modules/chromestorage');
+import ChromeStorage from '../../modules/chromestorage';
 
 
-interface IProps {
-    label: string;
-    tooltip: string;
-    value: boolean;
-    optkey: string;
-}
-
-interface IState {
-    value: boolean;
-}
-
-class Radio extends React.Component<IProps, IState> {
-    private Storage;
-
+class Checkbox extends React.Component {
     constructor (props) {
         super(props);
 
@@ -44,7 +28,7 @@ class Radio extends React.Component<IProps, IState> {
     render () {
         return (
             <label>
-                <input type='radio' name='rd' checked={this.state.value} onChange={this.handleChange} />
+                <input type='checkbox' checked={this.state.value} onChange={this.handleChange} />
                 <abbr>
                     <span>{this.props.label}</span>
                     <div>
@@ -57,4 +41,4 @@ class Radio extends React.Component<IProps, IState> {
     }
 }
 
-export = Radio;
+export default Checkbox;
