@@ -69,6 +69,10 @@ body {
     .colours__hex { font-size: 1.25em; }
 }
 
+.info {
+    text-align: center;
+}
+
 /* Protects against light backgrounds when using full spectrum */
 .full {
     h1,
@@ -326,7 +330,7 @@ li {
  * History (past colours)
  */
 
-#history {
+.history {
     bottom: 0;
     font-size: 0;
     left: 0;

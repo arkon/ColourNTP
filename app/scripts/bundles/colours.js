@@ -10,21 +10,21 @@ import History from '../components/colour/history';
 
 
 new ChromeStorage().getSettings(function (settings) {
-    let classlist = '';
+    let classlist = 'colours';
 
     if (settings.animations === false) {
-        classlist += 'notransition';
+        classlist += ' notransition';
     }
 
     ReactDOM.render(
         <div className={classlist}>
-            // <a className='opt' href='options.html' target='_blank'><span>Options</span></a>
-            // <a className='opt' target='_blank'><span>Open image</span></a>
-            <div className='colours'>
+            <a className='opt' id='options' href='options.html' target='_blank'><span>Options</span></a>
+            <a className='opt' id='download' target='_blank'><span>Open image</span></a>
+            <div className='info'>
                 <Time hourFormat24={settings.time24hr} />
                 <Hex />
+                <Panels />
             </div>
-            <Panels />
             <History />
         </div>,
         document.getElementById('colours'));
