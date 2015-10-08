@@ -36,45 +36,37 @@ body {
     will-change: background-color;
 }
 
-    #time {
-        display: table-cell;
-        padding: 1.5em;
-        vertical-align: middle;
-        width: 100vw;
-    }
-
 .colours__time {
     animation: shiftUp 0.5s ease-out forwards;
     font-size: 7em;
     margin-bottom: 3rem;
     opacity: 0;
     position: relative;
+}
 
-    &::after {
-        content: attr(time-postfix);
+    .colours__time__postfix {
         font-size: 0.4em;
         margin-left: 20px;
         position: absolute;
         top: 1.62em;
         width: 0;
     }
-}
 
-#h {
+.colours__hex {
     animation: shiftUp 0.5s ease-out 0.15s forwards;
     opacity: 0;
 }
 
 @media all and (max-width: 700px) {
-    #t {
+    .colours__time {
         font-size: 3.5em;
-
-        &::after {
-            margin-left: 15px;
-        }
     }
 
-    #h { font-size: 1.25em; }
+        .colours__time__postfix {
+            margin-left: 15px;
+        }
+
+    .colours__hex { font-size: 1.25em; }
 }
 
 /* Protects against light backgrounds when using full spectrum */
