@@ -14,8 +14,9 @@ body {
     background-position: center center;
     background-size: cover;
     transition: background-color 0.8s;
+}
 
-    &.notransition {
+    .notransition {
         *,
         *::before,
         *::after {
@@ -24,7 +25,6 @@ body {
             opacity: 1 !important;
         }
     }
-}
 
 .colours {
     align-items: center;
