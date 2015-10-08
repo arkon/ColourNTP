@@ -27,17 +27,17 @@ var Options = (props) => {
             <Checkbox label='24-hour format'
                 tooltip='Toggle between 12-hour and 24-hour formats.'
                 optkey='time24hr'
-                value={props.settings.time24hr} />
+                value={props.settings.time24hr || true} />
             <Checkbox label='Animations'
                 tooltip='Enables animations.'
                 optkey='animations'
-                value={props.settings.animations} />
+                value={props.settings.animations || true} />
 
             <h2 className='options__subheader'>Colours</h2>
             <Radio label='Regular'
                 tooltip='Shows the corresponding colour based on the 24-hour clock.'
                 optkey='colourRegular'
-                value={props.settings.colourRegular} />
+                value={props.settings.colourRegular || true} />
             <Radio label='Full spectrum hexadecimal'
                 tooltip='A new colour for every second, going from #000000 to #ffffff in one day.'
                 optkey='colourFull'
@@ -78,7 +78,7 @@ var Options = (props) => {
                         value={props.settings.bgUrl} />
                     <Range label='Colour overlay opacity'
                         optkey='bgOpacity'
-                        value={props.settings.bgOpacity} />
+                        value={props.settings.bgOpacity || 80} />
                 </div>
             }
 
@@ -86,29 +86,29 @@ var Options = (props) => {
             <Checkbox label='Most visited'
                 tooltip='Your most visited pages.'
                 optkey='panelVisited'
-                value={props.settings.panelVisited} />
+                value={props.settings.panelVisited || true} />
             { props.settings.panelVisited &&
                 <Number label='Max number of most visited pages'
                     optkey='maxVisited'
-                    value={props.settings.maxVisited} />
+                    value={props.settings.maxVisited || 20} />
             }
             <Checkbox label='Recently closed'
                 tooltip='Recently closed tabs and windows.'
                 optkey='panelClosed'
-                value={props.settings.panelClosed} />
+                value={props.settings.panelClosed || true} />
             { props.settings.panelClosed &&
                 <Number label='Max number of recently closed pages'
                     optkey='maxClosed'
-                    value={props.settings.maxClosed} />
+                    value={props.settings.maxClosed || 20} />
             }
             <Checkbox label='Apps'
                 tooltip='Your installed Chrome apps.'
                 optkey='panelApps'
-                value={props.settings.panelApps} />
+                value={props.settings.panelApps || true} />
             <Checkbox label='Shortcuts'
                 tooltip='Various Chrome shortcuts.'
                 optkey='panelShortcuts'
-                value={props.settings.panelShortcuts} />
+                value={props.settings.panelShortcuts || true} />
 
             <div className='options__credits'>
                 <a href='https://github.com/arkon/ColourNTP'>Source code on GitHub</a>

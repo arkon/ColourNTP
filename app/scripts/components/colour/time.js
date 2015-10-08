@@ -9,7 +9,7 @@ class Time extends React.Component {
     }
 
     componentDidMount () {
-        this.interval = setInterval(this.tick, 1000);
+        this.interval = setInterval(this.tick.bind(this), 1000);
     }
 
     componentWillUnmount () {
@@ -21,9 +21,9 @@ class Time extends React.Component {
         let nowDate = new Date(),
             hour    = nowDate.getHours();
 
-/*        if (!this.props.hourFormat24 && hour >= 12) {
+        if (!this.props.hourFormat24 && hour >= 12) {
             hour -= 12;
-        }*/
+        }
 
         let pad = function (n) {
             return (n < 10) ? `0${n}` : n.toString();
@@ -34,6 +34,8 @@ class Time extends React.Component {
             minute : pad(nowDate.getMinutes()),
             second : pad(nowDate.getSeconds())
         };
+
+        this.forceUpdate();
     }
 
     render () {
