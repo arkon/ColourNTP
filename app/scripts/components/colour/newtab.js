@@ -66,19 +66,25 @@ class NewTab extends React.Component {
     render () {
         let settings = this.state.settings;
 
+        let colour = `#${this.state.time.hour}${this.state.time.minute}${this.state.time.second}`;
+
         let classlist = 'colours';
 
         if (settings && settings.animations === false) {
             classlist += ' notransition';
         }
 
+        let divStyle = {
+            backgroundColor: colour
+        };
+
         return (
-            <div className={classlist}>
+            <div className={classlist} style={divStyle}>
                 <a className='opt' id='options' href='options.html' target='_blank'><span>Options</span></a>
                 <a className='opt' id='download' target='_blank'><span>Open image</span></a>
                 <div className='info'>
                     <Time hourFormat24={settings.time24hr} time={this.state.time}  />
-                    <Hex time={this.state.time} />
+                    <Hex colour={colour} />
                     <Panels />
                 </div>
                 <History />
