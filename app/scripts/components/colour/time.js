@@ -9,39 +9,53 @@ class Time extends React.Component {
     }
 
     componentDidMount () {
-        this.interval = setInterval(this.tick.bind(this), 1000);
+        this.interval = setInterval(function (me) {
+
+            me.tick(true);
+
+        }, 1000, this);
     }
 
     componentWillUnmount () {
         clearInterval(this.interval);
     }
 
-    // TODO: fix ticking...
-    tick () {
-        let nowDate = new Date(),
-            hour    = nowDate.getHours();
+    pad (n) {
+        return (n < 10) ? `0${n}` : n.toString();
+    }
 
-        if (!this.props.hourFormat24 && hour >= 12) {
+    tick (update) {
+        let nowDate = new Date(),
+            hour    = nowDate.getHours(),
+            isPM    = hour >= 12;
+
+        if (!this.props.hourFormat24 && isPM) {
             hour -= 12;
         }
 
-        let pad = function (n) {
-            return (n < 10) ? `0${n}` : n.toString();
+        if (update) {
+            this.setState({
+                pm     : isPM,
+                hour   : this.pad(hour),
+                minute : this.pad(nowDate.getMinutes()),
+                second : this.pad(nowDate.getSeconds())
+            });
+        } else {
+            this.state = {
+                pm     : isPM,
+                hour   : this.pad(hour),
+                minute : this.pad(nowDate.getMinutes()),
+                second : this.pad(nowDate.getSeconds())
+            };
         }
-
-        this.state = {
-            hour   : pad(hour),
-            minute : pad(nowDate.getMinutes()),
-            second : pad(nowDate.getSeconds())
-        };
-
-        this.forceUpdate();
     }
 
     render () {
         return (
-            // TODO: add AM/PM
-            <h1 className='colours__time'>{this.state.hour} : {this.state.minute} : {this.state.second}</h1>
+            <h1 className='colours__time'>
+                {this.state.hour} : {this.state.minute} : {this.state.second}
+                {!this.props.hourFormat24 && <span>{this.state.pm ? 'PM' : 'AM'}</span>}
+            </h1>
         );
     }
 }
