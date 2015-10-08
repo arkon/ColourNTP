@@ -12,7 +12,6 @@ var babel       = require('babelify'),
     glob        = require('glob'),
     gulp        = require('gulp'),
     minifyCss   = require('gulp-minify-css'),
-    rename      = require('gulp-rename'),
     runSequence = require('run-sequence'),
     sass        = require('gulp-sass'),
     source      = require('vinyl-source-stream'),
@@ -76,13 +75,12 @@ gulp.task('js', function (done) {
         if (err) { done(err); }
 
         var tasks = files.map(function (entry) {
+            var filename = entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '');
+
             return browserify(entry)
                 .transform(babel)
                 .bundle()
-                .pipe(source(entry))
-                .pipe(rename({
-                    extname: '.bundle.js'
-                }))
+                .pipe(source(filename +'.bundle.js'))
                 //.pipe(buffer())
                 //.pipe(uglify())
                 .pipe(gulp.dest(paths.dest_scripts));

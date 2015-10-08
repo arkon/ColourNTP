@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import ChromeStorage from '../modules/chromestorage';
 
@@ -6,7 +7,7 @@ import Options from '../components/options/options';
 
 
 new ChromeStorage().getSettings(function (results) {
-    React.render(<Options settings={results} />, document.getElementById('options'));
+    ReactDOM.render(<Options settings={results} />, document.getElementById('options'));
 });
 
 
