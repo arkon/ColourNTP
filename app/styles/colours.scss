@@ -172,7 +172,7 @@ li {
     top: 0;
 
     &::before {
-        background-image: url('../assets/img/gear.png');
+        background-image: url('../assets/img/gear.svg');
         transition: transform 0.35s;
     }
 
@@ -189,7 +189,7 @@ li {
     top: 30px;
 
     &::before {
-        background-image: url('../assets/img/download.png');
+        background-image: url('../assets/img/image.svg');
     }
 
     &:hover {

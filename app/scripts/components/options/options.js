@@ -42,7 +42,7 @@ class Options extends React.Component {
 
                 <h2 className='options__subheader'>General</h2>
                 <Dropdown label='Font'
-                    tooltip='Custom fonts fetched from Google Fonts.'
+                    tooltip='Custom fonts from Google Fonts.'
                     options={this.fonts}
                     optkey='font'
                     value={settings.font} />
