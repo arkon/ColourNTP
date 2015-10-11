@@ -1,11 +1,8 @@
-Colour New Tab Page
-===================
+# Colour New Tab Page
 
 [<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png" alt="Available in the Chrome Web Store">][chrome-store]
 
-Based on [What colour is it?][original] by [J.E. Murphy][author].
-
-Some code based on code from [New-App-Launcher][cred-1] and [HumbleNewTabPage][cred-2],
+A Chrome new tab page extension based on [What colour is it?][original] by [J.E. Murphy][author].
 
 
 ### Contributors
@@ -15,8 +12,12 @@ Some code based on code from [New-App-Launcher][cred-1] and [HumbleNewTabPage][c
 - [Alec Brunelle](https://github.com/aleccool213): Options page tooltips
 
 
+### References
+
+- [New-App-Launcher](https://github.com/PaulKinlan/New-App-Launcher)
+- [HumbleNewTabPage](https://github.com/quodroc/HumbleNewTabPage)
+
+
 [chrome-store]: https://chrome.google.com/webstore/detail/colour-new-tab-page/hniakoleggfkjjoncnnhinhdbgffkdmd
 [original]: http://whatcolourisit.scn9a.org
 [author]: http://jemurphy.org/
-[cred-1]: https://github.com/PaulKinlan/New-App-Launcher
-[cred-2]: https://github.com/quodroc/HumbleNewTabPage
