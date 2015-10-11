@@ -99,22 +99,24 @@ class Panels extends React.Component {
 
                     { this.state.open === 2 &&
                         <ul>
-                            { this.state.recentlyClosed.map((session, i) => {
-                                let sessionStyle = {
-                                    backgroundImage: `url('${session.img}')`
-                                };
+                            { (this.state.recentlyClosed.length === 0) ?
+                                this.state.recentlyClosed.map((session, i) => {
+                                    let sessionStyle = {
+                                        backgroundImage: `url('${session.img}')`
+                                    };
 
-                                return (
-                                    <li key={i} onClick={this.onClickSession(session.session)}>
-                                        <a className={`item-${i}`} style={sessionStyle} title={session.title}>
-                                            {session.title}
-                                        </a>
-                                    </li>
-                                );
-                            }) }
+                                    return (
+                                        <li key={i} onClick={this.onClickSession(session.session)}>
+                                            <a className={`item-${i}`} style={sessionStyle} title={session.title}>
+                                                {session.title}
+                                            </a>
+                                        </li>
+                                    );
+                                }) :
+                                <p className='panels__panel__message'>No recently closed sessions</p>
+                            }
                         </ul>
                     }
-
 
                     { this.state.open === 3 &&
                         <ul>
@@ -129,7 +131,7 @@ class Panels extends React.Component {
                                 );
                             }) }
 
-                            <a id='store-link' href='https://chrome.google.com/webstore'>Chrome Web Store</a>
+                            <a className='panels__panel__message' href='https://chrome.google.com/webstore'>Chrome Web Store</a>
                         </ul>
                     }
 
