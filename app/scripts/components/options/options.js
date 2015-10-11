@@ -143,34 +143,3 @@ class Options extends React.Component {
 };
 
 export default Options;
-
-
-/*
-getSettings(function (results) {
-
-    twentyFourHourTime.checked = results['24-hour-time'] !== false;
-    font.value                 = results['font'] || 'Default (Open Sans)';
-    animations.checked         = results['animations'] !== false;
-
-    timeNormal.checked         = results['time_normal'] !== false;
-    timeFull.checked           = results['time_full'];
-    timeFullHue.checked        = results['time_full_hue'];
-    timeSolid.checked          = results['time_solid'];
-    solidColor.value           = results['solid_color'];
-    showHistory.checked        = results['history'];
-
-    background.checked         = results['bg'];
-    bgReddit.checked           = results['bg_reddit'];
-    bgImage.value              = results['bg_image'] || '';
-    bgOpacity.value            = results['bg_opacity'] || 80;
-    bgOpacityVal.textContent   = results['bg_opacity'] || 80;
-
-    panelVisited.checked       = results['panel_visited'] !== false;
-    panelClosed.checked        = results['panel_closed'] !== false;
-    panelApps.checked          = results['panel_apps'] !== false;
-    panelShortcuts.checked     = results['panel_shortcuts'] !== false;
-
-    maxVisited.value           = results['max_visited'] || 10;
-    maxClosed.value            = results['max_closed'] || 10;
-});
-*/

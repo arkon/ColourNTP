@@ -10,7 +10,6 @@ class Colours {
         return '#' + ('00000' + (secondInDay / (24 * 60 * 60 - 1) * 0xFFFFFF | 0).toString(16)).slice(-6);
     }
 
-
     /**
      * Converts an HSL color value to RGB. Conversion formula
      * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
@@ -50,14 +49,12 @@ class Colours {
         return p;
     }
 
-
     /**
      * Converts RGB values to a hex colour string.
      */
     rgbToHex (r, g, b) {
         return '#' + (((1 << 24) + (r << 16) + (g << 8) + b) | 0).toString(16).slice(1);
     }
-
 
     /**
      * Converts a hex colour string to an array of RGB values.
@@ -69,16 +66,14 @@ class Colours {
         return [r, g, b];
     }
 
-
     /**
-     * 'Converts' the second to a hex value, as a point along the hue spectrum.
-     * 00:00:00 corresponds to #ff0000, 12:00:00 corresponds to #00feff.
+     * "Converts" the second to a hex value, as a point along the hue spectrum.
+     * 00:00:00 corresponds to #FF0000, 12:00:00 corresponds to #00FEFF.
      */
     secondToHueColour (secondInDay) {
         var hue = secondInDay / (24 * 60 * 60);
         return rgbToHex.apply(null, hslToRgb(hue, 1, 0.5));
     }
-
 
     /**
      * Converts a hex colour to an RGBA string with the provided alpha value.

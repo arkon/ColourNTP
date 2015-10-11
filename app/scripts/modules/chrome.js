@@ -1,4 +1,10 @@
+import Defaults from '../constants/settings';
+
+
 class Chrome {
+
+    // Panel helpers
+    // ============================================================================================
 
     static getTopSites (done, max = 10) {
         chrome.topSites.get(function (visitedURLs) {
@@ -110,18 +116,17 @@ class Chrome {
     }
 
 
-    // SETTINGS
+    // Settings helpers (Chrome extension storage)
+    // ============================================================================================
 
     static getSettings (done) {
-        // 'animations', 'bg', 'bgOpacity', 'bgReddit', 'bgUrl', 'colourFull', 'colourHue', 'colourRegular',
-        // 'colourSolid', 'colourSolidHex', 'font', 'maxClosed', 'maxVisited', 'panelApps', 'panelClosed',
-        // 'panelShortcuts', 'panelVisited', 'ticker', 'time24hr'
+        let defaults = Defaults;
 
-        chrome.storage.sync.get(null, done);
-    }
+        chrome.storage.sync.get(null, (results) => {
+            Object.assign(defaults, results);
 
-    static getSetting (key, done) {
-        chrome.storage.sync.get(key, done);
+            done(defaults);
+        });
     }
 
     static setSetting (key, value) {
