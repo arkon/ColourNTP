@@ -1,0 +1,95 @@
+// Toggles
+
+.panels__toggles {
+    color: rgba($white, 0.4);
+    display: block;
+    font-size: 0.9em;
+    margin-top: 4em;
+
+    a {
+        color: rgba($white, 0.4);
+        padding: 0.25em;
+        transition: color 0.3s;
+        will-change: color;
+
+        & + a:before {
+            color: rgba($white, 0.4);
+            content: '•';
+            margin-right: 0.5em;
+        }
+
+        &:hover {
+            color: $white;
+        }
+    }
+}
+
+
+// Panel
+
+.panels__panel {
+    background-color: rgba($white, 0.75);
+    border-radius: 5px;
+    margin-top: 1em;
+    width: auto;
+
+    ul {
+        font-size: 0;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    li {
+        text-align: left;
+    }
+
+    a {
+        background-position: 0.5em center;
+        background-repeat: no-repeat;
+        background-size: 16px 16px;
+        height: 4em;
+        line-height: 2em;
+        overflow: hidden;
+        padding: 1em 0.5em 1em 1.85em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 10em;
+    }
+}
+
+
+#no-closed {
+    color: #1e1e1e;
+    font-size: 0.9rem;
+    padding: 0.5em 1em;
+    text-align: center;
+}
+
+
+/* Apps */
+
+.panels__app {
+    height: 6.5em;
+    padding: 1em;
+    width: 12em;
+
+    img {
+        height: 3em;
+        margin-bottom: 0.5em;
+    }
+}
+
+    .app-name {
+        color: #1e1e1e;
+        font-size: 1rem;
+    }
+
+    #store-link {
+        color: #1e1e1e;
+        display: block;
+        font-size: 0.9rem;
+        margin: 0.5em 0;
+        text-align: center;
+    }
