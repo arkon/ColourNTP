@@ -77,13 +77,14 @@ class NewTab extends React.Component {
         };
 
         return (
-            <div className={classlist} style={divStyle}>
+            <div className={classlist}>
+                <div className='colours__bg' style={divStyle}></div>
                 <a className='opt' id='options' href='options.html' target='_blank'><span>Options</span></a>
                 <a className='opt' id='download' target='_blank'><span>Open image</span></a>
                 <div className='info'>
                     <Time hourFormat24={settings.time24hr} time={this.state.time}  />
                     <Hex colour={colour} />
-                    <Panels />
+                    <Panels settings={settings} />
                 </div>
                 { settings.ticker && <History /> }
             </div>

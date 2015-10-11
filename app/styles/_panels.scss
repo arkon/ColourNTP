@@ -34,7 +34,6 @@
     width: auto;
 
     ul {
-        font-size: 0;
         max-width: 900px;
         margin: 0 auto;
         padding: 0.5rem;
@@ -59,16 +58,17 @@
     }
 }
 
-
-#no-closed {
+.panels__panel__message {
     color: #1e1e1e;
+    display: block;
     font-size: 0.9rem;
     padding: 0.5em 1em;
     text-align: center;
+    width: 100%;
 }
 
 
-/* Apps */
+// Apps
 
 .panels__app {
     height: 6.5em;
@@ -84,12 +84,4 @@
     .app-name {
         color: #1e1e1e;
         font-size: 1rem;
-    }
-
-    #store-link {
-        color: #1e1e1e;
-        display: block;
-        font-size: 0.9rem;
-        margin: 0.5em 0;
-        text-align: center;
     }

@@ -35,10 +35,19 @@ body {
     display: flex;
     height: 100vh;
     justify-content: center;
-    transition: background-color 0.8s;
     width: 100%;
-    will-change: background-color;
 }
+
+    .colours__bg {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        transition: background-color 0.8s;
+        width: 100vw;
+        will-change: background-color;
+        z-index: -1;
+    }
 
 .colours__time {
     animation: shiftUp 0.5s ease-out forwards;

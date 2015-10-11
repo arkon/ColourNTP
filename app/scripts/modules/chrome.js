@@ -112,12 +112,16 @@ class Chrome {
 
     // SETTINGS
 
-    static getSettings (callback) {
-        // var keys = ['animations', 'bg', 'bgOpacity', 'bgReddit', 'bgUrl', 'colourFull', 'colourHue', 'colourRegular',
-        //     'colourSolid', 'colourSolidHex', 'font', 'maxClosed', 'maxVisited', 'panelApps', 'panelClosed',
-        //     'panelShortcuts', 'panelVisited', 'ticker', 'time24hr'];
+    static getSettings (done) {
+        // 'animations', 'bg', 'bgOpacity', 'bgReddit', 'bgUrl', 'colourFull', 'colourHue', 'colourRegular',
+        // 'colourSolid', 'colourSolidHex', 'font', 'maxClosed', 'maxVisited', 'panelApps', 'panelClosed',
+        // 'panelShortcuts', 'panelVisited', 'ticker', 'time24hr'
 
-        chrome.storage.sync.get(null, callback);
+        chrome.storage.sync.get(null, done);
+    }
+
+    static getSetting (key, done) {
+        chrome.storage.sync.get(key, done);
     }
 
     static setSetting (key, value) {

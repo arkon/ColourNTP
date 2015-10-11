@@ -1,6 +1,6 @@
 class Colours {
     /**
-     * 'Converts' the second to a hex value, from 0x000000 to 0xFFFFFF.
+     * Converts the second to a hex value, from 0x000000 to 0xFFFFFF.
      * 00:00:00 corresponds to #000000 and 23:59:59 corresponds to #ffffff.
      *
      * @param   Number  secondInDay   The current second in the day.
@@ -38,7 +38,9 @@ class Colours {
         return [r * 255, g * 255, b * 255];
     }
 
-
+    /**
+     * Converts a hue color value to RGB.
+     */
     hue2rgb (p, q, t) {
         if (t < 0) t++;
         if (t > 1) t--;
