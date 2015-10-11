@@ -26,10 +26,10 @@ class Options extends React.Component {
     }
 
     componentDidMount () {
-        Chrome.getSettings((results) => {
+        Chrome.getSettings((settings) => {
             this.setState({
-                settings : results
-            })
+                settings : settings
+            });
         });
     }
 
@@ -49,17 +49,17 @@ class Options extends React.Component {
                 <Checkbox label='24-hour format'
                     tooltip='Toggle between 12-hour and 24-hour formats.'
                     optkey='time24hr'
-                    value={settings.time24hr || true} />
+                    value={settings.time24hr} />
                 <Checkbox label='Animations'
                     tooltip='Enables animations.'
                     optkey='animations'
-                    value={settings.animations || true} />
+                    value={settings.animations} />
 
                 <h2 className='options__subheader'>Colours</h2>
                 <Radio label='Regular'
                     tooltip='Shows the corresponding colour based on the 24-hour clock.'
                     optkey='colourRegular'
-                    value={settings.colourRegular || true} />
+                    value={settings.colourRegular} />
                 <Radio label='Full spectrum hexadecimal'
                     tooltip='A new colour for every second, going from #000000 to #ffffff in one day.'
                     optkey='colourFull'
@@ -100,7 +100,7 @@ class Options extends React.Component {
                             value={settings.bgUrl} />
                         <Range label='Colour overlay opacity'
                             optkey='bgOpacity'
-                            value={settings.bgOpacity || 80} />
+                            value={settings.bgOpacity} />
                     </div>
                 }
 
@@ -108,29 +108,29 @@ class Options extends React.Component {
                 <Checkbox label='Most visited'
                     tooltip='Your most visited pages.'
                     optkey='panelVisited'
-                    value={settings.panelVisited || true} />
+                    value={settings.panelVisited} />
                 { settings.panelVisited &&
                     <Number label='Max number of most visited pages'
                         optkey='maxVisited'
-                        value={settings.maxVisited || 20} />
+                        value={settings.maxVisited} />
                 }
                 <Checkbox label='Recently closed'
                     tooltip='Recently closed tabs and windows.'
                     optkey='panelClosed'
-                    value={settings.panelClosed || true} />
+                    value={settings.panelClosed} />
                 { settings.panelClosed &&
                     <Number label='Max number of recently closed pages'
                         optkey='maxClosed'
-                        value={settings.maxClosed || 20} />
+                        value={settings.maxClosed} />
                 }
                 <Checkbox label='Apps'
                     tooltip='Your installed Chrome apps.'
                     optkey='panelApps'
-                    value={settings.panelApps || true} />
+                    value={settings.panelApps} />
                 <Checkbox label='Shortcuts'
                     tooltip='Various Chrome shortcuts.'
                     optkey='panelShortcuts'
-                    value={settings.panelShortcuts || true} />
+                    value={settings.panelShortcuts} />
 
                 <div className='options__credits'>
                     <a href='https://github.com/arkon/ColourNTP'>Source code on GitHub</a>

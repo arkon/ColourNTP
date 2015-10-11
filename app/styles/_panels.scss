@@ -71,17 +71,29 @@
 // Apps
 
 .panels__app {
-    height: 6.5em;
-    padding: 1em;
-    width: 12em;
+    li {
+        text-align: center;
+
+        a {
+            height: auto;
+            line-height: 1.25;
+            padding: 1em;
+            white-space: normal;
+            width: 15em;
+        }
+    }
 
     img {
         height: 3em;
         margin-bottom: 0.5em;
     }
+
+    .panels__panel__message {
+        width: 100%;
+    }
 }
 
-    .app-name {
+    .panels__app__name {
         color: #1e1e1e;
         font-size: 1rem;
     }

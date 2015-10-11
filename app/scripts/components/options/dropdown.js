@@ -29,8 +29,8 @@ class Dropdown extends React.Component {
                 <abbr>
                     <span>{this.props.label}:</span>
                     <select value={this.state.value} onChange={this.handleChange}>
-                        {this.props.options.map((item, index) => {
-                            return <option key={index} value={index.toString()}>{item}</option>;
+                        {this.props.options.map((item, i) => {
+                            return <option key={i} value={item}>{item}</option>;
                         })}
                     </select>
                     <div>

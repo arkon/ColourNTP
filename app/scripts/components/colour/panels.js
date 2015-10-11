@@ -9,36 +9,61 @@ class Panels extends React.Component {
 
         this.state = {
             open           : 0,
+
+            showVisited    : true,
             topSites       : [],
+
+            showClosed     : true,
             recentlyClosed : [],
+
+            showApps       : true,
             apps           : [],
+
+            showShortcuts  : true,
             shortcuts      : []
-        }
+        };
     }
 
     componentDidMount () {
-        Chrome.getTopSites((items) => {
+        Chrome.getSettings((settings) => {
             this.setState({
-                topSites: items
+                showVisited   : settings.panelVisited,
+                showClosed    : settings.panelClosed,
+                showApps      : settings.panelApps,
+                showShortcuts : settings.panelShortcuts
             });
-        });
 
-        Chrome.getRecentlyClosed((items) => {
-            this.setState({
-                recentlyClosed: items
-            });
-        });
+            if (settings.panelVisited) {
+                Chrome.getTopSites((items) => {
+                    this.setState({
+                        topSites: items
+                    });
+                }, settings.maxVisited);
+            }
 
-        Chrome.getApps((items) => {
-            this.setState({
-                apps: items
-            });
-        });
+            if (settings.panelClosed) {
+                Chrome.getRecentlyClosed((items) => {
+                    this.setState({
+                        recentlyClosed: items
+                    });
+                }, settings.maxClosed);
+            }
 
-        Chrome.getShortcuts((items) => {
-            this.setState({
-                shortcuts: items
-            });
+            if (settings.panelApps) {
+                Chrome.getApps((items) => {
+                    this.setState({
+                        apps: items
+                    });
+                });
+            }
+
+            if (settings.panelShortcuts) {
+                Chrome.getShortcuts((items) => {
+                    this.setState({
+                        shortcuts: items
+                    });
+                });
+            }
         });
     }
 
@@ -69,19 +94,32 @@ class Panels extends React.Component {
     }
 
     render () {
+        let state = this.state;
+
         return (
             <div className='panels'>
                 <p className='panels__toggles'>
-                    <a onClick={this.onClickToggle(1)}>Most visited</a>
-                    <a onClick={this.onClickToggle(2)}>Recently closed</a>
-                    <a onClick={this.onClickToggle(3)}>Apps</a>
-                    <a onClick={this.onClickToggle(4)}>Shortcuts</a>
+                    { state.showVisited &&
+                        <a onClick={this.onClickToggle(1)}>Most visited</a>
+                    }
+
+                    { state.showClosed &&
+                        <a onClick={this.onClickToggle(2)}>Recently closed</a>
+                    }
+
+                    { state.showApps &&
+                        <a onClick={this.onClickToggle(3)}>Apps</a>
+                    }
+
+                    { state.showShortcuts &&
+                        <a onClick={this.onClickToggle(4)}>Shortcuts</a>
+                    }
                 </p>
 
                 <div className='panels__panel'>
-                    { this.state.open === 1 &&
+                    { state.showVisited && state.open === 1 &&
                         <ul>
-                            { this.state.topSites.map((site, i) => {
+                            { state.topSites.map((site, i) => {
                                 let siteStyle = {
                                     backgroundImage: `url('${site.img}')`
                                 };
@@ -97,10 +135,11 @@ class Panels extends React.Component {
                         </ul>
                     }
 
-                    { this.state.open === 2 &&
+                    { state.showClosed && state.open === 2 &&
                         <ul>
-                            { (this.state.recentlyClosed.length === 0) ?
-                                this.state.recentlyClosed.map((session, i) => {
+                            { (state.recentlyClosed.length === 0) ?
+                                <p className='panels__panel__message'>No recently closed sessions</p> :
+                                state.recentlyClosed.map((session, i) => {
                                     let sessionStyle = {
                                         backgroundImage: `url('${session.img}')`
                                     };
@@ -112,20 +151,19 @@ class Panels extends React.Component {
                                             </a>
                                         </li>
                                     );
-                                }) :
-                                <p className='panels__panel__message'>No recently closed sessions</p>
+                                })
                             }
                         </ul>
                     }
 
-                    { this.state.open === 3 &&
-                        <ul>
-                            { this.state.apps.map((app, i) => {
+                    { state.showApps && state.open === 3 &&
+                        <ul className='panels__app'>
+                            { state.apps.map((app, i) => {
                                 return (
                                     <li key={i} onClick={this.onClickApp(app.id)}>
-                                        <a className={`panels__app item-${i}`}>
+                                        <a className={`item-${i}`}>
                                             <img src={app.img} alt={app.title} />
-                                            <div className='app-name'>{app.title}</div>
+                                            <div className='panels__app__name'>{app.title}</div>
                                         </a>
                                     </li>
                                 );
@@ -135,9 +173,9 @@ class Panels extends React.Component {
                         </ul>
                     }
 
-                    { this.state.open === 4 &&
+                    { state.showShortcuts && state.open === 4 &&
                         <ul>
-                            { this.state.shortcuts.map((shortcut, i) => {
+                            { state.shortcuts.map((shortcut, i) => {
                                 let shortcutStyle = {
                                     backgroundImage: `url('${shortcut.img}')`
                                 };
