@@ -11,7 +11,9 @@ var Time = (props) => {
             return (n < 10) ? `0${n}` : n.toString();
         };
 
-        hour = pad(hour -= 12);
+        hour -= 12;
+
+        hour = pad(hour === 0 ? 12 : hour);
     }
 
     return (
