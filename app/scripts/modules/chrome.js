@@ -1,13 +1,14 @@
 class Chrome {
 
-    static getTopSites (max) {
+    static getTopSites (max = 10) {
         chrome.topSites.get(function (visitedURLs) {
-            // Consider the user's set maximum (default 10)
-            visitedURLs = visitedURLs.slice(0, Number(max) || 10);
+            visitedURLs = visitedURLs.slice(0, max);
 
             var items = [];
 
             for (var i in visitedURLs) {
+                let site = visitedURLs[i];
+
                 items.push({
                     title : site.title,
                     url   : site.url,
@@ -19,30 +20,27 @@ class Chrome {
         });
     }
 
-    static getRecentlyClosed (max) {
-        chrome.sessions.getRecentlyClosed(
-            {
-                maxResults: Number(max) || 10
-            },
-            function (sessions) {
-                let items = [];
+    static getRecentlyClosed (max = 10) {
+        chrome.sessions.getRecentlyClosed({ maxResults: max }, function (sessions) {
+            let items = [];
 
-                for (var i in sessions) {
-                    if (session.window && session.window.tabs.length === 1) {
-                        session.tab = session.window.tabs[0];
-                    }
+            for (var i in sessions) {
+                let session = sessions[i];
 
-                    items.push({
-                        title   : session.tab ? session.tab.title : session.window.tabs.length + ' Tabs',
-                        session : session.window ? session.window.sessionId : session.tab.sessionId,
-                        img     : session.tab ? `url(chrome://favicon/${session.tab.url})` : null
-                    });
-
+                if (session.window && session.window.tabs.length === 1) {
+                    session.tab = session.window.tabs[0];
                 }
 
-                return items;
+                items.push({
+                    title   : session.tab ? session.tab.title : session.window.tabs.length + ' Tabs',
+                    session : session.window ? session.window.sessionId : session.tab.sessionId,
+                    img     : session.tab ? `url(chrome://favicon/${session.tab.url})` : null
+                });
+
             }
-        );
+
+            return items;
+        });
     }
 
     static getApps () {
@@ -72,6 +70,8 @@ class Chrome {
             let items = [];
 
             for (var i in list) {
+                let extInf = list[i];
+
                 items.push({
                     title : extInf.name,
                     id    : extInf.id,
