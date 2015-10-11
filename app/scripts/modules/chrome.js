@@ -1,53 +1,49 @@
 class Chrome {
 
-    static getTopSites (max = 10) {
+    static getTopSites (done, max = 10) {
         chrome.topSites.get(function (visitedURLs) {
             visitedURLs = visitedURLs.slice(0, max);
 
             var items = [];
 
-            for (var i in visitedURLs) {
-                let site = visitedURLs[i];
-
+            for (let site of visitedURLs) {
                 items.push({
                     title : site.title,
                     url   : site.url,
-                    img   : `url(chrome://favicon/${site.url})`
+                    img   : `chrome://favicon/${site.url}`
                 });
             }
 
-            return items;
+            done(items);
         });
     }
 
-    static getRecentlyClosed (max = 10) {
+    static getRecentlyClosed (done, max = 10) {
         chrome.sessions.getRecentlyClosed({ maxResults: max }, function (sessions) {
             let items = [];
 
-            for (var i in sessions) {
-                let session = sessions[i];
-
+            for (let session of sessions) {
                 if (session.window && session.window.tabs.length === 1) {
                     session.tab = session.window.tabs[0];
                 }
 
                 items.push({
-                    title   : session.tab ? session.tab.title : session.window.tabs.length + ' Tabs',
+                    title   : session.tab ? session.tab.title : `${session.window.tabs.length} Tabs`,
                     session : session.window ? session.window.sessionId : session.tab.sessionId,
-                    img     : session.tab ? `url(chrome://favicon/${session.tab.url})` : null
+                    img     : session.tab ? `chrome://favicon/${session.tab.url}` : null
                 });
 
             }
 
-            return items;
+            done(items);
         });
     }
 
-    static getApps () {
+    static getApps (done) {
         let find128Image = function (icons) {
-            for (var i in icons) {
-                if (icons[i].size === 128) {
-                    return icons[i].url;
+            for (let icon of icons) {
+                if (icon.size === 128) {
+                    return icon.url;
                 }
             }
 
@@ -69,19 +65,19 @@ class Chrome {
 
             let items = [];
 
-            for (var i in list) {
-                let extInf = list[i];
-
+            for (let extInf of list) {
                 items.push({
                     title : extInf.name,
                     id    : extInf.id,
                     img   : find128Image(extInf.icons)
                 });
             }
+
+            done(items);
         });
     }
 
-    static getShortcuts () {
+    static getShortcuts (done) {
         let shortcuts = [
             {
                 title: 'Bookmarks',
@@ -110,7 +106,7 @@ class Chrome {
             }
         ];
 
-        return shortcuts;
+        done(shortcuts);
     }
 
 
