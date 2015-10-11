@@ -1,7 +1,7 @@
 Colour New Tab Page
 ===================
 
-Install it from the [Chrome Web Store][chrome-store]!
+[<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png" alt="Available in the Chrome Web Store">][chrome-store]
 
 Based on [What colour is it?][original] by [J.E. Murphy][author].
 
