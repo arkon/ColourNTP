@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ChromeStorage from '../../modules/chromestorage';
+import Chrome from '../../modules/chrome';
 
 import Time from './time';
 import Hex from './hex';
@@ -22,7 +22,7 @@ class NewTab extends React.Component {
             me.tick(true);
         }, 1000);
 
-        new ChromeStorage().getSettings(function (settings) {
+        Chrome.getSettings(function (settings) {
             me.setState({
                 settings : settings
             });

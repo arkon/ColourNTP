@@ -8,7 +8,7 @@ import Radio from './radio';
 import Range from './range';
 import Textbox from './textbox';
 
-import ChromeStorage from '../../modules/chromestorage';
+import Chrome from '../../modules/chrome';
 
 
 class Options extends React.Component {
@@ -26,7 +26,7 @@ class Options extends React.Component {
     }
 
     componentDidMount () {
-        new ChromeStorage().getSettings(function (results) {
+        Chrome.getSettings(function (results) {
             this.setState({
                 settings : results
             })

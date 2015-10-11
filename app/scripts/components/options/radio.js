@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ChromeStorage from '../../modules/chromestorage';
+import Chrome from '../../modules/chrome';
 
 
 class Radio extends React.Component {
@@ -12,15 +12,13 @@ class Radio extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-
-        this.Storage = new ChromeStorage();
     }
 
     handleChange (e) {
         let key   = this.props.optkey,
             value = e.target.checked;
 
-        this.Storage.set(key, value);
+        Chrome.setSetting(key, value);
 
         this.setState({ value: value });
     }
