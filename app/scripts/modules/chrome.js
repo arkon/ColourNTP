@@ -1,6 +1,6 @@
 class Chrome {
 
-    getTopSites (max) {
+    static getTopSites (max) {
         chrome.topSites.get(function (visitedURLs) {
             // Consider the user's set maximum (default 10)
             visitedURLs = visitedURLs.slice(0, Number(max) || 10);
@@ -19,7 +19,7 @@ class Chrome {
         });
     }
 
-    getRecentlyClosed (max) {
+    static getRecentlyClosed (max) {
         chrome.sessions.getRecentlyClosed(
             {
                 maxResults: Number(max) || 10
@@ -45,7 +45,7 @@ class Chrome {
         );
     }
 
-    getApps () {
+    static getApps () {
         let find128Image = function (icons) {
             for (var i in icons) {
                 if (icons[i].size === 128) {
@@ -81,33 +81,34 @@ class Chrome {
         });
     }
 
-    getShortcuts () {
+    static getShortcuts () {
         let shortcuts = [
             {
                 title: 'Bookmarks',
-                url: 'chrome://bookmarks/'
+                url: 'chrome://bookmarks/',
+                img: 'chrome://favicon/chrome://bookmarks/'
             },
             {
                 title: 'History',
-                url: 'chrome://history/'
+                url: 'chrome://history/',
+                img: 'chrome://favicon/chrome://history/'
             },
             {
                 title: 'Downloads',
-                url: 'chrome://downloads/'
+                url: 'chrome://downloads/',
+                img: 'chrome://favicon/chrome://downloads/'
             },
             {
                 title: 'Extensions',
-                url: 'chrome://extensions/'
+                url: 'chrome://extensions/',
+                img: 'chrome://favicon/chrome://extensions/'
             },
             {
                 title: 'Settings',
-                url: 'chrome://settings/'
+                url: 'chrome://settings/',
+                img: 'chrome://favicon/chrome://settings/'
             }
         ];
-
-        for (var i in shortcuts) {
-            shortcuts[i].img = `url('chrome://favicon/${shortcutItem.url}')`;
-        }
 
         return shortcuts;
     }
