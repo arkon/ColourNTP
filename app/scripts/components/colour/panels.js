@@ -24,6 +24,10 @@ class Panels extends React.Component {
         });
     }
 
+    onClickShortcut (url) {
+        chrome.tabs.update(null, { url: url });
+    }
+
     render () {
         return (
             <div className='panels'>
@@ -84,15 +88,15 @@ class Panels extends React.Component {
                     </ul>
 
                     <ul id='shortcuts'>
-                        { this.state.shortcuts.map((item, i) => {
+                        { this.state.shortcuts.map((shortcut, i) => {
                             let shortcutStyle = {
-                                backgroundImage: `url('${item.img}')`
+                                backgroundImage: `url('${shortcut.img}')`
                             };
 
                             return (
-                                <li key={item.title}>
-                                    <a className={`item-${i}`} style={shortcutStyle} title={item.title}>
-                                        <div className='app-name'>{item.title}</div>
+                                <li key={i} onClick={(e) => { this.onClickShortcut(shortcut.url); }}>
+                                    <a className={`shortcut-${i}`} style={shortcutStyle} title={shortcut.title}>
+                                        <div className='app-name'>{shortcut.title}</div>
                                     </a>
                                 </li>
                             );
