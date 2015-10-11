@@ -26,7 +26,7 @@ class Options extends React.Component {
     }
 
     componentDidMount () {
-        Chrome.getSettings(function (results) {
+        Chrome.getSettings((results) => {
             this.setState({
                 settings : results
             })

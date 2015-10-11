@@ -16,14 +16,12 @@ class NewTab extends React.Component {
     }
 
     componentDidMount () {
-        var me = this;
-
-        this.interval = setInterval(function () {
-            me.tick(true);
+        this.interval = setInterval(() => {
+            this.tick(true);
         }, 1000);
 
-        Chrome.getSettings(function (settings) {
-            me.setState({
+        Chrome.getSettings((settings) => {
+            this.setState({
                 settings : settings
             });
         });
@@ -87,7 +85,7 @@ class NewTab extends React.Component {
                     <Hex colour={colour} />
                     <Panels />
                 </div>
-                <History />
+                { settings.ticker && <History /> }
             </div>
         );
     }
