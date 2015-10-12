@@ -100,19 +100,23 @@ class Panels extends React.Component {
             <div className='panels'>
                 <p className='panels__toggles'>
                     { state.showVisited &&
-                        <a onClick={this.onClickToggle(1)}>Most visited</a>
+                        <a className={state.open === 1 ? 'panels__toggles--active' : ''}
+                            onClick={this.onClickToggle(1)}>Most visited</a>
                     }
 
                     { state.showClosed &&
-                        <a onClick={this.onClickToggle(2)}>Recently closed</a>
+                        <a className={state.open === 2 ? 'panels__toggles--active' : ''}
+                            onClick={this.onClickToggle(2)}>Recently closed</a>
                     }
 
                     { state.showApps &&
-                        <a onClick={this.onClickToggle(3)}>Apps</a>
+                        <a className={state.open === 3 ? 'panels__toggles--active' : ''}
+                            onClick={this.onClickToggle(3)}>Apps</a>
                     }
 
                     { state.showShortcuts &&
-                        <a onClick={this.onClickToggle(4)}>Shortcuts</a>
+                        <a className={state.open === 4 ? 'panels__toggles--active' : ''}
+                            onClick={this.onClickToggle(4)}>Shortcuts</a>
                     }
                 </p>
 
