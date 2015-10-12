@@ -26,7 +26,10 @@ class Panels extends React.Component {
 
     componentDidMount () {
         Chrome.getSettings((settings) => {
+            console.log(settings);
+
             this.setState({
+                open          : settings.openPanel || 0,
                 showVisited   : settings.panelVisited,
                 showClosed    : settings.panelClosed,
                 showApps      : settings.panelApps,
@@ -69,9 +72,13 @@ class Panels extends React.Component {
 
     onClickToggle (id) {
         return () => {
+            let newId = this.state.open === id ? 0 : id;
+
             this.setState({
-                open: this.state.open === id ? 0 : id
+                open: newId
             });
+
+            Chrome.setSetting('openPanel', newId);
         };
     }
 
