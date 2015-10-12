@@ -26,8 +26,6 @@ class Panels extends React.Component {
 
     componentDidMount () {
         Chrome.getSettings((settings) => {
-            console.log(settings);
-
             this.setState({
                 open          : settings.openPanel || 0,
                 showVisited   : settings.panelVisited,

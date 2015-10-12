@@ -14,6 +14,12 @@ class Checkbox extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentWillReceiveProps (nextProps) {
+        this.setState({
+            value: nextProps.value
+        });
+    }
+
     handleChange (e) {
         let key   = this.props.optkey,
             value = e.target.value;
