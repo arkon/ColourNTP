@@ -32,7 +32,7 @@ class Radio extends React.Component {
     render () {
         return (
             <label>
-                <input type='radio' name='rd' checked={this.state.value} onChange={this.handleChange} />
+                <input type='radio' name={this.props.group} checked={this.state.value} onChange={this.handleChange} />
                 <abbr>
                     <span>{this.props.label}</span>
                     <div>

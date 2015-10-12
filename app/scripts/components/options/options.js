@@ -12,7 +12,6 @@ import Chrome from '../../modules/chrome';
 
 
 class Options extends React.Component {
-
     constructor (props) {
         super(props);
 
@@ -40,43 +39,58 @@ class Options extends React.Component {
             <div className='options'>
                 <h1 className='options__header'>Colour New Tab</h1>
 
+
                 <h2 className='options__subheader'>General</h2>
+
                 <Dropdown label='Font'
                     tooltip='Custom fonts from Google Fonts.'
                     options={this.fonts}
                     optkey='font'
                     value={settings.font} />
+
                 <Checkbox label='24-hour format'
                     tooltip='Toggle between 12-hour and 24-hour formats.'
                     optkey='time24hr'
                     value={settings.time24hr} />
+
                 <Checkbox label='Animations'
                     tooltip='Enables animations.'
                     optkey='animations'
                     value={settings.animations} />
 
+
                 <h2 className='options__subheader'>Colours</h2>
+
                 <Radio label='Regular'
                     tooltip='Shows the corresponding colour based on the 24-hour clock.'
+                    group='colourtype'
                     optkey='colourRegular'
                     value={settings.colourRegular} />
+
                 <Radio label='Full spectrum hexadecimal'
                     tooltip='A new colour for every second, going from #000000 to #ffffff in one day.'
+                    group='colourtype'
                     optkey='colourFull'
                     value={settings.colourFull} />
+
                 <Radio label='Full spectrum hue'
                     tooltip='A slow shift across the entire hue spectrum, from #ff0000 to #00ffff and back in one day.'
+                    group='colourtype'
                     optkey='colourHue'
                     value={settings.colourHue} />
+
                 <Radio label='Solid colour'
                     tooltip='A solid, non-changing colour.'
+                    group='colourtype'
                     optkey='colourSolid'
                     value={settings.colourSolid} />
+
                 { settings.colourSolid &&
                     <Colour label='Solid colour'
                         optkey='colourSolidHex'
                         value={settings.colourSolidHex} />
                 }
+
                 { !settings.colourSolid &&
                     <Checkbox label='Show ticker of past colours'
                         tooltip='Shows last 10 colours in a ticker at the bottom of the page.'
@@ -84,53 +98,56 @@ class Options extends React.Component {
                         value={settings.ticker} />
                 }
 
+
                 <h2 className='options__subheader'>Background image</h2>
+
                 <Checkbox label='Custom background image'
                     tooltip='You must use an online image.'
                     optkey='bg'
-                    value={settings.bg} />
-                { settings.bg &&
-                    <div>
-                        <Checkbox label='Top wallpapers from /r/wallpapers'
-                            tooltip='Fetch the top wallpaper from the wallpapers subreddit everyday.'
-                            optkey='bgReddit'
-                            value={settings.bgReddit} />
-                        <Textbox label='Image URL'
-                            optkey='bgUrl'
-                            value={settings.bgUrl} />
-                        <Range label='Colour overlay opacity'
-                            optkey='bgOpacity'
-                            value={settings.bgOpacity} />
-                    </div>
-                }
+                    value={settings.bg}>
+                    <Checkbox label='Top wallpapers from /r/wallpapers'
+                        tooltip='Fetch the top wallpaper from the wallpapers subreddit everyday.'
+                        optkey='bgReddit'
+                        value={settings.bgReddit} />
+                    <Textbox label='Image URL'
+                        optkey='bgUrl'
+                        value={settings.bgUrl} />
+                    <Range label='Colour overlay opacity'
+                        optkey='bgOpacity'
+                        value={settings.bgOpacity} />
+                </Checkbox>
+
 
                 <h2 className='options__subheader'>Panels</h2>
+
                 <Checkbox label='Most visited'
                     tooltip='Your most visited pages.'
                     optkey='panelVisited'
-                    value={settings.panelVisited} />
-                { settings.panelVisited &&
+                    value={settings.panelVisited}>
                     <Number label='Max number of most visited pages'
                         optkey='maxVisited'
                         value={settings.maxVisited} />
-                }
+                </Checkbox>
+
                 <Checkbox label='Recently closed'
                     tooltip='Recently closed tabs and windows.'
                     optkey='panelClosed'
-                    value={settings.panelClosed} />
-                { settings.panelClosed &&
+                    value={settings.panelClosed}>
                     <Number label='Max number of recently closed pages'
                         optkey='maxClosed'
                         value={settings.maxClosed} />
-                }
+                </Checkbox>
+
                 <Checkbox label='Apps'
                     tooltip='Your installed Chrome apps.'
                     optkey='panelApps'
                     value={settings.panelApps} />
+
                 <Checkbox label='Shortcuts'
                     tooltip='Various Chrome shortcuts.'
                     optkey='panelShortcuts'
                     value={settings.panelShortcuts} />
+
 
                 <div className='options__credits'>
                     <a href='https://github.com/arkon/ColourNTP'>Source code on GitHub</a>
