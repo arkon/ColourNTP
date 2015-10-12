@@ -1,18 +1,12 @@
-@import 'core';
-@import 'animations';
+@import 'core/core';
+@import 'core/animations';
 
-@import 'panels';
-@import 'history';
+@import 'colours/panels';
+@import 'colours/history';
+@import 'colours/options';
 
 
-h1,
-h2 {
-    transition: font-size 0.3s;
-}
-
-/**
- * Main time/hex display
- */
+// Main time/hex display
 
 body {
     background-position: center center;
@@ -86,7 +80,7 @@ body {
     text-align: center;
 }
 
-/* Protects against light backgrounds when using full spectrum */
+// Protects against light backgrounds when using full spectrum
 .full {
     h1,
     h2,
@@ -128,71 +122,5 @@ li {
     .item-#{$i} {
         animation: shiftUp 0.3s ease-out ($i * 0.03s) forwards;
         opacity: 0;
-    }
-}
-
-
-/**
- * Options link
- */
-
-.opt {
-    display: inline-block;
-    height: 40px;
-    opacity: 0.4;
-    overflow: hidden;
-    position: fixed;
-    right: 0;
-    top: 0;
-    transition: opacity 0.3s, width 0.35s;
-    width: 40px;
-    will-change: opacity, width;
-
-    span {
-        display: inline-block;
-        line-height: 40px;
-        margin-left: 2.5em;
-    }
-
-    &::before {
-        background: no-repeat center center / 12px 12px;
-        content: '';
-        display: inline-block;
-        height: 40px;
-        position: fixed;
-        width: 40px;
-    }
-
-    &:hover {
-        opacity: 1;
-    }
-}
-
-#options {
-    top: 0;
-
-    &::before {
-        background-image: url('../assets/img/gear.svg');
-        transition: transform 0.35s;
-    }
-
-    &:hover {
-        width: 120px;
-
-        &::before {
-            transform: rotate(-45deg);
-        }
-    }
-}
-
-#download {
-    top: 30px;
-
-    &::before {
-        background-image: url('../assets/img/image.svg');
-    }
-
-    &:hover {
-        width: 155px;
     }
 }

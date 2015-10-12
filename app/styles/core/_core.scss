@@ -1,13 +1,8 @@
 @charset "UTF-8";
 
-@font-face {
-    font-family: 'Open Sans Light';
-    src: url('../assets/fonts/OpenSans-Light.ttf') format('truetype');
-}
+@import 'variables';
+@import 'fonts';
 
-$white: #fff;
-$dark-grey: #111;
-$light-grey: lighten($dark-grey, 50%);
 
 * {
     box-sizing: border-box;
@@ -44,6 +39,7 @@ ul {
 h1,
 h2 {
     font-weight: 300;
+    transition: font-size 0.3s;
 }
 
 h2 {

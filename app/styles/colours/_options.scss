@@ -1,0 +1,52 @@
+// Options links
+
+.colours__opts {
+    position: fixed;
+    right: 0;
+    text-align: right;
+    top: 0;
+    width: 100px;
+}
+
+    .colours__opts__opt {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        opacity: 0.4;
+        padding-right: 0.5em;
+        transform: translateX(100%);
+        transition: opacity 0.3s, transform 0.35s;
+        will-change: opacity, transform;
+
+        &::before {
+            background: no-repeat center center / 12px 12px;
+            content: '';
+            display: block;
+            height: 30px;
+            left: -40px;
+            position: absolute;
+            width: 40px;
+        }
+
+        &:hover {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+.colours__opts__opt--options {
+    &::before {
+        background-image: url('../assets/img/gear.svg');
+        transition: transform 0.45s ease-out;
+    }
+
+    &:hover::before {
+        transform: rotate(-45deg);
+    }
+}
+
+.colours__opts__opt--download {
+    &::before {
+        background-image: url('../assets/img/image.svg');
+    }
+}
