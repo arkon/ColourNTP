@@ -1,4 +1,4 @@
-# Colour New Tab Page
+# Colour New Tab
 
 [<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png" alt="Available in the Chrome Web Store">][chrome-store]
 

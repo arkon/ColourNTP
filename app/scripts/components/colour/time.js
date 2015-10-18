@@ -22,6 +22,6 @@ var Time = (props) => {
             {!props.hourFormat24 && <span className='colours__time__postfix'>{time.pm ? 'PM' : 'AM'}</span>}
         </h1>
     );
-}
+};
 
 export default Time;
