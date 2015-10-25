@@ -5,13 +5,13 @@
     right: 0;
     text-align: right;
     top: 0;
-    width: 100px;
+    width: 6.25em;
 }
 
     .colours__opts__opt {
         display: inline-block;
-        height: 40px;
-        line-height: 40px;
+        height: 2.5em;
+        line-height: 2.5em;
         opacity: 0.4;
         padding-right: 0.5em;
         transform: translateX(100%);
@@ -19,13 +19,13 @@
         will-change: opacity, transform;
 
         &::before {
-            background: no-repeat center center / 12px 12px;
+            background: no-repeat center center / 0.75em 0.75em;
             content: '';
             display: block;
-            height: 40px;
-            left: -40px;
+            height: 2.5em;
+            left: -2.5em;
             position: absolute;
-            width: 40px;
+            width: 2.5em;
         }
 
         &:hover {

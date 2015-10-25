@@ -24,21 +24,24 @@ body {
         }
     }
 
+#colours {
+    height: 100%;
+    width: 100%;
+}
+
 .colours {
-    align-items: center;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
+    display: table;
+    height: 100%;
     width: 100%;
 }
 
     .colours__bg {
-        height: 100vh;
+        height: 100%;
         left: 0;
         position: fixed;
         top: 0;
         transition: background-color 0.8s;
-        width: 100vw;
+        width: 100%;
         will-change: background-color;
         z-index: -1;
     }
@@ -53,7 +56,7 @@ body {
 
     .colours__time__postfix {
         font-size: 0.4em;
-        margin-left: 20px;
+        margin-left: 1.25rem;
         position: absolute;
         top: 1.62em;
         width: 0;
@@ -70,14 +73,18 @@ body {
     }
 
         .colours__time__postfix {
-            margin-left: 15px;
+            margin-left: 1rem;
         }
 
     .colours__hex { font-size: 1.25em; }
 }
 
 .info {
+    display: table-cell;
+    height: 100%;
     text-align: center;
+    vertical-align: middle;
+    width: 100%;
 }
 
 // Protects against light backgrounds when using full spectrum

@@ -1,4 +1,4 @@
-var Defaults = {
+const Defaults = {
     font: 'Default (Open Sans)',
     time24hr: true,
     animations: false,

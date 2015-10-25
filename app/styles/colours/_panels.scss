@@ -32,13 +32,13 @@
 // Panel
 
 .panels__panel {
-    background-color: rgba($white, 0.75);
-    border-radius: 5px;
-    margin-top: 1em;
+    margin: 1em auto 0;
+    max-width: 900px;
     width: auto;
 
     ul {
-        max-width: 900px;
+        background-color: rgba($white, 0.75);
+        border-radius: 5px;
         margin: 0 auto;
         padding: 0.5rem;
         text-align: center;
@@ -51,7 +51,7 @@
     a {
         background-position: 0.5em center;
         background-repeat: no-repeat;
-        background-size: 16px 16px;
+        background-size: 1em 1em;
         height: 4em;
         line-height: 2em;
         overflow: hidden;
