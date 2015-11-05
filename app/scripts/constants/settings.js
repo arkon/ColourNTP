@@ -3,11 +3,8 @@ const Defaults = {
     time24hr: true,
     animations: false,
 
-    colourRegular: true,
-    colourFull: false,
-    colourHue: false,
-    colourSolid: false,
-    colourSolidHex: '',
+    colour: 'regular',
+    colourSolid: '',
     ticker: false,
 
     bg: false,

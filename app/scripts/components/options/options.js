@@ -5,6 +5,7 @@ import Colour from './colour';
 import Dropdown from './dropdown';
 import Number from './number';
 import Radio from './radio';
+import RadioGroup from './radiogroup';
 import Range from './range';
 import Textbox from './textbox';
 
@@ -61,42 +62,32 @@ class Options extends React.Component {
 
                 <h2 className='options__subheader'>Colours</h2>
 
-                <Radio label='Regular'
-                    tooltip='Shows the corresponding colour based on the 24-hour clock.'
-                    group='colourtype'
-                    optkey='colourRegular'
-                    value={settings.colourRegular} />
+                <RadioGroup group='colourtype' optkey='colour' value={settings.colour}>
+                    <Radio label='Regular'
+                        tooltip='Shows the corresponding colour based on the 24-hour clock.'
+                        value='regular' />
 
-                <Radio label='Full spectrum hexadecimal'
-                    tooltip='A new colour for every second, going from #000000 to #FFFFFF in one day.'
-                    group='colourtype'
-                    optkey='colourFull'
-                    value={settings.colourFull} />
+                    <Radio label='Full spectrum hexadecimal'
+                        tooltip='A new colour for every second, going from #000000 to #FFFFFF in one day.'
+                        value='full' />
 
-                <Radio label='Full spectrum hue'
-                    tooltip='A slow shift across the entire hue spectrum, from #FF0000 to #00FFFF and back in one day.'
-                    group='colourtype'
-                    optkey='colourHue'
-                    value={settings.colourHue} />
+                    <Radio label='Full spectrum hue'
+                        tooltip='A slow shift across the entire hue spectrum, from #FF0000 to #00FFFF and back in one day.'
+                        value='hue' />
 
-                <Radio label='Solid colour'
-                    tooltip='A solid, non-changing colour.'
-                    group='colourtype'
-                    optkey='colourSolid'
-                    value={settings.colourSolid} />
+                    <Radio label='Solid colour'
+                        tooltip='A solid, non-changing colour.'
+                        value='solid'>
+                        <Colour label='Solid colour'
+                            optkey='colourSolid'
+                            value={settings.colourSolid} />
+                    </Radio>
+                </RadioGroup>
 
-                { settings.colourSolid &&
-                    <Colour label='Solid colour'
-                        optkey='colourSolidHex'
-                        value={settings.colourSolidHex} />
-                }
-
-                { !settings.colourSolid &&
-                    <Checkbox label='Show ticker of past colours'
-                        tooltip='Shows last 10 colours in a ticker at the bottom of the page.'
-                        optkey='ticker'
-                        value={settings.ticker} />
-                }
+                <Checkbox label='Show ticker of past colours'
+                    tooltip='Shows last 10 colours in a ticker at the bottom of the page.'
+                    optkey='ticker'
+                    value={settings.ticker} />
 
 
                 <h2 className='options__subheader'>Background image</h2>

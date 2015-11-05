@@ -33,7 +33,9 @@ class Checkbox extends React.Component {
         return (
             <div>
                 <label>
-                    <input type='checkbox' checked={this.state.value} onChange={this.handleChange} />
+                    <input type='checkbox' checked={this.state.value}
+                        onChange={this.handleChange} />
+
                     <abbr>
                         <span>{this.props.label}</span>
                         <div>
@@ -42,6 +44,7 @@ class Checkbox extends React.Component {
                         </div>
                     </abbr>
                 </label>
+
                 { this.state.value && this.props.children }
             </div>
         );
