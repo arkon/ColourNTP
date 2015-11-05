@@ -80,7 +80,7 @@ gulp.task('js', function (done) {
             return browserify(entry)
                 .transform(babel)
                 .bundle()
-                .pipe(source(filename +'.bundle.js'))
+                .pipe(source(filename + '.bundle.js'))
                 //.pipe(buffer())
                 //.pipe(uglify())
                 .pipe(gulp.dest(paths.dest_scripts));
