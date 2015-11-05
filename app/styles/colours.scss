@@ -32,6 +32,7 @@ body {
 .colours {
     display: table;
     height: 100%;
+    padding: 1em;
     width: 100%;
 }
 
@@ -55,10 +56,10 @@ body {
 }
 
     .colours__time__postfix {
+        bottom: 0.5em;
         font-size: 0.4em;
         margin-left: 1.25rem;
         position: absolute;
-        top: 1.62em;
         width: 0;
     }
 
