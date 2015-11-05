@@ -3,7 +3,7 @@ const Defaults = {
     time24hr: true,
     animations: false,
 
-    colour: 'regular',
+    colour: 'regular',  // regular, full, hue, solid
     colourSolid: '',
     ticker: false,
 

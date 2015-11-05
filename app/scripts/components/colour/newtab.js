@@ -46,38 +46,63 @@ class NewTab extends React.Component {
                     hour   : this.pad(hour),
                     minute : this.pad(nowDate.getMinutes()),
                     second : this.pad(nowDate.getSeconds())
-                }
+                },
+                colour: this.tickColour(nowDate)
             });
         } else {
             this.state = {
+                settings : {},
                 time : {
                     pm     : hour >= 12,
                     hour   : this.pad(hour),
                     minute : this.pad(nowDate.getMinutes()),
                     second : this.pad(nowDate.getSeconds())
                 },
-                settings : {}
+                colour: this.tickColour(nowDate)
             };
         }
+    }
+
+    tickColour (time) {
+        if (this.state && this.state.settings) {
+            let settings = this.state.settings;
+
+            switch (settings.colour) {
+                case 'solid':
+                    return settings.colourSolid;
+
+                case 'full':
+                    return '';
+
+                case 'hue':
+                    return '';
+            }
+        }
+
+        return `#${this.pad(time.getHours())}${this.pad(time.getMinutes())}${this.pad(time.getSeconds())}`;
     }
 
     render () {
         let settings = this.state.settings;
 
-        // No animations
         let classlist = 'colours';
 
-        if (settings && settings.animations === false) {
-            classlist += ' notransition';
+        if (settings) {
+            // No animations
+            if (settings.animations === false) {
+                classlist += ' notransition';
+            }
+
+            // Text/colour protection
+            if (settings.colour !== 'regular') {
+                classlist += ' full';
+            }
         }
 
-        // Background colour
+        // Background styles
         let divStyle = {
-            backgroundColor: colour
+            backgroundColor: this.state.colour
         };
-
-        // Colour hexcode to display
-        let colour = `#${this.state.time.hour}${this.state.time.minute}${this.state.time.second}`;
 
         return (
             <div className={classlist}>
@@ -90,7 +115,7 @@ class NewTab extends React.Component {
 
                 <div className='info'>
                     <Time hourFormat24={settings.time24hr} time={this.state.time} />
-                    <Hex colour={colour} />
+                    <Hex colour={this.state.colour} />
                     <Panels />
                 </div>
 

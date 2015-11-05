@@ -90,13 +90,13 @@ body {
 
 // Protects against light backgrounds when using full spectrum
 .full {
-    h1,
-    h2,
-    #panel-toggles {
+    .colours__time,
+    .colours__hex,
+    .panels__toggles a {
         text-shadow: 0 1px 4px #555;
     }
 
-    #panel {
+    .panels__panel {
         box-shadow: 0 1px 4px #555;
     }
 }
