@@ -100,13 +100,13 @@ class NewTab extends React.Component {
         }
 
         // Background styles
-        let divStyle = {
+        let bgColorStyle = {
             backgroundColor: this.state.colour
         };
 
         return (
             <div className={classlist}>
-                <div className='colours__bg' style={divStyle}></div>
+                <div className='colours__bg' style={bgColorStyle}></div>
 
                 <div className='colours__opts'>
                     <a target='_blank' className='colours__opts__opt colours__opts__opt--options' href='options.html'>Options</a>
