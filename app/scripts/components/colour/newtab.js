@@ -2,6 +2,7 @@ import React from 'react';
 
 import Chrome from '../../modules/chrome';
 import Colours from '../../modules/colours';
+import FixedStack from '../../modules/fixedstack';
 
 import Time from './time';
 import Hex from './hex';
@@ -12,6 +13,8 @@ import History from './history';
 class NewTab extends React.Component {
     constructor (props) {
         super(props);
+
+        this.history = new FixedStack(10, new Array(10));
 
         this.tick();
     }
@@ -64,6 +67,8 @@ class NewTab extends React.Component {
     }
 
     tickColour (time) {
+        let colour = `#${time.hour}${time.minute}${time.second}`;
+
         if (this.state && this.state.settings) {
             let settings = this.state.settings;
 
@@ -82,9 +87,27 @@ class NewTab extends React.Component {
                 case 'hue':
                     return Colours.secondToHueColour(seconds);
             }
+
+            if (settings.ticker) {
+                this.history.push(colour);
+            }
         }
 
-        return `#${time.hour}${time.minute}${time.second}`;
+        return colour;
+    }
+
+    loadWebFont (font) {
+        let elLinkFont = document.createElement('link');
+        elLinkFont.type = 'text/css';
+        elLinkFont.rel  = 'stylesheet';
+        elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}`;
+
+        document.head.appendChild(elLinkFont);
+
+        let style = document.createElement('style');
+        style.textContent = `*{font-family: ${font} !important;}`;
+
+        document.head.appendChild(style);
     }
 
     render () {
@@ -101,6 +124,15 @@ class NewTab extends React.Component {
             // Text/colour protection
             if (settings.colour !== 'regular') {
                 classlist += ' full';
+            }
+        }
+
+        if (navigator.onLine) {
+            // TODO: background images/opacity
+
+            // Custom web font
+            if (settings.font !== 'Default (Open Sans)') {
+                this.loadWebFont(settings.font);
             }
         }
 
@@ -127,7 +159,9 @@ class NewTab extends React.Component {
                     <Panels />
                 </div>
 
-                { settings.ticker && <History /> }
+                { settings.ticker &&
+                    <History data={this.history} />
+                }
             </div>
         );
     }

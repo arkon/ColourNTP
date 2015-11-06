@@ -19,7 +19,10 @@ var Time = (props) => {
     return (
         <h1 className='colours__time'>
             {hour} : {time.minute} : {time.second}
-            {!props.hourFormat24 && <span className='colours__time__postfix'>{time.pm ? 'PM' : 'AM'}</span>}
+
+            { !props.hourFormat24 &&
+                <span className='colours__time__postfix'>{time.pm ? 'PM' : 'AM'}</span>
+            }
         </h1>
     );
 };

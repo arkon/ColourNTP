@@ -4,7 +4,10 @@ class FixedStack {
      * A "stack" with a fixed size. If an item is pushed to the stack and
      * the stack is "full", the first item is removed.
      */
-    constructor (private maxSize, private stack = []) { }
+    constructor (maxSize, stack) {
+        this.maxSize = maxSize;
+        this.stack = stack || [];
+    }
 
     push (item) {
         this.stack.push(item);
@@ -12,8 +15,8 @@ class FixedStack {
         this.stack.splice(0, this.stack.length - this.maxSize);
     }
 
-    get (index) {
-        return this.stack[index];
+    getArray () {
+        return this.stack;
     }
 }
 

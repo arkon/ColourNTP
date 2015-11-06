@@ -1,18 +1,22 @@
 import React from 'react';
 
 
-class History extends React.Component {
-    constructor (props) {
-        super(props);
-    }
+var History = (props) => {
+    return (
+        <div className='history'>
+            { props.data.getArray().map((item, i) => {
+                let onItemClick = (e) => {
+                    prompt('Copy to clipboard: Ctrl/⌘+C, Enter', item);
+                };
 
-    render () {
-        return (
-            <div className='history'>
-                History
-            </div>
-        );
-    }
+                return (
+                    <div key={i} className='history__item'
+                        style={{ backgroundColor: item }}
+                        onClick={onItemClick} />
+                );
+            }) }
+        </div>
+    );
 }
 
 export default History;
