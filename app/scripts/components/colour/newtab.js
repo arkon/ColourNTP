@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Chrome from '../../modules/chrome';
+import Colours from '../../modules/colours';
 
 import Time from './time';
 import Hex from './hex';
@@ -36,29 +37,28 @@ class NewTab extends React.Component {
     }
 
     tick (update) {
-        let nowDate = new Date(),
-            hour    = nowDate.getHours();
+        let now     = new Date(),
+            hour    = now.getHours(),
+            minute  = now.getMinutes(),
+            second  = now.getSeconds();
+
+        let time = {
+            pm     : hour >= 12,
+            hour   : this.pad(hour),
+            minute : this.pad(minute),
+            second : this.pad(second)
+        };
 
         if (update) {
             this.setState({
-                time : {
-                    pm     : hour >= 12,
-                    hour   : this.pad(hour),
-                    minute : this.pad(nowDate.getMinutes()),
-                    second : this.pad(nowDate.getSeconds())
-                },
-                colour: this.tickColour(nowDate)
+                time   : time,
+                colour : this.tickColour(time)
             });
         } else {
             this.state = {
                 settings : {},
-                time : {
-                    pm     : hour >= 12,
-                    hour   : this.pad(hour),
-                    minute : this.pad(nowDate.getMinutes()),
-                    second : this.pad(nowDate.getSeconds())
-                },
-                colour: this.tickColour(nowDate)
+                time     : time,
+                colour   : this.tickColour(time)
             };
         }
     }
@@ -67,19 +67,24 @@ class NewTab extends React.Component {
         if (this.state && this.state.settings) {
             let settings = this.state.settings;
 
+            let seconds =
+                (parseInt(time.hour, 10) * 60 * 60) +
+                (parseInt(time.minute, 10) * 60) +
+                (parseInt(time.second, 10));
+
             switch (settings.colour) {
                 case 'solid':
                     return settings.colourSolid;
 
                 case 'full':
-                    return '';
+                    return Colours.secondToHexColour(seconds);
 
                 case 'hue':
-                    return '';
+                    return Colours.secondToHueColour(seconds);
             }
         }
 
-        return `#${this.pad(time.getHours())}${this.pad(time.getMinutes())}${this.pad(time.getSeconds())}`;
+        return `#${time.hour}${time.minute}${time.second}`;
     }
 
     render () {
