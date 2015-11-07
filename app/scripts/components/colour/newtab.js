@@ -25,6 +25,25 @@ class NewTab extends React.Component {
             this.setState({
                 settings : settings
             });
+
+            if (navigator.onLine) {
+                // Background images/opacity
+                if (settings.bg !== 'none') {
+                    if (settings.bg === 'unsplash') {
+                        // perSession, daily, weekly
+                        // this.loadBgImage(settings.bgCustomUrl);
+                    }
+
+                    if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
+                        this.loadBgImage(settings.bgCustomUrl);
+                    }
+                }
+
+                // Custom web font
+                if (settings.font.indexOf('Default') < 0) {
+                    this.loadWebFont(settings.font);
+                }
+            }
         });
     }
 
@@ -56,9 +75,11 @@ class NewTab extends React.Component {
             });
         } else {
             this.state = {
-                settings : {},
-                time     : time,
-                colour   : this.tickColour(time)
+                settings  : {},
+                time      : time,
+                colour    : this.tickColour(time),
+                bgImage   : null,
+                bgOpacity : null
             };
         }
     }
@@ -99,13 +120,19 @@ class NewTab extends React.Component {
         document.head.appendChild(style);
     }
 
+    loadBgImage (imgUrl) {
+        this.setState({
+            bgImage   : imgUrl,
+            bgOpacity : this.state.settings.bgOpacity / 100
+        });
+    }
+
     render () {
         let settings = this.state.settings;
 
         let settingsLoaded = Object.keys(settings).length > 0;
 
         let coloursClass = 'colours';
-
         if (settingsLoaded) {
             // No animations
             if (settings.animations === false) {
@@ -116,36 +143,30 @@ class NewTab extends React.Component {
             if (settings.colour !== 'regular') {
                 coloursClass += ' full';
             }
-
-            if (navigator.onLine) {
-                // TODO: background images/opacity
-                if (settings.bg !== 'none') {
-
-                }
-
-                // Custom web font
-                if (settings.font.indexOf('Default') < 0) {
-                    this.loadWebFont(settings.font);
-                }
-            }
         } else {
             coloursClass += ' colours--hidden';
         }
 
         // Background styles
+        let bgStyle = {
+            backgroundImage : `url(${this.state.bgImage})`
+        };
+
         let bgColorStyle = {
-            backgroundColor: this.state.colour
+            backgroundColor : this.state.colour,
+            opacity         : this.state.bgOpacity
         };
 
         return (
-            <div className={coloursClass}>
+            <div className={coloursClass} style={bgStyle}>
                 <div className='colours__bg' style={bgColorStyle}></div>
 
                 <div className='colours__opts'>
                     <a target='_blank' className='colours__opts__opt colours__opts__opt--options' href='options.html'>Options</a>
 
                     { settings && settings.bg &&
-                        <a target='_blank' className='colours__opts__opt colours__opts__opt--download'>Open image</a>
+                        <a target='_blank' className='colours__opts__opt colours__opts__opt--download'
+                            href={this.state.bgImage}>Open image</a>
                     }
                 </div>
 

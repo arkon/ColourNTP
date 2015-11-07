@@ -20,7 +20,6 @@ class Options extends React.Component {
             'Maven Pro', 'Ovo', 'PT Mono', 'PT Sans', 'PT Serif', 'Raleway', 'Roboto', 'Roboto Condensed',
             'Roboto Slab', 'Source Code Pro', 'Source Sans Pro', 'Tahoma', 'Times', 'Ubuntu'];
 
-        // TODO: merge defaults
         this.state = {
             settings : {}
         };

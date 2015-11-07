@@ -6,23 +6,18 @@
 @import 'colours/options';
 
 
-// Main time/hex display
-
-body {
-    background-position: center center;
-    background-size: cover;
-    transition: background-color 0.8s;
+.notransition {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+    }
 }
 
-    .notransition {
-        *,
-        *::before,
-        *::after {
-            animation: none !important;
-            transition: none !important;
-            opacity: 1 !important;
-        }
-    }
+
+// Main time/hex display
 
 #newtab {
     height: 100%;
@@ -30,6 +25,8 @@ body {
 }
 
 .colours {
+    background-position: center center;
+    background-size: cover;
     display: table;
     height: 100%;
     opacity: 1;
@@ -50,7 +47,7 @@ body {
         transition: background-color 0.8s;
         width: 100%;
         will-change: background-color;
-        z-index: -1;
+        z-index: 0;
     }
 
 .colours__time {
@@ -89,9 +86,11 @@ body {
 .info {
     display: table-cell;
     height: 100%;
+    position: relative;
     text-align: center;
     vertical-align: middle;
     width: 100%;
+    z-index: 1000;
 }
 
 // Protects against light backgrounds when using full spectrum
@@ -104,37 +103,5 @@ body {
 
     .panels__panel {
         box-shadow: 0 1px 4px #555;
-    }
-}
-
-li {
-    display: inline-block;
-    vertical-align: top;
-
-    &:active {
-        transform: scale(0.95);
-    }
-
-    a {
-        background-color: #eee;
-        border: 1px solid #ddd;
-        color: #1e1e1e;
-        display: inline-block;
-        font-size: 1rem;
-        margin: 0.5em;
-        transition: box-shadow 0.3s;
-        will-change: box-shadow;
-
-        &:hover {
-            box-shadow: 0 0 0 2px #777;
-            color: #0e0e0e;
-        }
-    }
-}
-
-@for $i from 0 through 50 {
-    .item-#{$i} {
-        animation: shiftUp 0.3s ease-out ($i * 0.03s) forwards;
-        opacity: 0;
     }
 }
