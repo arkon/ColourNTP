@@ -94,7 +94,7 @@ class NewTab extends React.Component {
         document.head.appendChild(elLinkFont);
 
         let style = document.createElement('style');
-        style.textContent = `*{font-family: ${font} !important;}`;
+        style.textContent = `* { font-family: ${font} !important; }`;
 
         document.head.appendChild(style);
     }
@@ -102,29 +102,31 @@ class NewTab extends React.Component {
     render () {
         let settings = this.state.settings;
 
-        let classlist = 'colours';
+        let coloursClass = 'colours';
+        if (!settings) {
+            coloursClass += ' colours--hidden';  // TODO: fix this
+        }
 
         if (settings) {
             // No animations
             if (settings.animations === false) {
-                classlist += ' notransition';
+                coloursClass += ' notransition';
             }
 
             // Text/colour protection
             if (settings.colour !== 'regular') {
-                classlist += ' full';
+                coloursClass += ' full';
             }
 
             if (navigator.onLine) {
                 // TODO: background images/opacity
 
                 // Custom web font
-                if (settings.font.indexOf('Default') < 0) {
-                    this.loadWebFont(settings.font);
-                }
+                // if (settings.font.indexOf('Default') < 0) {
+                //     this.loadWebFont(settings.font);
+                // }
             }
         }
-
 
         // Background styles
         let bgColorStyle = {
@@ -132,7 +134,7 @@ class NewTab extends React.Component {
         };
 
         return (
-            <div className={classlist}>
+            <div className={coloursClass}>
                 <div className='colours__bg' style={bgColorStyle}></div>
 
                 <div className='colours__opts'>
@@ -149,7 +151,7 @@ class NewTab extends React.Component {
                     <Panels />
                 </div>
 
-                { settings.ticker &&
+                { settings.ticker && settings.colour !== 'solid' &&
                     <History colour={this.state.colour} />
                 }
             </div>

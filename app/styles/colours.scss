@@ -24,7 +24,7 @@ body {
         }
     }
 
-#colours {
+#newtab {
     height: 100%;
     width: 100%;
 }
@@ -32,9 +32,15 @@ body {
 .colours {
     display: table;
     height: 100%;
+    opacity: 1;
     padding: 1em;
+    transition: opacity 0.2s;
     width: 100%;
 }
+
+    .colours--hidden {
+        opacity: 0;
+    }
 
     .colours__bg {
         height: 100%;

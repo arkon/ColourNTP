@@ -4,4 +4,4 @@ import ReactDOM from 'react-dom';
 import NewTab from '../components/colour/newtab';
 
 
-ReactDOM.render(<NewTab />, document.getElementById('colours'));
+ReactDOM.render(<NewTab />, document.getElementById('newtab'));
