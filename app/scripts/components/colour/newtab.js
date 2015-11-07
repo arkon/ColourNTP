@@ -155,7 +155,7 @@ class NewTab extends React.Component {
             }
 
             // Text/colour protection
-            if (settings.colour !== 'regular') {
+            if (settings.colour !== 'regular' || settings.bg !== 'none') {
                 coloursClass += ' full';
             }
         } else {
