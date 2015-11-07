@@ -30,8 +30,23 @@ class NewTab extends React.Component {
                 // Background images/opacity
                 if (settings.bg !== 'none') {
                     if (settings.bg === 'unsplash') {
-                        // perSession, daily, weekly
-                        // this.loadBgImage(settings.bgCustomUrl);
+                        let unsplashBgUrl = 'https://source.unsplash.com/';
+
+                        switch (settings.bgUnsplashFreq) {
+                            case 'perSession':
+                                unsplashBgUrl += 'random';
+                                break;
+
+                            case 'daily':
+                                unsplashBgUrl += 'daily';
+                                break;
+
+                            case 'weekly':
+                                unsplashBgUrl += 'weekly';
+                                break;
+                        }
+
+                        this.loadBgImage(unsplashBgUrl);
                     }
 
                     if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
