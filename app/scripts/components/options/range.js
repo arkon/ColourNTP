@@ -8,7 +8,7 @@ class Range extends React.Component {
         super(props);
 
         this.state = {
-            value: this.props.value
+            value: this.props.value || 50
         };
 
         this.handleChange = this.handleChange.bind(this);

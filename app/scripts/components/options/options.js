@@ -98,21 +98,29 @@ class Options extends React.Component {
 
                 <h2 className='options__subheader'>Background image</h2>
 
-                <Checkbox label='Custom background image'
-                    tooltip='You must use an online image.'
-                    optkey='bg'
-                    value={settings.bg}>
-                    <Checkbox label='Top wallpapers from /r/wallpapers'
-                        tooltip='Fetch the top wallpaper from the wallpapers subreddit everyday.'
-                        optkey='bgReddit'
-                        value={settings.bgReddit} />
-                    <Textbox label='Image URL'
-                        optkey='bgUrl'
-                        value={settings.bgUrl} />
-                    <Range label='Colour overlay opacity'
-                        optkey='bgOpacity'
-                        value={settings.bgOpacity} />
-                </Checkbox>
+                <RadioGroup group='bg' optkey='bg' value={settings.bg}>
+                    <Radio label='None'
+                        tooltip='No background image.'
+                        value='none' />
+
+                    <Radio label='Unsplash'
+                        tooltip='A new image from Unsplash.'
+                        value='unsplash'>
+                        bgUnsplashFreq: perSession, daily, weekly
+                    </Radio>
+
+                    <Radio label='Custom'
+                        tooltip='A custom image.'
+                        value='custom'>
+                        <Textbox label='Custom image URL'
+                            optkey='bgCustomUrl'
+                            value={settings.bgCustomUrl} />
+                    </Radio>
+                </RadioGroup>
+
+                <Range label='Colour overlay opacity'
+                    optkey='bgOpacity'
+                    value={settings.bgOpacity} />
 
 
                 <h2 className='options__subheader'>Panels</h2>

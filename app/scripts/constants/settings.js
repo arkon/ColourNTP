@@ -1,25 +1,25 @@
 const Defaults = {
-    font: 'Default (Open Sans)',
-    time24hr: true,
-    animations: false,
+    font           : 'Default (Open Sans)',
+    time24hr       : true,
+    animations     : false,
 
-    colour: 'regular',  // regular, full, hue, solid
-    colourSolid: '',
-    ticker: false,
-    showHex: true,
+    colour         : 'regular',  // regular, full, hue, solid
+    colourSolid    : '',
+    ticker         : false,
+    showHex        : true,
 
-    bg: false,
-    bgReddit: false,
-    bgUrl: '',
-    bgOpacity: 80,
+    bg             : 'none',     // none, unsplash, custom
+    bgUnsplashFreq : 'daily',    // perSession, daily, weekly
+    bgCustomUrl    : '',
+    bgOpacity      : 80,
 
-    panelVisited: true,
-    panelClosed: true,
-    panelApps: true,
-    panelShortcuts: true,
+    panelVisited   : true,
+    panelClosed    : true,
+    panelApps      : true,
+    panelShortcuts : true,
 
-    maxVisited: 10,
-    maxClosed: 10
+    maxVisited     : 10,
+    maxClosed      : 10
 };
 
 export default Defaults;
