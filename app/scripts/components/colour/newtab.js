@@ -2,7 +2,6 @@ import React from 'react';
 
 import Chrome from '../../modules/chrome';
 import Colours from '../../modules/colours';
-import FixedStack from '../../modules/fixedstack';
 
 import Time from './time';
 import Hex from './hex';
@@ -13,8 +12,6 @@ import History from './history';
 class NewTab extends React.Component {
     constructor (props) {
         super(props);
-
-        this.history = new FixedStack(10, new Array(10));
 
         this.tick();
     }
@@ -67,19 +64,15 @@ class NewTab extends React.Component {
     }
 
     tickColour (time) {
-        let colour = `#${time.hour}${time.minute}${time.second}`;
-
         if (this.state && this.state.settings) {
-            let settings = this.state.settings;
-
             let seconds =
                 (parseInt(time.hour, 10) * 60 * 60) +
                 (parseInt(time.minute, 10) * 60) +
                 (parseInt(time.second, 10));
 
-            switch (settings.colour) {
+            switch (this.state.settings.colour) {
                 case 'solid':
-                    return settings.colourSolid;
+                    return this.state.settings.colourSolid;
 
                 case 'full':
                     return Colours.secondToHexColour(seconds);
@@ -87,17 +80,13 @@ class NewTab extends React.Component {
                 case 'hue':
                     return Colours.secondToHueColour(seconds);
             }
-
-            if (settings.ticker) {
-                this.history.push(colour);
-            }
         }
 
-        return colour;
+        return `#${time.hour}${time.minute}${time.second}`;
     }
 
     loadWebFont (font) {
-        let elLinkFont = document.createElement('link');
+        let elLinkFont  = document.createElement('link');
         elLinkFont.type = 'text/css';
         elLinkFont.rel  = 'stylesheet';
         elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}`;
@@ -125,16 +114,17 @@ class NewTab extends React.Component {
             if (settings.colour !== 'regular') {
                 classlist += ' full';
             }
-        }
 
-        if (navigator.onLine) {
-            // TODO: background images/opacity
+            if (navigator.onLine) {
+                // TODO: background images/opacity
 
-            // Custom web font
-            if (settings.font !== 'Default (Open Sans)') {
-                this.loadWebFont(settings.font);
+                // Custom web font
+                if (settings.font.indexOf('Default') < 0) {
+                    this.loadWebFont(settings.font);
+                }
             }
         }
+
 
         // Background styles
         let bgColorStyle = {
@@ -160,7 +150,7 @@ class NewTab extends React.Component {
                 </div>
 
                 { settings.ticker &&
-                    <History data={this.history} />
+                    <History colour={this.state.colour} />
                 }
             </div>
         );
