@@ -102,12 +102,14 @@ class NewTab extends React.Component {
     render () {
         let settings = this.state.settings;
 
+        let settingsLoaded = Object.keys(settings).length > 0;
+
         let coloursClass = 'colours';
-        if (!settings) {
+        if (!settingsLoaded) {
             coloursClass += ' colours--hidden';  // TODO: fix this
         }
 
-        if (settings) {
+        if (settingsLoaded) {
             // No animations
             if (settings.animations === false) {
                 coloursClass += ' notransition';
@@ -122,9 +124,9 @@ class NewTab extends React.Component {
                 // TODO: background images/opacity
 
                 // Custom web font
-                // if (settings.font.indexOf('Default') < 0) {
-                //     this.loadWebFont(settings.font);
-                // }
+                if (settings.font.indexOf('Default') < 0) {
+                    this.loadWebFont(settings.font);
+                }
             }
         }
 
