@@ -119,6 +119,9 @@ class NewTab extends React.Component {
 
             if (navigator.onLine) {
                 // TODO: background images/opacity
+                if (settings.bg !== 'none') {
+
+                }
 
                 // Custom web font
                 if (settings.font.indexOf('Default') < 0) {

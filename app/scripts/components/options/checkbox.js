@@ -45,7 +45,9 @@ class Checkbox extends React.Component {
                     </abbr>
                 </label>
 
-                { this.state.value && this.props.children }
+                { this.state.value &&
+                    <div className='options__content'>{this.props.children}</div>
+                }
             </div>
         );
     }

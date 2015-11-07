@@ -20,7 +20,10 @@ var Radio = (props) => {
                     </div>
                 </abbr>
             </label>
-            { props.checked && props.children }
+
+            { props.checked &&
+                <div className='options__content'>{props.children}</div>
+            }
         </div>
     );
 };

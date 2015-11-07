@@ -106,7 +106,20 @@ class Options extends React.Component {
                     <Radio label='Unsplash'
                         tooltip='A new image from Unsplash.'
                         value='unsplash'>
-                        bgUnsplashFreq: perSession, daily, weekly
+                        <RadioGroup group='bgUnsplashFreq'
+                            optkey='bgUnsplashFreq' value={settings.bgUnsplashFreq}>
+                            <Radio label='Per session'
+                                tooltip='A new image every time.'
+                                value='perSession' />
+
+                            <Radio label='Daily'
+                                tooltip='A new image every day.'
+                                value='daily' />
+
+                            <Radio label='Weekly'
+                                tooltip='A new image every week.'
+                                value='weekly' />
+                        </RadioGroup>
                     </Radio>
 
                     <Radio label='Custom'
