@@ -90,6 +90,11 @@ class Options extends React.Component {
                     optkey='ticker'
                     value={settings.ticker} />
 
+                <Checkbox label='Show hexcode'
+                    tooltip='Shows the current colour hexcode underneath the time.'
+                    optkey='showHex'
+                    value={settings.showHex} />
+
 
                 <h2 className='options__subheader'>Background image</h2>
 
