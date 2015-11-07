@@ -1,7 +1,7 @@
 {
   "name": "ColourNTP",
   "version": "3.0.0",
-  "description": "Simple node project for building a Chrome extension.",
+  "description": "A colourful new tab page replacement for Google Chrome.",
   "author": "Eugene Cheung",
   "repository": {
     "type": "git",

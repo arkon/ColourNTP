@@ -81,8 +81,8 @@ gulp.task('js', function (done) {
                 .transform(babel)
                 .bundle()
                 .pipe(source(filename + '.bundle.js'))
-                //.pipe(buffer())
-                //.pipe(uglify())
+                .pipe(buffer())
+                .pipe(uglify())
                 .pipe(gulp.dest(paths.dest_scripts));
         });
 

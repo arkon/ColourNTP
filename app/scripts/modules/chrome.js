@@ -10,7 +10,7 @@ class Chrome {
         chrome.topSites.get(function (visitedURLs) {
             visitedURLs = visitedURLs.slice(0, max);
 
-            var items = [];
+            let items = [];
 
             for (let site of visitedURLs) {
                 items.push({
@@ -38,7 +38,6 @@ class Chrome {
                     session : session.window ? session.window.sessionId : session.tab.sessionId,
                     img     : session.tab ? `chrome://favicon/${session.tab.url}` : null
                 });
-
             }
 
             done(items);

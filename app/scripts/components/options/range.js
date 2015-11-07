@@ -1,23 +1,14 @@
 import React from 'react';
 
+import OptionsComponent from './optionscomponent';
 import Chrome from '../../modules/chrome';
 
 
-class Range extends React.Component {
+class Range extends OptionsComponent {
     constructor (props) {
         super(props);
 
-        this.state = {
-            value: this.props.value || 50
-        };
-
         this.handleChange = this.handleChange.bind(this);
-    }
-
-    componentWillReceiveProps (nextProps) {
-        this.setState({
-            value: nextProps.value
-        });
     }
 
     handleChange (e) {
@@ -33,7 +24,7 @@ class Range extends React.Component {
         return (
             <label>
                 <p>{this.props.label}:</p>
-                <input type='range' min='0' max='100' step='1' value={this.state.value.toString()} onChange={this.handleChange} />
+                <input type='range' min='0' max='100' step='1' value={this.state.value} onChange={this.handleChange} />
                 <span>({this.state.value}%)</span>
             </label>
         );

@@ -1,23 +1,14 @@
 import React from 'react';
 
+import OptionsComponent from './optionscomponent';
 import Chrome from '../../modules/chrome';
 
 
-class Checkbox extends React.Component {
+class Checkbox extends OptionsComponent {
     constructor (props) {
         super(props);
 
-        this.state = {
-            value: this.props.value
-        };
-
         this.handleChange = this.handleChange.bind(this);
-    }
-
-    componentWillReceiveProps (nextProps) {
-        this.setState({
-            value: nextProps.value
-        });
     }
 
     handleChange (e) {

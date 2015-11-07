@@ -64,6 +64,7 @@ class NewTab extends React.Component {
 
     componentWillUnmount () {
         clearInterval(this.interval);
+        this.interval = null;
     }
 
     pad (n) {
@@ -107,6 +108,7 @@ class NewTab extends React.Component {
                 (parseInt(time.second, 10));
 
             switch (this.state.settings.colour) {
+                // TODO: only handle the solid colour once instead of every second
                 case 'solid':
                     return this.state.settings.colourSolid;
 
@@ -129,6 +131,7 @@ class NewTab extends React.Component {
 
         document.head.appendChild(elLinkFont);
 
+        // TODO: move this to render styles
         let style = document.createElement('style');
         style.textContent = `* { font-family: ${font} !important; }`;
 
@@ -147,6 +150,7 @@ class NewTab extends React.Component {
 
         let settingsLoaded = Object.keys(settings).length > 0;
 
+        // TODO: move this out of render
         let coloursClass = 'colours';
         if (settingsLoaded) {
             // No animations
@@ -177,7 +181,8 @@ class NewTab extends React.Component {
                 <div className='colours__bg' style={bgColorStyle}></div>
 
                 <div className='colours__opts'>
-                    <a target='_blank' className='colours__opts__opt colours__opts__opt--options' href='options.html'>Options</a>
+                    <a target='_blank' className='colours__opts__opt colours__opts__opt--options'
+                        href='options.html'>Options</a>
 
                     { settings && settings.bg &&
                         <a target='_blank' className='colours__opts__opt colours__opts__opt--download'

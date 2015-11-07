@@ -103,7 +103,7 @@ class Options extends React.Component {
                         value='none' />
 
                     <Radio label='Unsplash'
-                        tooltip='A new image from Unsplash.'
+                        tooltip='A random image from unsplash.com.'
                         value='unsplash'>
                         <RadioGroup group='bgUnsplashFreq'
                             optkey='bgUnsplashFreq' value={settings.bgUnsplashFreq}>

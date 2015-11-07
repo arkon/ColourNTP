@@ -7,6 +7,7 @@ class History extends React.Component {
     constructor (props) {
         super(props)
 
+        // TODO: just do the array stuff here?
         this.state = {
             history: new FixedStack(10, new Array(10))
         };
