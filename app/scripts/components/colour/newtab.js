@@ -105,9 +105,6 @@ class NewTab extends React.Component {
         let settingsLoaded = Object.keys(settings).length > 0;
 
         let coloursClass = 'colours';
-        if (!settingsLoaded) {
-            coloursClass += ' colours--hidden';  // TODO: fix this
-        }
 
         if (settingsLoaded) {
             // No animations
@@ -128,6 +125,8 @@ class NewTab extends React.Component {
                     this.loadWebFont(settings.font);
                 }
             }
+        } else {
+            coloursClass += ' colours--hidden';
         }
 
         // Background styles
