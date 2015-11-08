@@ -1,30 +1,38 @@
 import React from 'react';
 
-import FixedStack from '../../modules/fixedstack';
-
 
 class History extends React.Component {
     constructor (props) {
         super(props)
 
-        // TODO: just do the array stuff here?
         this.state = {
-            history: new FixedStack(10, new Array(10))
+            history: []
         };
+
+        this.pushToStack = this.pushToStack.bind(this);
     }
 
     componentWillMount () {
-        this.state.history.push(this.props.colour);
+        this.pushToStack(this.props.colour);
     }
 
     componentWillReceiveProps (nextProps) {
-        this.state.history.push(nextProps.colour);
+        this.pushToStack(nextProps.colour);
+    }
+
+    pushToStack (item) {
+        let stack = this.state.history;
+
+        stack.push(item)
+
+        // Only keep 10 newest items
+        stack.splice(0, stack.length - 10);
     }
 
     render () {
         return (
             <div className='history'>
-                { this.state.history.getArray().map((item, i) => {
+                { this.state.history.map((item, i) => {
                     let onItemClick = (e) => {
                         prompt('Copy to clipboard: Ctrl/⌘+C, Enter', item);
                     };
