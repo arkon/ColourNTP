@@ -177,7 +177,7 @@ class NewTab extends React.Component {
                     <a target='_blank' className='colours__opts__opt colours__opts__opt--options'
                         href='options.html' title='Options' />
 
-                    { settings && settings.bg &&
+                    { settings && settings.bg !== 'none' &&
                         <a target='_blank' className='colours__opts__opt colours__opts__opt--download'
                             href={this.state.bgImage} title='Open image' />
                     }
