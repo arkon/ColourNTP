@@ -24,12 +24,10 @@ class NewTab extends React.Component {
         };
 
         this.tick = this.tick.bind(this);
+        this.tickColour = this.tickColour.bind(this);
     }
 
     componentDidMount () {
-        this.tick();
-        this.interval = setInterval(this.tick, 1000);
-
         Chrome.getSettings((settings) => {
             let coloursClass = 'colours';
 
@@ -81,6 +79,16 @@ class NewTab extends React.Component {
                     this.loadWebFont(settings.font);
                 }
             }
+
+            if (settings.colour === 'solid') {
+                this.setState({
+                    colour : settings.colourSolid
+                });
+            }
+
+            // Start the clock
+            this.tick();
+            this.interval = setInterval(this.tick, 1000);
         });
     }
 
@@ -107,32 +115,35 @@ class NewTab extends React.Component {
         };
 
         this.setState({
-            time   : time,
-            colour : this.tickColour(time)
+            time : time
         });
+
+        if (this.state.settings.colour !== 'solid') {
+            this.tickColour(time);
+        }
     }
 
     tickColour (time) {
-        if (this.state && this.state.settings) {
-            let seconds =
-                (parseInt(time.hour, 10) * 60 * 60) +
-                (parseInt(time.minute, 10) * 60) +
-                (parseInt(time.second, 10));
+        let colour = `#${time.hour}${time.minute}${time.second}`;
 
-            switch (this.state.settings.colour) {
-                // TODO: only handle the solid colour once instead of every second
-                case 'solid':
-                    return this.state.settings.colourSolid;
+        let seconds =
+            (parseInt(time.hour, 10) * 60 * 60) +
+            (parseInt(time.minute, 10) * 60) +
+            (parseInt(time.second, 10));
 
-                case 'full':
-                    return Colours.secondToHexColour(seconds);
+        switch (this.state.settings.colour) {
+            case 'full':
+                colour = Colours.secondToHexColour(seconds);
+                break;
 
-                case 'hue':
-                    return Colours.secondToHueColour(seconds);
-            }
+            case 'hue':
+                colour = Colours.secondToHueColour(seconds);
+                break;
         }
 
-        return `#${time.hour}${time.minute}${time.second}`;
+        this.setState({
+            colour : colour
+        });
     }
 
     loadWebFont (font) {
