@@ -2,6 +2,7 @@ import React from 'react';
 
 import Chrome from '../../modules/chrome';
 import Colours from '../../modules/colours';
+import Unsplash from '../../modules/unsplash';
 
 import Time from './time';
 import Hex from './hex';
@@ -50,23 +51,9 @@ class NewTab extends React.Component {
                 // Background images/opacity
                 if (settings.bg !== 'none') {
                     if (settings.bg === 'unsplash') {
-                        let unsplashBgUrl = 'https://source.unsplash.com/';
-
-                        switch (settings.bgUnsplashFreq) {
-                            case 'perSession':
-                                unsplashBgUrl += 'random';
-                                break;
-
-                            case 'daily':
-                                unsplashBgUrl += 'daily';
-                                break;
-
-                            case 'weekly':
-                                unsplashBgUrl += 'weekly';
-                                break;
-                        }
-
-                        this.loadBgImage(unsplashBgUrl);
+                        Unsplash.getImage(settings.bgUnsplashFreq, (url) => {
+                            this.loadBgImage(url);
+                        });
                     }
 
                     if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
