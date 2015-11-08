@@ -150,7 +150,7 @@ class NewTab extends React.Component {
         let elLinkFont  = document.createElement('link');
         elLinkFont.type = 'text/css';
         elLinkFont.rel  = 'stylesheet';
-        elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}`;
+        elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}:400,300`;
 
         let style = document.createElement('style');
         style.textContent = `* { font-family: ${font} !important; }`;
