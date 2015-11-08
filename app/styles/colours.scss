@@ -63,7 +63,6 @@
 .colours__time {
     animation: shiftUp 0.5s ease-out forwards;
     font-size: 7em;
-    font-weight: 300;
     margin-bottom: 3rem;
     opacity: 0;
     position: relative;
@@ -72,7 +71,6 @@
     .colours__time__postfix {
         bottom: 0.5em;
         font-size: 0.4em;
-        font-weight: 300;
         margin-left: 1.25rem;
         position: absolute;
         width: 0;
@@ -80,7 +78,6 @@
 
 .colours__hex {
     animation: shiftUp 0.5s ease-out 0.15s forwards;
-    font-weight: 300;
     opacity: 0;
 }
 
