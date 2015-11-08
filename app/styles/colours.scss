@@ -86,7 +86,7 @@
     opacity: 0;
 }
 
-@media all and (max-width: 700px) {
+@media (max-width: 700px) {
     .colours__time {
         font-size: 3.5em;
     }
