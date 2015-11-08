@@ -4,7 +4,7 @@
 // Dependencies                                                               //
 ////////////////////////////////////////////////////////////////////////////////
 
-var babel       = require('babelify'),
+var babelify    = require('babelify'),
     browserify  = require('browserify'),
     buffer      = require('vinyl-buffer'),
     del         = require('del'),
@@ -49,16 +49,16 @@ gulp.task('clean', function () {
     del.sync(paths.dest, { force: true });
 });
 
-// Copy font and image assets
-gulp.task('copy:assets', function () {
-    return gulp.src(paths.src_assets, { base: paths.src_assets_dir })
-        .pipe(gulp.dest(paths.dest_assets));
-});
-
 // Copy root files such as HTML views and the manifest
 gulp.task('copy:root', function () {
     return gulp.src(paths.src_root)
         .pipe(gulp.dest(paths.dest));
+});
+
+// Copy font and image assets
+gulp.task('copy:assets', function () {
+    return gulp.src(paths.src_assets, { base: paths.src_assets_dir })
+        .pipe(gulp.dest(paths.dest_assets));
 });
 
 // Process SCSS files
@@ -78,7 +78,7 @@ gulp.task('js', function (done) {
             var filename = entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '');
 
             return browserify(entry)
-                .transform(babel)
+                .transform(babelify, { presets: ['es2015', 'react'] })
                 .bundle()
                 .pipe(source(filename + '.bundle.js'))
                 .pipe(buffer())
