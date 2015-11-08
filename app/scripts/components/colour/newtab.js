@@ -26,6 +26,7 @@ class NewTab extends React.Component {
 
         this.tick = this.tick.bind(this);
         this.tickColour = this.tickColour.bind(this);
+        this.loadBgImage = this.loadBgImage.bind(this);
     }
 
     componentDidMount () {
@@ -51,9 +52,7 @@ class NewTab extends React.Component {
                 // Background images/opacity
                 if (settings.bg !== 'none') {
                     if (settings.bg === 'unsplash') {
-                        Unsplash.getImage(settings.bgUnsplashFreq, (url) => {
-                            this.loadBgImage(url);
-                        });
+                        Unsplash.getImage(settings.bgUnsplashFreq, this.loadBgImage);
                     }
 
                     if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
