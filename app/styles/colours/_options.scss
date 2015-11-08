@@ -16,7 +16,6 @@
         padding-right: 0.5em;
         transform: translateX(100%);
         transition: opacity 0.3s, transform 0.35s;
-        will-change: opacity, transform;
 
         &::before {
             background: no-repeat center center / 0.75em 0.75em;
