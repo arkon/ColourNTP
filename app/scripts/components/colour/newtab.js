@@ -13,13 +13,22 @@ class NewTab extends React.Component {
     constructor (props) {
         super(props);
 
-        this.tick();
+        this.state = {
+            settings   : {},
+            time       : {},
+            colour     : '',
+
+            bgImage    : null,
+            bgOpacity  : null,
+            fontFamily : null
+        };
+
+        this.tick = this.tick.bind(this);
     }
 
     componentDidMount () {
-        this.interval = setInterval(() => {
-            this.tick(true);
-        }, 1000);
+        this.tick();
+        this.interval = setInterval(this.tick, 1000);
 
         Chrome.getSettings((settings) => {
             this.setState({
@@ -71,7 +80,7 @@ class NewTab extends React.Component {
         return (n < 10) ? `0${n}` : n.toString();
     }
 
-    tick (update) {
+    tick () {
         let now     = new Date(),
             hour    = now.getHours(),
             minute  = now.getMinutes(),
@@ -84,20 +93,10 @@ class NewTab extends React.Component {
             second : this.pad(second)
         };
 
-        if (update) {
-            this.setState({
-                time   : time,
-                colour : this.tickColour(time)
-            });
-        } else {
-            this.state = {
-                settings  : {},
-                time      : time,
-                colour    : this.tickColour(time),
-                bgImage   : null,
-                bgOpacity : null
-            };
-        }
+        this.setState({
+            time   : time,
+            colour : this.tickColour(time)
+        });
     }
 
     tickColour (time) {
@@ -131,11 +130,14 @@ class NewTab extends React.Component {
 
         document.head.appendChild(elLinkFont);
 
-        // TODO: move this to render styles
         let style = document.createElement('style');
         style.textContent = `* { font-family: ${font} !important; }`;
 
         document.head.appendChild(style);
+
+        // this.setState({
+        //     fontFamily: font
+        // });
     }
 
     loadBgImage (imgUrl) {
@@ -167,8 +169,10 @@ class NewTab extends React.Component {
         }
 
         // Background styles
+        // console.log(this.state);
         let bgStyle = {
-            backgroundImage : `url(${this.state.bgImage})`
+            backgroundImage : this.state.bgImage && `url(${this.state.bgImage})`,
+            fontFamily      : this.state.fontFamily && `'${this.state.fontFamily}' !important`
         };
 
         let bgColorStyle = {
