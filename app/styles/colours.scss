@@ -110,10 +110,10 @@
     .colours__time,
     .colours__hex,
     .panels__toggles a {
-        text-shadow: 0 1px 4px #555;
+        text-shadow: 0 1px 0.15em rgba($dark-grey, 0.5);
     }
 
-    .panels__panel {
-        box-shadow: 0 1px 4px #555;
+    .panels__panel ul {
+        box-shadow: 0 1px 0.15em rgba($dark-grey, 0.5);
     }
 }
