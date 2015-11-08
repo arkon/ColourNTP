@@ -9,16 +9,14 @@ import RadioGroup from './radiogroup';
 import Range from './range';
 import Textbox from './textbox';
 
+import Fonts from '../../constants/fonts';
+
 import Chrome from '../../modules/chrome';
 
 
 class Options extends React.Component {
     constructor (props) {
         super(props);
-
-        this.fonts = ['Default (Open Sans)', 'Anonymous Pro', 'Arial', 'Arvo', 'Droid Sans', 'Droid Serif',
-            'Maven Pro', 'Ovo', 'PT Mono', 'PT Sans', 'PT Serif', 'Raleway', 'Roboto', 'Roboto Condensed',
-            'Roboto Slab', 'Source Code Pro', 'Source Sans Pro', 'Tahoma', 'Times', 'Ubuntu'];
 
         this.state = {
             settings : {}
@@ -45,7 +43,7 @@ class Options extends React.Component {
 
                 <Dropdown label='Font'
                     tooltip='Custom fonts from Google Fonts.'
-                    options={this.fonts}
+                    options={Fonts}
                     optkey='font'
                     value={settings.font} />
 
