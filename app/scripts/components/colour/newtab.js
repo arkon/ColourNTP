@@ -20,7 +20,7 @@ class NewTab extends React.Component {
 
             coloursClass : 'colours colours--hidden',
             bgImage      : null,
-            bgOpacity    : null
+            bgOpacity    : 1
         };
 
         this.tick = this.tick.bind(this);
@@ -170,18 +170,20 @@ class NewTab extends React.Component {
         let settings = this.state.settings;
 
         // Background styles
-        let bgStyle = {
-            backgroundImage : this.state.bgImage && `url(${this.state.bgImage})`
-        };
-
         let bgColorStyle = {
-            backgroundColor : this.state.colour,
-            opacity         : this.state.bgOpacity
+            backgroundColor : this.state.bgOpacity < 1 ?
+                Colours.rgba(this.state.colour, this.state.bgOpacity) :
+                this.state.colour
         };
 
         return (
-            <div className={this.state.coloursClass} style={bgStyle}>
-                <div className='colours__bg' style={bgColorStyle}></div>
+            <div className={this.state.coloursClass}>
+                { this.state.bgImage &&
+                    <div className='colours__bg_img'
+                        style={{ backgroundImage: `url(${this.state.bgImage})`}} />
+                }
+
+                <div className='colours__bg' style={bgColorStyle} />
 
                 <div className='colours__opts'>
                     <a target='_blank' className='colours__opts__opt colours__opts__opt--options'
