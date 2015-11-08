@@ -81,10 +81,15 @@
 
 .panels__app {
     li {
+        height: 10em;
         text-align: center;
 
         a {
-            height: auto;
+            align-items: center;
+            display: flex;
+            flex-flow: column nowrap;
+            height: 100%;
+            justify-content: center;
             line-height: 1.25;
             padding: 1em;
             white-space: normal;
@@ -95,6 +100,7 @@
     img {
         height: 3em;
         margin-bottom: 0.5em;
+        width: 3em;
     }
 
     .panels__panel__message {
