@@ -11,7 +11,7 @@ const Defaults = {
     bg             : 'none',     // none, unsplash, custom
     bgUnsplashFreq : 'daily',    // perSession, daily, weekly
     bgCustomUrl    : '',
-    bgOpacity      : 80,
+    bgOpacity      : 75,
 
     panelVisited   : true,
     panelClosed    : true,

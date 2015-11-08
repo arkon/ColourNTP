@@ -97,10 +97,6 @@ class NewTab extends React.Component {
         this.interval = null;
     }
 
-    pad (n) {
-        return (n < 10) ? `0${n}` : n.toString();
-    }
-
     tick () {
         let now     = new Date(),
             hour    = now.getHours(),
@@ -118,7 +114,7 @@ class NewTab extends React.Component {
             time : time
         });
 
-        if (this.state.settings.colour !== 'solid') {
+        if (this.state.settings.colour !== 'solid' && this.state.bgOpacity !== 0) {
             this.tickColour(time);
         }
     }
@@ -144,6 +140,10 @@ class NewTab extends React.Component {
         this.setState({
             colour : colour
         });
+    }
+
+    pad (n) {
+        return (n < 10) ? `0${n}` : n.toString();
     }
 
     loadWebFont (font) {
@@ -183,7 +183,9 @@ class NewTab extends React.Component {
                         style={{ backgroundImage: `url(${this.state.bgImage})`}} />
                 }
 
-                <div className='colours__bg' style={bgColorStyle} />
+                { this.state.bgOpacity !== 0 &&
+                    <div className='colours__bg' style={bgColorStyle} />
+                }
 
                 <div className='colours__opts'>
                     <a target='_blank' className='colours__opts__opt colours__opts__opt--options'
@@ -198,7 +200,7 @@ class NewTab extends React.Component {
                 <div className='info'>
                     <Time hourFormat24={settings.time24hr} time={this.state.time} />
 
-                    { settings.showHex &&
+                    { settings.showHex && this.state.bgOpacity !== 0 &&
                         <Hex colour={this.state.colour} />
                     }
 

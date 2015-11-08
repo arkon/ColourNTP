@@ -124,7 +124,7 @@ class Options extends React.Component {
                     <Radio label='Custom'
                         tooltip='A custom image.'
                         value='custom'>
-                        <Textbox label='Custom image URL'
+                        <Textbox label='Image URL'
                             optkey='bgCustomUrl'
                             value={settings.bgCustomUrl} />
                     </Radio>
