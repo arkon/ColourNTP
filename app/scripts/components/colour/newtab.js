@@ -14,13 +14,13 @@ class NewTab extends React.Component {
         super(props);
 
         this.state = {
-            settings   : {},
-            time       : {},
-            colour     : '',
+            settings     : {},
+            time         : {},
+            colour       : '',
 
-            bgImage    : null,
-            bgOpacity  : null,
-            fontFamily : null
+            coloursClass : 'colours colours--hidden',
+            bgImage      : null,
+            bgOpacity    : null
         };
 
         this.tick = this.tick.bind(this);
@@ -31,8 +31,21 @@ class NewTab extends React.Component {
         this.interval = setInterval(this.tick, 1000);
 
         Chrome.getSettings((settings) => {
+            let coloursClass = 'colours';
+
+            // No animations
+            if (!settings.animations) {
+                coloursClass += ' notransition';
+            }
+
+            // Text/colour protection
+            if (settings.colour !== 'regular' || settings.bg !== 'none') {
+                coloursClass += ' full';
+            }
+
             this.setState({
-                settings : settings
+                coloursClass : coloursClass,
+                settings     : settings
             });
 
             if (navigator.onLine) {
@@ -128,16 +141,11 @@ class NewTab extends React.Component {
         elLinkFont.rel  = 'stylesheet';
         elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}`;
 
-        document.head.appendChild(elLinkFont);
-
         let style = document.createElement('style');
         style.textContent = `* { font-family: ${font} !important; }`;
 
+        document.head.appendChild(elLinkFont);
         document.head.appendChild(style);
-
-        // this.setState({
-        //     fontFamily: font
-        // });
     }
 
     loadBgImage (imgUrl) {
@@ -150,29 +158,9 @@ class NewTab extends React.Component {
     render () {
         let settings = this.state.settings;
 
-        let settingsLoaded = Object.keys(settings).length > 0;
-
-        // TODO: move this out of render
-        let coloursClass = 'colours';
-        if (settingsLoaded) {
-            // No animations
-            if (settings.animations === false) {
-                coloursClass += ' notransition';
-            }
-
-            // Text/colour protection
-            if (settings.colour !== 'regular' || settings.bg !== 'none') {
-                coloursClass += ' full';
-            }
-        } else {
-            coloursClass += ' colours--hidden';
-        }
-
         // Background styles
-        // console.log(this.state);
         let bgStyle = {
-            backgroundImage : this.state.bgImage && `url(${this.state.bgImage})`,
-            fontFamily      : this.state.fontFamily && `'${this.state.fontFamily}' !important`
+            backgroundImage : this.state.bgImage && `url(${this.state.bgImage})`
         };
 
         let bgColorStyle = {
@@ -181,7 +169,7 @@ class NewTab extends React.Component {
         };
 
         return (
-            <div className={coloursClass} style={bgStyle}>
+            <div className={this.state.coloursClass} style={bgStyle}>
                 <div className='colours__bg' style={bgColorStyle}></div>
 
                 <div className='colours__opts'>
