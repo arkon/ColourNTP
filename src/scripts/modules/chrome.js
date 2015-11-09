@@ -1,4 +1,4 @@
-import Defaults from '../constants/settings';
+import Defaults from '../constants/defaults';
 
 
 class Chrome {
@@ -78,6 +78,13 @@ class Chrome {
                 });
             }
 
+            items.push({
+                title : 'Chrome Web Store',
+                id    : 'store',
+                img   : '../assets/img/chrome_web_store-128.png'
+                href  : 'https://chrome.google.com/webstore'
+            });
+
             done(items);
         });
     }
@@ -112,6 +119,37 @@ class Chrome {
         ];
 
         done(shortcuts);
+    }
+
+    static getDevices (done) {
+        /* chrome.sessions.getDevices(null, function (devices) {
+            let items = [];
+
+            for (var i = 0; i < devices.length; i++) {
+                (function (device) {
+                    let children = [];
+
+                    for (var j = 0; j < device.sessions.length; j++) {
+                        var session = device.sessions[j];
+                        var tabs = session.window ? session.window.tabs : [session.tab];
+                        for (var k = 0; k < tabs.length; k++) {
+                            children.push({
+                                title: tabs[k].title,
+                                url: tabs[k].url
+                            });
+                        }
+                    }
+
+                    items.push({
+                        title    : device.deviceName,
+                        id       : 'device.' + device.deviceName,
+                        children : children
+                    });
+                })(devices[i]);
+            }
+
+            done(items);
+        }); */
     }
 
 

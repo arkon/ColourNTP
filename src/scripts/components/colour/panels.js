@@ -177,8 +177,6 @@ class Panels extends React.Component {
                                     </li>
                                 );
                             }) }
-
-                            <a className='panels__panel__message' href='https://chrome.google.com/webstore'>Chrome Web Store</a>
                         </ul>
                     }
 
