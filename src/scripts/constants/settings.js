@@ -1,7 +1,7 @@
 const Defaults = {
     font           : 'Default (Open Sans)',
     time24hr       : true,
-    animations     : false,
+    animations     : true,
 
     colour         : 'regular',  // regular, full, hue, solid
     colourSolid    : '',
