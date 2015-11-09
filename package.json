@@ -1,7 +1,7 @@
 {
   "name": "ColourNTP",
-  "version": "3.0.0",
-  "description": "A colourful new tab page replacement for Google Chrome.",
+  "version": "3.0.1",
+  "description": "Chrome new tab page based on http://whatcolourisit.scn9a.org/",
   "author": "Eugene Cheung",
   "repository": {
     "type": "git",

@@ -25,12 +25,12 @@ var babelify    = require('babelify'),
 
 // Various source and destination paths
 var paths = {
-    src_root        : 'app/*',
-    src_assets_dir  : 'app/assets',
-    src_assets      : 'app/assets/**/*',
-    src_styles      : 'app/styles/**/*.scss',
-    src_scripts     : 'app/scripts/**/*.js',
-    src_bundles     : 'app/scripts/bundles/*.js',
+    src_root        : 'src/*',
+    src_assets_dir  : 'src/assets',
+    src_assets      : 'src/assets/**/*',
+    src_styles      : 'src/styles/**/*.scss',
+    src_scripts     : 'src/scripts/**/*.js',
+    src_bundles     : 'src/scripts/bundles/*.js',
 
     dest            : 'build',
     dest_temp       : 'build/temp',
