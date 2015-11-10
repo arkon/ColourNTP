@@ -11,14 +11,15 @@
     "newtab": "colours.html"
   },
   "permissions": [
-    "topSites",
+    "<all_urls>",
+    "chrome://favicon/",
+    "fontSettings",
     "management",
-    "tabs",
     "sessions",
     "storage",
-    "unlimitedStorage",
-    "chrome://favicon/",
-    "<all_urls>"
+    "tabs",
+    "topSites",
+    "unlimitedStorage"
   ],
 
   "icons": {

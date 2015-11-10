@@ -170,6 +170,16 @@ class Chrome {
 
         chrome.storage.sync.set(settingObj);
     }
+
+
+    // Fonts
+    // ============================================================================================
+
+    static getFonts (done) {
+        chrome.fontSettings.getFontList((fonts) => {
+            done(fonts);
+        });
+    }
 }
 
 export default Chrome;
