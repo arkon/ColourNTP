@@ -86,9 +86,13 @@ class Panels extends React.Component {
         };
     }
 
-    onClickApp (id) {
+    onClickApp (id, href) {
         return function () {
-            chrome.management.launchApp(id);
+            if (href) {
+                chrome.tabs.update(null, { url: href });
+            } else {
+                chrome.management.launchApp(id);
+            }
         };
     }
 
@@ -169,7 +173,7 @@ class Panels extends React.Component {
                         <ul className='panels__app'>
                             { state.apps.map((app, i) => {
                                 return (
-                                    <li key={i} onClick={this.onClickApp(app.id)}>
+                                    <li key={i} onClick={this.onClickApp(app.id, app.href)}>
                                         <a className={`item-${i}`}>
                                             <img src={app.img} alt={app.title} />
                                             <div className='panels__app__name'>{app.title}</div>
