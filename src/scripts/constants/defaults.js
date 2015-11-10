@@ -17,6 +17,7 @@ const Defaults = {
     panelClosed    : true,
     panelApps      : true,
     panelShortcuts : true,
+    panelDevices   : true,
 
     showWebStore   : true,
 

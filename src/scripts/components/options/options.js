@@ -168,6 +168,11 @@ class Options extends React.Component {
                     optkey='panelShortcuts'
                     value={settings.panelShortcuts} />
 
+                <Checkbox label='Other devices'
+                    tooltip='Tabs from your other devices.'
+                    optkey='panelDevices'
+                    value={settings.panelDevices} />
+
 
                 <div className='options__credits'>
                     <a href='https://github.com/arkon/ColourNTP'>Source code on GitHub</a>

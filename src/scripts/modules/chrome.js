@@ -121,35 +121,33 @@ class Chrome {
         done(shortcuts);
     }
 
-    static getDevices (done) {
-        /* chrome.sessions.getDevices(null, function (devices) {
+    static getDevices (done, max = 10) {
+        chrome.sessions.getDevices({ maxResults: max }, function (devices) {
             let items = [];
 
-            for (var i = 0; i < devices.length; i++) {
-                (function (device) {
-                    let children = [];
+            for (let device of devices) {
+                let tabs = [];
 
-                    for (var j = 0; j < device.sessions.length; j++) {
-                        var session = device.sessions[j];
-                        var tabs = session.window ? session.window.tabs : [session.tab];
-                        for (var k = 0; k < tabs.length; k++) {
-                            children.push({
-                                title: tabs[k].title,
-                                url: tabs[k].url
-                            });
-                        }
+                for (let session of device.sessions) {
+                    let sessionTabs = session.window ? session.window.tabs : [session.tab];
+
+                    for (let tab of sessionTabs) {
+                        tabs.push({
+                            title : tab.title,
+                            url   : tab.url,
+                            img   : `chrome://favicon/${tab.url}`
+                        });
                     }
+                }
 
-                    items.push({
-                        title    : device.deviceName,
-                        id       : 'device.' + device.deviceName,
-                        children : children
-                    });
-                })(devices[i]);
+                items.push({
+                    title : device.deviceName,
+                    tabs  : tabs
+                });
             }
 
             done(items);
-        }); */
+        });
     }
 
 

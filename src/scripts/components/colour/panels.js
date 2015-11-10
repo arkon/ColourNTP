@@ -22,7 +22,10 @@ class Panels extends React.Component {
             showShortcuts  : true,
             shortcuts      : [],
 
-            showWebStore   : true
+            showWebStore   : true,
+
+            showDevices    : true,
+            devices        : []
         };
     }
 
@@ -34,7 +37,8 @@ class Panels extends React.Component {
                 showClosed    : settings.panelClosed,
                 showApps      : settings.panelApps,
                 showShortcuts : settings.panelShortcuts,
-                showWebStore  : settings.showWebStore
+                showWebStore  : settings.showWebStore,
+                showDevices   : settings.panelDevices
             });
 
             if (settings.panelVisited) {
@@ -65,6 +69,14 @@ class Panels extends React.Component {
                 Chrome.getShortcuts((items) => {
                     this.setState({
                         shortcuts: items
+                    });
+                });
+            }
+
+            if (settings.panelDevices) {
+                Chrome.getDevices((items) => {
+                    this.setState({
+                        devices: items
                     });
                 });
             }
@@ -129,6 +141,11 @@ class Panels extends React.Component {
                     { state.showShortcuts &&
                         <a className={state.open === 4 ? 'panels__toggles--active' : ''}
                             onClick={this.onClickToggle(4)}>Shortcuts</a>
+                    }
+
+                    { state.showDevices &&
+                        <a className={state.open === 5 ? 'panels__toggles--active' : ''}
+                            onClick={this.onClickToggle(5)}>Other devices</a>
                     }
                 </p>
 
@@ -206,6 +223,36 @@ class Panels extends React.Component {
                                     </li>
                                 );
                             }) }
+                        </ul>
+                    }
+
+                    { state.showDevices && state.open === 5 &&
+                        <ul>
+                            { (state.devices.length === 0) ?
+                                <p className='panels__panel__message'>No tabs from other devices</p> :
+                                state.devices.map((device, i) => {
+                                    return (
+                                        <li key={i} className={`item-${i}`} >
+                                            <p>{device.title}</p>
+                                            <ul>
+                                                { device.tabs.map((tab, j) => {
+                                                    let tabStyle = {
+                                                        backgroundImage: `url('${tab.img}')`
+                                                    };
+
+                                                    return (
+                                                        <li key={j}>
+                                                            <a style={tabStyle} title={tab.title} href={tab.url}>
+                                                                {tab.title}
+                                                            </a>
+                                                        </li>
+                                                    );
+                                                }) }
+                                            </ul>
+                                        </li>
+                                    );
+                                })
+                            }
                         </ul>
                     }
                 </div>
