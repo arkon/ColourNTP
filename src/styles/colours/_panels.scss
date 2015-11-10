@@ -31,26 +31,45 @@
 
 // Panel
 
-.panels__panel {
+.panels__panels {
     margin: 1em auto 0;
     max-width: 60em;
     width: auto;
+}
 
-    ul {
-        align-items: center;
-        background-color: rgba($white, 0.75);
-        border-radius: 5px;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        margin: 0 auto;
-        padding: 0.5rem;
-    }
+.panels__panel {
+    align-items: center;
+    background-color: rgba($white, 0.75);
+    border-radius: 5px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 0.5rem;
 
     li {
         display: flex;
         flex-direction: column;
         text-align: left;
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        a {
+            background-color: #eee;
+            border: 1px solid #ddd;
+            color: $dark-grey;
+            display: inline-block;
+            font-size: 1rem;
+            margin: 0.5em;
+            transition: box-shadow 0.3s;
+            will-change: box-shadow;
+
+            &:hover {
+                box-shadow: 0 0 0 2px #777;
+                color: #0e0e0e;
+            }
+        }
     }
 
     a {
@@ -68,7 +87,7 @@
 }
 
 .panels__panel__message {
-    color: #1e1e1e;
+    color: $dark-grey;
     display: block;
     font-size: 0.9rem;
     padding: 0.5em 1em;
@@ -79,7 +98,7 @@
 
 // Apps
 
-.panels__app {
+.panels__panel--app {
     li {
         height: 10em;
         text-align: center;
@@ -102,44 +121,35 @@
         margin-bottom: 0.5em;
         width: 3em;
     }
+}
 
-    .panels__panel__message {
-        width: 100%;
+    .panels__panel--app__name {
+        color: $dark-grey;
+        font-size: 1rem;
+    }
+
+
+// Other devices
+.panels__panel--devices {
+    > li + li {
+        margin-top: 1em;
+    }
+
+    ul {
+        align-items: center;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
     }
 }
 
-    .panels__app__name {
-        color: #1e1e1e;
-        font-size: 1rem;
+    .panels__panel--devices__name {
+        color: $dark-grey;
+        text-align: center;
     }
 
 
 // Panel items
-
-li {
-    display: inline-block;
-    vertical-align: top;
-
-    &:active {
-        transform: scale(0.95);
-    }
-
-    a {
-        background-color: #eee;
-        border: 1px solid #ddd;
-        color: #1e1e1e;
-        display: inline-block;
-        font-size: 1rem;
-        margin: 0.5em;
-        transition: box-shadow 0.3s;
-        will-change: box-shadow;
-
-        &:hover {
-            box-shadow: 0 0 0 2px #777;
-            color: #0e0e0e;
-        }
-    }
-}
 
 @for $i from 0 through 50 {
     .item-#{$i} {

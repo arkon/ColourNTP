@@ -149,9 +149,9 @@ class Panels extends React.Component {
                     }
                 </p>
 
-                <div className='panels__panel'>
+                <div className='panels__panels'>
                     { state.showVisited && state.open === 1 &&
-                        <ul>
+                        <ul className='panels__panel'>
                             { state.topSites.map((site, i) => {
                                 let siteStyle = {
                                     backgroundImage: `url('${site.img}')`
@@ -169,7 +169,7 @@ class Panels extends React.Component {
                     }
 
                     { state.showClosed && state.open === 2 &&
-                        <ul>
+                        <ul className='panels__panel'>
                             { (state.recentlyClosed.length === 0) ?
                                 <p className='panels__panel__message'>No recently closed sessions</p> :
                                 state.recentlyClosed.map((session, i) => {
@@ -190,7 +190,7 @@ class Panels extends React.Component {
                     }
 
                     { state.showApps && state.open === 3 &&
-                        <ul className='panels__app'>
+                        <ul className='panels__panel panels__panel--app'>
                             { state.apps.map((app, i) => {
                                 if (app.id === 'webstore' && !this.state.showWebStore) {
                                     return null;
@@ -200,7 +200,7 @@ class Panels extends React.Component {
                                     <li key={i} onClick={this.onClickApp(app.id, app.href)}>
                                         <a className={`item-${i}`}>
                                             <img src={app.img} alt={app.title} />
-                                            <div className='panels__app__name'>{app.title}</div>
+                                            <div className='panels__panel--app__name'>{app.title}</div>
                                         </a>
                                     </li>
                                 );
@@ -209,7 +209,7 @@ class Panels extends React.Component {
                     }
 
                     { state.showShortcuts && state.open === 4 &&
-                        <ul>
+                        <ul className='panels__panel'>
                             { state.shortcuts.map((shortcut, i) => {
                                 let shortcutStyle = {
                                     backgroundImage: `url('${shortcut.img}')`
@@ -227,13 +227,13 @@ class Panels extends React.Component {
                     }
 
                     { state.showDevices && state.open === 5 &&
-                        <ul>
+                        <ul className='panels__panel panels__panel--devices'>
                             { (state.devices.length === 0) ?
                                 <p className='panels__panel__message'>No tabs from other devices</p> :
                                 state.devices.map((device, i) => {
                                     return (
                                         <li key={i} className={`item-${i}`} >
-                                            <p>{device.title}</p>
+                                            <p className='panels__panel--devices__name'>{device.title}</p>
                                             <ul>
                                                 { device.tabs.map((tab, j) => {
                                                     let tabStyle = {

@@ -121,8 +121,8 @@ class Chrome {
         done(shortcuts);
     }
 
-    static getDevices (done, max = 10) {
-        chrome.sessions.getDevices({ maxResults: max }, function (devices) {
+    static getDevices (done) {
+        chrome.sessions.getDevices(function (devices) {
             let items = [];
 
             for (let device of devices) {
