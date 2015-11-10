@@ -18,6 +18,8 @@ const Defaults = {
     panelApps      : true,
     panelShortcuts : true,
 
+    showWebStore   : true,
+
     maxVisited     : 10,
     maxClosed      : 10
 };

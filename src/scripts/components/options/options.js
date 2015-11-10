@@ -156,7 +156,12 @@ class Options extends React.Component {
                 <Checkbox label='Apps'
                     tooltip='Your installed Chrome apps.'
                     optkey='panelApps'
-                    value={settings.panelApps} />
+                    value={settings.panelApps}>
+                    <Checkbox label='Chrome Web Store tile'
+                        tooltip='Show a tile for the store.'
+                        optkey='showWebStore'
+                        value={settings.showWebStore} />
+                </Checkbox>
 
                 <Checkbox label='Shortcuts'
                     tooltip='Various Chrome shortcuts.'

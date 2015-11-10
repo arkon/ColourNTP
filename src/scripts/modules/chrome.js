@@ -80,7 +80,7 @@ class Chrome {
 
             items.push({
                 title : 'Chrome Web Store',
-                id    : 'store',
+                id    : 'webstore',
                 img   : '../assets/img/chrome_web_store-128.png',
                 href  : 'https://chrome.google.com/webstore'
             });

@@ -20,7 +20,9 @@ class Panels extends React.Component {
             apps           : [],
 
             showShortcuts  : true,
-            shortcuts      : []
+            shortcuts      : [],
+
+            showWebStore   : true
         };
     }
 
@@ -31,7 +33,8 @@ class Panels extends React.Component {
                 showVisited   : settings.panelVisited,
                 showClosed    : settings.panelClosed,
                 showApps      : settings.panelApps,
-                showShortcuts : settings.panelShortcuts
+                showShortcuts : settings.panelShortcuts,
+                showWebStore  : settings.showWebStore
             });
 
             if (settings.panelVisited) {
@@ -172,6 +175,10 @@ class Panels extends React.Component {
                     { state.showApps && state.open === 3 &&
                         <ul className='panels__app'>
                             { state.apps.map((app, i) => {
+                                if (app.id === 'webstore' && !this.state.showWebStore) {
+                                    return null;
+                                }
+
                                 return (
                                     <li key={i} onClick={this.onClickApp(app.id, app.href)}>
                                         <a className={`item-${i}`}>
