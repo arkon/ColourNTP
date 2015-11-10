@@ -157,7 +157,7 @@ class Options extends React.Component {
                     tooltip='Your installed Chrome apps.'
                     optkey='panelApps'
                     value={settings.panelApps}>
-                    <Checkbox label='Chrome Web Store tile'
+                    <Checkbox label='Show Chrome Web Store tile'
                         tooltip='Show a tile for the store.'
                         optkey='showWebStore'
                         value={settings.showWebStore} />

@@ -8,7 +8,7 @@ class Chrome {
 
     static getTopSites (done, max = 10) {
         chrome.topSites.get(function (visitedURLs) {
-            visitedURLs = visitedURLs.slice(0, max);
+            visitedURLs = visitedURLs.slice(0, parseInt(max, 10));
 
             let items = [];
 
@@ -25,7 +25,7 @@ class Chrome {
     }
 
     static getRecentlyClosed (done, max = 10) {
-        chrome.sessions.getRecentlyClosed({ maxResults: max }, function (sessions) {
+        chrome.sessions.getRecentlyClosed({ maxResults: parseInt(max, 10) }, function (sessions) {
             let items = [];
 
             for (let session of sessions) {
