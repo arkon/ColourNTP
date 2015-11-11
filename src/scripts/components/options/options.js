@@ -153,6 +153,11 @@ class Options extends React.Component {
                         value={settings.maxClosed} />
                 </Checkbox>
 
+                <Checkbox label='Other devices'
+                    tooltip='Show tabs from your other devices.'
+                    optkey='panelDevices'
+                    value={settings.panelDevices} />
+
                 <Checkbox label='Apps'
                     tooltip='Your installed Chrome apps.'
                     optkey='panelApps'
@@ -167,11 +172,6 @@ class Options extends React.Component {
                     tooltip='Various Chrome shortcuts.'
                     optkey='panelShortcuts'
                     value={settings.panelShortcuts} />
-
-                <Checkbox label='Other devices'
-                    tooltip='Tabs from your other devices.'
-                    optkey='panelDevices'
-                    value={settings.panelDevices} />
 
 
                 <div className='options__credits'>

@@ -16,16 +16,15 @@ class Panels extends React.Component {
             showClosed     : true,
             recentlyClosed : [],
 
+            showDevices    : true,
+            devices        : [],
+
             showApps       : true,
+            showWebStore   : true,
             apps           : [],
 
             showShortcuts  : true,
-            shortcuts      : [],
-
-            showWebStore   : true,
-
-            showDevices    : true,
-            devices        : []
+            shortcuts      : []
         };
     }
 
@@ -35,10 +34,10 @@ class Panels extends React.Component {
                 open          : settings.openPanel || 0,
                 showVisited   : settings.panelVisited,
                 showClosed    : settings.panelClosed,
+                showDevices   : settings.panelDevices,
                 showApps      : settings.panelApps,
-                showShortcuts : settings.panelShortcuts,
                 showWebStore  : settings.showWebStore,
-                showDevices   : settings.panelDevices
+                showShortcuts : settings.panelShortcuts
             });
 
             if (settings.panelVisited) {
@@ -57,6 +56,14 @@ class Panels extends React.Component {
                 }, settings.maxClosed);
             }
 
+            if (settings.panelDevices) {
+                Chrome.getDevices((items) => {
+                    this.setState({
+                        devices: items
+                    });
+                });
+            }
+
             if (settings.panelApps) {
                 Chrome.getApps((items) => {
                     this.setState({
@@ -69,14 +76,6 @@ class Panels extends React.Component {
                 Chrome.getShortcuts((items) => {
                     this.setState({
                         shortcuts: items
-                    });
-                });
-            }
-
-            if (settings.panelDevices) {
-                Chrome.getDevices((items) => {
-                    this.setState({
-                        devices: items
                     });
                 });
             }
@@ -133,19 +132,19 @@ class Panels extends React.Component {
                             onClick={this.onClickToggle(2)}>Recently closed</a>
                     }
 
-                    { state.showApps &&
+                    { state.showDevices &&
                         <a className={state.open === 3 ? 'panels__toggles--active' : ''}
-                            onClick={this.onClickToggle(3)}>Apps</a>
+                            onClick={this.onClickToggle(3)}>Other devices</a>
+                    }
+
+                    { state.showApps &&
+                        <a className={state.open === 4 ? 'panels__toggles--active' : ''}
+                            onClick={this.onClickToggle(4)}>Apps</a>
                     }
 
                     { state.showShortcuts &&
-                        <a className={state.open === 4 ? 'panels__toggles--active' : ''}
-                            onClick={this.onClickToggle(4)}>Shortcuts</a>
-                    }
-
-                    { state.showDevices &&
                         <a className={state.open === 5 ? 'panels__toggles--active' : ''}
-                            onClick={this.onClickToggle(5)}>Other devices</a>
+                            onClick={this.onClickToggle(5)}>Shortcuts</a>
                     }
                 </p>
 
@@ -189,44 +188,7 @@ class Panels extends React.Component {
                         </ul>
                     }
 
-                    { state.showApps && state.open === 3 &&
-                        <ul className='panels__panel panels__panel--app'>
-                            { state.apps.map((app, i) => {
-                                if (app.id === 'webstore' && !this.state.showWebStore) {
-                                    return null;
-                                }
-
-                                return (
-                                    <li key={i} onClick={this.onClickApp(app.id, app.href)}>
-                                        <a className={`item-${i}`}>
-                                            <img src={app.img} alt={app.title} />
-                                            <div className='panels__panel--app__name'>{app.title}</div>
-                                        </a>
-                                    </li>
-                                );
-                            }) }
-                        </ul>
-                    }
-
-                    { state.showShortcuts && state.open === 4 &&
-                        <ul className='panels__panel'>
-                            { state.shortcuts.map((shortcut, i) => {
-                                let shortcutStyle = {
-                                    backgroundImage: `url('${shortcut.img}')`
-                                };
-
-                                return (
-                                    <li key={i} onClick={this.onClickShortcut(shortcut.url)}>
-                                        <a className={`item-${i}`} style={shortcutStyle} title={shortcut.title}>
-                                            {shortcut.title}
-                                        </a>
-                                    </li>
-                                );
-                            }) }
-                        </ul>
-                    }
-
-                    { state.showDevices && state.open === 5 &&
+                    { state.showDevices && state.open === 3 &&
                         <ul className='panels__panel panels__panel--devices'>
                             { (state.devices.length === 0) ?
                                 <p className='panels__panel__message'>No tabs from other devices</p> :
@@ -253,6 +215,43 @@ class Panels extends React.Component {
                                     );
                                 })
                             }
+                        </ul>
+                    }
+
+                    { state.showApps && state.open === 4 &&
+                        <ul className='panels__panel panels__panel--app'>
+                            { state.apps.map((app, i) => {
+                                if (app.id === 'webstore' && !this.state.showWebStore) {
+                                    return null;
+                                }
+
+                                return (
+                                    <li key={i} onClick={this.onClickApp(app.id, app.href)}>
+                                        <a className={`item-${i}`}>
+                                            <img src={app.img} alt={app.title} />
+                                            <div className='panels__panel--app__name'>{app.title}</div>
+                                        </a>
+                                    </li>
+                                );
+                            }) }
+                        </ul>
+                    }
+
+                    { state.showShortcuts && state.open === 5 &&
+                        <ul className='panels__panel'>
+                            { state.shortcuts.map((shortcut, i) => {
+                                let shortcutStyle = {
+                                    backgroundImage: `url('${shortcut.img}')`
+                                };
+
+                                return (
+                                    <li key={i} onClick={this.onClickShortcut(shortcut.url)}>
+                                        <a className={`item-${i}`} style={shortcutStyle} title={shortcut.title}>
+                                            {shortcut.title}
+                                        </a>
+                                    </li>
+                                );
+                            }) }
                         </ul>
                     }
                 </div>
