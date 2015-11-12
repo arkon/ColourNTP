@@ -13,6 +13,7 @@
   "permissions": [
     "<all_urls>",
     "chrome://favicon/",
+    "file:///*"
     "fontSettings",
     "management",
     "sessions",
