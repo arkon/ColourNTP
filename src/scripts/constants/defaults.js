@@ -6,6 +6,7 @@ const Defaults = {
     colour         : 'regular',  // regular, full, hue, solid
     colourSolid    : '',
     ticker         : false,
+    showTime       : true,
     showHex        : true,
 
     bg             : 'none',     // none, unsplash, custom

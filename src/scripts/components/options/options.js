@@ -57,6 +57,16 @@ class Options extends React.Component {
                     optkey='animations'
                     value={settings.animations} />
 
+                <Checkbox label='Show the time'
+                    tooltip='Shows the current time.'
+                    optkey='showTime'
+                    value={settings.showTime} />
+
+                <Checkbox label='Show colour hexcode'
+                    tooltip='Shows the current colour hexcode underneath the time.'
+                    optkey='showHex'
+                    value={settings.showHex} />
+
 
                 <h2 className='options__subheader'>Colours</h2>
 
@@ -86,11 +96,6 @@ class Options extends React.Component {
                     tooltip='Shows last 10 colours in a ticker at the bottom of the page.'
                     optkey='ticker'
                     value={settings.ticker} />
-
-                <Checkbox label='Show hexcode'
-                    tooltip='Shows the current colour hexcode underneath the time.'
-                    optkey='showHex'
-                    value={settings.showHex} />
 
 
                 <h2 className='options__subheader'>Background image</h2>

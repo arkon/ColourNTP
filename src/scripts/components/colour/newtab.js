@@ -184,7 +184,9 @@ class NewTab extends React.Component {
                 </div>
 
                 <div className='info'>
-                    <Time hourFormat24={settings.time24hr} time={this.state.time} />
+                    { settings.showTime &&
+                        <Time hourFormat24={settings.time24hr} time={this.state.time} />
+                    }
 
                     { settings.showHex && this.state.bgOpacity !== 0 &&
                         <Hex colour={this.state.colour} />
