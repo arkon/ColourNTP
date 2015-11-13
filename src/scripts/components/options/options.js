@@ -67,6 +67,11 @@ class Options extends React.Component {
                     optkey='showHex'
                     value={settings.showHex} />
 
+                <Checkbox label='Show settings and download buttons'
+                    tooltip='Shows small buttons for settings and the background image link at the top right.'
+                    optkey='showOpts'
+                    value={settings.showOpts} />
+
 
                 <h2 className='options__subheader'>Colours</h2>
 

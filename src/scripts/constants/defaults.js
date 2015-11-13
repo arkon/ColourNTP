@@ -8,6 +8,7 @@ const Defaults = {
     ticker         : false,
     showTime       : true,
     showHex        : true,
+    showOpts       : true,
 
     bg             : 'none',     // none, unsplash, custom
     bgUnsplashFreq : 'daily',    // perSession, daily, weekly

@@ -173,15 +173,17 @@ class NewTab extends React.Component {
                     <div className='colours__bg' style={bgColorStyle} />
                 }
 
-                <div className='colours__opts'>
-                    <a target='_blank' className='colours__opts__opt colours__opts__opt--options'
-                        href='options.html' title='Options' />
+                { settings.showOpts &&
+                    <div className='colours__opts'>
+                        <a target='_blank' className='colours__opts__opt colours__opts__opt--options'
+                            href='options.html' title='Options' />
 
-                    { this.state.bgImage &&
-                        <a target='_blank' className='colours__opts__opt colours__opts__opt--download'
-                            href={this.state.bgImage} title='Open image' />
-                    }
-                </div>
+                        { this.state.bgImage &&
+                            <a target='_blank' className='colours__opts__opt colours__opts__opt--download'
+                                href={this.state.bgImage} title='Open image' />
+                        }
+                    </div>
+                }
 
                 <div className='info'>
                     { settings.showTime &&
