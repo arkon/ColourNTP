@@ -169,6 +169,9 @@ class Chrome {
         settingObj[key] = value;
 
         chrome.storage.sync.set(settingObj);
+
+        // Prompt new tab page to fetch new settings
+        chrome.runtime.sendMessage({ msg: 'saved' });
     }
 
 

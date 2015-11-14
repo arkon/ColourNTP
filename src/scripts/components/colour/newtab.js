@@ -24,12 +24,29 @@ class NewTab extends React.Component {
             bgOpacity    : 1
         };
 
+        this.fetchSettings = this.fetchSettings.bind(this);
         this.tick = this.tick.bind(this);
         this.tickColour = this.tickColour.bind(this);
         this.loadBgImage = this.loadBgImage.bind(this);
     }
 
     componentDidMount () {
+        this.fetchSettings();
+
+        // Fetch new settings when changed
+        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+            if (request.msg === 'saved') {
+                this.fetchSettings();
+            }
+        });
+    }
+
+    componentWillUnmount () {
+        clearInterval(this.interval);
+        this.interval = null;
+    }
+
+    fetchSettings () {
         Chrome.getSettings((settings) => {
             let coloursClass = 'colours';
 
@@ -76,11 +93,6 @@ class NewTab extends React.Component {
             this.tick();
             this.interval = setInterval(this.tick, 1000);
         });
-    }
-
-    componentWillUnmount () {
-        clearInterval(this.interval);
-        this.interval = null;
     }
 
     tick () {
