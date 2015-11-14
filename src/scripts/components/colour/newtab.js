@@ -65,16 +65,18 @@ class NewTab extends React.Component {
                 settings     : settings
             });
 
+            if (!navigator.onLine || settings.bg === 'none') {
+                this.loadBgImage(null);
+            }
+
             if (navigator.onLine) {
                 // Background images/opacity
-                if (settings.bg !== 'none') {
-                    if (settings.bg === 'unsplash') {
-                        Unsplash.getImage(settings.bgUnsplashFreq, this.loadBgImage);
-                    }
+                if (settings.bg === 'unsplash') {
+                    Unsplash.getImage(settings.bgUnsplashFreq, this.loadBgImage);
+                }
 
-                    if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
-                        this.loadBgImage(settings.bgCustomUrl);
-                    }
+                if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
+                    this.loadBgImage(settings.bgCustomUrl);
                 }
 
                 // Custom web font
@@ -160,7 +162,7 @@ class NewTab extends React.Component {
     loadBgImage (imgUrl) {
         this.setState({
             bgImage   : imgUrl,
-            bgOpacity : this.state.settings.bgOpacity / 100
+            bgOpacity : imgUrl ? this.state.settings.bgOpacity / 100 : 1
         });
     }
 
