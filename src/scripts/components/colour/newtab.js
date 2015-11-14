@@ -60,15 +60,6 @@ class NewTab extends React.Component {
                 coloursClass += ' full';
             }
 
-            this.setState({
-                coloursClass : coloursClass,
-                settings     : settings
-            });
-
-            if (!navigator.onLine || settings.bg === 'none') {
-                this.loadBgImage(null);
-            }
-
             if (navigator.onLine) {
                 // Background images/opacity
                 if (settings.bg === 'unsplash') {
@@ -85,15 +76,26 @@ class NewTab extends React.Component {
                 }
             }
 
+            if (!navigator.onLine || settings.bg === 'none') {
+                this.loadBgImage(null);
+            }
+
             if (settings.colour === 'solid') {
                 this.setState({
                     colour : settings.colourSolid
                 });
             }
 
-            // Start the clock
-            this.tick();
-            this.interval = setInterval(this.tick, 1000);
+            // Start the clock when we hit the next second
+            setTimeout(() => {
+                this.tick();
+                this.interval = setInterval(this.tick, 1000);
+
+                this.setState({
+                    coloursClass : coloursClass,
+                    settings     : settings
+                });
+            }, 1000 - (Date.now() % 1000));
         });
     }
 
