@@ -80,11 +80,13 @@ class NewTab extends React.Component {
             // Online: set background image/web font
             if (navigator.onLine) {
                 if (settings.bg === 'unsplash') {
-                    Unsplash.getImage(settings.bgUnsplashFreq, this.loadBgImage);
+                    Unsplash.getImage(settings.bgUnsplashFreq, (imgUrl) => {
+                        this.loadBgImage(imgUrl, settings.bgOpacity);
+                    });
                 }
 
                 if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
-                    this.loadBgImage(settings.bgCustomUrl);
+                    this.loadBgImage(settings.bgCustomUrl, settings.bgOpacity);
                 }
 
                 if (settings.font === 'web') {
@@ -180,10 +182,10 @@ class NewTab extends React.Component {
         this.elStyleFont.textContent = font ? `* { font-family: '${font}' !important; }` : '';
     }
 
-    loadBgImage (imgUrl) {
+    loadBgImage (imgUrl, opacity) {
         this.setState({
             bgImage   : imgUrl,
-            bgOpacity : imgUrl ? this.state.settings.bgOpacity / 100 : 1
+            bgOpacity : imgUrl ? opacity / 100 : 1
         });
     }
 
