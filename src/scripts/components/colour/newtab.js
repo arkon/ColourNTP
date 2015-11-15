@@ -60,6 +60,10 @@ class NewTab extends React.Component {
                 coloursClass += ' full';
             }
 
+            if (!navigator.onLine || settings.bg === 'none') {
+                this.loadBgImage(null);
+            }
+
             if (navigator.onLine) {
                 // Background images/opacity
                 if (settings.bg === 'unsplash') {
@@ -74,10 +78,6 @@ class NewTab extends React.Component {
                 if (settings.font.indexOf('Default') < 0) {
                     this.loadWebFont(settings.font);
                 }
-            }
-
-            if (!navigator.onLine || settings.bg === 'none') {
-                this.loadBgImage(null);
             }
 
             if (settings.colour === 'solid') {
@@ -155,7 +155,7 @@ class NewTab extends React.Component {
         elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}:400,300`;
 
         let style = document.createElement('style');
-        style.textContent = `* { font-family: ${font} !important; }`;
+        style.textContent = `* { font-family: '${font}' !important; }`;
 
         document.head.appendChild(elLinkFont);
         document.head.appendChild(style);
