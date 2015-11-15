@@ -60,12 +60,25 @@ class NewTab extends React.Component {
                 coloursClass += ' full';
             }
 
-            if (!navigator.onLine || settings.bg === 'none') {
+            // Solid colour
+            if (settings.colour === 'solid') {
+                this.setState({
+                    colour : settings.colourSolid
+                });
+            }
+
+            // No background image (or offline)
+            if (settings.bg === 'none' || !navigator.onLine) {
                 this.loadBgImage(null);
             }
 
+            // Default font (or offline)
+            if (settings.font === 'default' || !navigator.onLine) {
+                this.loadFont(null);
+            }
+
+            // Online: set background image/web font
             if (navigator.onLine) {
-                // Background images/opacity
                 if (settings.bg === 'unsplash') {
                     Unsplash.getImage(settings.bgUnsplashFreq, this.loadBgImage);
                 }
@@ -74,28 +87,29 @@ class NewTab extends React.Component {
                     this.loadBgImage(settings.bgCustomUrl);
                 }
 
-                // Custom web font
-                if (settings.font.indexOf('Default') < 0) {
-                    this.loadWebFont(settings.font);
+                if (settings.font === 'web') {
+                    this.loadFont(settings.fontWeb, true);
                 }
             }
 
-            if (settings.colour === 'solid') {
-                this.setState({
-                    colour : settings.colourSolid
-                });
-            }
-
-            // Start the clock when we hit the next second
-            setTimeout(() => {
-                this.tick();
-                this.interval = setInterval(this.tick, 1000);
-
+            // Check if the clock was already started
+            if (this.interval) {
                 this.setState({
                     coloursClass : coloursClass,
                     settings     : settings
                 });
-            }, 1000 - (Date.now() % 1000));
+            } else {
+                // Start the clock when we hit the next second
+                setTimeout(() => {
+                    this.tick();
+                    this.interval = setInterval(this.tick, 1000);
+
+                    this.setState({
+                        coloursClass : coloursClass,
+                        settings     : settings
+                    });
+                }, 1000 - (Date.now() % 1000));
+            }
         });
     }
 
@@ -148,17 +162,22 @@ class NewTab extends React.Component {
         return (n < 10) ? `0${n}` : n.toString();
     }
 
-    loadWebFont (font) {
-        let elLinkFont  = document.createElement('link');
-        elLinkFont.type = 'text/css';
-        elLinkFont.rel  = 'stylesheet';
-        elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}:400,300`;
+    loadFont (font, isWeb) {
+        if (isWeb) {
+            let elLinkFont  = document.createElement('link');
+            elLinkFont.type = 'text/css';
+            elLinkFont.rel  = 'stylesheet';
+            elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}:400,300`;
 
-        let style = document.createElement('style');
-        style.textContent = `* { font-family: '${font}' !important; }`;
+            document.head.appendChild(elLinkFont);
+        }
 
-        document.head.appendChild(elLinkFont);
-        document.head.appendChild(style);
+        if (!this.elStyleFont) {
+            this.elStyleFont = document.createElement('style');
+            document.head.appendChild(this.elStyleFont);
+        }
+
+        this.elStyleFont.textContent = font ? `* { font-family: '${font}' !important; }` : '';
     }
 
     loadBgImage (imgUrl) {

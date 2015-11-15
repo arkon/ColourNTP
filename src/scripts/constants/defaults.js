@@ -1,25 +1,27 @@
 const Defaults = {
-    font           : 'Default (Open Sans)',
     time24hr       : true,
     animations     : true,
+    showTime       : true,
+    showHex        : true,
+    showOpts       : true,
 
     colour         : 'regular',  // regular, full, hue, solid
     colourSolid    : '',
     ticker         : false,
-    showTime       : true,
-    showHex        : true,
-    showOpts       : true,
 
     bg             : 'none',     // none, unsplash, custom
     bgUnsplashFreq : 'daily',    // perSession, daily, weekly
     bgCustomUrl    : '',
     bgOpacity      : 75,
 
+    font           : 'default',  // default, web
+    fontWeb        : '',
+
     panelVisited   : true,
     panelClosed    : true,
+    panelDevices   : false,
     panelApps      : true,
     panelShortcuts : true,
-    panelDevices   : true,
 
     showWebStore   : true,
 

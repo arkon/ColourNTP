@@ -41,12 +41,6 @@ class Options extends React.Component {
 
                 <h2 className='options__subheader'>General</h2>
 
-                <Dropdown label='Font'
-                    tooltip='Custom fonts from Google Fonts.'
-                    options={Fonts}
-                    optkey='font'
-                    value={settings.font} />
-
                 <Checkbox label='24-hour format'
                     tooltip='Toggle between 12-hour and 24-hour formats.'
                     optkey='time24hr'
@@ -141,6 +135,25 @@ class Options extends React.Component {
                 <Range label='Colour overlay opacity'
                     optkey='bgOpacity'
                     value={settings.bgOpacity} />
+
+
+                <h2 className='options__subheader'>Font</h2>
+
+                <RadioGroup group='font' optkey='font' value={settings.font}>
+                    <Radio label='Default'
+                        tooltip='Default Open Sans font.'
+                        value='default' />
+
+                    <Radio label='Web font'
+                        tooltip='Custom font from Google Fonts.'
+                        value='web'>
+                        <Dropdown label='Font'
+                            tooltip='Custom font from Google Fonts.'
+                            options={Fonts}
+                            optkey='fontWeb'
+                            value={settings.fontWeb} />
+                    </Radio>
+                </RadioGroup>
 
 
                 <h2 className='options__subheader'>Panels</h2>

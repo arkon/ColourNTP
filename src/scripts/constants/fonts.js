@@ -1,5 +1,4 @@
 const Fonts = [
-    'Default (Open Sans)',
     'Anonymous Pro',
     'Arial',
     'Arvo',
