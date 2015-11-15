@@ -190,8 +190,12 @@ class NewTab extends React.Component {
     render () {
         let settings = this.state.settings;
 
+        if (Object.keys(settings).length === 0) {
+            return <div className={this.state.coloursClass} />;
+        }
+
         // Background styles
-        let bgColorStyle = {
+        let bgColourStyle = {
             backgroundColor : this.state.bgOpacity < 1 ?
                 Colours.rgba(this.state.colour, this.state.bgOpacity) :
                 this.state.colour
@@ -205,7 +209,7 @@ class NewTab extends React.Component {
                 }
 
                 { this.state.bgOpacity !== 0 &&
-                    <div className='colours__bg' style={bgColorStyle} />
+                    <div className='colours__bg' style={bgColourStyle} />
                 }
 
                 { settings.showOpts &&
