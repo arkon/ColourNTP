@@ -35,10 +35,7 @@ class Options extends React.Component {
         let settings = this.state.settings;
 
         return (
-            <div className='options'>
-                <h1 className='options__header'>Colour New Tab</h1>
-
-
+            <div>
                 <h2 className='options__subheader'>General</h2>
 
                 <Checkbox label='24-hour format'
@@ -195,13 +192,6 @@ class Options extends React.Component {
                     tooltip='Various Chrome shortcuts.'
                     optkey='panelShortcuts'
                     value={settings.panelShortcuts} />
-
-
-                <div className='options__credits'>
-                    <a href='https://github.com/arkon/ColourNTP'>Source code on GitHub</a>
-                    <a href='http://whatcolourisit.scn9a.org/'>Original concept by J.E. Murphy</a>
-                    <a href='http://echeung.me/'>Chrome extension by Eugene Cheung</a>
-                </div>
             </div>
         );
     }
