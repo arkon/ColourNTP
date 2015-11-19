@@ -26,9 +26,22 @@ class Panels extends React.Component {
             showShortcuts  : true,
             shortcuts      : []
         };
+
+        this.fetchSettings = this.fetchSettings.bind(this);
     }
 
     componentDidMount () {
+        this.fetchSettings();
+
+        // Fetch new settings when changed
+        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+            if (request.msg === 'saved') {
+                this.fetchSettings();
+            }
+        });
+    }
+
+    fetchSettings () {
         Chrome.getSettings((settings) => {
             this.setState({
                 open          : settings.openPanel || 0,
