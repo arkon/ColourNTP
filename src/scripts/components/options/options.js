@@ -61,17 +61,17 @@ class Options extends React.Component {
 
                 <h2 className='options__subheader'>Shortcuts</h2>
 
-                <Checkbox label='Show settings shortcut'
+                <Checkbox label='Settings'
                     tooltip='Shortcut to open Colour New Tab options.'
                     optkey='shortcutOpts'
                     value={settings.shortcutOpts} />
 
-                <Checkbox label='Show default new tab shortcut'
+                <Checkbox label='Default new tab'
                     tooltip='Shortcut to open the default Chrome new tab page.'
                     optkey='shortcutNewTab'
                     value={settings.shortcutNewTab} />
 
-                <Checkbox label='Show image download shortcut'
+                <Checkbox label='Image download'
                     tooltip='Shortcut to open the background image, if present.'
                     optkey='shortcutImage'
                     value={settings.shortcutImage} />
