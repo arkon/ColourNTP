@@ -3,7 +3,10 @@ const Defaults = {
     animations     : true,
     showTime       : true,
     showHex        : true,
-    showOpts       : true,
+
+    shortcutOpts   : true,
+    shortcutNewTab : true,
+    shortcutImage  : true,
 
     colour         : 'regular',  // regular, full, hue, solid
     colourSolid    : '',
