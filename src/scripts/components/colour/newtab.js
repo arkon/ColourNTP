@@ -189,6 +189,10 @@ class NewTab extends React.Component {
         });
     }
 
+    onClickNewTab () {
+        chrome.tabs.update(null, { url: 'chrome-search://local-ntp/local-ntp.html' });
+    }
+
     render () {
         let settings = this.state.settings;
 
@@ -215,12 +219,15 @@ class NewTab extends React.Component {
                 }
 
                 { settings.showOpts &&
-                    <div className='colours__opts'>
-                        <a target='_blank' className='colours__opts__opt colours__opts__opt--options'
+                    <div className='colours__btns'>
+                        <a target='_blank' className='colours__btn--options'
                             href='options.html' title='Options' />
 
+                        <a className='colours__btn--newtab' title='Default new tab'
+                            onClick={this.onClickNewTab} />
+
                         { this.state.bgImage &&
-                            <a target='_blank' className='colours__opts__opt colours__opts__opt--download'
+                            <a target='_blank' className='colours__btn--download'
                                 href={this.state.bgImage} title='Open image' />
                         }
                     </div>

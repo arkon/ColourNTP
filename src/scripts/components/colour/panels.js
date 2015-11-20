@@ -20,6 +20,7 @@ class Panels extends React.Component {
             devices        : [],
 
             showApps       : true,
+            showAllApps    : true,
             showWebStore   : true,
             apps           : [],
 
@@ -49,6 +50,7 @@ class Panels extends React.Component {
                 showClosed    : settings.panelClosed,
                 showDevices   : settings.panelDevices,
                 showApps      : settings.panelApps,
+                showAllApps   : settings.showAllApps,
                 showWebStore  : settings.showWebStore,
                 showShortcuts : settings.panelShortcuts
             });
@@ -234,7 +236,11 @@ class Panels extends React.Component {
                     { state.showApps && state.open === 4 &&
                         <ul className='panels__panel panels__panel--app'>
                             { state.apps.map((app, i) => {
-                                if (app.id === 'webstore' && !this.state.showWebStore) {
+                                if (app.id === 'ntp-apps' && !this.state.showAllApps) {
+                                    return null;
+                                }
+
+                                if (app.id === 'ntp-webstore' && !this.state.showWebStore) {
                                     return null;
                                 }
 

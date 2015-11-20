@@ -79,9 +79,16 @@ class Chrome {
             }
 
             items.push({
-                title : 'Chrome Web Store',
-                id    : 'webstore',
-                img   : '../assets/img/chrome_web_store-128.png',
+                title : 'All apps',
+                id    : 'ntp-apps',
+                img   : '../assets/img/apps128.png',
+                href  : 'chrome://apps'
+            });
+
+            items.push({
+                title : 'Web store',
+                id    : 'ntp-webstore',
+                img   : '../assets/img/webstore128.png',
                 href  : 'https://chrome.google.com/webstore'
             });
 

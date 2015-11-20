@@ -23,6 +23,7 @@ const Defaults = {
     panelApps      : true,
     panelShortcuts : true,
 
+    showAllApps    : true,
     showWebStore   : true,
 
     maxVisited     : 10,
