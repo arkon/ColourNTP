@@ -131,8 +131,12 @@
 
 // Other devices
 .panels__panel--devices {
-    > li + li {
-        margin-top: 1em;
+    > li {
+        width: 100%;
+
+        + li {
+            margin-top: 1em;
+        }
     }
 
     ul {
