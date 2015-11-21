@@ -3,10 +3,12 @@ import React from 'react';
 
 class History extends React.Component {
     constructor (props) {
-        super(props)
+        super(props);
+
+        this.max = 10;
 
         this.state = {
-            history: []
+            history: new Array(this.max)
         };
 
         this.pushToStack = this.pushToStack.bind(this);
@@ -25,8 +27,8 @@ class History extends React.Component {
 
         stack.push(item)
 
-        // Only keep 10 newest items
-        stack.splice(0, stack.length - 10);
+        // Only keep newest max amount of items
+        stack.splice(0, stack.length - this.max);
     }
 
     render () {
