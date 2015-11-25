@@ -1,5 +1,6 @@
 # Node
 node_modules
+npm-debug.log
 
 # Built project
 build

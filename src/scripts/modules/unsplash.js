@@ -1,7 +1,7 @@
 class Unsplash {
     static getImage (frequency, callback) {
-        // Set proper frequency in URL
-        let unsplashUrl = 'https://source.unsplash.com/';
+        // Set proper frequency in URL + screen size
+        let unsplashUrl = `https://source.unsplash.com/${screen.width}x${screen.height}/`;
 
         switch (frequency) {
             case 'daily':
