@@ -10,7 +10,7 @@ class Chrome {
         chrome.topSites.get(function (visitedURLs) {
             visitedURLs = visitedURLs.slice(0, parseInt(max, 10));
 
-            let items = [];
+            var items = [];
 
             for (let site of visitedURLs) {
                 items.push({
@@ -45,7 +45,7 @@ class Chrome {
     }
 
     static getApps (done) {
-        let find128Image = function (icons) {
+        var find128Image = function (icons) {
             for (let icon of icons) {
                 if (icon.size === 128) {
                     return icon.url;
@@ -68,7 +68,7 @@ class Chrome {
                 else                      { return 0; }
             });
 
-            let items = [];
+            var items = [];
 
             for (let extInf of list) {
                 items.push({
@@ -97,31 +97,31 @@ class Chrome {
     }
 
     static getShortcuts (done) {
-        let shortcuts = [
+        var shortcuts = [
             {
-                title: 'Bookmarks',
-                url: 'chrome://bookmarks/',
-                img: 'chrome://favicon/chrome://bookmarks/'
+                title : 'Bookmarks',
+                url   : 'chrome://bookmarks/',
+                img   : 'chrome://favicon/chrome://bookmarks/'
             },
             {
-                title: 'History',
-                url: 'chrome://history/',
-                img: 'chrome://favicon/chrome://history/'
+                title : 'History',
+                url   : 'chrome://history/',
+                img   : 'chrome://favicon/chrome://history/'
             },
             {
-                title: 'Downloads',
-                url: 'chrome://downloads/',
-                img: 'chrome://favicon/chrome://downloads/'
+                title : 'Downloads',
+                url   : 'chrome://downloads/',
+                img   : 'chrome://favicon/chrome://downloads/'
             },
             {
-                title: 'Extensions',
-                url: 'chrome://extensions/',
-                img: 'chrome://favicon/chrome://extensions/'
+                title : 'Extensions',
+                url   : 'chrome://extensions/',
+                img   : 'chrome://favicon/chrome://extensions/'
             },
             {
-                title: 'Settings',
-                url: 'chrome://settings/',
-                img: 'chrome://favicon/chrome://settings/'
+                title : 'Settings',
+                url   : 'chrome://settings/',
+                img   : 'chrome://favicon/chrome://settings/'
             }
         ];
 
@@ -130,7 +130,7 @@ class Chrome {
 
     static getDevices (done) {
         chrome.sessions.getDevices(function (devices) {
-            let items = [];
+            var items = [];
 
             for (let device of devices) {
                 let tabs = [];
@@ -162,7 +162,7 @@ class Chrome {
     // ============================================================================================
 
     static getSettings (done) {
-        let defaults = Defaults;
+        var defaults = Defaults;
 
         chrome.storage.sync.get(null, (results) => {
             Object.assign(defaults, results);
