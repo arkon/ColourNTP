@@ -16,7 +16,8 @@ var babelify    = require('babelify'),
     sass        = require('gulp-sass'),
     source      = require('vinyl-source-stream'),
     transform   = require('vinyl-transform'),
-    uglify      = require('gulp-uglify');
+    uglify      = require('gulp-uglify'),
+    zip         = require('gulp-zip');
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +26,8 @@ var babelify    = require('babelify'),
 
 // Various source and destination paths
 var paths = {
+    root            : './',
+
     src_root        : 'src/*',
     src_assets_dir  : 'src/assets',
     src_assets      : 'src/assets/**/*',
@@ -33,6 +36,7 @@ var paths = {
     src_bundles     : 'src/scripts/bundles/*.js',
 
     dest            : 'build',
+    dest_files      : 'build/**/*',
     dest_temp       : 'build/temp',
     dest_assets     : 'build/assets',
     dest_styles     : 'build/styles',
@@ -106,4 +110,11 @@ gulp.task('watch', ['default'], function () {
     gulp.watch(paths.src_assets, ['copy:assets']);
     gulp.watch(paths.src_styles, ['scss']);
     gulp.watch(paths.src_scripts, ['js']);
+});
+
+// ZIPs up built files for submitting to the Chrome Web Store
+gulp.task('zip', ['default'], function () {
+    gulp.src(paths.dest_files)
+        .pipe(zip('colourntp.zip'))
+        .pipe(gulp.dest(paths.root));
 });
