@@ -40,7 +40,8 @@ var paths = {
     dest_temp       : 'build/temp',
     dest_assets     : 'build/assets',
     dest_styles     : 'build/styles',
-    dest_scripts    : 'build/scripts'
+    dest_scripts    : 'build/scripts',
+    dest_zip        : 'colourntp.zip'
 };
 
 
@@ -51,6 +52,11 @@ var paths = {
 // Delete all built files/folders
 gulp.task('clean', function () {
     del.sync(paths.dest, { force: true });
+});
+
+// Delete ZIP of built files
+gulp.task('clean:zip', function () {
+    del.sync(paths.dest_zip, { force: true });
 });
 
 // Copy root files such as HTML views and the manifest
@@ -113,8 +119,8 @@ gulp.task('watch', ['default'], function () {
 });
 
 // ZIPs up built files for submitting to the Chrome Web Store
-gulp.task('zip', ['default'], function () {
-    gulp.src(paths.dest_files)
-        .pipe(zip('colourntp.zip'))
+gulp.task('zip', ['clean:zip', 'default'], function () {
+    return gulp.src(paths.dest_files)
+        .pipe(zip(paths.dest_zip))
         .pipe(gulp.dest(paths.root));
 });
