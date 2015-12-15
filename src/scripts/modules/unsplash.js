@@ -20,7 +20,7 @@ class Unsplash {
         // Follow redirect to get actual image URL
         let req = new XMLHttpRequest();
         req.onreadystatechange = function () {
-            if (req.readyState === 4 && req.status === 200) {
+            if (req.readyState === 4 && (req.status >= 200 && req.status < 300)) {
                 callback(req.responseURL);
             }
         };
