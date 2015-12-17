@@ -4,6 +4,7 @@ npm-debug.log
 
 # Built project
 build
+*.zip
 
 # Various OS things
 Desktop.ini
