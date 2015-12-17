@@ -106,8 +106,8 @@ gulp.task('js', function (done) {
 ////////////////////////////////////////////////////////////////////////////////
 
 // Build project
-gulp.task('default', function () {
-    runSequence('clean', ['copy:root', 'copy:assets', 'scss', 'js']);
+gulp.task('default', function (done) {
+    runSequence('clean', ['copy:root', 'copy:assets', 'scss', 'js'], done);
 });
 
 // Watch for changes
