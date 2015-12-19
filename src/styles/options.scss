@@ -47,10 +47,9 @@ label {
     margin: 0.75em 0;
 }
 
-select,
 input {
     background: $white;
-    border: 1px solid #555;
+    border: 1px solid $light-grey;
     border-radius: 3px;
     font: inherit;
     padding: 0.25em 0.5em;
@@ -61,7 +60,6 @@ input[type='checkbox'] {
     margin-right: 0.75em;
 }
 
-select,
 input[type='color'],
 input[type='text'],
 input[type='number'] {
@@ -150,3 +148,49 @@ abbr {
         }
     }
 }
+
+.options__dropdown {
+    color: $dark-grey;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 0.5em;
+    position: relative;
+    vertical-align: middle;
+}
+
+    .options__dropdown__label {
+        @extend input;
+        padding-right: 2em;
+        position: relative;
+
+        &::after {
+            content: '▾';
+            display: inline-block;
+            position: absolute;
+            top: 0.15em;
+            right: 0.5em;
+        }
+    }
+
+    .options__dropdown__list {
+        background: $white;
+        border: 1px solid $light-grey;
+        display: none;
+        left: 0;
+        position: absolute;
+        top: 1.5em;
+
+        li {
+            padding: 0.25em 0.5em;
+            transition: background-color 0.15s;
+            white-space: nowrap;
+
+            &:hover {
+                background-color: $light-grey;
+            }
+        }
+    }
+
+        .options__dropdown__list--open {
+            display: block;
+        }

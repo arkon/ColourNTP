@@ -24,7 +24,8 @@ class Range extends OptionsComponent {
         return (
             <label>
                 <p>{this.props.label}:</p>
-                <input type='range' min='0' max='100' step='1' value={this.state.value} onChange={this.handleChange} />
+                <input type='range' min='0' max='100' step='1' value={this.state.value}
+                    onChange={this.handleChange} />
                 <span>({this.state.value}%)</span>
             </label>
         );

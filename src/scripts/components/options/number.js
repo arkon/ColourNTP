@@ -24,7 +24,8 @@ class Checkbox extends OptionsComponent {
         return (
             <label>
                 <span>{this.props.label}:</span>
-                <input type='number' min='1' max='20' value={this.state.value.toString()} onChange={this.handleChange} />
+                <input type='number' min='1' max='20' value={this.state.value.toString()}
+                    onChange={this.handleChange} />
             </label>
         );
     }

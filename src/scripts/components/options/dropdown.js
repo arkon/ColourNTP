@@ -8,33 +8,59 @@ class Dropdown extends OptionsComponent {
     constructor (props) {
         super(props);
 
+        this.state = {
+            open: false,
+            selected: 0
+        };
+
         this.handleChange = this.handleChange.bind(this);
+        this.toggleDropdown = this.toggleDropdown.bind(this);
     }
 
-    handleChange (e) {
+    handleChange (index, item) {
         let key   = this.props.optkey,
-            value = e.target.value;
+            value = item;
 
         Chrome.setSetting(key, value);
 
-        this.setState({ value: value });
+        this.setState({
+            open: false,
+            selected: index,
+            value: item
+        });
+    }
+
+    toggleDropdown () {
+        this.setState({
+            open: !this.state.open
+        });
     }
 
     render () {
+        var dropdownClass = 'options__dropdown__list';
+        if (this.state.open) {
+            dropdownClass += ' options__dropdown__list--open';
+        }
+
         return (
             <label>
-                <abbr>
-                    <span>{this.props.label}:</span>
-                    <select value={this.state.value} onChange={this.handleChange}>
-                        {this.props.options.map((item, i) => {
-                            return <option key={i} value={item}>{item}</option>;
-                        })}
-                    </select>
-                    <div>
-                        <strong>{this.props.label}</strong>
-                        <p>{this.props.tooltip}</p>
-                    </div>
-                </abbr>
+                <span>{this.props.label}:</span>
+
+                <span className='options__dropdown'>
+                    <span className='options__dropdown__label' onClick={this.toggleDropdown}>
+                        {this.props.options[this.state.selected]}
+                    </span>
+
+                    <ul className={dropdownClass}>
+                        { this.props.options.map((item, i) => {
+                            return (
+                                <li key={i} onClick={this.handleChange.bind(this, i, item)}>
+                                    {item}
+                                </li>
+                            );
+                        }) }
+                    </ul>
+                </span>
             </label>
         );
     }

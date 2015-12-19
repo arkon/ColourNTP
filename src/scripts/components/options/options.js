@@ -158,7 +158,6 @@ class Options extends React.Component {
                         tooltip='Custom font from Google Fonts.'
                         value='web'>
                         <Dropdown label='Font'
-                            tooltip='Custom font from Google Fonts.'
                             options={Fonts}
                             optkey='fontWeb'
                             value={settings.fontWeb} />
