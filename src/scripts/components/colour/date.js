@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-var Date = (props) => {
+var DateDisplay = (props) => {
     return (
-        <h2 className='colours__hex'>{props.date}</h2>
+        <h2 className='colours__subtitle'>{props.date}</h2>
     );
 };
 
-export default Date;
+export default DateDisplay;

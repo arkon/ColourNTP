@@ -63,7 +63,7 @@
 .colours__time {
     animation: shiftUp 0.5s ease-out forwards;
     font-size: 7em;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     opacity: 0;
     position: relative;
 
@@ -81,8 +81,9 @@
         width: 0;
     }
 
-.colours__hex {
+.colours__subtitle {
     animation: shiftUp 0.5s ease-out 0.15s forwards;
+    margin-top: 1.5rem;
     opacity: 0;
 }
 
@@ -95,7 +96,7 @@
             margin-left: 1rem;
         }
 
-    .colours__hex { font-size: 1.25em; }
+    .colours__subtitle { font-size: 1.25em; }
 }
 
 .info {
@@ -110,7 +111,7 @@
 // Protects against light backgrounds when using full spectrum
 .full {
     .colours__time,
-    .colours__hex,
+    .colours__subtitle,
     .panels__toggles a {
         text-shadow: 0 1px 0.35rem rgba($dark-grey, 0.5);
     }

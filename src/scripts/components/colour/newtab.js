@@ -5,7 +5,7 @@ import Colours from '../../modules/colours';
 import Unsplash from '../../modules/unsplash';
 
 import Time from './time';
-import Date from './date';
+import DateDisplay from './date';
 import Hex from './hex';
 import Panels from './panels';
 import History from './history';
@@ -250,7 +250,7 @@ class NewTab extends React.Component {
                     }
 
                     { settings.showDate &&
-                        <Date date={this.state.date} />
+                        <DateDisplay date={this.state.date} />
                     }
 
                     { settings.showHex && this.state.bgOpacity !== 0 &&

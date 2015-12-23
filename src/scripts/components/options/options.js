@@ -59,9 +59,9 @@ class Options extends React.Component {
                     value={settings.showHex} />
 
                 <Checkbox label='Show date'
-                    tooltip='Shows today\'s date underneath the time.'
-                    optkey='showTime'
-                    value={settings.showTime} />
+                    tooltip="Shows today's date underneath the time."
+                    optkey='showDate'
+                    value={settings.showDate} />
 
 
                 <h2 className='options__subheader'>Shortcuts</h2>
