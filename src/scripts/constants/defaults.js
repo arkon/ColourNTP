@@ -4,6 +4,8 @@ const Defaults = {
     showTime       : true,
     showHex        : true,
 
+    showDate       : false,
+
     shortcutOpts   : true,
     shortcutNewTab : true,
     shortcutImage  : true,

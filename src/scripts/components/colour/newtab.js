@@ -5,6 +5,7 @@ import Colours from '../../modules/colours';
 import Unsplash from '../../modules/unsplash';
 
 import Time from './time';
+import Date from './date';
 import Hex from './hex';
 import Panels from './panels';
 import History from './history';
@@ -17,6 +18,7 @@ class NewTab extends React.Component {
         this.state = {
             settings     : {},
             time         : {},
+            date         : '',
             colour       : '',
 
             coloursClass : 'colours colours--hidden',
@@ -92,6 +94,13 @@ class NewTab extends React.Component {
                 if (settings.font === 'web') {
                     this.loadFont(settings.fontWeb, true);
                 }
+            }
+
+            // Date
+            if (settings.showDate) {
+                this.setState({
+                    date : new Date().toISOString().split('T')[0]
+                });
             }
 
             // Check if the clock was already started
@@ -238,6 +247,10 @@ class NewTab extends React.Component {
                 <div className='info'>
                     { settings.showTime &&
                         <Time hourFormat24={settings.time24hr} time={this.state.time} />
+                    }
+
+                    { settings.showDate &&
+                        <Date date={this.state.date} />
                     }
 
                     { settings.showHex && this.state.bgOpacity !== 0 &&
