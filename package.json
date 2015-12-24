@@ -20,7 +20,7 @@
     "browserify": "^12.0.1",
     "del": "^2.2.0",
     "event-stream": "^3.3.2",
-    "glob": "^6.0.1",
+    "glob": "^6.0.2",
     "gulp": "^3.9.0",
     "gulp-minify-css": "^1.2.2",
     "gulp-sass": "^2.1.1",
