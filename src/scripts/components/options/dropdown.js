@@ -8,59 +8,27 @@ class Dropdown extends OptionsComponent {
     constructor (props) {
         super(props);
 
-        this.state = {
-            open: false,
-            selected: 0
-        };
-
         this.handleChange = this.handleChange.bind(this);
-        this.toggleDropdown = this.toggleDropdown.bind(this);
     }
 
-    handleChange (index, item) {
+    handleChange (e) {
         let key   = this.props.optkey,
-            value = item;
+            value = e.target.value;
 
         Chrome.setSetting(key, value);
 
-        this.setState({
-            open: false,
-            selected: index,
-            value: item
-        });
-    }
-
-    toggleDropdown () {
-        this.setState({
-            open: !this.state.open
-        });
+        this.setState({ value: value });
     }
 
     render () {
-        var dropdownClass = 'options__dropdown__list';
-        if (this.state.open) {
-            dropdownClass += ' options__dropdown__list--open';
-        }
-
         return (
             <label>
                 <span>{this.props.label}:</span>
-
-                <span className='options__dropdown'>
-                    <span className='options__dropdown__label' onClick={this.toggleDropdown}>
-                        {this.props.options[this.state.selected]}
-                    </span>
-
-                    <ul className={dropdownClass}>
-                        { this.props.options.map((item, i) => {
-                            return (
-                                <li key={i} onClick={this.handleChange.bind(this, i, item)}>
-                                    {item}
-                                </li>
-                            );
-                        }) }
-                    </ul>
-                </span>
+                <select value={this.state.value} onChange={this.handleChange}>
+                    { this.props.options.map((item, i) => {
+                        return <option key={i} value={item}>{item}</option>;
+                    }) }
+                </select>
             </label>
         );
     }
