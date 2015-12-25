@@ -3,7 +3,7 @@ import React from 'react';
 
 var DateDisplay = (props) => {
     return (
-        <h2 className='colours__subtitle'>{props.date}</h2>
+        <h2 className='colours__date'>{props.date}</h2>
     );
 };
 

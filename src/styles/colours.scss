@@ -81,22 +81,43 @@
         width: 0;
     }
 
-.colours__subtitle {
-    animation: shiftUp 0.5s ease-out 0.15s forwards;
+.colours__date,
+.colours__hex {
     margin-top: 1.5rem;
     opacity: 0;
 }
 
+.colours__date {
+    animation: shiftUp 0.5s ease-out 0.1s forwards;
+    font-size: 1.5em;
+}
+
+.colours__hex {
+    animation: shiftUp 0.5s ease-out 0.15s forwards;
+}
+
 @media (max-width: 700px) {
     .colours__time {
-        font-size: 3.5em;
+        font-size: 4em;
     }
 
         .colours__time__postfix {
             margin-left: 1rem;
         }
 
-    .colours__subtitle { font-size: 1.25em; }
+    .colours__date {
+        font-size: 1em;
+    }
+
+    .colours__hex {
+        font-size: 1.25em;
+    }
+}
+
+@media (max-width: 600px) {
+    .colours__time {
+        font-size: 3em;
+    }
 }
 
 .info {
@@ -111,7 +132,7 @@
 // Protects against light backgrounds when using full spectrum
 .full {
     .colours__time,
-    .colours__subtitle,
+    .colours__hex,
     .panels__toggles a {
         text-shadow: 0 1px 0.35rem rgba($dark-grey, 0.5);
     }
