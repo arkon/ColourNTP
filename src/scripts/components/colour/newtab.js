@@ -3,6 +3,7 @@ import React from 'react';
 import Chrome from '../../modules/chrome';
 import Colours from '../../modules/colours';
 import Unsplash from '../../modules/unsplash';
+import WebFont from '../../modules/webfont';
 
 import Time from './time';
 import DateDisplay from './date';
@@ -174,14 +175,7 @@ class NewTab extends React.Component {
     }
 
     loadFont (font, isWeb) {
-        if (isWeb) {
-            let elLinkFont  = document.createElement('link');
-            elLinkFont.type = 'text/css';
-            elLinkFont.rel  = 'stylesheet';
-            elLinkFont.href = `https://fonts.googleapis.com/css?family=${font}:400,300`;
-
-            document.head.appendChild(elLinkFont);
-        }
+        WebFont.loadFont(font);
 
         if (!this.elStyleFont) {
             this.elStyleFont = document.createElement('style');

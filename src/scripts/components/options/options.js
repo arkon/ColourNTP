@@ -3,6 +3,7 @@ import React from 'react';
 import Checkbox from './checkbox';
 import Colour from './colour';
 import Dropdown from './dropdown';
+import FontPreview from './fontpreview';
 import Number from './number';
 import Radio from './radio';
 import RadioGroup from './radiogroup';
@@ -166,6 +167,8 @@ class Options extends React.Component {
                             options={Fonts}
                             optkey='fontWeb'
                             value={settings.fontWeb} />
+
+                        <FontPreview font={settings.fontWeb} />
                     </Radio>
                 </RadioGroup>
 
