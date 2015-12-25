@@ -11,7 +11,7 @@ var babelify    = require('babelify'),
     es          = require('event-stream'),
     glob        = require('glob'),
     gulp        = require('gulp'),
-    minifyCss   = require('gulp-minify-css'),
+    nano        = require('gulp-cssnano'),
     runSequence = require('run-sequence'),
     sass        = require('gulp-sass'),
     source      = require('vinyl-source-stream'),
@@ -75,7 +75,7 @@ gulp.task('copy:assets', function () {
 gulp.task('scss', function () {
     return gulp.src(paths.src_styles)
         .pipe(sass().on('error', sass.logError))
-        .pipe(minifyCss())
+        .pipe(nano())
         .pipe(gulp.dest(paths.dest_styles));
 });
 
