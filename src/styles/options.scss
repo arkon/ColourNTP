@@ -80,9 +80,9 @@ input[type='color'] {
 input[type='range'] {
     -webkit-appearance: none;
     background: $light-grey;
-    border-radius: 1em;
+    border-radius: 2px;
     display: inline-block;
-    height: 0.5em;
+    height: 0.4em;
     margin-right: 0.75em;
     padding: 0;
     width: 15em;
@@ -90,19 +90,24 @@ input[type='range'] {
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        background: $white;
-        border: 1px solid $light-grey;
+        background: $light-grey;
+        border: 3px solid $dark-grey;
         border-radius: 50%;
-        height: 1em;
-        width: 1em;
-
-        &:hover {
-            border-width: 2px;
-        }
+        height: 1.15em;
+        transition: background-color 0.3s;
+        width: 1.15em;
     }
 
     &:focus {
         outline: none;
+    }
+
+    &:hover {
+        cursor: ew-resize;
+
+        &::-webkit-slider-thumb {
+            background-color: $white;
+        }
     }
 }
 
