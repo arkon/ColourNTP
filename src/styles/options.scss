@@ -47,7 +47,8 @@ label {
     margin: 0.75em 0;
 }
 
-input {
+input,
+select {
     background: $white;
     border: 1px solid $light-grey;
     border-radius: 3px;
@@ -62,7 +63,8 @@ input[type='checkbox'] {
 
 input[type='color'],
 input[type='text'],
-input[type='number'] {
+input[type='number'],
+select {
     margin-left: 0.75em;
 }
 
@@ -148,49 +150,3 @@ abbr {
         }
     }
 }
-
-.options__dropdown {
-    color: $dark-grey;
-    cursor: pointer;
-    display: inline-block;
-    margin-left: 0.5em;
-    position: relative;
-    vertical-align: middle;
-}
-
-    .options__dropdown__label {
-        @extend input;
-        padding-right: 2em;
-        position: relative;
-
-        &::after {
-            content: '▾';
-            display: inline-block;
-            position: absolute;
-            top: 0.15em;
-            right: 0.5em;
-        }
-    }
-
-    .options__dropdown__list {
-        background: $white;
-        border: 1px solid $light-grey;
-        display: none;
-        left: 0;
-        position: absolute;
-        top: 1.5em;
-
-        li {
-            padding: 0.25em 0.5em;
-            transition: background-color 0.15s;
-            white-space: nowrap;
-
-            &:hover {
-                background-color: $light-grey;
-            }
-        }
-    }
-
-        .options__dropdown__list--open {
-            display: block;
-        }
