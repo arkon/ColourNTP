@@ -132,6 +132,7 @@
 // Protects against light backgrounds when using full spectrum
 .full {
     .colours__time,
+    .colours__date,
     .colours__hex,
     .panels__toggles a {
         text-shadow: 0 1px 0.35rem rgba($dark-grey, 0.5);
