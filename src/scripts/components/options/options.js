@@ -67,24 +67,7 @@ class Options extends React.Component {
                         value={settings.showDate} />
                 </Tab>
 
-                <Tab name='Shortcuts'>
-                    <Checkbox label='Settings'
-                        tooltip='Shortcut to open Colour New Tab options.'
-                        optkey='shortcutOpts'
-                        value={settings.shortcutOpts} />
-
-                    <Checkbox label='Default new tab'
-                        tooltip='Shortcut to open the default Chrome new tab page.'
-                        optkey='shortcutNewTab'
-                        value={settings.shortcutNewTab} />
-
-                    <Checkbox label='Image download'
-                        tooltip='Shortcut to open the background image, if present.'
-                        optkey='shortcutImage'
-                        value={settings.shortcutImage} />
-                </Tab>
-
-                <Tab name='Colours'>
+                <Tab name='Colour'>
                     <RadioGroup group='colourtype' optkey='colour' value={settings.colour}>
                         <Radio label='Regular'
                             tooltip='Shows the corresponding colour based on the 24-hour clock.'
@@ -113,7 +96,7 @@ class Options extends React.Component {
                         value={settings.ticker} />
                 </Tab>
 
-                <Tab name='Background image'>
+                <Tab name='Background'>
                     <RadioGroup group='bg' optkey='bg' value={settings.bg}>
                         <Radio label='None'
                             tooltip='No background image.'
@@ -169,6 +152,23 @@ class Options extends React.Component {
                             <FontPreview font={settings.fontWeb} />
                         </Radio>
                     </RadioGroup>
+                </Tab>
+
+                <Tab name='Shortcuts'>
+                    <Checkbox label='Settings'
+                        tooltip='Shortcut to open Colour New Tab options.'
+                        optkey='shortcutOpts'
+                        value={settings.shortcutOpts} />
+
+                    <Checkbox label='Default new tab'
+                        tooltip='Shortcut to open the default Chrome new tab page.'
+                        optkey='shortcutNewTab'
+                        value={settings.shortcutNewTab} />
+
+                    <Checkbox label='Image download'
+                        tooltip='Shortcut to open the background image, if present.'
+                        optkey='shortcutImage'
+                        value={settings.shortcutImage} />
                 </Tab>
 
                 <Tab name='Panels'>
