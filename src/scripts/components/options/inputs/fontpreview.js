@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Chrome from '../../modules/chrome';
-import WebFont from '../../modules/webfont';
-
+import Chrome from '../../../modules/chrome';
+import WebFont from '../../../modules/webfont';
 
 class FontPreview extends React.Component {
     constructor (props) {

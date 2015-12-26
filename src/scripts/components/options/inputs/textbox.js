@@ -1,8 +1,7 @@
 import React from 'react';
 
 import OptionsComponent from './optionscomponent';
-import Chrome from '../../modules/chrome';
-
+import Chrome from '../../../modules/chrome';
 
 class Textbox extends OptionsComponent {
     constructor (props) {

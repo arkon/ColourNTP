@@ -1,10 +1,9 @@
 import React from 'react';
 
 import OptionsComponent from './optionscomponent';
-import Chrome from '../../modules/chrome';
+import Chrome from '../../../modules/chrome';
 
-
-class Colour extends OptionsComponent {
+class Dropdown extends OptionsComponent {
     constructor (props) {
         super(props);
 
@@ -24,10 +23,14 @@ class Colour extends OptionsComponent {
         return (
             <label>
                 <span>{this.props.label}:</span>
-                <input type='color' value={this.state.value} onChange={this.handleChange} />
+                <select value={this.state.value} onChange={this.handleChange}>
+                    { this.props.options.map((item, i) => {
+                        return <option key={i} value={item}>{item}</option>;
+                    }) }
+                </select>
             </label>
         );
     }
 }
 
-export default Colour;
+export default Dropdown;

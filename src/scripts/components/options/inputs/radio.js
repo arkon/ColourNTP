@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 var Radio = (props) => {
     let onCheck = (e) => {
         props.onChange(props.value);
