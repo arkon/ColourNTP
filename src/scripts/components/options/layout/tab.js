@@ -7,9 +7,7 @@ class Tab extends React.Component {
 
     render () {
         return (
-            <div>
-                <h2 className='options__subheader'>{this.props.name}</h2>
-
+            <div className='options__tabs__content'>
                 {this.props.children}
             </div>
         );

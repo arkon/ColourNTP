@@ -34,9 +34,7 @@ class Tabs extends React.Component {
                     }) }
                 </ul>
 
-                <div className='options__tabs__content'>
-                    {this.props.children[this.state.currentTab]}
-                </div>
+                {this.props.children[this.state.currentTab]}
             </div>
         );
     }

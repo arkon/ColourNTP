@@ -6,9 +6,11 @@
 .options__tab {
     cursor: pointer;
     display: inline-block;
+    margin-right: 1px;
     padding: 0.5em 1em;
 }
 
+    .options__tab:hover,
     .options__tab--active {
         @extend .options__tab;
         background: $grey;
