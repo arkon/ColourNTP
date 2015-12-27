@@ -1,13 +1,12 @@
 import React from 'react';
 
-
 var Time = (props) => {
-    let time = props.time;
+    var time = props.time;
 
-    let hour = time.hour;
+    var hour = time.hour;
 
     if (!props.hourFormat24 && time.pm) {
-        let pad = function (n) {
+        var pad = function (n) {
             return (n < 10) ? `0${n}` : n.toString();
         };
 

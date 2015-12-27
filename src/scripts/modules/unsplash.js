@@ -1,7 +1,7 @@
 class Unsplash {
     static getImage (frequency, callback) {
         // Set proper frequency in URL + screen size
-        let unsplashUrl = `https://source.unsplash.com/${screen.width}x${screen.height}/`;
+        var unsplashUrl = `https://source.unsplash.com/${screen.width}x${screen.height}/`;
 
         switch (frequency) {
             case 'daily':
@@ -18,7 +18,7 @@ class Unsplash {
         }
 
         // Follow redirect to get actual image URL
-        let req = new XMLHttpRequest();
+        var req = new XMLHttpRequest();
         req.onreadystatechange = function () {
             if (req.readyState === 4 && (req.status >= 200 && req.status < 300)) {
                 callback(req.responseURL);

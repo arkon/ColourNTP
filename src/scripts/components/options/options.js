@@ -17,7 +17,6 @@ import Fonts from '../../constants/fonts';
 
 import Chrome from '../../modules/chrome';
 
-
 class Options extends React.Component {
     constructor (props) {
         super(props);
@@ -36,7 +35,7 @@ class Options extends React.Component {
     }
 
     render () {
-        let settings = this.state.settings;
+        var settings = this.state.settings;
 
         return (
             <Tabs>

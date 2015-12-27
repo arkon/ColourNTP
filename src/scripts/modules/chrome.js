@@ -1,6 +1,5 @@
 import Defaults from '../constants/defaults';
 
-
 class Chrome {
 
     // Panel helpers
@@ -26,7 +25,7 @@ class Chrome {
 
     static getRecentlyClosed (done, max = 10) {
         chrome.sessions.getRecentlyClosed({ maxResults: parseInt(max, 10) }, function (sessions) {
-            let items = [];
+            var items = [];
 
             for (let session of sessions) {
                 if (session.window && session.window.tabs.length === 1) {

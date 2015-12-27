@@ -16,7 +16,7 @@ class Colours {
      * 00:00:00 corresponds to #FF0000, 12:00:00 corresponds to #00FEFF.
      */
     static secondToHueColour (seconds) {
-        let hue = seconds / (24 * 60 * 60);
+        var hue = seconds / (24 * 60 * 60);
 
         return Colours.rgbToHex(...Colours.hslToRgb(hue, 1, 0.5));
     }
@@ -34,13 +34,13 @@ class Colours {
      * @return {Array}  The RGB representation.
      */
     static hslToRgb (h, s, l) {
-        let r, g, b;
+        var r, g, b;
 
         if (s === 0){
             r = g = b = l;  // Achromatic
         } else {
-            let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-            let p = 2 * l - q;
+            var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+            var p = 2 * l - q;
             r = Colours.hueToRgb(p, q, h + 1/3);
             g = Colours.hueToRgb(p, q, h);
             b = Colours.hueToRgb(p, q, h - 1/3);
@@ -73,7 +73,7 @@ class Colours {
      * Converts a hex colour string to an array of RGB values.
      */
     static hexToRgb (hex) {
-        let r = parseInt(hex, 16) >> 16,
+        var r = parseInt(hex, 16) >> 16,
             g = parseInt(hex, 16) >> 8 & 0xFF,
             b = parseInt(hex, 16) & 0xFF;
 
@@ -84,7 +84,7 @@ class Colours {
      * Converts a hex colour to an RGBA string with the provided alpha value.
      */
     static rgba (hex, a) {
-        let colour = Colours.hexToRgb(hex.substring(1, 7));
+        var colour = Colours.hexToRgb(hex.substring(1, 7));
 
         return `rgba(${colour[0]}, ${colour[1]}, ${colour[2]}, ${a})`;
     }

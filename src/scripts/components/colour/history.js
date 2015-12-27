@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 class History extends React.Component {
     constructor (props) {
         super(props);
@@ -23,7 +22,7 @@ class History extends React.Component {
     }
 
     pushToStack (item) {
-        let stack = this.state.history;
+        var stack = this.state.history;
 
         stack.push(item)
 

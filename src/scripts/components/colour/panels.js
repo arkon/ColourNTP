@@ -2,7 +2,6 @@ import React from 'react';
 
 import Chrome from '../../modules/chrome';
 
-
 class Panels extends React.Component {
     constructor (props) {
         super(props);
@@ -99,7 +98,7 @@ class Panels extends React.Component {
 
     onClickToggle (id) {
         return () => {
-            let newId = this.state.open === id ? 0 : id;
+            var newId = this.state.open === id ? 0 : id;
 
             this.setState({
                 open: newId
@@ -132,7 +131,7 @@ class Panels extends React.Component {
     }
 
     render () {
-        let state = this.state;
+        var state = this.state;
 
         return (
             <div className='panels'>

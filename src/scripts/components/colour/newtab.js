@@ -11,7 +11,6 @@ import Hex from './hex';
 import Panels from './panels';
 import History from './history';
 
-
 class NewTab extends React.Component {
     constructor (props) {
         super(props);
@@ -51,7 +50,7 @@ class NewTab extends React.Component {
 
     fetchSettings () {
         Chrome.getSettings((settings) => {
-            let coloursClass = 'colours';
+            var coloursClass = 'colours';
 
             // No animations
             if (!settings.animations) {
@@ -126,12 +125,12 @@ class NewTab extends React.Component {
     }
 
     tick () {
-        let now     = new Date(),
+        var now     = new Date(),
             hour    = now.getHours(),
             minute  = now.getMinutes(),
             second  = now.getSeconds();
 
-        let time = {
+        var time = {
             pm     : hour >= 12,
             hour   : this.pad(hour),
             minute : this.pad(minute),
@@ -148,9 +147,9 @@ class NewTab extends React.Component {
     }
 
     tickColour (time) {
-        let colour = `#${time.hour}${time.minute}${time.second}`;
+        var colour = `#${time.hour}${time.minute}${time.second}`;
 
-        let seconds =
+        var seconds =
             (parseInt(time.hour, 10) * 60 * 60) +
             (parseInt(time.minute, 10) * 60) +
             (parseInt(time.second, 10));
@@ -197,14 +196,14 @@ class NewTab extends React.Component {
     }
 
     render () {
-        let settings = this.state.settings;
+        var settings = this.state.settings;
 
         if (Object.keys(settings).length === 0) {
             return <div className={this.state.coloursClass} />;
         }
 
         // Background styles
-        let bgColourStyle = {
+        var bgColourStyle = {
             backgroundColor : this.state.bgOpacity < 1 ?
                 Colours.rgba(this.state.colour, this.state.bgOpacity) :
                 this.state.colour
