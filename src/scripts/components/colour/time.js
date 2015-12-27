@@ -1,18 +1,15 @@
 import React from 'react';
 
+import TimeHelper from '../../modules/timehelper';
+
 var Time = (props) => {
     var time = props.time;
 
     var hour = time.hour;
 
     if (!props.hourFormat24 && time.pm) {
-        var pad = function (n) {
-            return (n < 10) ? `0${n}` : n.toString();
-        };
-
         hour -= 12;
-
-        hour = pad(hour === 0 ? 12 : hour);
+        hour = TimeHelper.pad(hour === 0 ? 12 : hour);
     }
 
     return (

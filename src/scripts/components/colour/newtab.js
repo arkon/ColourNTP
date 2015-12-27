@@ -2,6 +2,7 @@ import React from 'react';
 
 import Chrome from '../../modules/chrome';
 import Colours from '../../modules/colours';
+import TimeHelper from '../../modules/timehelper';
 import Unsplash from '../../modules/unsplash';
 import WebFont from '../../modules/webfont';
 
@@ -132,9 +133,9 @@ class NewTab extends React.Component {
 
         var time = {
             pm     : hour >= 12,
-            hour   : this.pad(hour),
-            minute : this.pad(minute),
-            second : this.pad(second)
+            hour   : TimeHelper.pad(hour),
+            minute : TimeHelper.pad(minute),
+            second : TimeHelper.pad(second)
         };
 
         this.setState({
@@ -167,10 +168,6 @@ class NewTab extends React.Component {
         this.setState({
             colour : colour
         });
-    }
-
-    pad (n) {
-        return (n < 10) ? `0${n}` : n.toString();
     }
 
     loadFont (font, isWeb) {
