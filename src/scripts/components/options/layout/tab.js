@@ -6,13 +6,13 @@ class Tab extends React.Component {
     }
 
     render () {
-        return this.props.selected ? (
+        return (
             <div>
                 <h2 className='options__subheader'>{this.props.name}</h2>
 
                 {this.props.children}
             </div>
-        ) : null;
+        );
     }
 }
 

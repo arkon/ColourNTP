@@ -35,13 +35,7 @@ class Tabs extends React.Component {
                 </ul>
 
                 <div className='options__tabs__content'>
-                    { this.props.children.map((tab, i) => {
-                        return (
-                            <Tab key={i} name={tab.props.name} selected={this.state.currentTab === i}>
-                                {tab.props.children}
-                            </Tab>
-                        );
-                    }) }
+                    {this.props.children[this.state.currentTab]}
                 </div>
             </div>
         );
