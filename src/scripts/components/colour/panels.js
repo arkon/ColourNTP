@@ -1,3 +1,4 @@
+import autobind from 'autobind-decorator';
 import React from 'react';
 
 import Chrome from '../../modules/chrome';
@@ -26,8 +27,6 @@ class Panels extends React.Component {
             showShortcuts  : true,
             shortcuts      : []
         };
-
-        this.fetchSettings = this.fetchSettings.bind(this);
     }
 
     componentDidMount () {

@@ -1,13 +1,13 @@
+import autobind from 'autobind-decorator';
 import React from 'react';
 
 import OptionsComponent from './optionscomponent';
 import Chrome from '../../../modules/chrome';
 
+@autobind
 class Textbox extends OptionsComponent {
     constructor (props) {
         super(props);
-
-        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange (e) {

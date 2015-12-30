@@ -1,5 +1,7 @@
+import autobind from 'autobind-decorator';
 import React from 'react';
 
+@autobind
 class History extends React.Component {
     constructor (props) {
         super(props);
@@ -9,8 +11,6 @@ class History extends React.Component {
         this.state = {
             history: new Array(this.max)
         };
-
-        this.pushToStack = this.pushToStack.bind(this);
     }
 
     componentWillMount () {

@@ -88,7 +88,10 @@ gulp.task('js', function (done) {
             var filename = entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '');
 
             return browserify(entry)
-                .transform(babelify, { presets: ['es2015', 'react'] })
+                .transform(babelify, {
+                    presets: ['es2015', 'react'],
+                    plugins: ['transform-decorators-legacy'],
+                })
                 .bundle()
                 .pipe(source(filename + '.bundle.js'))
                 .pipe(buffer())

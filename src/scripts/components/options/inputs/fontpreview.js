@@ -1,8 +1,10 @@
+import autobind from 'autobind-decorator';
 import React from 'react';
 
 import Chrome from '../../../modules/chrome';
 import WebFont from '../../../modules/webfont';
 
+@autobind
 class FontPreview extends React.Component {
     constructor (props) {
         super(props);
@@ -10,8 +12,6 @@ class FontPreview extends React.Component {
         this.state = {
             font: this.props.font
         };
-
-        this.fetchSettings = this.fetchSettings.bind(this);
     }
 
     componentDidMount () {

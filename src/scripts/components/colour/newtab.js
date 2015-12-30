@@ -1,3 +1,4 @@
+import autobind from 'autobind-decorator';
 import React from 'react';
 
 import Chrome from '../../modules/chrome';
@@ -12,6 +13,7 @@ import Hex from './hex';
 import Panels from './panels';
 import History from './history';
 
+@autobind
 class NewTab extends React.Component {
     constructor (props) {
         super(props);
@@ -26,11 +28,6 @@ class NewTab extends React.Component {
             bgImage      : null,
             bgOpacity    : 1
         };
-
-        this.fetchSettings = this.fetchSettings.bind(this);
-        this.tick = this.tick.bind(this);
-        this.tickColour = this.tickColour.bind(this);
-        this.loadBgImage = this.loadBgImage.bind(this);
     }
 
     componentDidMount () {

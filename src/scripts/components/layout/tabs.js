@@ -9,8 +9,6 @@ class Tabs extends React.Component {
         this.state = {
             currentTab: 0
         };
-
-        this.handleTab = this.handleTab.bind(this);
     }
 
     handleTab (tab) {
