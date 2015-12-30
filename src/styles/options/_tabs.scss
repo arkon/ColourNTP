@@ -1,23 +1,23 @@
-.options__tabs {
+.tabs {
     list-style: none;
     margin-top: 2em;
 }
 
-.options__tab {
+.tabs__tab {
     cursor: pointer;
     display: inline-block;
     margin-right: 1px;
     padding: 0.5em 1em;
 }
 
-    .options__tab:hover,
-    .options__tab--active {
-        @extend .options__tab;
+    .tabs__tab:hover,
+    .tabs__tab--active {
+        @extend .tabs__tab;
         background: $grey;
         color: $white;
     }
 
-.options__tabs__content {
+.tabs__tab__content {
     background: $grey;
     padding: 1em;
 }

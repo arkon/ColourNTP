@@ -22,11 +22,11 @@ class Tabs extends React.Component {
     render () {
         return (
             <div>
-                <ul className='options__tabs'>
+                <ul className='tabs'>
                     { this.props.children.map((tab, i) => {
                         return (
                             <li key={i}
-                                className={this.state.currentTab === i ? 'options__tab--active' : 'options__tab'}
+                                className={this.state.currentTab === i ? 'tabs__tab--active' : 'tabs__tab'}
                                 onClick={this.handleTab.bind(this, i)}>
                                 {tab.props.name}
                             </li>

@@ -10,8 +10,8 @@ import RadioGroup from './inputs/radiogroup';
 import Range from './inputs/range';
 import Textbox from './inputs/textbox';
 
-import Tabs from './layout/tabs';
-import Tab from './layout/tab';
+import Tabs from '../layout/tabs';
+import Tab from '../layout/tab';
 
 import Fonts from '../../constants/fonts';
 
