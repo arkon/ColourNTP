@@ -22,14 +22,14 @@ class Options extends React.Component {
         super(props);
 
         this.state = {
-            settings : {}
+            settings: {}
         };
     }
 
     componentDidMount () {
         Chrome.getSettings((settings) => {
             this.setState({
-                settings : settings
+                settings: settings
             });
         });
     }
