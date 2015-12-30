@@ -1,18 +1,26 @@
 // Toggles
 
-.panels__toggles {
-    color: rgba($white, 0.4);
-    display: block;
-    font-size: 0.9em;
-    margin-top: 4em;
+.panels {
+    margin: 1em auto 0;
+    max-width: 60em;
+    width: auto;
 
-    a {
+    .tabs {
+        color: rgba($white, 0.4);
+        display: block;
+        font-size: 0.9em;
+        margin: 4em 0 1em;
+    }
+
+    .tabs__tab {
         color: rgba($white, 0.5);
+        cursor: pointer;
+        display: inline-block;
         padding: 0.25em;
         transition: color 0.3s;
         will-change: color;
 
-        & + a:before {
+        & + .tabs__tab::before {
             color: inherit;
             content: '•';
             margin-right: 0.5em;
@@ -23,19 +31,14 @@
         }
     }
 
-    .panels__toggles--active {
+    .tabs__tab--active {
+        @extend .tabs__tab;
         color: $white;
     }
 }
 
 
 // Panel
-
-.panels__panels {
-    margin: 1em auto 0;
-    max-width: 60em;
-    width: auto;
-}
 
 .panels__panel {
     align-items: center;
@@ -98,7 +101,7 @@
 
 // Apps
 
-.panels__panel--app {
+.panels__panel--apps {
     li {
         height: 10em;
         text-align: center;
@@ -123,7 +126,7 @@
     }
 }
 
-    .panels__panel--app__name {
+    .panels__panel--apps__name {
         color: $dark-grey;
         font-size: 1rem;
     }

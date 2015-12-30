@@ -1,6 +1,9 @@
 import autobind from 'autobind-decorator';
 import React from 'react';
 
+import Tabs from '../layout/tabs';
+import Tab from '../layout/tab';
+
 import Chrome from '../../modules/chrome';
 
 class Panels extends React.Component {
@@ -8,7 +11,7 @@ class Panels extends React.Component {
         super(props);
 
         this.state = {
-            open           : 0,
+            open           : -1,
 
             showVisited    : true,
             topSites       : [],
@@ -43,7 +46,7 @@ class Panels extends React.Component {
     fetchSettings () {
         Chrome.getSettings((settings) => {
             this.setState({
-                open          : settings.openPanel || 0,
+                open          : settings.openPanel || -1,
                 showVisited   : settings.panelVisited,
                 showClosed    : settings.panelClosed,
                 showDevices   : settings.panelDevices,
@@ -95,16 +98,8 @@ class Panels extends React.Component {
         });
     }
 
-    onClickToggle (id) {
-        return () => {
-            var newId = this.state.open === id ? 0 : id;
-
-            this.setState({
-                open: newId
-            });
-
-            Chrome.setSetting('openPanel', newId);
-        };
+    onClickTab (tab) {
+        Chrome.setSetting('openPanel', tab);
     }
 
     onClickSession (session) {
@@ -134,144 +129,127 @@ class Panels extends React.Component {
 
         return (
             <div className='panels'>
-                <p className='panels__toggles'>
+                <Tabs onToggle={this.onClickTab} activeTab={this.state.open} canToggle>
                     { state.showVisited &&
-                        <a className={state.open === 1 ? 'panels__toggles--active' : ''}
-                            onClick={this.onClickToggle(1)}>Most visited</a>
-                    }
-
-                    { state.showClosed &&
-                        <a className={state.open === 2 ? 'panels__toggles--active' : ''}
-                            onClick={this.onClickToggle(2)}>Recently closed</a>
-                    }
-
-                    { state.showDevices &&
-                        <a className={state.open === 3 ? 'panels__toggles--active' : ''}
-                            onClick={this.onClickToggle(3)}>Other devices</a>
-                    }
-
-                    { state.showApps &&
-                        <a className={state.open === 4 ? 'panels__toggles--active' : ''}
-                            onClick={this.onClickToggle(4)}>Apps</a>
-                    }
-
-                    { state.showShortcuts &&
-                        <a className={state.open === 5 ? 'panels__toggles--active' : ''}
-                            onClick={this.onClickToggle(5)}>Shortcuts</a>
-                    }
-                </p>
-
-                <div className='panels__panels'>
-                    { state.showVisited && state.open === 1 &&
-                        <ul className='panels__panel'>
-                            { state.topSites.map((site, i) => {
-                                let siteStyle = {
-                                    backgroundImage: `url('${site.img}')`
-                                };
-
-                                return (
-                                    <li key={i}>
-                                        <a className={`item-${i}`} style={siteStyle} title={site.title} href={site.url}>
-                                            {site.title}
-                                        </a>
-                                    </li>
-                                );
-                            }) }
-                        </ul>
-                    }
-
-                    { state.showClosed && state.open === 2 &&
-                        <ul className='panels__panel'>
-                            { (state.recentlyClosed.length === 0) ?
-                                <p className='panels__panel__message'>No recently closed sessions</p> :
-                                state.recentlyClosed.map((session, i) => {
-                                    let sessionStyle = {
-                                        backgroundImage: `url('${session.img}')`
+                        <Tab name='Most visited'>
+                            <ul className='panels__panel'>
+                                { state.topSites.map((site, i) => {
+                                    let siteStyle = {
+                                        backgroundImage: `url('${site.img}')`
                                     };
 
                                     return (
-                                        <li key={i} onClick={this.onClickSession(session.session)}>
-                                            <a className={`item-${i}`} style={sessionStyle} title={session.title}>
-                                                {session.title}
+                                        <li key={i}>
+                                            <a className={`item-${i}`} style={siteStyle} title={site.title} href={site.url}>
+                                                {site.title}
                                             </a>
                                         </li>
                                     );
-                                })
-                            }
-                        </ul>
+                                }) }
+                            </ul>
+                        </Tab>
                     }
 
-                    { state.showDevices && state.open === 3 &&
-                        <ul className='panels__panel panels__panel--devices'>
-                            { (state.devices.length === 0) ?
-                                <p className='panels__panel__message'>No tabs from other devices</p> :
-                                state.devices.map((device, i) => {
-                                    return (
-                                        <li key={i} className={`item-${i}`} >
-                                            <p className='panels__panel--devices__name'>{device.title}</p>
-                                            <ul>
-                                                { device.tabs.map((tab, j) => {
-                                                    let tabStyle = {
-                                                        backgroundImage: `url('${tab.img}')`
-                                                    };
+                    { state.showClosed &&
+                        <Tab name='Recently closed'>
+                            <ul className='panels__panel'>
+                                { (state.recentlyClosed.length === 0) ?
+                                    <p className='panels__panel__message'>No recently closed sessions</p> :
+                                    state.recentlyClosed.map((session, i) => {
+                                        let sessionStyle = {
+                                            backgroundImage: `url('${session.img}')`
+                                        };
 
-                                                    return (
-                                                        <li key={j}>
-                                                            <a style={tabStyle} title={tab.title} href={tab.url}>
-                                                                {tab.title}
-                                                            </a>
-                                                        </li>
-                                                    );
-                                                }) }
-                                            </ul>
+                                        return (
+                                            <li key={i} onClick={this.onClickSession(session.session)}>
+                                                <a className={`item-${i}`} style={sessionStyle} title={session.title}>
+                                                    {session.title}
+                                                </a>
+                                            </li>
+                                        );
+                                    })
+                                }
+                            </ul>
+                        </Tab>
+                    }
+
+                    { state.showDevices &&
+                        <Tab name='Other devices'>
+                            <ul className='panels__panel panels__panel--devices'>
+                                { (state.devices.length === 0) ?
+                                    <p className='panels__panel__message'>No tabs from other devices</p> :
+                                    state.devices.map((device, i) => {
+                                        return (
+                                            <li key={i} className={`item-${i}`} >
+                                                <p className='panels__panel--devices__name'>{device.title}</p>
+                                                <ul>
+                                                    { device.tabs.map((tab, j) => {
+                                                        let tabStyle = {
+                                                            backgroundImage: `url('${tab.img}')`
+                                                        };
+
+                                                        return (
+                                                            <li key={j}>
+                                                                <a style={tabStyle} title={tab.title} href={tab.url}>
+                                                                    {tab.title}
+                                                                </a>
+                                                            </li>
+                                                        );
+                                                    }) }
+                                                </ul>
+                                            </li>
+                                        );
+                                    })
+                                }
+                            </ul>
+                        </Tab>
+                    }
+
+                    { state.showApps &&
+                        <Tab name='Apps'>
+                            <ul className='panels__panel panels__panel--apps'>
+                                { state.apps.map((app, i) => {
+                                    if (app.id === 'ntp-apps' && !this.state.showAllApps) {
+                                        return null;
+                                    }
+
+                                    if (app.id === 'ntp-webstore' && !this.state.showWebStore) {
+                                        return null;
+                                    }
+
+                                    return (
+                                        <li key={i} onClick={this.onClickApp(app.id, app.href)}>
+                                            <a className={`item-${i}`}>
+                                                <img src={app.img} alt={app.title} />
+                                                <div className='panels__panel--apps__name'>{app.title}</div>
+                                            </a>
                                         </li>
                                     );
-                                })
-                            }
-                        </ul>
+                                }) }
+                            </ul>
+                        </Tab>
                     }
 
-                    { state.showApps && state.open === 4 &&
-                        <ul className='panels__panel panels__panel--app'>
-                            { state.apps.map((app, i) => {
-                                if (app.id === 'ntp-apps' && !this.state.showAllApps) {
-                                    return null;
-                                }
+                    { state.showShortcuts &&
+                        <Tab name='Shortcuts'>
+                            <ul className='panels__panel'>
+                                { state.shortcuts.map((shortcut, i) => {
+                                    let shortcutStyle = {
+                                        backgroundImage: `url('${shortcut.img}')`
+                                    };
 
-                                if (app.id === 'ntp-webstore' && !this.state.showWebStore) {
-                                    return null;
-                                }
-
-                                return (
-                                    <li key={i} onClick={this.onClickApp(app.id, app.href)}>
-                                        <a className={`item-${i}`}>
-                                            <img src={app.img} alt={app.title} />
-                                            <div className='panels__panel--app__name'>{app.title}</div>
-                                        </a>
-                                    </li>
-                                );
-                            }) }
-                        </ul>
+                                    return (
+                                        <li key={i} onClick={this.onClickShortcut(shortcut.url)}>
+                                            <a className={`item-${i}`} style={shortcutStyle} title={shortcut.title}>
+                                                {shortcut.title}
+                                            </a>
+                                        </li>
+                                    );
+                                }) }
+                            </ul>
+                        </Tab>
                     }
-
-                    { state.showShortcuts && state.open === 5 &&
-                        <ul className='panels__panel'>
-                            { state.shortcuts.map((shortcut, i) => {
-                                let shortcutStyle = {
-                                    backgroundImage: `url('${shortcut.img}')`
-                                };
-
-                                return (
-                                    <li key={i} onClick={this.onClickShortcut(shortcut.url)}>
-                                        <a className={`item-${i}`} style={shortcutStyle} title={shortcut.title}>
-                                            {shortcut.title}
-                                        </a>
-                                    </li>
-                                );
-                            }) }
-                        </ul>
-                    }
-                </div>
+                </Tabs>
             </div>
         );
     }

@@ -7,14 +7,23 @@ class Tabs extends React.Component {
         super(props);
 
         this.state = {
-            currentTab: 0
+            activeTab: this.props.activeTab || 0
         };
     }
 
     handleTab (tab) {
+        // Close tab if open
+        if (this.props.canToggle) {
+            tab = this.state.activeTab === tab ? -1 : tab
+        }
+
         this.setState({
-            currentTab: tab
+            activeTab: tab
         });
+
+        if (this.props.onToggle) {
+            this.props.onToggle(tab);
+        }
     }
 
     render () {
@@ -24,7 +33,7 @@ class Tabs extends React.Component {
                     { this.props.children.map((tab, i) => {
                         return (
                             <li key={i}
-                                className={this.state.currentTab === i ? 'tabs__tab--active' : 'tabs__tab'}
+                                className={this.state.activeTab === i ? 'tabs__tab--active' : 'tabs__tab'}
                                 onClick={this.handleTab.bind(this, i)}>
                                 {tab.props.name}
                             </li>
@@ -32,7 +41,7 @@ class Tabs extends React.Component {
                     }) }
                 </ul>
 
-                {this.props.children[this.state.currentTab]}
+                {this.props.children[this.state.activeTab]}
             </div>
         );
     }
