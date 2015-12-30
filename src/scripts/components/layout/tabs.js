@@ -31,9 +31,14 @@ class Tabs extends React.Component {
             <div>
                 <ul className='tabs'>
                     { this.props.children.map((tab, i) => {
+                        let tabClass = 'tabs__tab';
+                        if (this.state.activeTab === i) {
+                            tabClass += ' tabs__tab--active';
+                        }
+
                         return (
                             <li key={i}
-                                className={this.state.activeTab === i ? 'tabs__tab--active' : 'tabs__tab'}
+                                className={tabClass}
                                 onClick={this.handleTab.bind(this, i)}>
                                 {tab.props.name}
                             </li>

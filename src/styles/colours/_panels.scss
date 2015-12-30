@@ -25,14 +25,10 @@
             content: '•';
             margin-right: 0.5em;
         }
-
-        &:hover {
-            color: $white;
-        }
     }
 
+    .tabs__tab:hover,
     .tabs__tab--active {
-        @extend .tabs__tab;
         color: $white;
     }
 }

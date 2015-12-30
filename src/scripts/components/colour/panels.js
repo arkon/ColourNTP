@@ -6,6 +6,7 @@ import Tab from '../layout/tab';
 
 import Chrome from '../../modules/chrome';
 
+@autobind
 class Panels extends React.Component {
     constructor (props) {
         super(props);
@@ -129,7 +130,7 @@ class Panels extends React.Component {
 
         return (
             <div className='panels'>
-                <Tabs onToggle={this.onClickTab} activeTab={this.state.open} canToggle>
+                <Tabs onToggle={this.onClickTab} activeTab={state.open} canToggle>
                     { state.showVisited &&
                         <Tab name='Most visited'>
                             <ul className='panels__panel'>
@@ -209,11 +210,8 @@ class Panels extends React.Component {
                         <Tab name='Apps'>
                             <ul className='panels__panel panels__panel--apps'>
                                 { state.apps.map((app, i) => {
-                                    if (app.id === 'ntp-apps' && !this.state.showAllApps) {
-                                        return null;
-                                    }
-
-                                    if (app.id === 'ntp-webstore' && !this.state.showWebStore) {
+                                    if ((app.id === 'ntp-apps' && !this.state.showAllApps) ||
+                                        (app.id === 'ntp-webstore' && !this.state.showWebStore)) {
                                         return null;
                                     }
 
