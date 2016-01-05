@@ -47,7 +47,7 @@ class Panels extends React.Component {
     fetchSettings () {
         Chrome.getSettings((settings) => {
             this.setState({
-                open          : settings.openPanel || -1,
+                open          : settings.openPanel,
                 showVisited   : settings.panelVisited,
                 showClosed    : settings.panelClosed,
                 showDevices   : settings.panelDevices,
@@ -135,13 +135,10 @@ class Panels extends React.Component {
                         <Tab name='Most visited'>
                             <ul className='panels__panel'>
                                 { state.topSites.map((site, i) => {
-                                    let siteStyle = {
-                                        backgroundImage: `url('${site.img}')`
-                                    };
-
                                     return (
                                         <li key={i}>
-                                            <a className={`item-${i}`} style={siteStyle} title={site.title} href={site.url}>
+                                            <a className={`item-${i}`} title={site.title} href={site.url}
+                                                style={{ backgroundImage: `url('${site.img}')` }}>
                                                 {site.title}
                                             </a>
                                         </li>
@@ -157,13 +154,10 @@ class Panels extends React.Component {
                                 { (state.recentlyClosed.length === 0) ?
                                     <p className='panels__panel__message'>No recently closed sessions</p> :
                                     state.recentlyClosed.map((session, i) => {
-                                        let sessionStyle = {
-                                            backgroundImage: `url('${session.img}')`
-                                        };
-
                                         return (
                                             <li key={i} onClick={this.onClickSession(session.session)}>
-                                                <a className={`item-${i}`} style={sessionStyle} title={session.title}>
+                                                <a className={`item-${i}`} title={session.title}
+                                                    style={{ backgroundImage: `url('${session.img}')` }} >
                                                     {session.title}
                                                 </a>
                                             </li>
@@ -185,13 +179,10 @@ class Panels extends React.Component {
                                                 <p className='panels__panel--devices__name'>{device.title}</p>
                                                 <ul>
                                                     { device.tabs.map((tab, j) => {
-                                                        let tabStyle = {
-                                                            backgroundImage: `url('${tab.img}')`
-                                                        };
-
                                                         return (
                                                             <li key={j}>
-                                                                <a style={tabStyle} title={tab.title} href={tab.url}>
+                                                                <a title={tab.title} href={tab.url}
+                                                                    style={{ backgroundImage: `url('${tab.img}')` }} >
                                                                     {tab.title}
                                                                 </a>
                                                             </li>
@@ -232,13 +223,10 @@ class Panels extends React.Component {
                         <Tab name='Shortcuts'>
                             <ul className='panels__panel'>
                                 { state.shortcuts.map((shortcut, i) => {
-                                    let shortcutStyle = {
-                                        backgroundImage: `url('${shortcut.img}')`
-                                    };
-
                                     return (
                                         <li key={i} onClick={this.onClickShortcut(shortcut.url)}>
-                                            <a className={`item-${i}`} style={shortcutStyle} title={shortcut.title}>
+                                            <a className={`item-${i}`} title={shortcut.title}
+                                                style={{ backgroundImage: `url('${shortcut.img}')` }} >
                                                 {shortcut.title}
                                             </a>
                                         </li>

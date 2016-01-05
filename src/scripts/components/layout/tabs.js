@@ -7,14 +7,14 @@ class Tabs extends React.Component {
         super(props);
 
         this.state = {
-            activeTab: this.props.activeTab || 0
+            activeTab: this.props.activeTab
         };
     }
 
     handleTab (tab) {
         // Close tab if open
         if (this.props.canToggle) {
-            tab = this.state.activeTab === tab ? -1 : tab
+            tab = this.state.activeTab === tab ? null : tab
         }
 
         this.setState({
@@ -23,6 +23,14 @@ class Tabs extends React.Component {
 
         if (this.props.onToggle) {
             this.props.onToggle(tab);
+        }
+    }
+
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.activeTab !== this.state.activeTab) {
+            this.setState({
+                activeTab: nextProps.activeTab
+            });
         }
     }
 
