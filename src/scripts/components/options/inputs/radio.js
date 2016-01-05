@@ -11,13 +11,16 @@ var Radio = (props) => {
                 <input type='radio' name={props.group}
                     checked={props.checked} onChange={onCheck} />
 
-                <abbr>
+                { props.tooltip ?
+                    <abbr>
+                        <span>{props.label}</span>
+                        <div>
+                            <strong>{props.label}</strong>
+                            <p>{props.tooltip}</p>
+                        </div>
+                    </abbr> :
                     <span>{props.label}</span>
-                    <div>
-                        <strong>{props.label}</strong>
-                        <p>{props.tooltip}</p>
-                    </div>
-                </abbr>
+                }
             </label>
 
             { props.checked &&

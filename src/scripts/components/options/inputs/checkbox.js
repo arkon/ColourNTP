@@ -26,13 +26,16 @@ class Checkbox extends OptionsComponent {
                     <input type='checkbox' checked={this.state.value}
                         onChange={this.handleChange} />
 
-                    <abbr>
+                    { this.props.tooltip ?
+                        <abbr>
+                            <span>{this.props.label}</span>
+                            <div>
+                                <strong>{this.props.label}</strong>
+                                <p>{this.props.tooltip}</p>
+                            </div>
+                        </abbr> :
                         <span>{this.props.label}</span>
-                        <div>
-                            <strong>{this.props.label}</strong>
-                            <p>{this.props.tooltip}</p>
-                        </div>
-                    </abbr>
+                    }
                 </label>
 
                 { this.state.value &&

@@ -38,30 +38,25 @@ class Options extends React.Component {
         var settings = this.state.settings;
 
         return (
-            <Tabs>
+            <Tabs activeTab={0}>
                 <Tab name='General'>
                     <Checkbox label='24-hour format'
-                        tooltip='Toggle between 12-hour and 24-hour formats.'
                         optkey='time24hr'
                         value={settings.time24hr} />
 
                     <Checkbox label='Animations'
-                        tooltip='Enables animations.'
                         optkey='animations'
                         value={settings.animations} />
 
                     <Checkbox label='Show the time'
-                        tooltip='Shows the current time.'
                         optkey='showTime'
                         value={settings.showTime} />
 
                     <Checkbox label='Show colour hexcode'
-                        tooltip='Shows the current colour hexcode underneath the time.'
                         optkey='showHex'
                         value={settings.showHex} />
 
                     <Checkbox label='Show date'
-                        tooltip="Shows today's date underneath the time."
                         optkey='showDate'
                         value={settings.showDate} />
                 </Tab>
@@ -98,7 +93,6 @@ class Options extends React.Component {
                 <Tab name='Background'>
                     <RadioGroup group='bg' optkey='bg' value={settings.bg}>
                         <Radio label='None'
-                            tooltip='No background image.'
                             value='none' />
 
                         <Radio label='Unsplash'
