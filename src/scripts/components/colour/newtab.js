@@ -96,9 +96,7 @@ class NewTab extends React.Component {
 
             // Date
             if (settings.showDate) {
-                this.setState({
-                    date : new Date().toISOString().split('T')[0]
-                });
+                this.setDate();
             }
 
             // Check if the clock was already started
@@ -139,6 +137,10 @@ class NewTab extends React.Component {
             time : time
         });
 
+        if (hour == 0 && minute == 0 && second == 0) {
+            this.setDate();
+        }
+
         if (this.state.settings.colour !== 'solid' && this.state.bgOpacity !== 0) {
             this.tickColour(time);
         }
@@ -164,6 +166,12 @@ class NewTab extends React.Component {
 
         this.setState({
             colour : colour
+        });
+    }
+
+    setDate () {
+        this.setState({
+            date : new Date().toISOString().split('T')[0]
         });
     }
 
