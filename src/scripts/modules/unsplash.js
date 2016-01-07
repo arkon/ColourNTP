@@ -11,10 +11,6 @@ class Unsplash {
             case 'weekly':
                 unsplashUrl += 'weekly';
                 break;
-
-            default:  // perSession
-                unsplashUrl += 'random';
-                break;
         }
 
         // Follow redirect to get actual image URL
