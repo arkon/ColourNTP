@@ -19,8 +19,9 @@ const Defaults = {
     bgCustomUrl    : '',
     bgOpacity      : 75,
 
-    font           : 'default',  // default, web
+    font           : 'default',  // default, local, web
     fontWeb        : '',
+    fontLocal      : '',
 
     panelVisited   : true,
     panelClosed    : true,
