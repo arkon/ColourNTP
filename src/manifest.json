@@ -4,7 +4,7 @@
   "name": "Colour New Tab",
   "short_name": "ColourNTP",
   "description": "Chrome new tab page based on http://whatcolourisit.scn9a.org/",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "options_page": "options.html",
 
   "chrome_url_overrides" : {
@@ -13,13 +13,11 @@
   "permissions": [
     "<all_urls>",
     "chrome://favicon/",
-    "fontSettings",
     "management",
     "sessions",
     "storage",
     "tabs",
-    "topSites",
-    "unlimitedStorage"
+    "topSites"
   ],
 
   "icons": {

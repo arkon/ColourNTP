@@ -178,16 +178,6 @@ class Chrome {
         // Prompt new tab page to fetch new settings
         chrome.runtime.sendMessage({ msg: 'saved' });
     }
-
-
-    // Fonts
-    // ============================================================================================
-
-    static getFonts (done) {
-        chrome.fontSettings.getFontList((fonts) => {
-            done(fonts);
-        });
-    }
 }
 
 export default Chrome;

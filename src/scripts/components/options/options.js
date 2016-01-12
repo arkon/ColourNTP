@@ -22,7 +22,6 @@ class Options extends React.Component {
         super(props);
 
         this.state = {
-            localFonts: {},
             settings: {}
         };
     }
@@ -31,14 +30,6 @@ class Options extends React.Component {
         Chrome.getSettings((settings) => {
             this.setState({
                 settings: settings
-            });
-        });
-
-        Chrome.getFonts((fonts) => {
-            console.log(fonts);
-
-            this.setState({
-                localFonts: fonts
             });
         });
     }
@@ -142,17 +133,6 @@ class Options extends React.Component {
                         <Radio label='Default'
                             tooltip='Default Open Sans font.'
                             value='default' />
-
-                        <Radio label='Local font'
-                            tooltip='Font installed on your local machine.'
-                            value='local'>
-                            { settings.localFonts &&
-                                <Dropdown label='Font'
-                                    options={settings.localFonts}
-                                    optkey='fontLocal'
-                                    value={settings.fontLocal} />
-                            }
-                        </Radio>
 
                         <Radio label='Web font'
                             tooltip='Custom font from Google Fonts.'
