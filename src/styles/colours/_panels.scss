@@ -156,7 +156,7 @@
 
 @for $i from 0 through 50 {
     .item-#{$i} {
-        animation: shiftUp 0.3s ease-out ($i * 0.03s) forwards;
+        animation: fadeIn 0.3s ease-in ($i * 0.03s) forwards;
         opacity: 0;
     }
 }
