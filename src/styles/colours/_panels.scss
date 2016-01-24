@@ -60,7 +60,7 @@
             color: $dark-grey;
             display: inline-block;
             font-size: 1rem;
-            margin: 0.5em;
+            margin: 0.5rem;
             transition: box-shadow 0.3s;
             will-change: box-shadow;
 
@@ -72,16 +72,25 @@
     }
 
     a {
-        background-position: 0.5em center;
+        background-position: 0.5rem center;
         background-repeat: no-repeat;
-        background-size: 1em 1em;
-        height: 4em;
-        line-height: 2em;
+        background-size: 1rem 1rem;
+        height: 4rem;
+        line-height: 2rem;
         overflow: hidden;
-        padding: 1em 0.5em 1em 1.85em;
+        padding: 1rem 0.5rem 1rem 1.85rem;
         text-overflow: ellipsis;
         white-space: nowrap;
-        width: 10em;
+        width: 10rem;
+
+        @media (max-width: 600px) {
+            background-position: center 0.5rem;
+            font-size: 0.85rem !important;
+            margin: 0.25rem !important;
+            padding: 1.75rem 0.5rem;
+            text-align: center;
+            width: 6rem;
+        }
     }
 }
 
