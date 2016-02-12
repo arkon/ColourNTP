@@ -1,5 +1,4 @@
 // Toggles
-
 .panels {
     margin: 1em auto 0;
     max-width: 60em;
@@ -33,9 +32,7 @@
     }
 }
 
-
 // Panel
-
 .panels__panel {
     align-items: center;
     background-color: rgba($white, 0.75);
@@ -103,9 +100,7 @@
     width: 100%;
 }
 
-
 // Apps
-
 .panels__panel--apps {
     li {
         height: 10em;
@@ -136,7 +131,6 @@
         font-size: 1rem;
     }
 
-
 // Other devices
 .panels__panel--devices {
     > li {
@@ -160,12 +154,28 @@
         text-align: center;
     }
 
-
 // Panel items
-
 @for $i from 0 through 50 {
     .item-#{$i} {
         animation: fadeIn 0.3s ease-in ($i * 0.03s) forwards;
         opacity: 0;
+    }
+}
+
+// No favicons option
+.panels--nofavicons {
+    .panels__panel a {
+        background-image: none !important;
+        padding: 1rem 0.5rem;
+    }
+
+    .panels__panel--apps {
+        li {
+            height: auto;
+        }
+
+        img {
+            display: none;
+        }
     }
 }

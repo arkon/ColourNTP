@@ -48,7 +48,7 @@ class Options extends React.Component {
                         optkey='animations'
                         value={settings.animations} />
 
-                    <Checkbox label='Show the time'
+                    <Checkbox label='Show time'
                         optkey='showTime'
                         value={settings.showTime} />
 
@@ -83,6 +83,8 @@ class Options extends React.Component {
                                 value={settings.colourSolid} />
                         </Radio>
                     </RadioGroup>
+
+                    <hr />
 
                     <Checkbox label='Show ticker of past colours'
                         tooltip='Shows last 10 colours in a ticker at the bottom of the page.'
@@ -122,6 +124,8 @@ class Options extends React.Component {
                                 value={settings.bgCustomUrl} />
                         </Radio>
                     </RadioGroup>
+
+                    <hr />
 
                     <Range label='Colour overlay opacity'
                         optkey='bgOpacity'
@@ -207,6 +211,12 @@ class Options extends React.Component {
                         tooltip='Various Chrome shortcuts.'
                         optkey='panelShortcuts'
                         value={settings.panelShortcuts} />
+
+                    <hr />
+
+                    <Checkbox label='Show favicons'
+                        optkey='showFavicons'
+                        value={settings.showFavicons} />
                 </Tab>
             </Tabs>
         );
