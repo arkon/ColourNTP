@@ -1,4 +1,5 @@
 import autobind from 'autobind-decorator';
+import Clipboard from 'clipboard';
 import React from 'react';
 
 @autobind
@@ -31,6 +32,7 @@ class History extends React.Component {
     }
 
     render () {
+        // TODO: use Clipboard library for copying
         return (
             <div className='history'>
                 { this.state.history.map((item, i) => {
