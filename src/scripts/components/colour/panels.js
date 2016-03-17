@@ -29,7 +29,9 @@ class Panels extends React.Component {
             apps           : [],
 
             showShortcuts  : true,
-            shortcuts      : []
+            shortcuts      : [],
+
+            showFavicons   : true
         };
     }
 
@@ -54,7 +56,8 @@ class Panels extends React.Component {
                 showApps      : settings.panelApps,
                 showAllApps   : settings.showAllApps,
                 showWebStore  : settings.showWebStore,
-                showShortcuts : settings.panelShortcuts
+                showShortcuts : settings.panelShortcuts,
+                showFavicons  : settings.showFavicons
             });
 
             if (settings.panelVisited) {
@@ -128,8 +131,14 @@ class Panels extends React.Component {
     render () {
         var state = this.state;
 
+        var panelsClass = 'panels';
+
+        if (!state.showFavicons) {
+            panelsClass += ' panels--nofavicons';
+        }
+
         return (
-            <div className='panels'>
+            <div className={panelsClass}>
                 <Tabs onToggle={this.onClickTab} activeTab={state.open} canToggle>
                     { state.showVisited &&
                         <Tab name='Most visited'>

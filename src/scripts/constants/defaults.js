@@ -3,12 +3,7 @@ const Defaults = {
     animations     : true,
     showTime       : true,
     showHex        : true,
-
     showDate       : false,
-
-    shortcutOpts   : true,
-    shortcutNewTab : true,
-    shortcutImage  : true,
 
     colour         : 'regular',  // regular, full, hue, solid
     colourSolid    : '',
@@ -22,6 +17,10 @@ const Defaults = {
     font           : 'default',  // default,  web
     fontWeb        : '',
 
+    shortcutOpts   : true,
+    shortcutNewTab : true,
+    shortcutImage  : true,
+
     panelVisited   : true,
     panelClosed    : true,
     panelDevices   : false,
@@ -32,7 +31,9 @@ const Defaults = {
     showWebStore   : true,
 
     maxVisited     : 10,
-    maxClosed      : 10
+    maxClosed      : 10,
+
+    showFavicons   : true
 };
 
 export default Defaults;
