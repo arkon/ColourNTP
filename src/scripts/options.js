@@ -3,5 +3,4 @@ import { render } from 'react-dom';
 
 import Options from './components/options/options';
 
-
 render(<Options />, document.getElementById('options'));

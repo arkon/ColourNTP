@@ -5,45 +5,41 @@ import OptionsComponent from './OptionsComponent';
 import Chrome from '../../../modules/chrome';
 
 class Checkbox extends OptionsComponent {
-    constructor (props) {
-        super(props);
-    }
+  @bind
+  handleChange (e) {
+    let key = this.props.optkey,
+      value = e.target.checked;
 
-    @bind
-    handleChange (e) {
-        let key   = this.props.optkey,
-            value = e.target.checked;
+    Chrome.setSetting(key, value);
 
-        Chrome.setSetting(key, value);
+    this.setState({ value: value });
+  }
 
-        this.setState({ value: value });
-    }
+  render () {
+    return (
+      <div>
+        <label>
+          <input type='checkbox' checked={this.state.value}
+            onChange={this.handleChange} />
 
-    render () {
-        return (
-            <div>
-                <label>
-                    <input type='checkbox' checked={this.state.value}
-                        onChange={this.handleChange} />
+          { this.props.tooltip ?
+            <abbr>
+              <span>{this.props.label}</span>
+              <div>
+                <strong>{this.props.label}</strong>
+                <p>{this.props.tooltip}</p>
+              </div>
+            </abbr> :
+            <span>{this.props.label}</span>
+          }
+        </label>
 
-                    { this.props.tooltip ?
-                        <abbr>
-                            <span>{this.props.label}</span>
-                            <div>
-                                <strong>{this.props.label}</strong>
-                                <p>{this.props.tooltip}</p>
-                            </div>
-                        </abbr> :
-                        <span>{this.props.label}</span>
-                    }
-                </label>
-
-                { this.state.value &&
-                    <div className='options__content'>{this.props.children}</div>
-                }
-            </div>
-        );
-    }
+        { this.state.value &&
+          <div className='options__content'>{this.props.children}</div>
+        }
+      </div>
+    );
+  }
 }
 
 export default Checkbox;

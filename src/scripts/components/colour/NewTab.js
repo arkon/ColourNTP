@@ -15,275 +15,275 @@ import Panels from './Panels';
 import History from './History';
 
 class NewTab extends React.Component {
-    constructor (props) {
-        super(props);
+  constructor (props) {
+    super(props);
 
-        this.state = {
-            settings     : {},
-            time         : {},
-            date         : '',
-            colour       : '',
+    this.state = {
+      settings     : {},
+      time         : {},
+      date         : '',
+      colour       : '',
 
-            coloursClass : 'colours colours--hidden',
-            bgImage      : null,
-            bgOpacity    : 1
-        };
-    }
+      coloursClass : 'colours colours--hidden',
+      bgImage      : null,
+      bgOpacity    : 1
+    };
+  }
 
-    componentDidMount () {
+  componentDidMount () {
+    this.fetchSettings();
+
+    // Fetch new settings when changed
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      if (request.msg === 'saved') {
         this.fetchSettings();
+      }
+    });
 
-        // Fetch new settings when changed
-        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-            if (request.msg === 'saved') {
-                this.fetchSettings();
-            }
-        });
+    // Clipboard.js
+    const clipboard = new Clipboard('.copy');
 
-        // Clipboard.js
-        const clipboard = new Clipboard('.copy');
+    clipboard.on('success', (e) => {
+      // this.setState({
+      //   toastVisible : true,
+      //   toastText    : 'Copied to clipboard!'
+      // });
+    });
 
-        clipboard.on('success', (e) => {
-            // this.setState({
-            //     toastVisible : true,
-            //     toastText    : 'Copied to clipboard!'
-            // });
-        });
+    clipboard.on('error', (e) => {
+      // this.setState({
+      //   toastVisible : true,
+      //   toastText    : 'Press Ctrl/⌘+C to copy.'
+      // });
+    });
+  }
 
-        clipboard.on('error', (e) => {
-            // this.setState({
-            //     toastVisible : true,
-            //     toastText    : 'Press Ctrl/⌘+C to copy.'
-            // });
-        });
-    }
+  componentWillUnmount () {
+    clearInterval(this.interval);
+    this.interval = null;
+  }
 
-    componentWillUnmount () {
-        clearInterval(this.interval);
-        this.interval = null;
-    }
+  @bind
+  fetchSettings () {
+    Chrome.getSettings((settings) => {
+      var coloursClass = 'colours';
 
-    @bind
-    fetchSettings () {
-        Chrome.getSettings((settings) => {
-            var coloursClass = 'colours';
+      // No animations
+      if (!settings.animations) {
+        coloursClass += ' notransition';
+      }
 
-            // No animations
-            if (!settings.animations) {
-                coloursClass += ' notransition';
-            }
+      // Text/colour protection
+      if (settings.colour !== 'regular' || settings.bg !== 'none') {
+        coloursClass += ' full';
+      }
 
-            // Text/colour protection
-            if (settings.colour !== 'regular' || settings.bg !== 'none') {
-                coloursClass += ' full';
-            }
-
-            // Solid colour
-            if (settings.colour === 'solid') {
-                this.setState({
-                    colour : settings.colourSolid
-                });
-            }
-
-            // No background image (or offline)
-            if (settings.bg === 'none' || !navigator.onLine) {
-                this.loadBgImage(null);
-            }
-
-            // Default font (or offline)
-            if (settings.font === 'default' || !navigator.onLine) {
-                this.loadFont(null);
-            }
-
-            // Online: set background image/web font
-            if (navigator.onLine) {
-                if (settings.bg === 'unsplash') {
-                    Unsplash.getImage(settings.bgUnsplashFreq, (imgUrl) => {
-                        this.loadBgImage(imgUrl, settings.bgOpacity);
-                    });
-                }
-
-                if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
-                    this.loadBgImage(settings.bgCustomUrl, settings.bgOpacity);
-                }
-
-                if (settings.font === 'web') {
-                    this.loadFont(settings.fontWeb, true);
-                }
-            }
-
-            // Date
-            if (settings.showDate) {
-                this.setDate();
-            }
-
-            // Check if the clock was already started
-            if (this.interval) {
-                this.setState({
-                    coloursClass : coloursClass,
-                    settings     : settings
-                });
-            } else {
-                // Start the clock when we hit the next second
-                setTimeout(() => {
-                    this.tick();
-                    this.interval = setInterval(this.tick, 1000);
-
-                    this.setState({
-                        coloursClass : coloursClass,
-                        settings     : settings
-                    });
-                }, 1000 - (Date.now() % 1000));
-            }
-        });
-    }
-
-    @bind
-    tick () {
-        var now     = new Date(),
-            hour    = now.getHours(),
-            minute  = now.getMinutes(),
-            second  = now.getSeconds();
-
-        var time = {
-            pm     : hour >= 12,
-            hour   : TimeHelper.pad(hour),
-            minute : TimeHelper.pad(minute),
-            second : TimeHelper.pad(second)
-        };
-
+      // Solid colour
+      if (settings.colour === 'solid') {
         this.setState({
-            time : time
+          colour : settings.colourSolid
         });
+      }
 
-        if (hour == 0 && minute == 0 && second == 0) {
-            this.setDate();
+      // No background image (or offline)
+      if (settings.bg === 'none' || !navigator.onLine) {
+        this.loadBgImage(null);
+      }
+
+      // Default font (or offline)
+      if (settings.font === 'default' || !navigator.onLine) {
+        this.loadFont(null);
+      }
+
+      // Online: set background image/web font
+      if (navigator.onLine) {
+        if (settings.bg === 'unsplash') {
+          Unsplash.getImage(settings.bgUnsplashFreq, (imgUrl) => {
+            this.loadBgImage(imgUrl, settings.bgOpacity);
+          });
         }
 
-        if (this.state.settings.colour !== 'solid' && this.state.bgOpacity !== 0) {
-            this.tickColour(time);
-        }
-    }
-
-    @bind
-    tickColour (time) {
-        var colour = `#${time.hour}${time.minute}${time.second}`;
-
-        var seconds =
-            (parseInt(time.hour, 10) * 60 * 60) +
-            (parseInt(time.minute, 10) * 60) +
-            (parseInt(time.second, 10));
-
-        switch (this.state.settings.colour) {
-            case 'full':
-                colour = Colours.secondToHexColour(seconds);
-                break;
-
-            case 'hue':
-                colour = Colours.secondToHueColour(seconds);
-                break;
+        if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
+          this.loadBgImage(settings.bgCustomUrl, settings.bgOpacity);
         }
 
+        if (settings.font === 'web') {
+          this.loadFont(settings.fontWeb, true);
+        }
+      }
+
+      // Date
+      if (settings.showDate) {
+        this.setDate();
+      }
+
+      // Check if the clock was already started
+      if (this.interval) {
         this.setState({
-            colour : colour
+          coloursClass : coloursClass,
+          settings     : settings
         });
+      } else {
+        // Start the clock when we hit the next second
+        setTimeout(() => {
+          this.tick();
+          this.interval = setInterval(this.tick, 1000);
+
+          this.setState({
+            coloursClass : coloursClass,
+            settings     : settings
+          });
+        }, 1000 - (Date.now() % 1000));
+      }
+    });
+  }
+
+  @bind
+  tick () {
+    var now   = new Date(),
+      hour    = now.getHours(),
+      minute  = now.getMinutes(),
+      second  = now.getSeconds();
+
+    var time = {
+      pm     : hour >= 12,
+      hour   : TimeHelper.pad(hour),
+      minute : TimeHelper.pad(minute),
+      second : TimeHelper.pad(second)
+    };
+
+    this.setState({
+      time : time
+    });
+
+    if (hour == 0 && minute == 0 && second == 0) {
+      this.setDate();
     }
 
-    @bind
-    setDate () {
-        this.setState({
-            date : new Date().toISOString().split('T')[0]
-        });
+    if (this.state.settings.colour !== 'solid' && this.state.bgOpacity !== 0) {
+      this.tickColour(time);
+    }
+  }
+
+  @bind
+  tickColour (time) {
+    var colour = `#${time.hour}${time.minute}${time.second}`;
+
+    var seconds =
+      (parseInt(time.hour, 10) * 60 * 60) +
+      (parseInt(time.minute, 10) * 60) +
+      (parseInt(time.second, 10));
+
+    switch (this.state.settings.colour) {
+      case 'full':
+        colour = Colours.secondToHexColour(seconds);
+        break;
+
+      case 'hue':
+        colour = Colours.secondToHueColour(seconds);
+        break;
     }
 
-    @bind
-    loadFont (font, isWeb) {
-        WebFont.loadFont(font);
+    this.setState({
+      colour : colour
+    });
+  }
 
-        if (!this.elStyleFont) {
-            this.elStyleFont = document.createElement('style');
-            document.head.appendChild(this.elStyleFont);
+  @bind
+  setDate () {
+    this.setState({
+      date : new Date().toISOString().split('T')[0]
+    });
+  }
+
+  @bind
+  loadFont (font, isWeb) {
+    WebFont.loadFont(font);
+
+    if (!this.elStyleFont) {
+      this.elStyleFont = document.createElement('style');
+      document.head.appendChild(this.elStyleFont);
+    }
+
+    this.elStyleFont.textContent = font ? `* { font-family: '${font}' !important; }` : '';
+  }
+
+  @bind
+  loadBgImage (imgUrl, opacity) {
+    this.setState({
+      bgImage   : imgUrl,
+      bgOpacity : imgUrl ? opacity / 100 : 1
+    });
+  }
+
+  onClickNewTab () {
+    chrome.tabs.update(null, { url: 'chrome-search://local-ntp/local-ntp.html' });
+  }
+
+  render () {
+    var settings = this.state.settings;
+
+    if (Object.keys(settings).length === 0) {
+      return <div className={this.state.coloursClass} />;
+    }
+
+    // Background styles
+    var bgColourStyle = {
+      backgroundColor : this.state.bgOpacity < 1 ?
+        Colours.rgba(this.state.colour, this.state.bgOpacity) :
+        this.state.colour
+    };
+
+    return (
+      <div className={this.state.coloursClass}>
+        { this.state.bgImage &&
+          <div className='colours__bg_img'
+            style={{ backgroundImage: `url(${this.state.bgImage})`}} />
         }
 
-        this.elStyleFont.textContent = font ? `* { font-family: '${font}' !important; }` : '';
-    }
-
-    @bind
-    loadBgImage (imgUrl, opacity) {
-        this.setState({
-            bgImage   : imgUrl,
-            bgOpacity : imgUrl ? opacity / 100 : 1
-        });
-    }
-
-    onClickNewTab () {
-        chrome.tabs.update(null, { url: 'chrome-search://local-ntp/local-ntp.html' });
-    }
-
-    render () {
-        var settings = this.state.settings;
-
-        if (Object.keys(settings).length === 0) {
-            return <div className={this.state.coloursClass} />;
+        { this.state.bgOpacity !== 0 &&
+          <div className='colours__bg' style={bgColourStyle} />
         }
 
-        // Background styles
-        var bgColourStyle = {
-            backgroundColor : this.state.bgOpacity < 1 ?
-                Colours.rgba(this.state.colour, this.state.bgOpacity) :
-                this.state.colour
-        };
+        <div className='colours__btns'>
+          { settings.shortcutOpts &&
+            <a target='_blank' className='colours__btn--options'
+              href='options.html' title='Options' />
+          }
 
-        return (
-            <div className={this.state.coloursClass}>
-                { this.state.bgImage &&
-                    <div className='colours__bg_img'
-                        style={{ backgroundImage: `url(${this.state.bgImage})`}} />
-                }
+          { settings.shortcutNewTab &&
+            <a className='colours__btn--newtab' title='Default new tab'
+              onClick={this.onClickNewTab} />
+          }
 
-                { this.state.bgOpacity !== 0 &&
-                    <div className='colours__bg' style={bgColourStyle} />
-                }
+          { settings.shortcutImage && this.state.bgImage &&
+            <a target='_blank' className='colours__btn--download'
+              href={this.state.bgImage} title='Open image' />
+          }
+        </div>
 
-                <div className='colours__btns'>
-                    { settings.shortcutOpts &&
-                        <a target='_blank' className='colours__btn--options'
-                            href='options.html' title='Options' />
-                    }
+        <div className='info'>
+          { settings.showTime &&
+            <Time hourFormat24={settings.time24hr} time={this.state.time} />
+          }
 
-                    { settings.shortcutNewTab &&
-                        <a className='colours__btn--newtab' title='Default new tab'
-                            onClick={this.onClickNewTab} />
-                    }
+          { settings.showDate &&
+            <DateDisplay date={this.state.date} />
+          }
 
-                    { settings.shortcutImage && this.state.bgImage &&
-                        <a target='_blank' className='colours__btn--download'
-                            href={this.state.bgImage} title='Open image' />
-                    }
-                </div>
+          { settings.showHex && this.state.bgOpacity !== 0 &&
+            <Hex colour={this.state.colour} />
+          }
 
-                <div className='info'>
-                    { settings.showTime &&
-                        <Time hourFormat24={settings.time24hr} time={this.state.time} />
-                    }
+          <Panels />
+        </div>
 
-                    { settings.showDate &&
-                        <DateDisplay date={this.state.date} />
-                    }
-
-                    { settings.showHex && this.state.bgOpacity !== 0 &&
-                        <Hex colour={this.state.colour} />
-                    }
-
-                    <Panels />
-                </div>
-
-                { settings.ticker && settings.colour !== 'solid' &&
-                    <History colour={this.state.colour} />
-                }
-            </div>
-        );
-    }
+        { settings.ticker && settings.colour !== 'solid' &&
+          <History colour={this.state.colour} />
+        }
+      </div>
+    );
+  }
 }
 
 export default NewTab;

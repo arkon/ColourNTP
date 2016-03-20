@@ -5,35 +5,31 @@ import OptionsComponent from './OptionsComponent';
 import Chrome from '../../../modules/chrome';
 
 class RadioGroup extends OptionsComponent {
-    constructor (props) {
-        super(props);
-    }
+  @bind
+  handleChange (val) {
+    let key = this.props.optkey;
 
-    @bind
-    handleChange (val) {
-        let key = this.props.optkey;
+    Chrome.setSetting(key, val);
 
-        Chrome.setSetting(key, val);
+    this.setState({ value: val });
+  }
 
-        this.setState({ value: val });
-    }
+  render () {
+    let group = this.props.group;
 
-    render () {
-        let group = this.props.group;
-
-        return (
-            <div>
-                { this.props.children.map((radio, i) => {
-                    return React.cloneElement(radio, {
-                        key: i,
-                        checked: this.state.value === radio.props.value,
-                        group: group,
-                        onChange: this.handleChange
-                    });
-                }) }
-            </div>
-        );
-    }
+    return (
+      <div>
+        { this.props.children.map((radio, i) => {
+          return React.cloneElement(radio, {
+            key: i,
+            checked: this.state.value === radio.props.value,
+            group: group,
+            onChange: this.handleChange
+          });
+        }) }
+      </div>
+    );
+  }
 }
 
 export default RadioGroup;
