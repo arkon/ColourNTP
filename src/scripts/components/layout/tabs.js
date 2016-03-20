@@ -19,11 +19,11 @@ class Tabs extends React.Component {
 
         this.setState({
             activeTab: tab
+        }, () => {
+            if (this.props.onToggle) {
+                this.props.onToggle(tab);
+            }
         });
-
-        if (this.props.onToggle) {
-            this.props.onToggle(tab);
-        }
     }
 
     componentWillReceiveProps (nextProps) {

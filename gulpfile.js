@@ -33,7 +33,7 @@ var paths = {
     src_assets      : 'src/assets/**/*',
     src_styles      : 'src/styles/**/*.scss',
     src_scripts     : 'src/scripts/**/*.js',
-    src_bundles     : 'src/scripts/bundles/*.js',
+    src_bundles     : 'src/scripts/*.js',
 
     dest            : 'build',
     dest_files      : 'build/**/*',
