@@ -1,8 +1,7 @@
-import autobind from 'autobind-decorator';
+import { bind } from 'decko';
 import Clipboard from 'clipboard';
 import React from 'react';
 
-@autobind
 class History extends React.Component {
     constructor (props) {
         super(props);
@@ -22,6 +21,7 @@ class History extends React.Component {
         this.pushToStack(nextProps.colour);
     }
 
+    @bind
     pushToStack (item) {
         var stack = this.state.history;
 

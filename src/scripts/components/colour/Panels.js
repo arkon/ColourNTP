@@ -1,4 +1,4 @@
-import autobind from 'autobind-decorator';
+import { bind } from 'decko';
 import React from 'react';
 
 import Tabs from '../layout/Tabs';
@@ -6,7 +6,6 @@ import Tab from '../layout/Tab';
 
 import Chrome from '../../modules/chrome';
 
-@autobind
 class Panels extends React.Component {
     constructor (props) {
         super(props);
@@ -46,6 +45,7 @@ class Panels extends React.Component {
         });
     }
 
+    @bind
     fetchSettings () {
         Chrome.getSettings((settings) => {
             this.setState({
@@ -102,6 +102,7 @@ class Panels extends React.Component {
         });
     }
 
+    @bind
     onClickTab (tab) {
         Chrome.setSetting('openPanel', tab);
 

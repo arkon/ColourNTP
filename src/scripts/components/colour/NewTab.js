@@ -1,4 +1,4 @@
-import autobind from 'autobind-decorator';
+import { bind } from 'decko';
 import Clipboard from 'clipboard';
 import React from 'react';
 
@@ -14,7 +14,6 @@ import Hex from './Hex';
 import Panels from './Panels';
 import History from './History';
 
-@autobind
 class NewTab extends React.Component {
     constructor (props) {
         super(props);
@@ -64,6 +63,7 @@ class NewTab extends React.Component {
         this.interval = null;
     }
 
+    @bind
     fetchSettings () {
         Chrome.getSettings((settings) => {
             var coloursClass = 'colours';
@@ -138,6 +138,7 @@ class NewTab extends React.Component {
         });
     }
 
+    @bind
     tick () {
         var now     = new Date(),
             hour    = now.getHours(),
@@ -164,6 +165,7 @@ class NewTab extends React.Component {
         }
     }
 
+    @bind
     tickColour (time) {
         var colour = `#${time.hour}${time.minute}${time.second}`;
 
@@ -187,12 +189,14 @@ class NewTab extends React.Component {
         });
     }
 
+    @bind
     setDate () {
         this.setState({
             date : new Date().toISOString().split('T')[0]
         });
     }
 
+    @bind
     loadFont (font, isWeb) {
         WebFont.loadFont(font);
 
@@ -204,6 +208,7 @@ class NewTab extends React.Component {
         this.elStyleFont.textContent = font ? `* { font-family: '${font}' !important; }` : '';
     }
 
+    @bind
     loadBgImage (imgUrl, opacity) {
         this.setState({
             bgImage   : imgUrl,

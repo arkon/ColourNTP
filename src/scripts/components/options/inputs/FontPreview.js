@@ -1,10 +1,9 @@
-import autobind from 'autobind-decorator';
+import { bind } from 'decko';
 import React from 'react';
 
 import Chrome from '../../../modules/chrome';
 import WebFont from '../../../modules/webfont';
 
-@autobind
 class FontPreview extends React.Component {
     constructor (props) {
         super(props);
@@ -25,6 +24,7 @@ class FontPreview extends React.Component {
         });
     }
 
+    @bind
     fetchSettings () {
         Chrome.getSettings((settings) => {
             WebFont.loadFont(settings.fontWeb);

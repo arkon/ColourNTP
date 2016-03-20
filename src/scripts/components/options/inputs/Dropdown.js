@@ -1,15 +1,15 @@
-import autobind from 'autobind-decorator';
+import { bind } from 'decko';
 import React from 'react';
 
 import OptionsComponent from './OptionsComponent';
 import Chrome from '../../../modules/chrome';
 
-@autobind
 class Dropdown extends OptionsComponent {
     constructor (props) {
         super(props);
     }
 
+    @bind
     handleChange (e) {
         let key   = this.props.optkey,
             value = e.target.value;
