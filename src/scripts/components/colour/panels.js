@@ -104,6 +104,10 @@ class Panels extends React.Component {
 
     onClickTab (tab) {
         Chrome.setSetting('openPanel', tab);
+
+        this.setState({
+            open: tab
+        });
     }
 
     onClickSession (session) {
