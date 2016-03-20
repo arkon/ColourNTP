@@ -1,22 +1,22 @@
 .tabs {
-    list-style: none;
-    margin-top: 2em;
+  list-style: none;
+  margin-top: 2em;
 }
 
 .tabs__tab {
-    cursor: pointer;
-    display: inline-block;
-    margin-right: 1px;
-    padding: 0.5em 1em;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 1px;
+  padding: 0.5em 1em;
 }
 
-    .tabs__tab:hover,
-    .tabs__tab--active {
-        background: $grey;
-        color: $white;
-    }
+  .tabs__tab:hover,
+  .tabs__tab--active {
+    background: $grey;
+    color: $white;
+  }
 
 .tabs__tab__content {
-    background: $grey;
-    padding: 1em;
+  background: $grey;
+  padding: 1em;
 }

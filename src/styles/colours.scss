@@ -7,137 +7,137 @@
 
 
 .notransition {
-    *,
-    *::before,
-    *::after {
-        animation: none !important;
-        transition: none !important;
-        opacity: 1 !important;
-    }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+  }
 }
 
 
 // Main time/hex display
 #newtab {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .colours {
-    display: table;
-    height: 100%;
-    opacity: 1;
-    padding: 1em;
-    table-layout: fixed;
-    transition: opacity 0.8s;
-    width: 100%;
+  display: table;
+  height: 100%;
+  opacity: 1;
+  padding: 1em;
+  table-layout: fixed;
+  transition: opacity 0.8s;
+  width: 100%;
 }
 
-    .colours--hidden {
-        opacity: 0;
-    }
+  .colours--hidden {
+    opacity: 0;
+  }
 
-    %colours__bg {
-        height: 100%;
-        left: 0;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 0;
-    }
+  %colours__bg {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
 
-    .colours__bg {
-        @extend %colours__bg;
-        transition: background-color 0.8s;
-        will-change: background-color;
-    }
+  .colours__bg {
+    @extend %colours__bg;
+    transition: background-color 0.8s;
+    will-change: background-color;
+  }
 
-    .colours__bg_img {
-        @extend %colours__bg;
-        background-position: center center;
-        background-size: cover;
-        will-change: transform;
-    }
+  .colours__bg_img {
+    @extend %colours__bg;
+    background-position: center center;
+    background-size: cover;
+    will-change: transform;
+  }
 
 .colours__time {
-    animation: shiftUp 0.5s ease-out forwards;
-    font-size: 7em;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    position: relative;
+  animation: shiftUp 0.5s ease-out forwards;
+  font-size: 7em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  position: relative;
 
-    span {
-        display: inline-block;
-        width: 1em;
-    }
+  span {
+    display: inline-block;
+    width: 1em;
+  }
 }
 
-    .colours__time__postfix {
-        bottom: 0.55em;
-        font-size: 0.4em;
-        margin-left: 1.75rem;
-        position: absolute;
-        width: 0;
-    }
+  .colours__time__postfix {
+    bottom: 0.55em;
+    font-size: 0.4em;
+    margin-left: 1.75rem;
+    position: absolute;
+    width: 0;
+  }
 
 .colours__date,
 .colours__hex {
-    margin-top: 1.5rem;
-    opacity: 0;
+  margin-top: 1.5rem;
+  opacity: 0;
 }
 
 .colours__date {
-    animation: shiftUp 0.5s ease-out 0.1s forwards;
-    font-size: 1.5em;
+  animation: shiftUp 0.5s ease-out 0.1s forwards;
+  font-size: 1.5em;
 }
 
 .colours__hex {
-    animation: shiftUp 0.5s ease-out 0.15s forwards;
+  animation: shiftUp 0.5s ease-out 0.15s forwards;
 }
 
 @media (max-width: 700px) {
-    .colours__time {
-        font-size: 4em;
+  .colours__time {
+    font-size: 4em;
+  }
+
+    .colours__time__postfix {
+      margin-left: 1rem;
     }
 
-        .colours__time__postfix {
-            margin-left: 1rem;
-        }
+  .colours__date {
+    font-size: 1em;
+  }
 
-    .colours__date {
-        font-size: 1em;
-    }
-
-    .colours__hex {
-        font-size: 1.25em;
-    }
+  .colours__hex {
+    font-size: 1.25em;
+  }
 }
 
 @media (max-width: 600px) {
-    .colours__time {
-        font-size: 3em;
-    }
+  .colours__time {
+    font-size: 3em;
+  }
 }
 
 .info {
-    display: table-cell;
-    height: 100%;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    width: 100%;
+  display: table-cell;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
 }
 
 // Protects against light backgrounds when using full spectrum
 .full {
-    .colours__time,
-    .colours__date,
-    .colours__hex,
-    .panels__toggles a {
-        text-shadow: 0 1px 0.35rem rgba($dark-grey, 0.5);
-    }
+  .colours__time,
+  .colours__date,
+  .colours__hex,
+  .panels__toggles a {
+    text-shadow: 0 1px 0.35rem rgba($dark-grey, 0.5);
+  }
 
-    .panels__panel {
-        box-shadow: 0 1px 0.35rem rgba($dark-grey, 0.5);
-    }
+  .panels__panel {
+    box-shadow: 0 1px 0.35rem rgba($dark-grey, 0.5);
+  }
 }

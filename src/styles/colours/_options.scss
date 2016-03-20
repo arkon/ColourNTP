@@ -1,50 +1,50 @@
 // Options links
 .colours__btns {
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 10000;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10000;
 
-    a {
-        display: block;
-        opacity: 0.4;
-        transition: opacity 0.3s;
+  a {
+    display: block;
+    opacity: 0.4;
+    transition: opacity 0.3s;
 
-        &::before {
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: 0.75em 0.75em;
-            content: '';
-            display: block;
-            height: 2.25em;
-            width: 2.5em;
-        }
-
-        &:hover {
-            opacity: 1;
-        }
+    &::before {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 0.75em 0.75em;
+      content: '';
+      display: block;
+      height: 2.25em;
+      width: 2.5em;
     }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 .colours__btn--options {
-    &::before {
-        background-image: url('../assets/img/gear.svg');
-        transition: transform 0.35s ease-out;
-    }
+  &::before {
+    background-image: url('../assets/img/gear.svg');
+    transition: transform 0.35s ease-out;
+  }
 
-    &:hover::before {
-        transform: rotate(180deg);
-    }
+  &:hover::before {
+    transform: rotate(180deg);
+  }
 }
 
 .colours__btn--newtab {
-    &::before {
-        background-image: url('../assets/img/newtab.svg');
-    }
+  &::before {
+    background-image: url('../assets/img/newtab.svg');
+  }
 }
 
 .colours__btn--download {
-    &::before {
-        background-image: url('../assets/img/image.svg');
-    }
+  &::before {
+    background-image: url('../assets/img/image.svg');
+  }
 }
