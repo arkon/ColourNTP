@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Tab from './tab';
+import Tab from './Tab';
 
 class Tabs extends React.Component {
     constructor (props) {

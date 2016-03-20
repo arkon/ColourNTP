@@ -1,11 +1,11 @@
 import autobind from 'autobind-decorator';
 import React from 'react';
 
-import OptionsComponent from './optionscomponent';
+import OptionsComponent from './OptionsComponent';
 import Chrome from '../../../modules/chrome';
 
 @autobind
-class Textbox extends OptionsComponent {
+class Colour extends OptionsComponent {
     constructor (props) {
         super(props);
     }
@@ -23,10 +23,10 @@ class Textbox extends OptionsComponent {
         return (
             <label>
                 <span>{this.props.label}:</span>
-                <input type='text' value={this.state.value} onChange={this.handleChange} />
+                <input type='color' value={this.state.value} onChange={this.handleChange} />
             </label>
         );
     }
 }
 
-export default Textbox;
+export default Colour;

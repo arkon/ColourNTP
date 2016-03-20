@@ -1,8 +1,8 @@
 import autobind from 'autobind-decorator';
 import React from 'react';
 
-import Tabs from '../layout/tabs';
-import Tab from '../layout/tab';
+import Tabs from '../layout/Tabs';
+import Tab from '../layout/Tab';
 
 import Chrome from '../../modules/chrome';
 

@@ -1,4 +1,5 @@
 import autobind from 'autobind-decorator';
+import Clipboard from 'clipboard';
 import React from 'react';
 
 import Chrome from '../../modules/chrome';
@@ -7,11 +8,11 @@ import TimeHelper from '../../modules/timehelper';
 import Unsplash from '../../modules/unsplash';
 import WebFont from '../../modules/webfont';
 
-import Time from './time';
-import DateDisplay from './date';
-import Hex from './hex';
-import Panels from './panels';
-import History from './history';
+import Time from './Time';
+import DateDisplay from './Date';
+import Hex from './Hex';
+import Panels from './Panels';
+import History from './History';
 
 @autobind
 class NewTab extends React.Component {
@@ -38,6 +39,23 @@ class NewTab extends React.Component {
             if (request.msg === 'saved') {
                 this.fetchSettings();
             }
+        });
+
+        // Clipboard.js
+        const clipboard = new Clipboard('.copy');
+
+        clipboard.on('success', (e) => {
+            // this.setState({
+            //     toastVisible : true,
+            //     toastText    : 'Copied to clipboard!'
+            // });
+        });
+
+        clipboard.on('error', (e) => {
+            // this.setState({
+            //     toastVisible : true,
+            //     toastText    : 'Press Ctrl/⌘+C to copy.'
+            // });
         });
     }
 

@@ -1,7 +1,7 @@
 import autobind from 'autobind-decorator';
 import React from 'react';
 
-import OptionsComponent from './optionscomponent';
+import OptionsComponent from './OptionsComponent';
 import Chrome from '../../../modules/chrome';
 
 @autobind

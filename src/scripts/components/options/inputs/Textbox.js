@@ -1,11 +1,11 @@
 import autobind from 'autobind-decorator';
 import React from 'react';
 
-import OptionsComponent from './optionscomponent';
+import OptionsComponent from './OptionsComponent';
 import Chrome from '../../../modules/chrome';
 
 @autobind
-class Checkbox extends OptionsComponent {
+class Textbox extends OptionsComponent {
     constructor (props) {
         super(props);
     }
@@ -23,13 +23,10 @@ class Checkbox extends OptionsComponent {
         return (
             <label>
                 <span>{this.props.label}:</span>
-                <input type='number' min='1' max='20' value={this.state.value.toString()}
-                    onChange={this.handleChange} />
+                <input type='text' value={this.state.value} onChange={this.handleChange} />
             </label>
         );
     }
 }
 
-export default Checkbox;
-
-
+export default Textbox;

@@ -1,11 +1,11 @@
 import autobind from 'autobind-decorator';
 import React from 'react';
 
-import OptionsComponent from './optionscomponent';
+import OptionsComponent from './OptionsComponent';
 import Chrome from '../../../modules/chrome';
 
 @autobind
-class Dropdown extends OptionsComponent {
+class Range extends OptionsComponent {
     constructor (props) {
         super(props);
     }
@@ -22,15 +22,13 @@ class Dropdown extends OptionsComponent {
     render () {
         return (
             <label>
-                <span>{this.props.label}:</span>
-                <select value={this.state.value} onChange={this.handleChange}>
-                    { this.props.options.map((item, i) => {
-                        return <option key={i} value={item}>{item}</option>;
-                    }) }
-                </select>
+                <p>{this.props.label}:</p>
+                <input type='range' min='0' max='100' step='1' value={this.state.value}
+                    onChange={this.handleChange} />
+                <span>({this.state.value}%)</span>
             </label>
         );
     }
 }
 
-export default Dropdown;
+export default Range;

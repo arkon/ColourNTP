@@ -1,17 +1,17 @@
 import React from 'react';
 
-import Checkbox from './inputs/checkbox';
-import Colour from './inputs/colour';
-import Dropdown from './inputs/dropdown';
-import FontPreview from './inputs/fontpreview';
-import Number from './inputs/number';
-import Radio from './inputs/radio';
-import RadioGroup from './inputs/radiogroup';
-import Range from './inputs/range';
-import Textbox from './inputs/textbox';
+import Checkbox from './inputs/Checkbox';
+import Colour from './inputs/Colour';
+import Dropdown from './inputs/Dropdown';
+import FontPreview from './inputs/FontPreview';
+import Number from './inputs/Number';
+import Radio from './inputs/Radio';
+import RadioGroup from './inputs/RadioGroup';
+import Range from './inputs/Range';
+import Textbox from './inputs/Textbox';
 
-import Tabs from '../layout/tabs';
-import Tab from '../layout/tab';
+import Tabs from '../layout/Tabs';
+import Tab from '../layout/Tab';
 
 import Fonts from '../../constants/fonts';
 
