@@ -264,7 +264,10 @@ class NewTab extends React.Component {
 
         <div className='info'>
           { settings.showTime &&
-            <Time hourFormat24={settings.time24hr} time={this.state.time} />
+            <Time
+              time={this.state.time}
+              hourFormat24={settings.time24hr}
+              showSeconds={settings.showTimeSec} />
           }
 
           { settings.showDate &&

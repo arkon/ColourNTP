@@ -2,6 +2,7 @@ const Defaults = {
   time24hr       : true,
   animations     : true,
   showTime       : true,
+  showTimeSec    : true,
   showHex        : true,
   showDate       : false,
 

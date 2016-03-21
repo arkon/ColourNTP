@@ -14,7 +14,11 @@ const Time = (props) => {
 
   return (
     <h1 className='colours__time'>
-      {hour} : {time.minute} : {time.second}
+      <span>{hour}</span>
+      <span> : </span>
+      <span>{time.minute}</span>
+      { props.showSeconds && <span> : </span> }
+      { props.showSeconds && <span>{time.second}</span> }
 
       { !props.hourFormat24 &&
         <span className='colours__time__postfix'>{time.pm ? 'PM' : 'AM'}</span>

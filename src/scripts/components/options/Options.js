@@ -50,7 +50,11 @@ class Options extends React.Component {
 
           <Checkbox label='Show time'
             optkey='showTime'
-            value={settings.showTime} />
+            value={settings.showTime}>
+            <Checkbox label='Show seconds'
+              optkey='showTimeSec'
+              value={settings.showTimeSec} />
+          </Checkbox>
 
           <Checkbox label='Show colour hexcode'
             optkey='showHex'
