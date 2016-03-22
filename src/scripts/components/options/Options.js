@@ -109,21 +109,17 @@ class Options extends React.Component {
               <RadioGroup group='bgUnsplashFreq'
                 optkey='bgUnsplashFreq' value={settings.bgUnsplashFreq}>
                 <Radio label='Per session'
-                  tooltip='A new image every time.'
                   value='perSession' />
 
                 <Radio label='Daily'
-                  tooltip='A new image every day.'
                   value='daily' />
 
                 <Radio label='Weekly'
-                  tooltip='A new image every week.'
                   value='weekly' />
               </RadioGroup>
             </Radio>
 
             <Radio label='Custom'
-              tooltip='A custom image.'
               value='custom'>
               <Textbox label='Image URL'
                 optkey='bgCustomUrl'
