@@ -8,9 +8,9 @@ const babelify = require('babelify'),
   browserify   = require('browserify'),
   buffer       = require('vinyl-buffer'),
   del          = require('del'),
-  es           = require('event-stream'),
   glob         = require('glob'),
   gulp         = require('gulp'),
+  merge2       = require('merge2'),
   nano         = require('gulp-cssnano'),
   runSequence  = require('run-sequence'),
   sass         = require('gulp-sass'),
@@ -50,13 +50,15 @@ const paths = {
 // ========================================================================== //
 
 // Delete all built files/folders
-gulp.task('clean', () => {
+gulp.task('clean', (done) => {
   del.sync(paths.dest, { force: true });
+  done();
 });
 
 // Delete ZIP of built files
-gulp.task('clean:zip', () => {
+gulp.task('clean:zip', (done) => {
   del.sync(paths.dest_zip, { force: true });
+  done();
 });
 
 // Copy root files such as HTML views and the manifest
@@ -84,22 +86,20 @@ gulp.task('js', function (done) {
   glob(paths.src_bundles, function (err, files) {
     if (err) { done(err); }
 
-    const tasks = files.map(function (entry) {
-      var filename = entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '');
-
+    const stream = merge2(files.map(function (entry) {
       return browserify(entry)
         .transform(babelify, {
           presets: ['es2015', 'react'],
           plugins: ['transform-class-properties', 'transform-decorators-legacy']
         })
         .bundle()
-        .pipe(source(`${filename}.bundle.js`))
+        .pipe(source(`${entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '')}.bundle.js`))
         .pipe(buffer())
         .pipe(uglify())
         .pipe(gulp.dest(paths.dest_scripts));
-    });
+    }));
 
-    es.merge(tasks).on('end', done);
+    stream.on('queueDrain', done);
   });
 });
 
