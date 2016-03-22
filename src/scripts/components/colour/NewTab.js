@@ -140,12 +140,12 @@ class NewTab extends React.Component {
 
   @bind
   tick () {
-    var now   = new Date(),
+    const now = new Date(),
       hour    = now.getHours(),
       minute  = now.getMinutes(),
       second  = now.getSeconds();
 
-    var time = {
+    const time = {
       pm     : hour >= 12,
       hour   : TimeHelper.pad(hour),
       minute : TimeHelper.pad(minute),
@@ -160,8 +160,14 @@ class NewTab extends React.Component {
       this.setDate();
     }
 
-    if (this.state.settings.colour !== 'solid' && this.state.bgOpacity !== 0) {
-      this.tickColour(time);
+    if (this.state.bgOpacity !== 0) {
+      if (this.state.settings.colour === 'random') {
+        this.setState({
+          colour : Colours.random()
+        });
+      } else if (this.state.settings.colour !== 'solid') {
+        this.tickColour(time);
+      }
     }
   }
 
@@ -169,7 +175,7 @@ class NewTab extends React.Component {
   tickColour (time) {
     var colour = `#${time.hour}${time.minute}${time.second}`;
 
-    var seconds =
+    const seconds =
       (parseInt(time.hour, 10) * 60 * 60) +
       (parseInt(time.minute, 10) * 60) +
       (parseInt(time.second, 10));
@@ -221,14 +227,14 @@ class NewTab extends React.Component {
   }
 
   render () {
-    var settings = this.state.settings;
+    const settings = this.state.settings;
 
     if (Object.keys(settings).length === 0) {
       return <div className={this.state.coloursClass} />;
     }
 
     // Background styles
-    var bgColourStyle = {
+    const bgColourStyle = {
       backgroundColor : this.state.bgOpacity < 1 ?
         Colours.rgba(this.state.colour, this.state.bgOpacity) :
         this.state.colour

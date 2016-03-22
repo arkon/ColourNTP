@@ -88,6 +88,13 @@ class Colours {
 
     return `rgba(${colour[0]}, ${colour[1]}, ${colour[2]}, ${a})`;
   }
+
+  /**
+   * Returns a random hex colour string.
+   */
+  static random () {
+    return `#${('000000' + (Math.random()*0xFFFFFF<<0).toString(16)).slice(-6)}`;
+  }
 }
 
 export default Colours;

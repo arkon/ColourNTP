@@ -79,8 +79,10 @@ class Options extends React.Component {
               tooltip='A slow shift across the entire hue spectrum, from #FF0000 to #00FFFF and back in one day.'
               value='hue' />
 
+            <Radio label='Random'
+              value='random' />
+
             <Radio label='Solid colour'
-              tooltip='A solid, non-changing colour.'
               value='solid'>
               <Colour label='Solid colour'
                 optkey='colourSolid'

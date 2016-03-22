@@ -6,7 +6,7 @@ const Defaults = {
   showHex        : true,
   showDate       : false,
 
-  colour         : 'regular',  // regular, full, hue, solid
+  colour         : 'regular',  // regular, full, hue, solid, random
   colourSolid    : '',
   ticker         : false,
 
