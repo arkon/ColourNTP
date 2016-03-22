@@ -8,7 +8,7 @@ class Colours {
    * @return {String}  The hex colour value (e.g. #1fd531).
    */
   static secondToHexColour (seconds) {
-    return `#${('00000' + (seconds / (24 * 60 * 60 - 1) * 0xFFFFFF | 0).toString(16)).slice(-6)}`;
+    return Colours._valueToHex(seconds / (24 * 60 * 60 - 1));
   }
 
   /**
@@ -83,17 +83,24 @@ class Colours {
   /**
    * Converts a hex colour to an RGBA string with the provided alpha value.
    */
-  static rgba (hex, a) {
+  static rgba (hex, alpha) {
     var colour = Colours.hexToRgb(hex.substring(1, 7));
 
-    return `rgba(${colour[0]}, ${colour[1]}, ${colour[2]}, ${a})`;
+    return `rgba(${colour[0]}, ${colour[1]}, ${colour[2]}, ${alpha})`;
   }
 
   /**
    * Returns a random hex colour string.
    */
   static random () {
-    return `#${('000000' + (Math.random()*0xFFFFFF<<0).toString(16)).slice(-6)}`;
+    return Colours._valueToHex(Math.random());
+  }
+
+  /**
+   * PRIVATE: returns a hex colour string using the given number.
+   */
+  static _valueToHex (value) {
+    return `#${('000000' + (value * 0xFFFFFF | 0).toString(16)).slice(-6)}`;
   }
 }
 
