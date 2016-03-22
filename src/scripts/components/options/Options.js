@@ -40,10 +40,6 @@ class Options extends React.Component {
     return (
       <Tabs activeTab={0}>
         <Tab name='General'>
-          <Checkbox label='24-hour format'
-            optkey='time24hr'
-            value={settings.time24hr} />
-
           <Checkbox label='Animations'
             optkey='animations'
             value={settings.animations} />
@@ -51,6 +47,10 @@ class Options extends React.Component {
           <Checkbox label='Show time'
             optkey='showTime'
             value={settings.showTime}>
+            <Checkbox label='24-hour format'
+              optkey='time24hr'
+              value={settings.time24hr} />
+
             <Checkbox label='Show seconds'
               optkey='showTimeSec'
               value={settings.showTimeSec} />
