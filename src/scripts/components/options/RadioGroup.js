@@ -1,10 +1,10 @@
 import { bind } from 'decko';
 import React from 'react';
 
-import OptionsComponent from './OptionsComponent';
-import Chrome from '../../../modules/chrome';
+import Option from './Option';
+import Chrome from '../../modules/chrome';
 
-class RadioGroup extends OptionsComponent {
+class RadioGroup extends Option {
   @bind
   handleChange (val) {
     let key = this.props.optkey;

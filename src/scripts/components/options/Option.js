@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Chrome from '../../../modules/chrome';
+import Chrome from '../../modules/chrome';
 
-class OptionsComponent extends React.Component {
+class Option extends React.Component {
   constructor (props) {
     super(props);
 
@@ -22,4 +22,4 @@ class OptionsComponent extends React.Component {
   }
 }
 
-export default OptionsComponent;
+export default Option;
