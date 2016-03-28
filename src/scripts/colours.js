@@ -11,7 +11,7 @@ import WebFont from './modules/webfont';
 
 import Time from './components/colour/Time';
 import DateDisplay from './components/colour/Date';
-import Hex from './components/colour/Hex';
+import Colour from './components/colour/Colour';
 import Panels from './components/colour/Panels';
 import History from './components/colour/History';
 
@@ -281,8 +281,8 @@ class NewTab extends React.Component {
             <DateDisplay date={this.state.date} />
           }
 
-          { settings.showHex && this.state.bgOpacity !== 0 &&
-            <Hex colour={this.state.colour} />
+          { settings.showColour && this.state.bgOpacity !== 0 &&
+            <Colour colour={this.state.colour} format={settings.colourFormat} />
           }
 
           <Panels />

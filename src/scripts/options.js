@@ -57,9 +57,20 @@ class Options extends React.Component {
               value={settings.showTimeSec} />
           </Checkbox>
 
-          <Checkbox label='Show colour hexcode'
-            optkey='showHex'
-            value={settings.showHex} />
+          <Checkbox label='Show colour value'
+            optkey='showColour'
+            value={settings.showColour}>
+            <RadioGroup group='colourFormat'
+              optkey='colourFormat' value={settings.colourFormat}>
+              <Radio label='Hexadecimal'
+                tooltip='#123456'
+                value='hex' />
+
+              <Radio label='RGB'
+                tooltip='rgb(18, 85, 86)'
+                value='rgb' />
+            </RadioGroup>
+          </Checkbox>
 
           <Checkbox label='Show date'
             optkey='showDate'

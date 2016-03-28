@@ -3,7 +3,8 @@ const Defaults = {
   animations     : true,
   showTime       : true,
   showTimeSec    : true,
-  showHex        : true,
+  showColour     : true,
+  colourFormat   : 'hex',      // hex, rgb
   showDate       : false,
 
   colour         : 'regular',  // regular, full, hue, solid, random
