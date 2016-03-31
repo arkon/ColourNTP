@@ -32,21 +32,14 @@ class History extends React.Component {
   }
 
   render () {
-    // TODO: use Clipboard library for copying
     return (
       <div className='history'>
-        { this.state.history.map((item, i) => {
-          let onItemClick = (e) => {
-            prompt('Copy to clipboard: Ctrl/⌘+C, Enter', item);
-          };
-
-          return (
-            <div key={i} className='history__item'
-              style={{ backgroundColor: item }}
-              data-hex={item}
-              onClick={onItemClick} />
-          );
-        }) }
+        { this.state.history.map((item, i) => (
+          <div key={i} className='history__item copy'
+            style={{ backgroundColor: item }}
+            data-hex={item}
+            data-clipboard-text={item} />
+        )) }
       </div>
     );
   }
