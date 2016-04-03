@@ -12,7 +12,9 @@ const Colour = (props) => {
   }
 
   return (
-    <h2 className='colours__hex copy' data-clipboard-text={colour}>{colour}</h2>
+    <h2 className='colours__hex'>
+      <span className='copy' data-clipboard-text={colour}>{colour}</span>
+    </h2>
   );
 };
 
