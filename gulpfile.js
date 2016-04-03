@@ -82,11 +82,11 @@ gulp.task('scss', () => {
 });
 
 // Process JS files
-gulp.task('js', function (done) {
-  glob(paths.src_bundles, function (err, files) {
+gulp.task('js', (done) => {
+  glob(paths.src_bundles, (err, files) => {
     if (err) { done(err); }
 
-    const stream = merge2(files.map(function (entry) {
+    const stream = merge2(files.map((entry) => {
       return browserify(entry)
         .transform(babelify, {
           presets: ['es2015', 'react'],
@@ -109,7 +109,7 @@ gulp.task('js', function (done) {
 // ========================================================================== //
 
 // Build project
-gulp.task('default', function (done) {
+gulp.task('default', (done) => {
   runSequence('clean', ['copy:root', 'copy:assets', 'scss', 'js'], done);
 });
 
