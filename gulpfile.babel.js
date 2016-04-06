@@ -1,30 +1,22 @@
-'use strict';
-
-// ========================================================================== //
-// Dependencies                                                               //
-// ========================================================================== //
-
-const babelify = require('babelify'),
-  browserify   = require('browserify'),
-  buffer       = require('vinyl-buffer'),
-  del          = require('del'),
-  glob         = require('glob'),
-  gulp         = require('gulp'),
-  merge2       = require('merge2'),
-  nano         = require('gulp-cssnano'),
-  runSequence  = require('run-sequence'),
-  sass         = require('gulp-sass'),
-  source       = require('vinyl-source-stream'),
-  transform    = require('vinyl-transform'),
-  uglify       = require('gulp-uglify'),
-  zip          = require('gulp-zip');
+import babelify from 'babelify';
+import browserify from 'browserify';
+import buffer from 'vinyl-buffer';
+import del from 'del';
+import glob from 'glob';
+import gulp from 'gulp';
+import gulpZip from 'gulp-zip';
+import merge2 from 'merge2';
+import nano from 'gulp-cssnano';
+import sass from 'gulp-sass';
+import source from 'vinyl-source-stream';
+import transform from 'vinyl-transform';
+import uglify from 'gulp-uglify';
 
 
 // ========================================================================== //
-// Misc. configs                                                              //
+// Configuration                                                              //
 // ========================================================================== //
 
-// Various source and destination paths
 const paths = {
   root           : './',
 
@@ -46,43 +38,39 @@ const paths = {
 
 
 // ========================================================================== //
-// Task configuration                                                         //
+// Gulp configuration                                                         //
 // ========================================================================== //
 
 // Delete all built files/folders
-gulp.task('clean', (done) => {
-  del.sync(paths.dest, { force: true });
-  done();
-});
+const clean = () => del(paths.dest, { force: true });
+export { clean };
 
 // Delete ZIP of built files
-gulp.task('clean:zip', (done) => {
-  del.sync(paths.dest_zip, { force: true });
-  done();
-});
+const clean_zip = () => del(paths.dest_zip, { force: true });
+export { clean_zip };
 
 // Copy root files such as HTML views and the manifest
-gulp.task('copy:root', () => {
+export function copy_root () {
   return gulp.src(paths.src_root)
     .pipe(gulp.dest(paths.dest));
-});
+}
 
 // Copy font and image assets
-gulp.task('copy:assets', () => {
+export function copy_assets () {
   return gulp.src(paths.src_assets, { base: paths.src_assets_dir })
     .pipe(gulp.dest(paths.dest_assets));
-});
+}
 
 // Process SCSS files
-gulp.task('scss', () => {
+export function scss () {
   return gulp.src(paths.src_styles)
     .pipe(sass().on('error', sass.logError))
     .pipe(nano())
     .pipe(gulp.dest(paths.dest_styles));
-});
+}
 
 // Process JS files
-gulp.task('js', (done) => {
+export function js (done) {
   glob(paths.src_bundles, (err, files) => {
     if (err) { done(err); }
 
@@ -101,29 +89,27 @@ gulp.task('js', (done) => {
 
     stream.on('queueDrain', done);
   });
-});
-
-
-// ========================================================================== //
-// Task definitions                                                           //
-// ========================================================================== //
+}
 
 // Build project
-gulp.task('default', (done) => {
-  runSequence('clean', ['copy:root', 'copy:assets', 'scss', 'js'], done);
-});
+const build = gulp.series(clean, gulp.parallel(copy_root, copy_assets, scss, js));
+export { build };
 
 // Watch for changes
-gulp.task('watch', ['default'], () => {
-  gulp.watch(paths.src_root, ['copy:root']);
-  gulp.watch(paths.src_assets, ['copy:assets']);
-  gulp.watch(paths.src_styles, ['scss']);
-  gulp.watch(paths.src_scripts, ['js']);
+const watch = gulp.series(build, () => {
+  gulp.watch(paths.src_root, copy_root);
+  gulp.watch(paths.src_assets, copy_assets);
+  gulp.watch(paths.src_styles, scss);
+  gulp.watch(paths.src_scripts, js);
 });
+export { watch };
 
 // ZIPs up built files for submitting to the Chrome Web Store
-gulp.task('zip', ['clean:zip', 'default'], () => {
+const zip = gulp.series(clean_zip, build, () => {
   return gulp.src(paths.dest_files)
-    .pipe(zip(paths.dest_zip))
+    .pipe(gulpZip(paths.dest_zip))
     .pipe(gulp.dest(paths.root));
 });
+export { zip };
+
+export default build;
