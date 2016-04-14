@@ -15,7 +15,7 @@ class Chrome {
         items.push({
           title : site.title,
           url   : site.url,
-          img   : `chrome://favicon/${site.url}`
+          img   : `chrome://favicon/size/16@2x/${site.url}`
         });
       }
 
