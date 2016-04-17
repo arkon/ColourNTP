@@ -14,6 +14,7 @@ import DateDisplay from './components/colour/Date';
 import Colour from './components/colour/Colour';
 import Panels from './components/colour/Panels';
 import History from './components/colour/History';
+import Toast from './components/colour/Toast';
 
 class NewTab extends React.Component {
   constructor (props) {
@@ -27,7 +28,10 @@ class NewTab extends React.Component {
 
       coloursClass : 'colours colours--hidden',
       bgImage      : null,
-      bgOpacity    : 1
+      bgOpacity    : 1,
+
+      toastVisible : false,
+      toastText    : ''
     };
   }
 
@@ -45,17 +49,17 @@ class NewTab extends React.Component {
     const clipboard = new Clipboard('.copy');
 
     clipboard.on('success', (e) => {
-      // this.setState({
-      //   toastVisible : true,
-      //   toastText    : 'Copied to clipboard!'
-      // });
+      this.setState({
+        toastVisible : true,
+        toastText    : 'Copied to clipboard!'
+      });
     });
 
     clipboard.on('error', (e) => {
-      // this.setState({
-      //   toastVisible : true,
-      //   toastText    : 'Press Ctrl/⌘+C to copy.'
-      // });
+      this.setState({
+        toastVisible : true,
+        toastText    : 'Press Ctrl/⌘+C to copy.'
+      });
     });
   }
 
@@ -291,6 +295,8 @@ class NewTab extends React.Component {
         { settings.ticker && settings.colour !== 'solid' &&
           <History colour={this.state.colour} />
         }
+
+        <Toast visible={this.state.toastVisible}>{this.state.toastText}</Toast>
       </div>
     );
   }
