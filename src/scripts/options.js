@@ -67,8 +67,12 @@ class Options extends React.Component {
                 value='hex' />
 
               <Radio label='RGB'
-                tooltip='rgb(18, 85, 86)'
+                tooltip='rgb(18, 52, 86)'
                 value='rgb' />
+
+              <Radio label='HSL'
+                tooltip='hsl(210, 65%, 20%)'
+                value='hsl' />
             </RadioGroup>
           </Checkbox>
 

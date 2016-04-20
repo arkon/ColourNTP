@@ -5,10 +5,16 @@ import Colours from '../../modules/colours';
 const Colour = (props) => {
   var colour = props.colour;
 
-  if (props.format === 'rgb') {
-    var rgb = Colours.hexToRgb(colour.substring(1, 7));
+  switch (props.format) {
+    case 'rgb':
+      const rgb = Colours.hexToRgb(colour.substring(1, 7));
+      colour = `rgb(${rgb.join(', ')})`;
+      break;
 
-    colour = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+    case 'hsl':
+      const hsl = Colours.hexToHsl(colour.substring(1, 7));
+      colour = `hsl(${hsl.join(', ')})`
+      break;
   }
 
   return (

@@ -4,7 +4,7 @@ const Defaults = {
   showTime       : true,
   showTimeSec    : true,
   showColour     : true,
-  colourFormat   : 'hex',      // hex, rgb
+  colourFormat   : 'hex',      // hex, rgb, hsl
   showDate       : false,
 
   colour         : 'regular',  // regular, full, hue, solid, random
