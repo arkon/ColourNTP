@@ -25,7 +25,7 @@ class History extends React.Component {
   pushToStack (item) {
     var stack = this.state.history;
 
-    stack.push(item)
+    stack.push(item);
 
     // Only keep newest max amount of items
     stack.splice(0, stack.length - this.max);
@@ -37,6 +37,7 @@ class History extends React.Component {
         { this.state.history.map((item, i) => (
           <div key={i} className='history__item copy'
             style={{ backgroundColor: item }}
+            title='Copy to clipboard'
             data-hex={item}
             data-clipboard-text={item} />
         )) }

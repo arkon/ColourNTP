@@ -13,13 +13,17 @@ const Colour = (props) => {
 
     case 'hsl':
       const hsl = Colours.hexToHsl(colour.substring(1, 7));
-      colour = `hsl(${hsl.join(', ')})`
+      colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
       break;
   }
 
   return (
     <h2 className='colours__hex'>
-      <span className='copy' data-clipboard-text={colour}>{colour}</span>
+      <span className='copy'
+        title='Copy to clipboard'
+        data-clipboard-text={colour}>
+        {colour}
+      </span>
     </h2>
   );
 };
