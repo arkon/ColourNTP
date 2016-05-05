@@ -69,6 +69,10 @@ export function scss () {
     .pipe(gulp.dest(paths.dest_styles));
 }
 
+export function prod () {
+  process.env.NODE_ENV = 'production';
+}
+
 // Process JS files
 export function js (done) {
   glob(paths.src_bundles, (err, files) => {
@@ -105,7 +109,7 @@ const watch = gulp.series(build, () => {
 export { watch };
 
 // ZIPs up built files for submitting to the Chrome Web Store
-const zip = gulp.series(clean_zip, build, () => {
+const zip = gulp.series(clean_zip, prod, build, () => {
   return gulp.src(paths.dest_files)
     .pipe(gulpZip(paths.dest_zip))
     .pipe(gulp.dest(paths.root));
