@@ -69,7 +69,7 @@ export function scss () {
     .pipe(gulp.dest(paths.dest_styles));
 }
 
-const function prod () {
+function prod () {
   process.env.NODE_ENV = 'production';
 }
 
