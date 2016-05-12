@@ -49,17 +49,11 @@ class NewTab extends React.Component {
     const clipboard = new Clipboard('.copy');
 
     clipboard.on('success', (e) => {
-      this.setState({
-        toastVisible : true,
-        toastText    : 'Copied to clipboard!'
-      });
+      this.displayToast(`Copied "${e.text}" to clipboard`);
     });
 
     clipboard.on('error', (e) => {
-      this.setState({
-        toastVisible : true,
-        toastText    : 'Press Ctrl/⌘+C to copy.'
-      });
+      this.displayToast('Press Ctrl/⌘+C to copy');
     });
   }
 
@@ -229,6 +223,20 @@ class NewTab extends React.Component {
 
   onClickNewTab () {
     chrome.tabs.update(null, { url: 'chrome-search://local-ntp/local-ntp.html' });
+  }
+
+  @bind
+  displayToast (text, duration = 2500) {
+      this.setState({
+        toastVisible : true,
+        toastText    : text
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            toastVisible: false
+          });
+        }, duration);
+      });
   }
 
   render () {
