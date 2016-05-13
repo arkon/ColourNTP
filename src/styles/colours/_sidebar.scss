@@ -1,0 +1,23 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: transform 0.3s;
+  z-index: 100000;
+  overflow: auto;
+  max-width: 300px;
+  width: 100%;
+  background: #333;
+  transform: translateX(100%);
+}
+
+.sidebar--open {
+  transform: translateX(0);
+}
+
+.sidebar__toggle {
+}
+
+.sidebar__pane {
+}

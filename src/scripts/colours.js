@@ -1,5 +1,5 @@
-import { bind } from 'decko';
 import Clipboard from 'clipboard';
+import { bind } from 'decko';
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -9,11 +9,12 @@ import TimeHelper from './modules/timehelper';
 import Unsplash from './modules/unsplash';
 import WebFont from './modules/webfont';
 
-import Time from './components/colour/Time';
-import DateDisplay from './components/colour/Date';
 import Colour from './components/colour/Colour';
-import Panels from './components/colour/Panels';
+import DateDisplay from './components/colour/Date';
 import History from './components/colour/History';
+import Panels from './components/colour/Panels';
+import Sidebar from './components/colour/Sidebar';
+import Time from './components/colour/Time';
 import Toast from './components/colour/Toast';
 
 class NewTab extends React.Component {
@@ -31,7 +32,9 @@ class NewTab extends React.Component {
       bgOpacity    : 1,
 
       toastVisible : false,
-      toastText    : ''
+      toastText    : '',
+
+      sidebarOpen  : false
     };
   }
 
@@ -227,16 +230,23 @@ class NewTab extends React.Component {
 
   @bind
   displayToast (text, duration = 2500) {
-      this.setState({
-        toastVisible : true,
-        toastText    : text
-      }, () => {
-        setTimeout(() => {
-          this.setState({
-            toastVisible: false
-          });
-        }, duration);
-      });
+    this.setState({
+      toastVisible : true,
+      toastText    : text
+    }, () => {
+      setTimeout(() => {
+        this.setState({
+          toastVisible: false
+        });
+      }, duration);
+    });
+  }
+
+  @bind
+  toggleSidebar () {
+    this.setState({
+      sidebarOpen: !this.state.sidebarOpen
+    });
   }
 
   render () {
@@ -255,6 +265,10 @@ class NewTab extends React.Component {
 
     return (
       <div className={this.state.coloursClass}>
+        <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
+          <p>Some content</p>
+        </Sidebar>
+
         { this.state.bgImage &&
           <div className='colours__bg_img'
             style={{ backgroundImage: `url(${this.state.bgImage})`}} />
@@ -279,6 +293,9 @@ class NewTab extends React.Component {
             <a target='_blank' className='colours__btn--download'
               href={this.state.bgImage} title='Open image' />
           }
+
+          <a className='colours__btn--download' title='Open sidebar'
+            onClick={this.toggleSidebar} />
         </div>
 
         <div className='info'>
