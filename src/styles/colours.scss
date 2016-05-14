@@ -37,7 +37,19 @@
 }
 
   .colours--shrink {
+    opacity: 0.5;
+    position: relative;
     transform: scale(0.95);
+
+    &::after {
+      bottom: 0;
+      content: '';
+      display: block;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 
   .colours--hidden {

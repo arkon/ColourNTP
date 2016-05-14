@@ -272,11 +272,15 @@ class NewTab extends React.Component {
     return (
       <div id="newtab__content">
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
-          <h1>Saved colours</h1>
-          ...
+          { this.state.sidebarOpen &&
+            <div>
+              <h1>Saved</h1>
+              ...
+            </div>
+          }
         </Sidebar>
 
-        <div className={coloursClass}>
+        <div className={coloursClass} onClick={this.state.sidebarOpen ? this.toggleSidebar : null}>
           { this.state.bgImage &&
             <div className='colours__bg_img'
               style={{ backgroundImage: `url(${this.state.bgImage})`}} />
