@@ -20,7 +20,8 @@
 
 
 // Main time/hex display
-#newtab {
+#newtab,
+#newtab__content {
   height: 100%;
   width: 100%;
 }
@@ -31,9 +32,13 @@
   opacity: 1;
   padding: 1em;
   table-layout: fixed;
-  transition: opacity 0.8s;
+  transition: opacity 0.8s, transform 0.3s;
   width: 100%;
 }
+
+  .colours--shrink {
+    transform: scale(0.95);
+  }
 
   .colours--hidden {
     opacity: 0;

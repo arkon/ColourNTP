@@ -252,8 +252,14 @@ class NewTab extends React.Component {
   render () {
     const settings = this.state.settings;
 
+    let coloursClass = this.state.coloursClass;
+
+    if (this.state.sidebarOpen) {
+      coloursClass += ' colours--shrink';
+    }
+
     if (Object.keys(settings).length === 0) {
-      return <div className={this.state.coloursClass} />;
+      return <div className={coloursClass} />;
     }
 
     // Background styles
@@ -264,64 +270,66 @@ class NewTab extends React.Component {
     };
 
     return (
-      <div className={this.state.coloursClass}>
+      <div id="newtab__content">
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
           <p>Some content</p>
         </Sidebar>
 
-        { this.state.bgImage &&
-          <div className='colours__bg_img'
-            style={{ backgroundImage: `url(${this.state.bgImage})`}} />
-        }
-
-        { this.state.bgOpacity !== 0 &&
-          <div className='colours__bg' style={bgColourStyle} />
-        }
-
-        <div className='colours__btns'>
-          { settings.shortcutOpts &&
-            <a target='_blank' className='colours__btn--options'
-              href='options.html' title='Options' />
+        <div className={coloursClass}>
+          { this.state.bgImage &&
+            <div className='colours__bg_img'
+              style={{ backgroundImage: `url(${this.state.bgImage})`}} />
           }
 
-          { settings.shortcutNewTab &&
-            <a className='colours__btn--newtab' title='Default new tab'
-              onClick={this.onClickNewTab} />
+          { this.state.bgOpacity !== 0 &&
+            <div className='colours__bg' style={bgColourStyle} />
           }
 
-          { settings.shortcutImage && this.state.bgImage &&
-            <a target='_blank' className='colours__btn--download'
-              href={this.state.bgImage} title='Open image' />
+          <div className='colours__btns'>
+            { settings.shortcutOpts &&
+              <a target='_blank' className='colours__btn--options'
+                href='options.html' title='Options' />
+            }
+
+            { settings.shortcutNewTab &&
+              <a className='colours__btn--newtab' title='Default new tab'
+                onClick={this.onClickNewTab} />
+            }
+
+            { settings.shortcutImage && this.state.bgImage &&
+              <a target='_blank' className='colours__btn--download'
+                href={this.state.bgImage} title='Open image' />
+            }
+
+            <a className='colours__btn--download' title='Open sidebar'
+              onClick={this.toggleSidebar} />
+          </div>
+
+          <div className='info'>
+            { settings.showTime &&
+              <Time
+                time={this.state.time}
+                hourFormat24={settings.time24hr}
+                showSeconds={settings.showTimeSec} />
+            }
+
+            { settings.showDate &&
+              <DateDisplay date={this.state.date} />
+            }
+
+            { settings.showColour && this.state.bgOpacity !== 0 &&
+              <Colour colour={this.state.colour} format={settings.colourFormat} />
+            }
+
+            <Panels />
+          </div>
+
+          { settings.ticker && settings.colour !== 'solid' &&
+            <History colour={this.state.colour} />
           }
 
-          <a className='colours__btn--download' title='Open sidebar'
-            onClick={this.toggleSidebar} />
+          <Toast visible={this.state.toastVisible}>{this.state.toastText}</Toast>
         </div>
-
-        <div className='info'>
-          { settings.showTime &&
-            <Time
-              time={this.state.time}
-              hourFormat24={settings.time24hr}
-              showSeconds={settings.showTimeSec} />
-          }
-
-          { settings.showDate &&
-            <DateDisplay date={this.state.date} />
-          }
-
-          { settings.showColour && this.state.bgOpacity !== 0 &&
-            <Colour colour={this.state.colour} format={settings.colourFormat} />
-          }
-
-          <Panels />
-        </div>
-
-        { settings.ticker && settings.colour !== 'solid' &&
-          <History colour={this.state.colour} />
-        }
-
-        <Toast visible={this.state.toastVisible}>{this.state.toastText}</Toast>
       </div>
     );
   }

@@ -6,7 +6,7 @@
   transition: transform 0.3s;
   z-index: 100000;
   overflow: auto;
-  max-width: 300px;
+  max-width: 200px;
   width: 100%;
   background: #333;
   transform: translateX(100%);
@@ -17,6 +17,9 @@
 }
 
 .sidebar__toggle {
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 .sidebar__pane {
