@@ -123,6 +123,19 @@ class Colours {
   }
 
   /**
+   * Returns American-localized "colour" if needed.
+   */
+  static localize (capitalize, american = false) {
+    var word = american ? 'color' : 'colour';
+
+    if (capitalize) {
+      word = word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    return word;
+  }
+
+  /**
    * PRIVATE: returns a hex colour string using the given number.
    */
   static _valueToHex (value) {

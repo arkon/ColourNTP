@@ -10,6 +10,7 @@ const Defaults = {
   colour         : 'regular',  // regular, full, hue, solid, random
   colourSolid    : '',
   ticker         : false,
+  american       : false,
 
   bg             : 'none',     // none, unsplash, custom
   bgUnsplashFreq : 'daily',    // perSession, daily, weekly

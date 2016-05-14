@@ -1,15 +1,15 @@
 .sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  transition: transform 0.3s;
-  z-index: 100000;
-  overflow: auto;
-  max-width: 200px;
-  width: 100%;
   background: #333;
+  bottom: 0;
+  max-width: 200px;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
   transform: translateX(100%);
+  transition: transform 0.3s;
+  width: 100%;
+  z-index: 100000;
 }
 
 .sidebar--open {
@@ -18,8 +18,8 @@
 
 .sidebar__toggle {
   position: fixed;
-  top: 0;
   right: 0;
+  top: 0;
 }
 
 .sidebar__pane {
