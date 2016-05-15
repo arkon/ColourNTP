@@ -7,7 +7,7 @@ import Chrome from '../../modules/chrome';
 class Checkbox extends Option {
   @bind
   handleChange (e) {
-    let key = this.props.optkey,
+    const key = this.props.optkey,
       value = e.target.checked;
 
     Chrome.setSetting(key, value);

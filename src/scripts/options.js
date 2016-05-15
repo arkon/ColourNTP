@@ -25,14 +25,14 @@ class Options extends React.Component {
     super(props);
 
     this.state = {
-      activeTab: 0,
-      settings: {}
+      activeTab : 0,
+      settings  : {}
     };
+
+    this.fetchSettings();
   }
 
   componentDidMount () {
-    this.fetchSettings();
-
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === 'saved') {
         this.fetchSettings();

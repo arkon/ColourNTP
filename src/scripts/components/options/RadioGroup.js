@@ -7,7 +7,7 @@ import Chrome from '../../modules/chrome';
 class RadioGroup extends Option {
   @bind
   handleChange (val) {
-    let key = this.props.optkey;
+    const key = this.props.optkey;
 
     Chrome.setSetting(key, val);
 

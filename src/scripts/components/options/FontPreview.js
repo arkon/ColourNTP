@@ -11,11 +11,12 @@ class FontPreview extends React.Component {
     this.state = {
       font: this.props.font
     };
+
+    WebFont.loadFont(this.state.font);
+    this.fetchSettings();
   }
 
   componentDidMount () {
-    WebFont.loadFont(this.state.font);
-
     // Fetch new settings when changed
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === 'saved') {

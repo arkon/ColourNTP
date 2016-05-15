@@ -36,11 +36,11 @@ class NewTab extends React.Component {
 
       sidebarOpen  : false
     };
+
+    this.fetchSettings();
   }
 
   componentDidMount () {
-    this.fetchSettings();
-
     // Fetch new settings when changed
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === 'saved') {

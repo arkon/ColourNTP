@@ -12,7 +12,7 @@ class Sidebar extends React.Component {
   }
 
   render () {
-    let sidebarClass = 'sidebar';
+    var sidebarClass = 'sidebar';
 
     if (this.props.open) {
       sidebarClass += ' sidebar--open';

@@ -7,7 +7,7 @@ import Chrome from '../../modules/chrome';
 class Dropdown extends Option {
   @bind
   handleChange (e) {
-    let key = this.props.optkey,
+    const key = this.props.optkey,
       value = e.target.value;
 
     Chrome.setSetting(key, value);
