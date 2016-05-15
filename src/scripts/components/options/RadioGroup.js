@@ -15,15 +15,13 @@ class RadioGroup extends Option {
   }
 
   render () {
-    let group = this.props.group;
-
     return (
       <div>
         { this.props.children.map((radio, i) => {
           return React.cloneElement(radio, {
             key: i,
             checked: this.state.value === radio.props.value,
-            group: group,
+            group: this.props.group,
             onChange: this.handleChange
           });
         }) }

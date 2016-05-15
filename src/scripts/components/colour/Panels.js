@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { bind } from 'decko';
 import React from 'react';
 
@@ -136,11 +137,9 @@ class Panels extends React.Component {
   render () {
     const state = this.state;
 
-    var panelsClass = 'panels';
-
-    if (!state.showFavicons) {
-      panelsClass += ' panels--nofavicons';
-    }
+    const panelsClass = classNames('panels', {
+      'panels--nofavicons': !state.showFavicons
+    });
 
     return (
       <div className={panelsClass}>

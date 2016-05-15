@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 
 import Tab from './Tab';
@@ -40,10 +41,9 @@ class Tabs extends React.Component {
         <ul className='tabs'>
           { this.props.children.map((tab, i) => {
             if (tab) {
-              let tabClass = 'tabs__tab';
-              if (this.state.activeTab === i) {
-                tabClass += ' tabs__tab--active';
-              }
+              let tabClass = classNames('tabs__tab', {
+                'tabs__tab--active': this.state.activeTab === i
+              });
 
               return (
                 <li key={i}

@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { bind } from 'decko';
 import React from 'react';
 
@@ -7,11 +8,9 @@ class Sidebar extends React.Component {
   }
 
   render () {
-    var sidebarClass = 'sidebar';
-
-    if (this.props.open) {
-      sidebarClass += ' sidebar--open';
-    }
+    const sidebarClass = classNames('sidebar', {
+      'sidebar--open': this.props.open
+    });
 
     return (
       <div className={sidebarClass}>
