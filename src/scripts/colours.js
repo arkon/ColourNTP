@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import Clipboard from 'clipboard';
 import { bind } from 'decko';
 import React from 'react';
@@ -68,17 +69,13 @@ class NewTab extends React.Component {
   @bind
   fetchSettings () {
     Chrome.getSettings((settings) => {
-      var coloursClass = 'colours';
+      const coloursClass = classNames('colours', {
+        // No animations
+        'notransition': !settings.animations,
 
-      // No animations
-      if (!settings.animations) {
-        coloursClass += ' notransition';
-      }
-
-      // Text/colour protection
-      if (settings.colour !== 'regular' || settings.bg !== 'none') {
-        coloursClass += ' full';
-      }
+        // Text/colour protection
+        'full': settings.colour !== 'regular' || settings.bg !== 'none'
+      });
 
       // Solid colour
       if (settings.colour === 'solid') {
@@ -252,11 +249,9 @@ class NewTab extends React.Component {
   render () {
     const settings = this.state.settings;
 
-    let coloursClass = this.state.coloursClass;
-
-    if (this.state.sidebarOpen) {
-      coloursClass += ' colours--shrink';
-    }
+    const coloursClass = classNames(this.state.coloursClass, {
+      'colours--shrink': this.state.sidebarOpen
+    });
 
     if (Object.keys(settings).length === 0) {
       return <div className={coloursClass} />;
