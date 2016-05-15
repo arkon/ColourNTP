@@ -161,12 +161,16 @@ class Chrome {
   // ============================================================================================
 
   static getSettings (done) {
-    var defaults = Defaults;
+    Chrome.getSetting(null, done);
+  }
 
-    chrome.storage.sync.get(null, (results) => {
-      Object.assign(defaults, results);
+  static getSetting (key, done) {
+    chrome.storage.sync.get(key, (results) => {
+      if (key === null) {
+        results = Object.assign({}, Defaults, results);
+      }
 
-      done(defaults);
+      done(results);
     });
   }
 
