@@ -6,11 +6,6 @@ class Sidebar extends React.Component {
     super(props);
   }
 
-  @bind
-  onClose () {
-    this.props.onClose();
-  }
-
   render () {
     var sidebarClass = 'sidebar';
 
@@ -20,10 +15,17 @@ class Sidebar extends React.Component {
 
     return (
       <div className={sidebarClass}>
-        <div className='sidebar__toggle' onClick={this.onClose}>x</div>
-        <div className='sidebar__pane'>
-          {this.props.children}
-        </div>
+        { this.props.open &&
+          <div>
+            <button className='sidebar__toggle' onClick={() => this.props.onClose()}>
+              Close
+            </button>
+
+            <div className='sidebar__pane'>
+              {this.props.children}
+            </div>
+          </div>
+        }
       </div>
     );
   }
