@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 
 import Chrome from './modules/chrome';
 import Colours from './modules/colours';
+import SavedColours from './modules/saved';
 import TimeHelper from './modules/timehelper';
 import Unsplash from './modules/unsplash';
 import WebFont from './modules/webfont';
@@ -14,6 +15,7 @@ import Colour from './components/colour/Colour';
 import DateDisplay from './components/colour/Date';
 import History from './components/colour/History';
 import Panels from './components/colour/Panels';
+import Saved from './components/colour/Saved';
 import Sidebar from './components/colour/Sidebar';
 import Time from './components/colour/Time';
 import Toast from './components/colour/Toast';
@@ -269,7 +271,7 @@ class NewTab extends React.Component {
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
           <div>
             <h1>Saved</h1>
-            ...
+            <Saved />
           </div>
         </Sidebar>
 
@@ -325,9 +327,9 @@ class NewTab extends React.Component {
           { settings.ticker && settings.colour !== 'solid' &&
             <History colour={this.state.colour} />
           }
-
-          <Toast visible={this.state.toastVisible}>{this.state.toastText}</Toast>
         </div>
+
+        <Toast visible={this.state.toastVisible}>{this.state.toastText}</Toast>
       </div>
     );
   }

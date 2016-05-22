@@ -180,7 +180,7 @@ class Chrome {
     });
 
     // Prompt new tab page to fetch new settings
-    chrome.runtime.sendMessage({ msg: 'saved' });
+    chrome.runtime.sendMessage({ msg: 'saved', key: key });
   }
 }
 

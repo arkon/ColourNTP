@@ -2,6 +2,8 @@ import { bind } from 'decko';
 import Clipboard from 'clipboard';
 import React from 'react';
 
+import SavedColours from '../../modules/saved';
+
 class History extends React.Component {
   constructor (props) {
     super(props);
@@ -37,9 +39,9 @@ class History extends React.Component {
         { this.state.history.map((item, i) => (
           <div key={i} className='history__item copy'
             style={{ backgroundColor: item }}
-            title='Copy to clipboard'
             data-hex={item}
-            data-clipboard-text={item} />
+            data-clipboard-text={item}
+            onClick={() => SavedColours.addColour(colour)} />
         )) }
       </div>
     );

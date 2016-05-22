@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Colours from '../../modules/colours';
+import SavedColours from '../../modules/saved';
 
 const Colour = (props) => {
   var colour = props.colour;
@@ -21,7 +22,8 @@ const Colour = (props) => {
     <h2 className='colours__hex'>
       <span className='copy'
         title='Copy to clipboard'
-        data-clipboard-text={colour}>
+        data-clipboard-text={colour}
+        onClick={() => SavedColours.addColour(colour)}>
         {colour}
       </span>
     </h2>
