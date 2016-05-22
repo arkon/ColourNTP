@@ -286,6 +286,9 @@ class NewTab extends React.Component {
           }
 
           <div className='colours__btns'>
+            <a className='colours__btn--download' title='Open sidebar'
+              onClick={this.toggleSidebar} />
+
             { settings.shortcutOpts &&
               <a target='_blank' className='colours__btn--options'
                 href='options.html' title='Options' />
@@ -300,9 +303,6 @@ class NewTab extends React.Component {
               <a target='_blank' className='colours__btn--download'
                 href={this.state.bgImage} title='Open image' />
             }
-
-            <a className='colours__btn--download' title='Open sidebar'
-              onClick={this.toggleSidebar} />
           </div>
 
           <div className='info'>

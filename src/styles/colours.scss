@@ -32,7 +32,7 @@
   opacity: 1;
   padding: 1em;
   table-layout: fixed;
-  transition: opacity 0.8s, transform 0.3s;
+  transition: opacity 0.8s, transform 0.3s cubic-bezier(0, 0, 0.3, 1);
   width: 100%;
 }
 
@@ -68,14 +68,13 @@
   .colours__bg {
     @extend %colours__bg;
     transition: background-color 0.8s;
-    will-change: background-color;
+    will-change: transform;
   }
 
   .colours__bg_img {
     @extend %colours__bg;
     background-position: center center;
     background-size: cover;
-    will-change: transform;
   }
 
 .colours__time {

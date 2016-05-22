@@ -36,16 +36,16 @@ class Saved extends React.Component {
 
   render () {
     return (
-      <div>
+      <ul>
         { this.state.colours.map((colour, i) => (
-          <div key={i}
+          <li key={i}
             className='copy'
             title='Copy to clipboard'
             data-clipboard-text={colour}>
             {colour}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     );
   }
 }
