@@ -23,7 +23,7 @@ const Colour = (props) => {
       <span className='copy'
         title='Copy to clipboard'
         data-clipboard-text={colour}
-        onClick={() => SavedColours.addColour(colour)}>
+        onClick={() => SavedColours.add(colour)}>
         {colour}
       </span>
     </h2>

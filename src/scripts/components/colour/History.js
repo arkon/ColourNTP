@@ -36,12 +36,12 @@ class History extends React.Component {
   render () {
     return (
       <div className='history'>
-        { this.state.history.map((item, i) => (
+        { this.state.history.map((colour, i) => (
           <div key={i} className='history__item copy'
-            style={{ backgroundColor: item }}
-            data-hex={item}
-            data-clipboard-text={item}
-            onClick={() => SavedColours.addColour(colour)} />
+            style={{ backgroundColor: colour }}
+            data-hex={colour}
+            data-clipboard-text={colour}
+            onClick={() => SavedColours.add(colour)} />
         )) }
       </div>
     );
