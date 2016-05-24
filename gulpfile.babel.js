@@ -17,7 +17,7 @@ import uglify from 'gulp-uglify';
 // Configuration                                                              //
 // ========================================================================== //
 
-const paths = {
+const PATHS = {
   root           : './',
 
   src_root       : 'src/*',
@@ -42,31 +42,29 @@ const paths = {
 // ========================================================================== //
 
 // Delete all built files/folders
-const clean = () => del(paths.dest, { force: true });
-export { clean };
+export const clean = () => del(PATHS.dest, { force: true });
 
 // Delete ZIP of built files
-const clean_zip = () => del(paths.dest_zip, { force: true });
-export { clean_zip };
+export const clean_zip = () => del(PATHS.dest_zip, { force: true });
 
 // Copy root files such as HTML views and the manifest
 export function copy_root () {
-  return gulp.src(paths.src_root)
-    .pipe(gulp.dest(paths.dest));
+  return gulp.src(PATHS.src_root)
+    .pipe(gulp.dest(PATHS.dest));
 }
 
 // Copy font and image assets
 export function copy_assets () {
-  return gulp.src(paths.src_assets, { base: paths.src_assets_dir })
-    .pipe(gulp.dest(paths.dest_assets));
+  return gulp.src(PATHS.src_assets, { base: PATHS.src_assets_dir })
+    .pipe(gulp.dest(PATHS.dest_assets));
 }
 
 // Process SCSS files
 export function scss () {
-  return gulp.src(paths.src_styles)
+  return gulp.src(PATHS.src_styles)
     .pipe(sass().on('error', sass.logError))
     .pipe(nano())
-    .pipe(gulp.dest(paths.dest_styles));
+    .pipe(gulp.dest(PATHS.dest_styles));
 }
 
 export function prod (done) {
@@ -76,7 +74,7 @@ export function prod (done) {
 
 // Process JS files
 export function js (done) {
-  glob(paths.src_bundles, (err, files) => {
+  glob(PATHS.src_bundles, (err, files) => {
     if (err) { done(err); }
 
     const stream = merge2(files.map((entry) => {
@@ -89,7 +87,7 @@ export function js (done) {
         .pipe(source(`${entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '')}.bundle.js`))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(gulp.dest(paths.dest_scripts));
+        .pipe(gulp.dest(PATHS.dest_scripts));
     }));
 
     stream.on('queueDrain', done);
@@ -97,24 +95,21 @@ export function js (done) {
 }
 
 // Build project
-const build = gulp.series(clean, gulp.parallel(copy_root, copy_assets, scss, js));
-export { build };
+export const build = gulp.series(clean, gulp.parallel(copy_root, copy_assets, scss, js));
 
 // Watch for changes
-const watch = gulp.series(build, () => {
-  gulp.watch(paths.src_root, copy_root);
-  gulp.watch(paths.src_assets, copy_assets);
-  gulp.watch(paths.src_styles, scss);
-  gulp.watch(paths.src_scripts, js);
+export const watch = gulp.series(build, () => {
+  gulp.watch(PATHS.src_root, copy_root);
+  gulp.watch(PATHS.src_assets, copy_assets);
+  gulp.watch(PATHS.src_styles, scss);
+  gulp.watch(PATHS.src_scripts, js);
 });
-export { watch };
 
 // ZIPs up built files for submitting to the Chrome Web Store
-const zip = gulp.series(clean_zip, prod, build, () => {
-  return gulp.src(paths.dest_files)
-    .pipe(gulpZip(paths.dest_zip))
-    .pipe(gulp.dest(paths.root));
+export const zip = gulp.series(clean_zip, prod, build, () => {
+  return gulp.src(PATHS.dest_files)
+    .pipe(gulpZip(PATHS.dest_zip))
+    .pipe(gulp.dest(PATHS.root));
 });
-export { zip };
 
 export default build;
