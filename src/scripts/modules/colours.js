@@ -88,7 +88,7 @@ class Colours {
       h /= 6;
     }
 
-    return [(h*100+0.5)|0, (s*100+0.5)|0, (l*100+0.5)|0];
+    return [(h * 100 + 0.5) | 0, (s * 100 + 0.5) | 0, (l * 100 + 0.5) | 0];
   }
 
   static hexToHsl (hex) {

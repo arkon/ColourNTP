@@ -4,20 +4,25 @@ class SavedColours {
   static saved = [];
   static _fetchedFromStorage = false;
 
-  static get (done) {
-    if (SavedColours._fetchedFromStorage) {
-      done(SavedColours.saved);
-    }
-
-    // Better handle async
-    Chrome.getSetting('saved', (results) => {
-      if (results.saved) {
-        SavedColours.saved = results.saved;
+  /**
+   * Returns a promise
+   */
+  static get () {
+    return new Promise((resolve, reject) => {
+      if (SavedColours._fetchedFromStorage) {
+        resolve(SavedColours.saved);
       }
 
-      SavedColours._fetchedFromStorage = true;
+      // Better handle async
+      Chrome.getSetting('saved', (results) => {
+        if (results.saved) {
+          SavedColours.saved = results.saved;
+        }
 
-      done(SavedColours.saved);
+        SavedColours._fetchedFromStorage = true;
+
+        resolve(SavedColours.saved);
+      });
     });
   }
 

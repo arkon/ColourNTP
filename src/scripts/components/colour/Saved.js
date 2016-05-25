@@ -29,7 +29,7 @@ class Saved extends React.Component {
 
   @bind
   fetchSaved () {
-    SavedColours.get((colours) => {
+    SavedColours.get().then((colours) => {
       this.setState({
         colours: colours
       });
