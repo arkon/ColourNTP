@@ -15,18 +15,14 @@ class Unsplash {
       }
 
       // Follow redirect to get actual image URL
-      const req = new XMLHttpRequest();
-      req.timeout = 2000;
-      req.onreadystatechange = () => {
-        if (req.readyState === 4 && (req.status >= 200 && req.status < 300)) {
-          resolve(req.responseURL);
-        }
-      };
-      req.ontimeout = (e) => {
-        reject(e);
-      };
-      req.open('GET', unsplashUrl, true);
-      req.send(null);
+      fetch(unsplashUrl)
+        .then((res) => {
+          if (res.ok && (res.status >= 200 && res.status < 300)) {
+            resolve(res.url);
+          } else {
+            reject('Fetching Unsplash image failed');
+          }
+        });
     });
   }
 }
