@@ -99,9 +99,10 @@ class NewTab extends React.Component {
       // Online: set background image/web font
       if (navigator.onLine) {
         if (settings.bg === 'unsplash') {
-          Unsplash.getImage(settings.bgUnsplashFreq, (imgUrl) => {
-            this.loadBgImage(imgUrl, settings.bgOpacity);
-          });
+          Unsplash.getImage(settings.bgUnsplashFreq)
+            .then((imgUrl) => {
+              this.loadBgImage(imgUrl, settings.bgOpacity);
+            });
         }
 
         if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
