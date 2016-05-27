@@ -42,11 +42,12 @@ class Options extends React.Component {
 
   @bind
   fetchSettings () {
-    Chrome.getSettings((settings) => {
-      this.setState({
-        settings: settings
-      })
-    });
+    Chrome.getSettings()
+      .then((settings) => {
+        this.setState({
+          settings: settings
+        })
+      });
   }
 
   @bind

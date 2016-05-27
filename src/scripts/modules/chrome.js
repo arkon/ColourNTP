@@ -160,17 +160,19 @@ class Chrome {
   // Settings helpers (Chrome extension storage)
   // ============================================================================================
 
-  static getSettings (done) {
-    Chrome.getSetting(null, done);
+  static getSettings () {
+    return Chrome.getSetting(null);
   }
 
-  static getSetting (key, done) {
-    chrome.storage.sync.get(key, (results) => {
-      if (key === null) {
-        results = Object.assign({}, Defaults, results);
-      }
+  static getSetting (key) {
+    return new Promise((resolve, reject) => {
+      chrome.storage.sync.get(key, (results) => {
+        if (key === null) {
+          results = Object.assign({}, Defaults, results);
+        }
 
-      done(results);
+        resolve(results);
+      });
     });
   }
 

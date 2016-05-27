@@ -14,15 +14,16 @@ class SavedColours {
       }
 
       // Better handle async
-      Chrome.getSetting('saved', (results) => {
-        if (results.saved) {
-          SavedColours.saved = results.saved;
-        }
+      Chrome.getSetting('saved')
+        .then((results) => {
+          if (results.saved) {
+            SavedColours.saved = results.saved;
+          }
 
-        SavedColours._fetchedFromStorage = true;
+          SavedColours._fetchedFromStorage = true;
 
-        resolve(SavedColours.saved);
-      });
+          resolve(SavedColours.saved);
+        });
     });
   }
 

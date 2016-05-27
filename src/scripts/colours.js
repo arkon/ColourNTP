@@ -70,74 +70,75 @@ class NewTab extends React.Component {
 
   @bind
   fetchSettings () {
-    Chrome.getSettings((settings) => {
-      const coloursClass = classNames('colours', {
-        // No animations
-        'notransition': !settings.animations,
+    Chrome.getSettings()
+      .then((settings) => {
+        const coloursClass = classNames('colours', {
+          // No animations
+          'notransition': !settings.animations,
 
-        // Text/colour protection
-        'full': settings.colour !== 'regular' || settings.bg !== 'none'
-      });
-
-      // Solid colour
-      if (settings.colour === 'solid') {
-        this.setState({
-          colour : settings.colourSolid
+          // Text/colour protection
+          'full': settings.colour !== 'regular' || settings.bg !== 'none'
         });
-      }
 
-      // No background image (or offline)
-      if (settings.bg === 'none' || !navigator.onLine) {
-        this.loadBgImage(null);
-      }
-
-      // Default font (or offline)
-      if (settings.font === 'default' || !navigator.onLine) {
-        this.loadFont(null);
-      }
-
-      // Online: set background image/web font
-      if (navigator.onLine) {
-        if (settings.bg === 'unsplash') {
-          Unsplash.getImage(settings.bgUnsplashFreq)
-            .then((imgUrl) => {
-              this.loadBgImage(imgUrl, settings.bgOpacity);
-            });
+        // Solid colour
+        if (settings.colour === 'solid') {
+          this.setState({
+            colour : settings.colourSolid
+          });
         }
 
-        if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
-          this.loadBgImage(settings.bgCustomUrl, settings.bgOpacity);
+        // No background image (or offline)
+        if (settings.bg === 'none' || !navigator.onLine) {
+          this.loadBgImage(null);
         }
 
-        if (settings.font === 'web') {
-          this.loadFont(settings.fontWeb, true);
+        // Default font (or offline)
+        if (settings.font === 'default' || !navigator.onLine) {
+          this.loadFont(null);
         }
-      }
 
-      // Date
-      if (settings.showDate) {
-        this.setDate();
-      }
+        // Online: set background image/web font
+        if (navigator.onLine) {
+          if (settings.bg === 'unsplash') {
+            Unsplash.getImage(settings.bgUnsplashFreq)
+              .then((imgUrl) => {
+                this.loadBgImage(imgUrl, settings.bgOpacity);
+              });
+          }
 
-      // Check if the clock was already started
-      if (this.interval) {
-        this.setState({
-          coloursClass : coloursClass,
-          settings     : settings
-        });
-      } else {
-        // Start the clock when we hit the next second
-        setTimeout(() => {
-          this.tick();
-          this.interval = setInterval(this.tick, 1000);
+          if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
+            this.loadBgImage(settings.bgCustomUrl, settings.bgOpacity);
+          }
 
+          if (settings.font === 'web') {
+            this.loadFont(settings.fontWeb, true);
+          }
+        }
+
+        // Date
+        if (settings.showDate) {
+          this.setDate();
+        }
+
+        // Check if the clock was already started
+        if (this.interval) {
           this.setState({
             coloursClass : coloursClass,
             settings     : settings
           });
-        }, 1000 - (Date.now() % 1000));
-      }
-    });
+        } else {
+          // Start the clock when we hit the next second
+          setTimeout(() => {
+            this.tick();
+            this.interval = setInterval(this.tick, 1000);
+
+            this.setState({
+              coloursClass : coloursClass,
+              settings     : settings
+            });
+          }, 1000 - (Date.now() % 1000));
+        }
+      });
   }
 
   @bind

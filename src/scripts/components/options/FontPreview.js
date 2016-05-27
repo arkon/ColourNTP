@@ -27,13 +27,14 @@ class FontPreview extends React.Component {
 
   @bind
   fetchSettings () {
-    Chrome.getSettings((settings) => {
-      WebFont.loadFont(settings.fontWeb);
+    Chrome.getSettings()
+      .then((settings) => {
+        WebFont.loadFont(settings.fontWeb);
 
-      this.setState({
-        font: settings.fontWeb
+        this.setState({
+          font: settings.fontWeb
+        });
       });
-    });
   }
 
   render () {

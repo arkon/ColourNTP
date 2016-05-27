@@ -48,59 +48,60 @@ class Panels extends React.Component {
 
   @bind
   fetchSettings () {
-    Chrome.getSettings((settings) => {
-      this.setState({
-        open          : settings.openPanel,
-        showVisited   : settings.panelVisited,
-        showClosed    : settings.panelClosed,
-        showDevices   : settings.panelDevices,
-        showApps      : settings.panelApps,
-        showAllApps   : settings.showAllApps,
-        showWebStore  : settings.showWebStore,
-        showShortcuts : settings.panelShortcuts,
-        showFavicons  : settings.showFavicons
+    Chrome.getSettings()
+      .then((settings) => {
+        this.setState({
+          open          : settings.openPanel,
+          showVisited   : settings.panelVisited,
+          showClosed    : settings.panelClosed,
+          showDevices   : settings.panelDevices,
+          showApps      : settings.panelApps,
+          showAllApps   : settings.showAllApps,
+          showWebStore  : settings.showWebStore,
+          showShortcuts : settings.panelShortcuts,
+          showFavicons  : settings.showFavicons
+        });
+
+        if (settings.panelVisited) {
+          Chrome.getTopSites((items) => {
+            this.setState({
+              topSites: items
+            });
+          }, settings.maxVisited);
+        }
+
+        if (settings.panelClosed) {
+          Chrome.getRecentlyClosed((items) => {
+            this.setState({
+              recentlyClosed: items
+            });
+          }, settings.maxClosed);
+        }
+
+        if (settings.panelDevices) {
+          Chrome.getDevices((items) => {
+            this.setState({
+              devices: items
+            });
+          });
+        }
+
+        if (settings.panelApps) {
+          Chrome.getApps((items) => {
+            this.setState({
+              apps: items
+            });
+          });
+        }
+
+        if (settings.panelShortcuts) {
+          Chrome.getShortcuts((items) => {
+            this.setState({
+              shortcuts: items
+            });
+          });
+        }
       });
-
-      if (settings.panelVisited) {
-        Chrome.getTopSites((items) => {
-          this.setState({
-            topSites: items
-          });
-        }, settings.maxVisited);
-      }
-
-      if (settings.panelClosed) {
-        Chrome.getRecentlyClosed((items) => {
-          this.setState({
-            recentlyClosed: items
-          });
-        }, settings.maxClosed);
-      }
-
-      if (settings.panelDevices) {
-        Chrome.getDevices((items) => {
-          this.setState({
-            devices: items
-          });
-        });
-      }
-
-      if (settings.panelApps) {
-        Chrome.getApps((items) => {
-          this.setState({
-            apps: items
-          });
-        });
-      }
-
-      if (settings.panelShortcuts) {
-        Chrome.getShortcuts((items) => {
-          this.setState({
-            shortcuts: items
-          });
-        });
-      }
-    });
   }
 
   @bind
