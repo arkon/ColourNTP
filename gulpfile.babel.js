@@ -1,6 +1,5 @@
 import babelify from 'babelify';
 import browserify from 'browserify';
-import buffer from 'vinyl-buffer';
 import del from 'del';
 import glob from 'glob';
 import gulp from 'gulp';
@@ -10,7 +9,6 @@ import nano from 'gulp-cssnano';
 import sass from 'gulp-sass';
 import source from 'vinyl-source-stream';
 import transform from 'vinyl-transform';
-import uglify from 'gulp-uglify';
 
 
 // ========================================================================== //
@@ -80,13 +78,10 @@ export function js (done) {
     const stream = merge2(files.map((entry) => {
       return browserify(entry)
         .transform(babelify, {
-          presets: ['es2015', 'react'],
-          plugins: ['transform-class-properties', 'transform-decorators-legacy']
+          babelrc: './babelrc'
         })
         .bundle()
         .pipe(source(`${entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '')}.bundle.js`))
-        .pipe(buffer())
-        .pipe(uglify())
         .pipe(gulp.dest(PATHS.dest_scripts));
     }));
 
