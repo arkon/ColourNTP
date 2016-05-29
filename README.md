@@ -4,6 +4,8 @@
 
 A Chrome new tab page extension based on [What colour is it?][original] by [J.E. Murphy][author].
 
+Requires Chrome 49+.
+
 
 ## Development
 ### Prerequisites
@@ -15,6 +17,7 @@ A Chrome new tab page extension based on [What colour is it?][original] by [J.E.
 - [Spencer Elliott](http://github.com/elliottsj/): Full Spectrum Hexadecimal/Hue options
 - [Alexander Biggs](https://github.com/akbiggs): 12-hour option
 - [Alec Brunelle](https://github.com/aleccool213): Options page tooltips
+- [Jonathan Webb](https://github.com/jwebbed): Building the project in production mode
 
 
 [chrome-store]: https://chrome.google.com/webstore/detail/colour-new-tab-page/hniakoleggfkjjoncnnhinhdbgffkdmd
