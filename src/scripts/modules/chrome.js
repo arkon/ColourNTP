@@ -22,7 +22,9 @@ class Chrome {
 
   static getRecentlyClosed (max = 10) {
     return new Promise((resolve, reject) => {
-      chrome.sessions.getRecentlyClosed({ maxResults: parseInt(max, 10) }, (sessions) => {
+      chrome.sessions.getRecentlyClosed((sessions) => {
+        sessions = sessions.slice(0, parseInt(max, 10));
+
         let items = sessions.map((session) => {
           if (session.window && session.window.tabs.length === 1) {
             session.tab = session.window.tabs[0];
