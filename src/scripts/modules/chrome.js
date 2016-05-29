@@ -1,102 +1,85 @@
 import Defaults from '../constants/defaults';
 
 class Chrome {
-
   // Panel helpers
   // ============================================================================================
 
-  static getTopSites (done, max = 10) {
-    chrome.topSites.get(function (visitedURLs) {
-      visitedURLs = visitedURLs.slice(0, parseInt(max, 10));
+  static getTopSites (max = 10) {
+    return new Promise((resolve, reject) => {
+      chrome.topSites.get((visitedURLs) => {
+        visitedURLs = visitedURLs.slice(0, parseInt(max, 10));
 
-      var items = [];
-
-      for (let site of visitedURLs) {
-        items.push({
+        let items = visitedURLs.map((site) => ({
           title : site.title,
           url   : site.url,
           img   : `chrome://favicon/size/16@2x/${site.url}`
-        });
-      }
+        }));
 
-      done(items);
+        resolve(items);
+      });
     });
   }
 
-  static getRecentlyClosed (done, max = 10) {
-    chrome.sessions.getRecentlyClosed({ maxResults: parseInt(max, 10) }, function (sessions) {
-      var items = [];
+  static getRecentlyClosed (max = 10) {
+    return new Promise((resolve, reject) => {
+      chrome.sessions.getRecentlyClosed({ maxResults: parseInt(max, 10) }, (sessions) => {
+        let items = sessions.map((session) => {
+          if (session.window && session.window.tabs.length === 1) {
+            session.tab = session.window.tabs[0];
+          }
 
-      for (let session of sessions) {
-        if (session.window && session.window.tabs.length === 1) {
-          session.tab = session.window.tabs[0];
-        }
-
-        items.push({
-          title   : session.tab ? session.tab.title : `${session.window.tabs.length} Tabs`,
-          session : session.window ? session.window.sessionId : session.tab.sessionId,
-          img     : session.tab ? `chrome://favicon/${session.tab.url}` : null
+          return {
+            title   : session.tab ? session.tab.title : `${session.window.tabs.length} Tabs`,
+            session : session.window ? session.window.sessionId : session.tab.sessionId,
+            img     : session.tab ? `chrome://favicon/${session.tab.url}` : null
+          };
         });
-      }
 
-      done(items);
+        resolve(items);
+      });
     });
   }
 
-  static getApps (done) {
-    var find128Image = function (icons) {
-      for (let icon of icons) {
-        if (icon.size === 128) {
-          return icon.url;
-        }
-      }
+  static getApps () {
+    return new Promise((resolve, reject) => {
+      chrome.management.getAll((list) => {
+        // Only get active apps (no extensions)
+        list = list.filter((a) => a.enabled && a.type !== 'extension' && a.type !== 'theme' && a.isApp);
 
-      return '/noicon.png';
-    };
+        // Sort them alphabetically
+        list.sort((a, b) => {
+          if (a.name < b.name)      { return -1; }
+          else if (a.name > b.name) { return 1; }
+          else                      { return 0; }
+        });
 
-    chrome.management.getAll(function (list) {
-      // Only get active apps (no extensions)
-      list = list.filter(function (a) {
-        return a.enabled && a.type !== 'extension' && a.type !== 'theme' && a.isApp
-      });
-
-      // Sort them alphabetically
-      list.sort(function (a, b) {
-        if (a.name < b.name)      { return -1; }
-        else if (a.name > b.name) { return 1; }
-        else                      { return 0; }
-      });
-
-      var items = [];
-
-      for (let extInf of list) {
-        items.push({
+        let items = list.map((extInf => ({
           title : extInf.name,
           id    : extInf.id,
-          img   : find128Image(extInf.icons)
+          img   : Chrome._find128Image(extInf.icons)
+        })));
+
+        items.push({
+          title : 'All apps',
+          id    : 'ntp-apps',
+          img   : '../assets/img/apps128.png',
+          href  : 'chrome://apps'
         });
-      }
 
-      items.push({
-        title : 'All apps',
-        id    : 'ntp-apps',
-        img   : '../assets/img/apps128.png',
-        href  : 'chrome://apps'
+        items.push({
+          title : 'Web store',
+          id    : 'ntp-webstore',
+          img   : '../assets/img/webstore128.png',
+          href  : 'https://chrome.google.com/webstore'
+        });
+
+        resolve(items);
       });
-
-      items.push({
-        title : 'Web store',
-        id    : 'ntp-webstore',
-        img   : '../assets/img/webstore128.png',
-        href  : 'https://chrome.google.com/webstore'
-      });
-
-      done(items);
     });
   }
 
-  static getShortcuts (done) {
-    var shortcuts = [
+  static getShortcuts () {
+    const SHORTCUTS = [
       {
         title : 'Bookmarks',
         url   : 'chrome://bookmarks/',
@@ -124,36 +107,48 @@ class Chrome {
       }
     ];
 
-    done(shortcuts);
+    return new Promise((resolve, reject) => {
+      resolve(SHORTCUTS);
+    })
   }
 
-  static getDevices (done) {
-    chrome.sessions.getDevices(function (devices) {
-      var items = [];
+  static getDevices () {
+    return new Promise((resolve, reject) => {
+      chrome.sessions.getDevices((devices) => {
+        let items = devices.map((device) => {
+          let tabs = [];
 
-      for (let device of devices) {
-        let tabs = [];
+          for (let session of device.sessions) {
+            let sessionTabs = session.window ? session.window.tabs : [session.tab];
 
-        for (let session of device.sessions) {
-          let sessionTabs = session.window ? session.window.tabs : [session.tab];
-
-          for (let tab of sessionTabs) {
-            tabs.push({
-              title : tab.title,
-              url   : tab.url,
-              img   : `chrome://favicon/${tab.url}`
-            });
+            for (let tab of sessionTabs) {
+              tabs.push({
+                title : tab.title,
+                url   : tab.url,
+                img   : `chrome://favicon/${tab.url}`
+              });
+            }
           }
-        }
 
-        items.push({
-          title : device.deviceName,
-          tabs  : tabs
+          return {
+            title : device.deviceName,
+            tabs  : tabs
+          };
         });
-      }
 
-      done(items);
+        resolve(items);
+      });
     });
+  }
+
+  static _find128Image (icons) {
+    for (let icon of icons) {
+      if (icon.size === 128) {
+        return icon.url;
+      }
+    }
+
+    return '/noicon.png';
   }
 
 

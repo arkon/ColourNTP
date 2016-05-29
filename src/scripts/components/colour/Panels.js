@@ -63,43 +63,48 @@ class Panels extends React.Component {
         });
 
         if (settings.panelVisited) {
-          Chrome.getTopSites((items) => {
-            this.setState({
-              topSites: items
+          Chrome.getTopSites(settings.maxVisited)
+            .then((items) => {
+              this.setState({
+                topSites: items
+              });
             });
-          }, settings.maxVisited);
         }
 
         if (settings.panelClosed) {
-          Chrome.getRecentlyClosed((items) => {
-            this.setState({
-              recentlyClosed: items
+          Chrome.getRecentlyClosed(settings.maxClosed)
+            .then((items) => {
+              this.setState({
+                recentlyClosed: items
+              });
             });
-          }, settings.maxClosed);
         }
 
         if (settings.panelDevices) {
-          Chrome.getDevices((items) => {
-            this.setState({
-              devices: items
+          Chrome.getDevices()
+            .then((items) => {
+              this.setState({
+                devices: items
+              });
             });
-          });
         }
 
         if (settings.panelApps) {
-          Chrome.getApps((items) => {
-            this.setState({
-              apps: items
+          Chrome.getApps()
+            .then((items) => {
+              this.setState({
+                apps: items
+              });
             });
-          });
         }
 
         if (settings.panelShortcuts) {
-          Chrome.getShortcuts((items) => {
-            this.setState({
-              shortcuts: items
+          Chrome.getShortcuts()
+            .then((items) => {
+              this.setState({
+                shortcuts: items
+              });
             });
-          });
         }
       });
   }
