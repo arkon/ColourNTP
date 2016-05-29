@@ -1,4 +1,3 @@
-import { bind } from 'decko';
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -29,10 +28,13 @@ class Options extends React.Component {
       settings  : {}
     };
 
-    this.fetchSettings();
+    this.fetchSettings = this.fetchSettings.bind(this);
+    this.onToggleTab = this.onToggleTab.bind(this);
   }
 
   componentDidMount () {
+    this.fetchSettings();
+
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === 'saved') {
         this.fetchSettings();
@@ -40,7 +42,6 @@ class Options extends React.Component {
     });
   }
 
-  @bind
   fetchSettings () {
     Chrome.getSettings()
       .then((settings) => {
@@ -50,7 +51,6 @@ class Options extends React.Component {
       });
   }
 
-  @bind
   onToggleTab (tab) {
     this.setState({
       activeTab: tab

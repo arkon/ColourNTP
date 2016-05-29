@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { bind } from 'decko';
 import React from 'react';
 
 import Tabs from '../layout/Tabs';
@@ -34,10 +33,13 @@ class Panels extends React.Component {
       showFavicons   : true
     };
 
-    this.fetchSettings();
+    this.fetchSettings = this.fetchSettings.bind(this);
+    this.onClickTab = this.onClickTab.bind(this);
   }
 
   componentDidMount () {
+    this.fetchSettings();
+
     // Fetch new settings when changed
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === 'saved') {
@@ -46,7 +48,6 @@ class Panels extends React.Component {
     });
   }
 
-  @bind
   fetchSettings () {
     Chrome.getSettings()
       .then((settings) => {
@@ -109,7 +110,6 @@ class Panels extends React.Component {
       });
   }
 
-  @bind
   onClickTab (tab) {
     Chrome.setSetting('openPanel', tab);
 
@@ -119,13 +119,13 @@ class Panels extends React.Component {
   }
 
   onClickSession (session) {
-    return function () {
+    return () => {
       chrome.sessions.restore(session, null);
     };
   }
 
   onClickApp (id, href) {
-    return function () {
+    return () => {
       if (href) {
         chrome.tabs.update(null, { url: href });
       } else {
@@ -135,7 +135,7 @@ class Panels extends React.Component {
   }
 
   onClickShortcut (url) {
-    return function () {
+    return () => {
       chrome.tabs.update(null, { url: url });
     };
   }

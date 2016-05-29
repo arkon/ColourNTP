@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import Clipboard from 'clipboard';
-import { bind } from 'decko';
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -40,10 +39,19 @@ class NewTab extends React.Component {
       sidebarOpen  : false
     };
 
-    this.fetchSettings();
+    this.fetchSettings = this.fetchSettings.bind(this);
+    this.tick = this.tick.bind(this);
+    this.tickColour = this.tickColour.bind(this);
+    this.setDate = this.setDate.bind(this);
+    this.loadFont = this.loadFont.bind(this);
+    this.loadBgImage = this.loadBgImage.bind(this);
+    this.displayToast = this.displayToast.bind(this);
+    this.toggleSidebar = this.toggleSidebar.bind(this);
   }
 
   componentDidMount () {
+    this.fetchSettings();
+
     // Fetch new settings when changed
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === 'saved') {
@@ -68,7 +76,6 @@ class NewTab extends React.Component {
     this.interval = null;
   }
 
-  @bind
   fetchSettings () {
     Chrome.getSettings()
       .then((settings) => {
@@ -141,7 +148,6 @@ class NewTab extends React.Component {
       });
   }
 
-  @bind
   tick () {
     const now = new Date(),
       hour    = now.getHours(),
@@ -174,7 +180,6 @@ class NewTab extends React.Component {
     }
   }
 
-  @bind
   tickColour (time) {
     var colour = `#${time.hour}${time.minute}${time.second}`;
 
@@ -198,14 +203,12 @@ class NewTab extends React.Component {
     });
   }
 
-  @bind
   setDate () {
     this.setState({
       date : new Date().toISOString().split('T')[0]
     });
   }
 
-  @bind
   loadFont (font, isWeb) {
     WebFont.loadFont(font);
 
@@ -217,7 +220,6 @@ class NewTab extends React.Component {
     this.elStyleFont.textContent = font ? `* { font-family: '${font}' !important; }` : '';
   }
 
-  @bind
   loadBgImage (imgUrl, opacity) {
     this.setState({
       bgImage   : imgUrl,
@@ -229,7 +231,6 @@ class NewTab extends React.Component {
     chrome.tabs.update(null, { url: 'chrome-search://local-ntp/local-ntp.html' });
   }
 
-  @bind
   displayToast (text, duration = 2500) {
     this.setState({
       toastVisible : true,
@@ -243,7 +244,6 @@ class NewTab extends React.Component {
     });
   }
 
-  @bind
   toggleSidebar () {
     this.setState({
       sidebarOpen: !this.state.sidebarOpen

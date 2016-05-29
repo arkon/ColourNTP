@@ -1,4 +1,3 @@
-import { bind } from 'decko';
 import React from 'react';
 
 import Chrome from '../../modules/chrome';
@@ -13,10 +12,13 @@ class FontPreview extends React.Component {
     };
 
     WebFont.loadFont(this.state.font);
-    this.fetchSettings();
+
+    this.fetchSettings = this.fetchSettings.bind(this);
   }
 
   componentDidMount () {
+    this.fetchSettings();
+
     // Fetch new settings when changed
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.msg === 'saved') {
@@ -25,7 +27,6 @@ class FontPreview extends React.Component {
     });
   }
 
-  @bind
   fetchSettings () {
     Chrome.getSettings()
       .then((settings) => {

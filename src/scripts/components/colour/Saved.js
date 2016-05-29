@@ -1,4 +1,3 @@
-import { bind } from 'decko';
 import React from 'react';
 
 import SavedColours from '../../modules/saved';
@@ -10,6 +9,8 @@ class Saved extends React.Component {
     this.state = {
       colours: []
     };
+
+    this.fetchSaved = this.fetchSaved.bind(this);
   }
 
   componentDidMount () {
@@ -27,7 +28,6 @@ class Saved extends React.Component {
     return nextState !== this.state;
   }
 
-  @bind
   fetchSaved () {
     SavedColours.get().then((colours) => {
       this.setState({

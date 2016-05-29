@@ -1,4 +1,3 @@
-import { bind } from 'decko';
 import Clipboard from 'clipboard';
 import React from 'react';
 
@@ -13,6 +12,8 @@ class History extends React.Component {
     this.state = {
       history: new Array(this.max)
     };
+
+    this.pushToStack = this.pushToStack.bind(this);
   }
 
   componentWillMount () {
@@ -23,9 +24,8 @@ class History extends React.Component {
     this.pushToStack(nextProps.colour);
   }
 
-  @bind
   pushToStack (item) {
-    var stack = this.state.history;
+    let stack = this.state.history;
 
     stack.push(item);
 

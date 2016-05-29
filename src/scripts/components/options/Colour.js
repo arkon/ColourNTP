@@ -1,11 +1,15 @@
-import { bind } from 'decko';
 import React from 'react';
 
 import Option from './Option';
 import Chrome from '../../modules/chrome';
 
 class Colour extends Option {
-  @bind
+  constructor (props) {
+    super(props);
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   handleChange (e) {
     const key = this.props.optkey,
       value = e.target.value;
