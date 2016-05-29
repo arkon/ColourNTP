@@ -21,7 +21,6 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-es2015-destructuring": "^6.9.0",
     "babel-plugin-transform-es2015-for-of": "^6.8.0",
-    "babel-plugin-transform-es2015-function-name": "^6.9.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "babel-plugin-transform-es2015-parameters": "^6.9.0",
     "babel-preset-react": "^6.5.0",

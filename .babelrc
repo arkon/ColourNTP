@@ -5,7 +5,6 @@
     "transform-decorators-legacy",
     "transform-es2015-destructuring",
     "transform-es2015-for-of",
-    "transform-es2015-function-name",
     "transform-es2015-modules-commonjs",
     "transform-es2015-parameters"
   ]
