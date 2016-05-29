@@ -5,17 +5,16 @@
 A Chrome new tab page extension based on [What colour is it?][original] by [J.E. Murphy][author].
 
 
+## Development
+### Prerequisites
+- [Node.js 6+](https://nodejs.org/en/)
+- [Gulp 4](https://github.com/gulpjs/gulp/tree/4.0)
+
 ### Contributors
 
 - [Spencer Elliott](http://github.com/elliottsj/): Full Spectrum Hexadecimal/Hue options
 - [Alexander Biggs](https://github.com/akbiggs): 12-hour option
 - [Alec Brunelle](https://github.com/aleccool213): Options page tooltips
-
-
-### References
-
-- [New-App-Launcher](https://github.com/PaulKinlan/New-App-Launcher)
-- [HumbleNewTabPage](https://github.com/quodroc/HumbleNewTabPage)
 
 
 [chrome-store]: https://chrome.google.com/webstore/detail/colour-new-tab-page/hniakoleggfkjjoncnnhinhdbgffkdmd

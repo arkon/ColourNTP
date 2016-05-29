@@ -3,9 +3,6 @@
   "plugins": [
     "transform-class-properties",
     "transform-decorators-legacy",
-    "transform-es2015-destructuring",
-    "transform-es2015-for-of",
-    "transform-es2015-modules-commonjs",
-    "transform-es2015-parameters"
+    "transform-es2015-modules-commonjs"
   ]
 }
