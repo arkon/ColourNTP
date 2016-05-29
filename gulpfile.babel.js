@@ -78,7 +78,12 @@ export function js (done) {
     const stream = merge2(files.map((entry) => {
       return browserify(entry)
         .transform(babelify, {
-          babelrc: './babelrc'
+          babelrc: false,
+          presets: ['react'],
+          plugins: [
+            'transform-class-properties',
+            'transform-es2015-modules-commonjs'
+          ]
         })
         .bundle()
         .pipe(source(`${entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '')}.bundle.js`))
