@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SavedColour from './SavedColour';
+
 import SavedColours from '../../modules/saved';
 
 class Saved extends React.Component {
@@ -38,16 +40,11 @@ class Saved extends React.Component {
 
   render () {
     return (
-      <ul>
+      <div>
         { this.state.colours.map((colour, i) => (
-          <li key={i}
-            className='copy'
-            title='Copy to clipboard'
-            data-clipboard-text={colour}>
-            {colour}
-          </li>
-        ))}
-      </ul>
+          <SavedColour key={i} colour={colour} />
+        )) }
+      </div>
     );
   }
 }
