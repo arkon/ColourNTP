@@ -1,4 +1,4 @@
-const Defaults = {
+export const Defaults = {
   time24hr       : true,
   animations     : true,
   showTime       : true,
@@ -38,5 +38,3 @@ const Defaults = {
 
   showFavicons   : true
 };
-
-export default Defaults;

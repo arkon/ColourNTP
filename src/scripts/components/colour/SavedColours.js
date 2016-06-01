@@ -1,10 +1,10 @@
 import React from 'react';
 
-import SavedColour from './SavedColour';
+import { SavedColour } from './SavedColour';
 
-import SavedColours from '../../modules/saved';
+import { Saved } from '../../modules/saved';
 
-class Saved extends React.Component {
+export class SavedColours extends React.Component {
   constructor (props) {
     super(props);
 
@@ -31,16 +31,19 @@ class Saved extends React.Component {
   }
 
   fetchSaved () {
-    SavedColours.get().then((colours) => {
-      this.setState({
-        colours: colours
+    Saved.get()
+      .then((colours) => {
+        this.setState({
+          colours: colours
+        });
       });
-    });
   }
 
   render () {
     return (
       <div>
+        <h1>Saved</h1>
+
         { this.state.colours.map((colour, i) => (
           <SavedColour key={i} colour={colour} />
         )) }
@@ -48,5 +51,3 @@ class Saved extends React.Component {
     );
   }
 }
-
-export default Saved;

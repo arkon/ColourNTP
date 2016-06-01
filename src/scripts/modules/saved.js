@@ -1,7 +1,7 @@
-import Chrome from './chrome';
+import { Chrome } from './chrome';
 
-class SavedColours {
-  static saved = [];
+export class Saved {
+  static data = [];
   static _fetchedFromStorage = false;
 
   /**
@@ -9,20 +9,19 @@ class SavedColours {
    */
   static get () {
     return new Promise((resolve, reject) => {
-      if (SavedColours._fetchedFromStorage) {
-        resolve(SavedColours.saved);
+      if (Saved._fetchedFromStorage) {
+        resolve(Saved.data);
       }
 
-      // Better handle async
       Chrome.getSetting('saved')
         .then((results) => {
           if (results.saved) {
-            SavedColours.saved = results.saved;
+            Saved.data = results.saved;
           }
 
-          SavedColours._fetchedFromStorage = true;
+          Saved._fetchedFromStorage = true;
 
-          resolve(SavedColours.saved);
+          resolve(Saved.data);
         });
     });
   }
@@ -31,10 +30,8 @@ class SavedColours {
    * colour should be a hex value
    */
   static add (colour) {
-    SavedColours.saved.push(colour);
+    Saved.data.push(colour);
 
-    Chrome.setSetting('saved', SavedColours.saved);
+    Chrome.setSetting('saved', Saved.data);
   }
 }
-
-export default SavedColours;

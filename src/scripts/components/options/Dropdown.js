@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Option from './Option';
-import Chrome from '../../modules/chrome';
+import { Option } from './Option';
+import { Chrome } from '../../modules/chrome';
 
-class Dropdown extends Option {
+export class Dropdown extends Option {
   constructor (props) {
     super(props);
 
@@ -32,5 +32,3 @@ class Dropdown extends Option {
     );
   }
 }
-
-export default Dropdown;

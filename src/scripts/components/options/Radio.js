@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Radio = (props) => {
+export const Radio = (props) => {
   const onCheck = (e) => {
     props.onChange(props.value);
   };
@@ -29,5 +29,3 @@ const Radio = (props) => {
     </div>
   );
 };
-
-export default Radio;

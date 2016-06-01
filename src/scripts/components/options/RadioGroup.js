@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Option from './Option';
-import Chrome from '../../modules/chrome';
+import { Option } from './Option';
+import { Chrome } from '../../modules/chrome';
 
-class RadioGroup extends Option {
+export class RadioGroup extends Option {
   constructor (props) {
     super(props);
 
@@ -33,5 +33,3 @@ class RadioGroup extends Option {
     );
   }
 }
-
-export default RadioGroup;

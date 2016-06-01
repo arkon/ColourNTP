@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Colours from '../../modules/colours';
-import SavedColours from '../../modules/saved';
+import { Colours } from '../../modules/colours';
+import { Saved } from '../../modules/saved';
 
-const Colour = (props) => {
-  var colour = props.colour;
+export const Colour = (props) => {
+  let colour = props.colour;
 
   switch (props.format) {
     case 'rgb':
@@ -23,11 +23,9 @@ const Colour = (props) => {
       <span className='copy'
         title='Copy to clipboard'
         data-clipboard-text={colour}
-        onClick={() => SavedColours.add(colour)}>
+        onClick={() => Saved.add(colour)}>
         {colour}
       </span>
     </h2>
   );
 };
-
-export default Colour;

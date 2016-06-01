@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import Tab from './Tab';
+import { Tab } from './Tab';
 
-class Tabs extends React.Component {
+export class Tabs extends React.Component {
   constructor (props) {
     super(props);
 
@@ -61,5 +61,3 @@ class Tabs extends React.Component {
     );
   }
 }
-
-export default Tabs;

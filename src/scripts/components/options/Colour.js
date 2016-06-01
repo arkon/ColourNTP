@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Option from './Option';
-import Chrome from '../../modules/chrome';
+import { Option } from './Option';
+import { Chrome } from '../../modules/chrome';
 
-class Colour extends Option {
+export class Colour extends Option {
   constructor (props) {
     super(props);
 
@@ -28,5 +28,3 @@ class Colour extends Option {
     );
   }
 }
-
-export default Colour;

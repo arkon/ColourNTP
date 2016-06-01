@@ -1,9 +1,9 @@
 import Clipboard from 'clipboard';
 import React from 'react';
 
-import SavedColours from '../../modules/saved';
+import { Saved } from '../../modules/saved';
 
-class History extends React.Component {
+export class History extends React.Component {
   constructor (props) {
     super(props);
 
@@ -41,11 +41,9 @@ class History extends React.Component {
             style={{ backgroundColor: colour }}
             data-hex={colour}
             data-clipboard-text={colour}
-            onClick={() => SavedColours.add(colour)} />
+            onClick={() => Saved.add(colour)} />
         )) }
       </div>
     );
   }
 }
-
-export default History;

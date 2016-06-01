@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Option from './Option';
-import Chrome from '../../modules/chrome';
+import { Option } from './Option';
+import { Chrome } from '../../modules/chrome';
 
-class Checkbox extends Option {
+export class Checkbox extends Option {
   constructor (props) {
     super(props);
 
@@ -29,7 +29,3 @@ class Checkbox extends Option {
     );
   }
 }
-
-export default Checkbox;
-
-

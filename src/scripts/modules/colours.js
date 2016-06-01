@@ -1,4 +1,4 @@
-class Colours {
+export class Colours {
   /**
    * Converts the second to a hex value, from 0x000000 to 0xFFFFFF.
    * 00:00:00 corresponds to #000000 and 23:59:59 corresponds to #ffffff.
@@ -142,5 +142,3 @@ class Colours {
     return `#${('000000' + (value * 0xFFFFFF | 0).toString(16)).slice(-6)}`;
   }
 }
-
-export default Colours;

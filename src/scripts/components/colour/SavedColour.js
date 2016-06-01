@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SavedColour = (props) => (
+export const SavedColour = (props) => (
   <div className='saved_colour copy'
     style={{ backgroundColor: props.colour }}
     title='Copy to clipboard'
@@ -8,5 +8,3 @@ const SavedColour = (props) => (
     {props.colour}
   </div>
 );
-
-export default SavedColour;

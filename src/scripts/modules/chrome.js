@@ -1,6 +1,6 @@
-import Defaults from '../constants/defaults';
+import { Defaults } from '../constants/defaults';
 
-class Chrome {
+export class Chrome {
   // Panel helpers
   // ============================================================================================
 
@@ -182,5 +182,3 @@ class Chrome {
     chrome.runtime.sendMessage({ msg: 'saved', key: key });
   }
 }
-
-export default Chrome;

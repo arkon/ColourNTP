@@ -3,21 +3,21 @@ import Clipboard from 'clipboard';
 import React from 'react';
 import { render } from 'react-dom';
 
-import Chrome from './modules/chrome';
-import Colours from './modules/colours';
-import SavedColours from './modules/saved';
-import TimeHelper from './modules/timehelper';
-import Unsplash from './modules/unsplash';
-import WebFont from './modules/webfont';
+import { Chrome } from './modules/chrome';
+import { Colours } from './modules/colours';
+import { Saved } from './modules/saved';
+import { TimeHelper } from './modules/timehelper';
+import { Unsplash } from './modules/unsplash';
+import { WebFont } from './modules/webfont';
 
-import Colour from './components/colour/Colour';
-import DateDisplay from './components/colour/Date';
-import History from './components/colour/History';
-import Panels from './components/colour/Panels';
-import Saved from './components/colour/Saved';
-import Sidebar from './components/colour/Sidebar';
-import Time from './components/colour/Time';
-import Toast from './components/colour/Toast';
+import { Colour } from './components/colour/Colour';
+import { DateDisplay } from './components/colour/Date';
+import { History } from './components/colour/History';
+import { Panels } from './components/colour/Panels';
+import { SavedColours } from './components/colour/SavedColours';
+import { Sidebar } from './components/colour/Sidebar';
+import { Time } from './components/colour/Time';
+import { Toast } from './components/colour/Toast';
 
 class NewTab extends React.Component {
   constructor (props) {
@@ -272,8 +272,7 @@ class NewTab extends React.Component {
       <div id="newtab__content">
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
           <div>
-            <h1>Saved</h1>
-            <Saved />
+            <SavedColours />
           </div>
         </Sidebar>
 

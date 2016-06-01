@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Option from './Option';
-import Chrome from '../../modules/chrome';
+import { Option } from './Option';
+import { Chrome } from '../../modules/chrome';
 
-class Textbox extends Option {
+export class Textbox extends Option {
   constructor (props) {
     super(props);
 
@@ -28,5 +28,3 @@ class Textbox extends Option {
     );
   }
 }
-
-export default Textbox;

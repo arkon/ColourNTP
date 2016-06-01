@@ -1,4 +1,4 @@
-const Fonts = [
+export const Fonts = [
   'Anonymous Pro',
   'Arial',
   'Arvo',
@@ -33,5 +33,3 @@ const Fonts = [
   'Titillium Web',
   'Ubuntu'
 ];
-
-export default Fonts;

@@ -1,4 +1,4 @@
-class Unsplash {
+export class Unsplash {
   static getImage (frequency) {
     return new Promise((resolve, reject) => {
       // Set proper frequency in URL + screen size
@@ -26,5 +26,3 @@ class Unsplash {
     });
   }
 }
-
-export default Unsplash;

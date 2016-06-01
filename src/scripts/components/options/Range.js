@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Option from './Option';
-import Chrome from '../../modules/chrome';
+import { Option } from './Option';
+import { Chrome } from '../../modules/chrome';
 
-class Range extends Option {
+export class Range extends Option {
   constructor (props) {
     super(props);
 
@@ -30,5 +30,3 @@ class Range extends Option {
     );
   }
 }
-
-export default Range;
