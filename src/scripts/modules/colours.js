@@ -139,7 +139,7 @@ export class Colours {
    * Returns American-localized "colour" if needed.
    */
   static localize (capitalize, american = false) {
-    const word = american ? 'color' : 'colour';
+    let word = american ? 'color' : 'colour';
 
     if (capitalize) {
       word = word.charAt(0).toUpperCase() + word.slice(1);
