@@ -1,10 +1,19 @@
-import React from 'react';
+import classNames from 'classnames';
+import React from 'react'
 
-export const SavedColour = (props) => (
-  <div className='saved_colour copy'
-    style={{ backgroundColor: props.colour }}
-    title='Copy to clipboard'
-    data-clipboard-text={props.colour}>
-    {props.colour}
-  </div>
-);
+import { Colours } from '../../modules/colours';
+
+export const SavedColour = (props) => {
+  const savedColourClass = classNames('saved_colour', 'copy', {
+    'is_dark': Colours.isDark(...Colours.hexToRgb(props.colour))
+  });
+
+  return (
+    <div className={savedColourClass}
+      style={{ backgroundColor: props.colour }}
+      title='Copy to clipboard'
+      data-clipboard-text={props.colour}>
+      {props.colour}
+    </div>
+  );
+};

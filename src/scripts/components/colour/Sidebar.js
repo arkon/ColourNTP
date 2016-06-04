@@ -14,9 +14,7 @@ export const Sidebar = (props) => {
             Close
           </button>
 
-          <div className='sidebar__pane'>
-            {props.children}
-          </div>
+          {props.children}
         </div>
       }
     </div>

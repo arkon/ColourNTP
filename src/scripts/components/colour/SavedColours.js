@@ -41,7 +41,7 @@ export class SavedColours extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='saved_colours'>
         <h1>Saved</h1>
 
         { this.state.colours.map((colour, i) => (

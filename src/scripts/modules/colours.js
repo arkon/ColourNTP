@@ -71,12 +71,15 @@ export class Colours {
 
   static rgbToHsl (r, g, b) {
     r /= 255, g /= 255, b /= 255;
-    var max = Math.max(r, g, b), min = Math.min(r, g, b);
-    var h, s, l = (max + min) / 2;
+
+    const max = Math.max(r, g, b),
+      min = Math.min(r, g, b);
+
+    let h, s, l = (max + min) / 2;
 
     if (max == min) { h = s = 0; }
     else {
-      var d = max - min;
+      const d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
 
       switch (max) {
@@ -99,7 +102,7 @@ export class Colours {
    * Converts a hex colour string to an array of RGB values.
    */
   static hexToRgb (hex) {
-    var r = parseInt(hex, 16) >> 16,
+    const r = parseInt(hex, 16) >> 16,
       g = parseInt(hex, 16) >> 8 & 0xFF,
       b = parseInt(hex, 16) & 0xFF;
 
@@ -110,7 +113,7 @@ export class Colours {
    * Converts a hex colour to an RGBA string with the provided alpha value.
    */
   static rgba (hex, alpha) {
-    var colour = Colours.hexToRgb(hex.substring(1, 7));
+    const colour = Colours.hexToRgb(hex.substring(1, 7));
 
     return `rgba(${colour[0]}, ${colour[1]}, ${colour[2]}, ${alpha})`;
   }
@@ -123,10 +126,20 @@ export class Colours {
   }
 
   /**
+   * Calculates whether a colour (given the RGB values) is considered dark.
+   * Based on http://stackoverflow.com/a/12043228.
+   */
+  static isDark (r, g, b) {
+    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+    return luma < 40;
+  }
+
+  /**
    * Returns American-localized "colour" if needed.
    */
   static localize (capitalize, american = false) {
-    var word = american ? 'color' : 'colour';
+    const word = american ? 'color' : 'colour';
 
     if (capitalize) {
       word = word.charAt(0).toUpperCase() + word.slice(1);

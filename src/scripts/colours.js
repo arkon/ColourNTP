@@ -271,9 +271,7 @@ class NewTab extends React.Component {
     return (
       <div id="newtab__content">
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
-          <div>
-            <SavedColours />
-          </div>
+          <SavedColours />
         </Sidebar>
 
         <div className={coloursClass} onClick={this.state.sidebarOpen ? this.toggleSidebar : null}>

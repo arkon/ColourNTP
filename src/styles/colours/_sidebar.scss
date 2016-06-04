@@ -2,6 +2,7 @@
   background: #333;
   bottom: 0;
   max-width: 250px;
+  overflow: auto;
   padding: 2em 1em;
   pointer-events: none;
   position: fixed;
@@ -17,6 +18,7 @@
 .sidebar--open {
   pointer-events: auto;
   transform: none;
+  will-change: initial;
 }
 
 .sidebar__toggle {
@@ -27,9 +29,4 @@
   right: 0;
   top: 0;
   width: 2em;
-}
-
-.sidebar__pane {
-  max-height: 100%;
-  overflow: auto;
 }
