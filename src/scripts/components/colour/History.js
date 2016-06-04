@@ -1,6 +1,7 @@
 import Clipboard from 'clipboard';
 import React from 'react';
 
+import { Colours } from '../../modules/colours';
 import { Saved } from '../../modules/saved';
 
 export class History extends React.Component {
@@ -36,13 +37,17 @@ export class History extends React.Component {
   render () {
     return (
       <div className='history'>
-        { this.state.history.map((colour, i) => (
-          <div key={i} className='history__item copy'
-            style={{ backgroundColor: colour }}
-            data-hex={colour}
-            data-clipboard-text={colour}
-            onClick={() => Saved.add(colour)} />
-        )) }
+        { this.state.history.map((colour, i) => {
+          let formattedColour = Colours.format(colour, this.props.format);
+
+          return (
+            <div key={i} className='history__item copy'
+              style={{ backgroundColor: colour }}
+              data-colour={formattedColour}
+              data-clipboard-text={formattedColour}
+              onClick={() => Saved.add(colour)} />
+          );
+        }) }
       </div>
     );
   }

@@ -43,7 +43,7 @@
     &::after {
       background: $dark-grey;
       color: $white;
-      content: attr(data-hex);
+      content: attr(data-colour);
       padding: 0.25em 1em;
       white-space: nowrap;
     }

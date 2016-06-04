@@ -324,7 +324,7 @@ class NewTab extends React.Component {
           </div>
 
           { settings.ticker && settings.colour !== 'solid' &&
-            <History colour={this.state.colour} />
+            <History colour={this.state.colour} format={settings.colourFormat} />
           }
         </div>
 

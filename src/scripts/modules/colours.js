@@ -136,6 +136,28 @@ export class Colours {
   }
 
   /**
+   * Converts a hex colour string to RGB or HSL format, of that format
+   * is specified.
+   */
+  static format (hex, format) {
+    let colour = hex;
+
+    switch (format) {
+      case 'rgb':
+        const rgb = Colours.hexToRgb(colour.substring(1, 7));
+        colour = `rgb(${rgb.join(', ')})`;
+        break;
+
+      case 'hsl':
+        const hsl = Colours.hexToHsl(colour.substring(1, 7));
+        colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
+        break;
+    }
+
+    return colour;
+  }
+
+  /**
    * Returns American-localized "colour" if needed.
    */
   static localize (capitalize, american = false) {
