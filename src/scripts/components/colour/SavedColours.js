@@ -12,6 +12,7 @@ export class SavedColours extends React.Component {
       colours: []
     };
 
+    this.messageListener = this.messageListener.bind(this);
     this.fetchSaved = this.fetchSaved.bind(this);
   }
 
@@ -19,15 +20,21 @@ export class SavedColours extends React.Component {
     this.fetchSaved();
 
     // Fetch new settings when new colour added
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      if (request.msg === 'saved' && request.key === 'saved') {
-        this.fetchSaved();
-      }
-    });
+    chrome.runtime.onMessage.addListener(this.messageListener);
+  }
+
+  componentWillUnmount () {
+    chrome.runtime.onMessage.removeListener(this.messageListener);
   }
 
   shouldComponentUpdate (nextProps, nextState) {
     return nextState !== this.state;
+  }
+
+  messageListener (request, sender, sendResponse) {
+    if (request.msg === 'saved' && request.key === 'saved') {
+      this.fetchSaved();
+    }
   }
 
   fetchSaved () {

@@ -33,6 +33,7 @@ export class Panels extends React.Component {
       showFavicons   : true
     };
 
+    this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
     this.onClickTab = this.onClickTab.bind(this);
   }
@@ -41,11 +42,17 @@ export class Panels extends React.Component {
     this.fetchSettings();
 
     // Fetch new settings when changed
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      if (request.msg === 'saved') {
-        this.fetchSettings();
-      }
-    });
+    chrome.runtime.onMessage.addListener(this.messageListener);
+  }
+
+  componentWillUnmount () {
+    chrome.runtime.onMessage.removeListener(this.messageListener);
+  }
+
+  messageListener (request, sender, sendResponse) {
+    if (request.msg === 'saved') {
+      this.fetchSettings();
+    }
   }
 
   fetchSettings () {

@@ -28,6 +28,7 @@ class Options extends React.Component {
       settings  : {}
     };
 
+    this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
     this.onToggleTab = this.onToggleTab.bind(this);
   }
@@ -35,11 +36,17 @@ class Options extends React.Component {
   componentDidMount () {
     this.fetchSettings();
 
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      if (request.msg === 'saved') {
-        this.fetchSettings();
-      }
-    });
+    chrome.runtime.onMessage.addListener(this.messageListener);
+  }
+
+  componentWillUnmount () {
+    chrome.runtime.onMessage.removeListener(this.messageListener);
+  }
+
+  messageListener (request, sender, sendResponse) {
+    if (request.msg === 'saved') {
+      this.fetchSettings();
+    }
   }
 
   fetchSettings () {

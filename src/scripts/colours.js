@@ -39,6 +39,7 @@ class NewTab extends React.Component {
       sidebarOpen  : false
     };
 
+    this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
     this.tick = this.tick.bind(this);
     this.tickColour = this.tickColour.bind(this);
@@ -53,11 +54,7 @@ class NewTab extends React.Component {
     this.fetchSettings();
 
     // Fetch new settings when changed
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      if (request.msg === 'saved') {
-        this.fetchSettings();
-      }
-    });
+    chrome.runtime.onMessage.addListener(this.messageListener);
 
     // Clipboard.js
     const clipboard = new Clipboard('.copy');
@@ -72,8 +69,16 @@ class NewTab extends React.Component {
   }
 
   componentWillUnmount () {
+    chrome.runtime.onMessage.removeListener(this.messageListener);
+
     clearInterval(this.interval);
     this.interval = null;
+  }
+
+  messageListener (request, sender, sendResponse) {
+    if (request.msg === 'saved') {
+      this.fetchSettings();
+    }
   }
 
   fetchSettings () {
