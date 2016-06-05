@@ -1,4 +1,5 @@
 import { Chrome } from './chrome';
+import { Colours } from './colours';
 
 export class Saved {
   static data = [];
@@ -30,6 +31,17 @@ export class Saved {
    * colour should be a hex value
    */
   static add (colour) {
+    if (!Saved._fetchedFromStorage) {
+      Saved.get()
+        .then(() => {
+          Saved._add(colour);
+        });
+    } else {
+      Saved._add(colour);
+    }
+  }
+
+  static _add (colour) {
     Saved.data.push(colour);
 
     Chrome.setSetting('saved', Saved.data);
