@@ -5,10 +5,12 @@ import { TimeHelper } from '../../modules/timehelper';
 export const Time = (props) => {
   const time = props.time;
 
-  var hour = time.hour;
+  var hour = parseInt(time.hour);
 
-  if (!props.hourFormat24 && time.pm) {
-    hour -= 12;
+  if (!props.hourFormat24) {
+    if (time.pm) {
+      hour -= 12;
+    }
     hour = TimeHelper.pad(hour === 0 ? 12 : hour);
   }
 
