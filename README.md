@@ -18,6 +18,7 @@ Requires Chrome 49+.
 - [Alexander Biggs](https://github.com/akbiggs): 12-hour option
 - [Alec Brunelle](https://github.com/aleccool213): Options page tooltips
 - [Jonathan Webb](https://github.com/jwebbed): Building the project in production mode
+- [Kashav Madan](https://github.com/kshvmdn): Fixing 12am/pm
 
 
 [chrome-store]: https://chrome.google.com/webstore/detail/colour-new-tab-page/hniakoleggfkjjoncnnhinhdbgffkdmd
