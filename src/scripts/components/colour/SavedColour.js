@@ -8,6 +8,8 @@ export const SavedColour = (props) => {
     'is_dark': Colours.isDark(...Colours.hexToRgb(props.colour))
   });
 
+  // TODO: convert to user-selected format
+
   return (
     <div className={savedColourClass}
       style={{ backgroundColor: props.colour }}

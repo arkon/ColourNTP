@@ -1,5 +1,4 @@
 import { Chrome } from './chrome';
-import { Colours } from './colours';
 
 export class Saved {
   static data = [];

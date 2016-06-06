@@ -1,7 +1,7 @@
 export class WebFont {
   static loadFont (font) {
     if (navigator.onLine) {
-      var elLinkFont = document.getElementById('webfont');
+      let elLinkFont = document.getElementById('webfont');
 
       if (!elLinkFont) {
         elLinkFont  = document.createElement('link');

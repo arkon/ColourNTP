@@ -95,7 +95,7 @@ class NewTab extends React.Component {
         // Solid colour
         if (settings.colour === 'solid') {
           this.setState({
-            colour : settings.colourSolid
+            colour: settings.colourSolid
           });
         }
 
@@ -123,7 +123,7 @@ class NewTab extends React.Component {
           }
 
           if (settings.font === 'web') {
-            this.loadFont(settings.fontWeb, true);
+            this.loadFont(settings.fontWeb);
           }
         }
 
@@ -160,14 +160,13 @@ class NewTab extends React.Component {
       second  = now.getSeconds();
 
     const time = {
-      pm     : hour >= 12,
-      hour   : TimeHelper.pad(hour),
-      minute : TimeHelper.pad(minute),
-      second : TimeHelper.pad(second)
+      hour   : hour,
+      minute : minute,
+      second : second
     };
 
     this.setState({
-      time : time
+      time: time
     });
 
     if (hour == 0 && minute == 0 && second == 0) {
@@ -177,7 +176,7 @@ class NewTab extends React.Component {
     if (this.state.bgOpacity !== 0) {
       if (this.state.settings.colour === 'random') {
         this.setState({
-          colour : Colours.random()
+          colour: Colours.random()
         });
       } else if (this.state.settings.colour !== 'solid') {
         this.tickColour(time);
@@ -186,12 +185,12 @@ class NewTab extends React.Component {
   }
 
   tickColour (time) {
-    var colour = `#${time.hour}${time.minute}${time.second}`;
+    let colour = `#${TimeHelper.pad(time.hour)}${TimeHelper.pad(time.minute)}${TimeHelper.pad(time.second)}`;
 
     const seconds =
-      (parseInt(time.hour, 10) * 60 * 60) +
-      (parseInt(time.minute, 10) * 60) +
-      (parseInt(time.second, 10));
+      (time.hour * 60 * 60) +
+      (time.minute * 60) +
+      (time.second);
 
     switch (this.state.settings.colour) {
       case 'full':
@@ -204,17 +203,17 @@ class NewTab extends React.Component {
     }
 
     this.setState({
-      colour : colour
+      colour: colour
     });
   }
 
   setDate () {
     this.setState({
-      date : new Date().toISOString().split('T')[0]
+      date: new Date().toISOString().split('T')[0]
     });
   }
 
-  loadFont (font, isWeb) {
+  loadFont (font) {
     WebFont.loadFont(font);
 
     if (!this.elStyleFont) {
@@ -268,7 +267,7 @@ class NewTab extends React.Component {
 
     // Background styles
     const bgColourStyle = {
-      backgroundColor : this.state.bgOpacity < 1 ?
+      backgroundColor: this.state.bgOpacity < 1 ?
         Colours.rgba(this.state.colour, this.state.bgOpacity) :
         this.state.colour
     };
