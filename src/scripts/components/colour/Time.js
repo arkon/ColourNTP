@@ -6,9 +6,10 @@ export const Time = (props) => {
   const time = props.time;
 
   let hour = time.hour;
+  let afterNoon = hour >= 12;
 
   if (!props.hourFormat24) {
-    if (hour >= 12) {
+    if (afterNoon) {
       hour -= 12;
     }
 
@@ -26,7 +27,7 @@ export const Time = (props) => {
       { props.showSeconds && <span>{TimeHelper.pad(time.second)}</span> }
 
       { !props.hourFormat24 &&
-        <span className='colours__time__postfix'>{time.pm ? 'PM' : 'AM'}</span>
+        <span className='colours__time__postfix'>{afterNoon ? 'PM' : 'AM'}</span>
       }
     </h1>
   );
