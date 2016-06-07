@@ -8,14 +8,14 @@ export const SavedColour = (props) => {
     'is_dark': Colours.isDark(...Colours.hexToRgb(props.colour))
   });
 
-  // TODO: convert to user-selected format
+  const formattedColour = Colours.format(props.colour, props.format);
 
   return (
     <div className={savedColourClass}
       style={{ backgroundColor: props.colour }}
       title='Copy to clipboard'
-      data-clipboard-text={props.colour}>
-      {props.colour}
+      data-clipboard-text={formattedColour}>
+      {formattedColour}
     </div>
   );
 };

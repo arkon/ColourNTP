@@ -9,7 +9,8 @@ export class SavedColours extends React.Component {
     super(props);
 
     this.state = {
-      colours: []
+      colours: [],
+      format: 'hex'
     };
 
     this.messageListener = this.messageListener.bind(this);
@@ -29,6 +30,14 @@ export class SavedColours extends React.Component {
 
   shouldComponentUpdate (nextProps, nextState) {
     return nextState !== this.state;
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.format !== this.state.format) {
+      this.setState({
+        format: nextProps.format
+      });
+    }
   }
 
   messageListener (request, sender, sendResponse) {
@@ -52,7 +61,7 @@ export class SavedColours extends React.Component {
         <h1>Saved</h1>
 
         { this.state.colours.map((colour, i) => (
-          <SavedColour key={i} colour={colour} />
+          <SavedColour key={i} colour={colour} format={this.state.format} />
         )) }
       </div>
     );
