@@ -10,6 +10,8 @@ import { TimeHelper } from './modules/timehelper';
 import { Unsplash } from './modules/unsplash';
 import { WebFont } from './modules/webfont';
 
+import { ColourTypes, BackgroundImage, FontType } from './constant/settings';
+
 import { Colour } from './components/colour/Colour';
 import { DateDisplay } from './components/colour/Date';
 import { History } from './components/colour/History';
@@ -89,40 +91,40 @@ class NewTab extends React.Component {
           'notransition': !settings.animations,
 
           // Text/colour protection
-          'full': settings.colour !== 'regular' || settings.bg !== 'none'
+          'full': settings.colour !== ColourTypes.REGULAR || settings.bg !== BackgroundImage.NONE
         });
 
         // Solid colour
-        if (settings.colour === 'solid') {
+        if (settings.colour === ColourTypes.SOLID) {
           this.setState({
             colour: settings.colourSolid
           });
         }
 
         // No background image (or offline)
-        if (settings.bg === 'none' || !navigator.onLine) {
+        if (settings.bg === BackgroundImage.NONE || !navigator.onLine) {
           this.loadBgImage(null);
         }
 
         // Default font (or offline)
-        if (settings.font === 'default' || !navigator.onLine) {
+        if (settings.font === FontType.DEFAULT || !navigator.onLine) {
           this.loadFont(null);
         }
 
         // Online: set background image/web font
         if (navigator.onLine) {
-          if (settings.bg === 'unsplash') {
+          if (settings.bg === BackgroundImage.UNSPLASH) {
             Unsplash.getImage(settings.bgUnsplashFreq)
               .then((imgUrl) => {
                 this.loadBgImage(imgUrl, settings.bgOpacity);
               });
           }
 
-          if (settings.bg === 'custom' && settings.bgCustomUrl !== '') {
+          if (settings.bg === BackgroundImage.CUSTOM && settings.bgCustomUrl !== '') {
             this.loadBgImage(settings.bgCustomUrl, settings.bgOpacity);
           }
 
-          if (settings.font === 'web') {
+          if (settings.font === FontType.WEB) {
             this.loadFont(settings.fontWeb);
           }
         }
@@ -174,11 +176,11 @@ class NewTab extends React.Component {
     }
 
     if (this.state.bgOpacity !== 0) {
-      if (this.state.settings.colour === 'random') {
+      if (this.state.settings.colour === ColourTypes.RANDOM) {
         this.setState({
           colour: Colours.random()
         });
-      } else if (this.state.settings.colour !== 'solid') {
+      } else if (this.state.settings.colour !== ColourTypes.SOLID) {
         this.tickColour(time);
       }
     }
@@ -193,11 +195,11 @@ class NewTab extends React.Component {
       (time.second);
 
     switch (this.state.settings.colour) {
-      case 'full':
+      case ColourTypes.FULL:
         colour = Colours.secondToHexColour(seconds);
         break;
 
-      case 'hue':
+      case ColourTypes.HUE:
         colour = Colours.secondToHueColour(seconds);
         break;
     }
@@ -273,7 +275,7 @@ class NewTab extends React.Component {
     };
 
     return (
-      <div id="newtab__content">
+      <div id='newtab__content'>
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
           <SavedColours format={settings.colourFormat} />
         </Sidebar>
@@ -327,7 +329,7 @@ class NewTab extends React.Component {
             <Panels />
           </div>
 
-          { settings.ticker && settings.colour !== 'solid' &&
+          { settings.ticker && settings.colour !== ColourTypes.SOLID &&
             <History colour={this.state.colour} format={settings.colourFormat} />
           }
         </div>

@@ -15,6 +15,13 @@ import { Tabs } from './components/layout/Tabs';
 import { Tab } from './components/layout/Tab';
 
 import { Fonts } from './constants/fonts';
+import {
+  ColourFormats,
+  ColourTypes,
+  BackgroundImage,
+  UnsplashFrequency,
+  FontType
+} from './constants/settings';
 
 import { Chrome } from './modules/chrome';
 import { Colours } from './modules/colours';
@@ -102,15 +109,15 @@ class Options extends React.Component {
                 optkey='colourFormat' value={settings.colourFormat}>
                 <Radio label='Hexadecimal'
                   tooltip='#123456'
-                  value='hex' />
+                  value={ColourFormats.HEX} />
 
                 <Radio label='RGB'
                   tooltip='rgb(18, 52, 86)'
-                  value='rgb' />
+                  value={ColourFormats.RGB} />
 
                 <Radio label='HSL'
                   tooltip='hsl(210, 65%, 20%)'
-                  value='hsl' />
+                  value={ColourFormats.HSL} />
               </RadioGroup>
             </Checkbox>
 
@@ -123,21 +130,21 @@ class Options extends React.Component {
             <RadioGroup group='colourtype' optkey='colour' value={settings.colour}>
               <Radio label='Regular'
                 tooltip={`Shows the corresponding ${colourLower} based on the 24-hour clock.`}
-                value='regular' />
+                value={ColourTypes.REGULAR} />
 
               <Radio label='Full spectrum hexadecimal'
                 tooltip={`A new ${colourLower} for every second, going from #000000 to #FFFFFF in one day.`}
-                value='full' />
+                value={ColourTypes.FULL} />
 
               <Radio label='Full spectrum hue'
                 tooltip='A slow shift across the entire hue spectrum, from #FF0000 to #00FFFF and back in one day.'
-                value='hue' />
+                value={ColourTypes.HUE} />
 
               <Radio label='Random'
-                value='random' />
+                value={ColourTypes.RANDOM} />
 
               <Radio label='Solid'
-                value='solid'>
+                value={ColourTypes.SOLID}>
                 <Colour label={`Solid ${colourLower}`}
                   optkey='colourSolid'
                   value={settings.colourSolid} />
@@ -160,26 +167,26 @@ class Options extends React.Component {
           <Tab name='Background'>
             <RadioGroup group='bg' optkey='bg' value={settings.bg}>
               <Radio label='None'
-                value='none' />
+                value={BackgroundImage.NONE} />
 
               <Radio label='Unsplash'
                 tooltip='A random image from unsplash.com.'
-                value='unsplash'>
+                value={BackgroundImage.UNSPLASH}>
                 <RadioGroup group='bgUnsplashFreq'
                   optkey='bgUnsplashFreq' value={settings.bgUnsplashFreq}>
                   <Radio label='Per session'
-                    value='perSession' />
+                    value={UnsplashFrequency.SESSION} />
 
                   <Radio label='Daily'
-                    value='daily' />
+                    value={UnsplashFrequency.DAILY} />
 
                   <Radio label='Weekly'
-                    value='weekly' />
+                    value={UnsplashFrequency.WEEKLY} />
                 </RadioGroup>
               </Radio>
 
               <Radio label='Custom'
-                value='custom'>
+                value={BackgroundImage.CUSTOM}>
                 <Textbox label='Image URL'
                   optkey='bgCustomUrl'
                   value={settings.bgCustomUrl} />
@@ -197,11 +204,11 @@ class Options extends React.Component {
             <RadioGroup group='font' optkey='font' value={settings.font}>
               <Radio label='Default'
                 tooltip='Default Open Sans font.'
-                value='default' />
+                value={FontType.DEFAULT} />
 
               <Radio label='Web font'
                 tooltip='Custom font from Google Fonts.'
-                value='web'>
+                value={FontType.WEB}>
                 <Dropdown label='Font'
                   options={Fonts}
                   optkey='fontWeb'
