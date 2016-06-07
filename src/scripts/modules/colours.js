@@ -16,7 +16,7 @@ export class Colours {
    * 00:00:00 corresponds to #FF0000, 12:00:00 corresponds to #00FEFF.
    */
   static secondToHueColour (seconds) {
-    var hue = seconds / (24 * 60 * 60);
+    let hue = seconds / (24 * 60 * 60);
 
     return Colours.rgbToHex(...Colours.hslToRgb(hue, 1, 0.5));
   }
@@ -34,13 +34,13 @@ export class Colours {
    * @return {Array}  The RGB representation.
    */
   static hslToRgb (h, s, l) {
-    var r, g, b;
+    let r, g, b;
 
     if (s === 0){
       r = g = b = l;  // Achromatic
     } else {
-      var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-      var p = 2 * l - q;
+      let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      let p = 2 * l - q;
       r = Colours.hueToRgb(p, q, h + 1/3);
       g = Colours.hueToRgb(p, q, h);
       b = Colours.hueToRgb(p, q, h - 1/3);

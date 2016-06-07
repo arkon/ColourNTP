@@ -1,23 +1,31 @@
+import {
+  ColourFormats,
+  ColourTypes,
+  BackgroundImage,
+  UnsplashFrequency,
+  FontType
+} from './settings';
+
 export const Defaults = {
   time24hr       : true,
   animations     : true,
   showTime       : true,
   showTimeSec    : true,
   showColour     : true,
-  colourFormat   : 'hex',      // hex, rgb, hsl
+  colourFormat   : ColourFormats.HEX,
   showDate       : false,
 
-  colour         : 'regular',  // regular, full, hue, solid, random
+  colour         : ColourTypes.REGULAR,
   colourSolid    : '',
   ticker         : false,
   american       : false,
 
-  bg             : 'none',     // none, unsplash, custom
-  bgUnsplashFreq : 'daily',    // perSession, daily, weekly
+  bg             : BackgroundImage.NONE,
+  bgUnsplashFreq : UnsplashFrequency.DAILY,
   bgCustomUrl    : '',
   bgOpacity      : 75,
 
-  font           : 'default',  // default,  web
+  font           : FontType.DEFAULT,
   fontWeb        : '',
 
   shortcutOpts   : true,

@@ -15,7 +15,7 @@ export class Tabs extends React.Component {
   handleTab (tab) {
     // Close tab if open
     if (this.props.canToggle) {
-      tab = this.state.activeTab === tab ? null : tab
+      tab = this.state.activeTab === tab ? null : tab;
     }
 
     this.setState({

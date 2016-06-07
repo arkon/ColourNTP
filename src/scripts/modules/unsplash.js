@@ -1,3 +1,5 @@
+import { UnsplashFrequency } from '../constants/settings';
+
 export class Unsplash {
   static getImage (frequency) {
     return new Promise((resolve, reject) => {
@@ -5,11 +7,11 @@ export class Unsplash {
       var unsplashUrl = `https://source.unsplash.com/${screen.width}x${screen.height}/`;
 
       switch (frequency) {
-        case 'daily':
+        case UnsplashFrequency.DAILY:
           unsplashUrl += 'daily';
           break;
 
-        case 'weekly':
+        case UnsplashFrequency.WEEKLY:
           unsplashUrl += 'weekly';
           break;
       }

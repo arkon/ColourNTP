@@ -160,16 +160,14 @@ export class Panels extends React.Component {
           { state.showVisited &&
             <Tab name='Most visited'>
               <ul className='panels__panel'>
-                { state.topSites.map((site, i) => {
-                  return (
-                    <li key={i}>
-                      <a className={`item-${i}`} title={site.title} href={site.url}
-                        style={{ backgroundImage: `url('${site.img}')` }}>
-                        {site.title}
-                      </a>
-                    </li>
-                  );
-                }) }
+                { state.topSites.map((site, i) => (
+                  <li key={i}>
+                    <a className={`item-${i}`} title={site.title} href={site.url}
+                      style={{ backgroundImage: `url('${site.img}')` }}>
+                      {site.title}
+                    </a>
+                  </li>
+                )) }
               </ul>
             </Tab>
           }
@@ -179,16 +177,14 @@ export class Panels extends React.Component {
               <ul className='panels__panel'>
                 { (state.recentlyClosed.length === 0) ?
                   <p className='panels__panel__message'>No recently closed sessions</p> :
-                  state.recentlyClosed.map((session, i) => {
-                    return (
-                      <li key={i} onClick={this.onClickSession(session.session)}>
-                        <a className={`item-${i}`} title={session.title}
-                          style={{ backgroundImage: `url('${session.img}')` }} >
-                          {session.title}
-                        </a>
-                      </li>
-                    );
-                  })
+                  state.recentlyClosed.map((session, i) => (
+                    <li key={i} onClick={this.onClickSession(session.session)}>
+                      <a className={`item-${i}`} title={session.title}
+                        style={{ backgroundImage: `url('${session.img}')` }} >
+                        {session.title}
+                      </a>
+                    </li>
+                  ))
                 }
               </ul>
             </Tab>
@@ -204,16 +200,14 @@ export class Panels extends React.Component {
                       <li key={i} className={`item-${i}`} >
                         <p className='panels__panel--devices__name'>{device.title}</p>
                         <ul>
-                          { device.tabs.map((tab, j) => {
-                            return (
-                              <li key={j}>
-                                <a title={tab.title} href={tab.url}
-                                  style={{ backgroundImage: `url('${tab.img}')` }} >
-                                  {tab.title}
-                                </a>
-                              </li>
-                            );
-                          }) }
+                          { device.tabs.map((tab, j) => (
+                            <li key={j}>
+                              <a title={tab.title} href={tab.url}
+                                style={{ backgroundImage: `url('${tab.img}')` }} >
+                                {tab.title}
+                              </a>
+                            </li>
+                          )) }
                         </ul>
                       </li>
                     );
@@ -248,16 +242,14 @@ export class Panels extends React.Component {
           { state.showShortcuts &&
             <Tab name='Shortcuts'>
               <ul className='panels__panel'>
-                { state.shortcuts.map((shortcut, i) => {
-                  return (
-                    <li key={i} onClick={this.onClickShortcut(shortcut.url)}>
-                      <a className={`item-${i}`} title={shortcut.title}
-                        style={{ backgroundImage: `url('${shortcut.img}')` }} >
-                        {shortcut.title}
-                      </a>
-                    </li>
-                  );
-                }) }
+                { state.shortcuts.map((shortcut, i) => (
+                  <li key={i} onClick={this.onClickShortcut(shortcut.url)}>
+                    <a className={`item-${i}`} title={shortcut.title}
+                      style={{ backgroundImage: `url('${shortcut.img}')` }} >
+                      {shortcut.title}
+                    </a>
+                  </li>
+                )) }
               </ul>
             </Tab>
           }
