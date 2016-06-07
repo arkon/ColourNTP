@@ -10,7 +10,7 @@ import { TimeHelper } from './modules/timehelper';
 import { Unsplash } from './modules/unsplash';
 import { WebFont } from './modules/webfont';
 
-import { ColourTypes, BackgroundImage, FontType } from './constant/settings';
+import { ColourTypes, BackgroundImage, FontType } from './constants/settings';
 
 import { Colour } from './components/colour/Colour';
 import { DateDisplay } from './components/colour/Date';
