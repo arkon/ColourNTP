@@ -291,7 +291,7 @@ class NewTab extends React.Component {
           }
 
           <div className='colours__btns'>
-            <a className='colours__btn--download' title='Open sidebar'
+            <a className='colours__btn--saved' title='Open sidebar'
               onClick={this.toggleSidebar} />
 
             { settings.shortcutOpts &&

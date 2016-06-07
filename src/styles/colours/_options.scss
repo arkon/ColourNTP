@@ -26,6 +26,12 @@
   }
 }
 
+.colours__btn--saved {
+  &::before {
+    background-image: url('../assets/img/bookmark.svg');
+  }
+}
+
 .colours__btn--options {
   &::before {
     background-image: url('../assets/img/gear.svg');
