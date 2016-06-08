@@ -58,12 +58,14 @@ export class SavedColours extends React.Component {
   }
 
   render () {
+    // TODO: remove/copy all buttons
+
     return (
       <div className='saved_colours'>
         <h1>Saved</h1>
 
         { this.state.colours.map((colour, i) => (
-          <SavedColour key={i} colour={colour} format={this.state.format} />
+          <SavedColour key={i} colour={colour} index={i} format={this.state.format} />
         )) }
       </div>
     );

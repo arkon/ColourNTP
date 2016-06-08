@@ -40,8 +40,17 @@ export class Saved {
     }
   }
 
+  // Private method
   static _add (colour) {
-    Saved.data.push(colour);
+    if (Saved.data.indexOf(colour) === -1) {
+      Saved.data.push(colour);
+
+      Chrome.setSetting('saved', Saved.data);
+    }
+  }
+
+  static remove (index) {
+    Saved.data.splice(index, 1);
 
     Chrome.setSetting('saved', Saved.data);
   }

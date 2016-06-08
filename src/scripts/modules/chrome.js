@@ -178,7 +178,7 @@ export class Chrome {
       [key]: value
     });
 
-    // Prompt new tab page to fetch new settings
+    // Used to trigger components to fetch updated settings
     chrome.runtime.sendMessage({ msg: 'saved', key: key });
   }
 }
