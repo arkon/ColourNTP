@@ -27,7 +27,7 @@ export const Defaults = {
   bgOpacity      : 75,
 
   font           : FontType.DEFAULT,
-  fontWeb        : '',
+  fontWeb        : 'Anonymous Pro',
 
   shortcutOpts   : true,
   shortcutNewTab : true,

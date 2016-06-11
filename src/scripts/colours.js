@@ -216,7 +216,9 @@ class NewTab extends React.Component {
   }
 
   loadFont (font) {
-    WebFont.loadFont(font);
+    if (font) {
+      WebFont.loadFont(font);
+    }
 
     if (!this.elStyleFont) {
       this.elStyleFont = document.createElement('style');
