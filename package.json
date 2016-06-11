@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
-    "clipboard": "^1.5.10",
+    "clipboard": "^1.5.12",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
