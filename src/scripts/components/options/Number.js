@@ -3,7 +3,7 @@ import React from 'react';
 import { Option } from './Option';
 import { Chrome } from '../../modules/chrome';
 
-export class Checkbox extends Option {
+export class Number extends Option {
   constructor (props) {
     super(props);
 
