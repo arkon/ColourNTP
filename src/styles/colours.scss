@@ -28,6 +28,7 @@
 }
 
 .colours {
+  contain: content;
   display: table;
   height: 100%;
   opacity: 1;
@@ -58,6 +59,7 @@
   }
 
   %colours__bg {
+    contain: strict;
     height: 100%;
     left: 0;
     position: fixed;
@@ -80,6 +82,7 @@
 
 .colours__time {
   animation: shiftUp 0.5s ease-out forwards;
+  contain: content;
   font-size: 7em;
   margin-bottom: 1.5rem;
   opacity: 0;
@@ -93,6 +96,7 @@
 
   .colours__time__postfix {
     bottom: 1.5rem;
+    contain: content;
     font-size: 0.4em;
     margin-left: 1.75rem;
     position: absolute;
@@ -101,6 +105,7 @@
 
 .colours__date,
 .colours__hex {
+  contain: content;
   margin-top: 1.5rem;
   opacity: 0;
 }

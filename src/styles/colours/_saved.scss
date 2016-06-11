@@ -5,6 +5,7 @@
 .saved_colour {
   border: 1px solid rgba($light-grey, 0.5);
   color: $dark-grey;
+  contain: content;
   font-size: 1.15em;
   margin: 0.5rem 0;
   padding: 1rem 0.5rem;

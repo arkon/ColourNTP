@@ -12,6 +12,7 @@
   .history__item {
     background-color: rgba($dark-grey, 0.25);
     border-left: 1px solid rgba($white, 0.25);
+    contain: strict;
     display: inline-block;
     height: 0.375rem;
     position: relative;
