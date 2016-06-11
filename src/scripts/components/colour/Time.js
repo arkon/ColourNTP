@@ -26,7 +26,7 @@ export const Time = (props) => {
       { props.showSeconds && <span> : </span> }
       { props.showSeconds && <span>{TimeHelper.pad(time.second)}</span> }
 
-      { !props.hourFormat24 &&
+      { !props.hourFormat24 && props.showPostFix &&
         <span className='colours__time__postfix'>{afterNoon ? 'PM' : 'AM'}</span>
       }
     </h1>

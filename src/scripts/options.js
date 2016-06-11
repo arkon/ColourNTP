@@ -97,6 +97,10 @@ class Options extends React.Component {
                 optkey='time24hr'
                 value={settings.time24hr} />
 
+              <Checkbox label='Show AM/PM (12-hour format)'
+                optkey='showTimePost'
+                value={settings.showTimePost} />
+
               <Checkbox label='Show seconds'
                 optkey='showTimeSec'
                 value={settings.showTimeSec} />

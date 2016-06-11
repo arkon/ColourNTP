@@ -11,6 +11,7 @@ export const Defaults = {
   animations     : true,
   showTime       : true,
   showTimeSec    : true,
+  showTimePost   : true,
   showColour     : true,
   colourFormat   : ColourFormats.HEX,
   showDate       : false,
