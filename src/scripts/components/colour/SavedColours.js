@@ -44,7 +44,9 @@ export class SavedColours extends React.Component {
 
   messageListener (request, sender, sendResponse) {
     if (request.msg === 'saved' && request.key === 'saved') {
+      // http://stackoverflow.com/questions/20077487/chrome-extension-message-passing-response-not-sent
       this.fetchSaved();
+      return true;
     }
   }
 
