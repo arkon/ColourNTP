@@ -17,6 +17,7 @@ export class SavedColours extends React.Component {
 
     this.fetchSaved = this.fetchSaved.bind(this);
     this.removeSaved = this.removeSaved.bind(this);
+    this.clearSaved = this.clearSaved.bind(this);
   }
 
   componentDidMount () {
@@ -50,12 +51,23 @@ export class SavedColours extends React.Component {
     });
   }
 
-  render () {
-    // TODO: remove/copy all buttons
+  clearSaved () {
+    if (window.confirm('Are you sure you want to remove all of your saved colours?')) {
+      this.setState({
+        colours: Saved.clear()
+      });
+    }
+  }
 
+  render () {
     return (
       <div className='saved_colours'>
         <h1>Saved</h1>
+
+        { this.state.colours.length > 0 ?
+          <button className='btn' onClick={this.clearSaved}>Remove all</button> :
+          <p>You don't have anything saved!<br />Click on a code to save it.</p>
+        }
 
         { this.state.colours.map((colour, i) => (
           <SavedColour

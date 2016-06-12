@@ -56,4 +56,12 @@ export class Saved {
 
     return Saved.data;
   }
+
+  static clear () {
+    Saved.data = [];
+
+    Chrome.setSetting('saved', Saved.data);
+
+    return Saved.data;
+  }
 }

@@ -64,3 +64,13 @@ h2 {
 .copy {
   cursor: pointer;
 }
+
+.btn {
+  background: none;
+  border: 1px solid $light-grey;
+  cursor: pointer;
+  color: $white;
+  font: inherit;
+  font-size: 0.85em;
+  padding: 0.25em 0.5em;
+}
