@@ -15,19 +15,12 @@ export class SavedColours extends React.Component {
       format: ColourFormats.HEX
     };
 
-    this.messageListener = this.messageListener.bind(this);
     this.fetchSaved = this.fetchSaved.bind(this);
+    this.removeSaved = this.removeSaved.bind(this);
   }
 
   componentDidMount () {
     this.fetchSaved();
-
-    // Fetch new settings when new colour added
-    chrome.runtime.onMessage.addListener(this.messageListener);
-  }
-
-  componentWillUnmount () {
-    chrome.runtime.onMessage.removeListener(this.messageListener);
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -42,14 +35,6 @@ export class SavedColours extends React.Component {
     }
   }
 
-  messageListener (request, sender, sendResponse) {
-    if (request.msg === 'saved' && request.key === 'saved') {
-      // http://stackoverflow.com/questions/20077487/chrome-extension-message-passing-response-not-sent
-      this.fetchSaved();
-      return true;
-    }
-  }
-
   fetchSaved () {
     Saved.get()
       .then((colours) => {
@@ -57,6 +42,12 @@ export class SavedColours extends React.Component {
           colours: colours
         });
       });
+  }
+
+  removeSaved (index) {
+    this.setState({
+      colours: Saved.remove(index)
+    });
   }
 
   render () {
@@ -67,7 +58,12 @@ export class SavedColours extends React.Component {
         <h1>Saved</h1>
 
         { this.state.colours.map((colour, i) => (
-          <SavedColour key={i} colour={colour} index={i} format={this.state.format} />
+          <SavedColour
+            key={i}
+            index={i}
+            colour={colour}
+            format={this.state.format}
+            onRemove={this.removeSaved} />
         )) }
       </div>
     );

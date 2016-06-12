@@ -53,5 +53,7 @@ export class Saved {
     Saved.data.splice(index, 1);
 
     Chrome.setSetting('saved', Saved.data);
+
+    return Saved.data;
   }
 }
