@@ -5,7 +5,7 @@ import { Colours } from '../../modules/colours';
 
 export const SavedColour = (props) => {
   const savedColourClass = classNames('saved_colour', 'copy', {
-    'is_dark': Colours.isDark(...Colours.hexToRgb(props.colour))
+    'is_dark': Colours.isDark(...Colours.hexToRgb(props.colour.substring(1)))
   });
 
   const formattedColour = Colours.format(props.colour, props.format);

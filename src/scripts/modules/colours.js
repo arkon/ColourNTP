@@ -113,7 +113,7 @@ export class Colours {
    * Converts a hex colour to an RGBA string with the provided alpha value.
    */
   static rgba (hex, alpha) {
-    const colour = Colours.hexToRgb(hex.substring(1, 7));
+    const colour = Colours.hexToRgb(hex.substring(1));
 
     return `rgba(${colour[0]}, ${colour[1]}, ${colour[2]}, ${alpha})`;
   }
@@ -132,7 +132,7 @@ export class Colours {
   static isDark (r, g, b) {
     const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
-    return luma < 40;
+    return luma < 128;
   }
 
   /**
@@ -144,12 +144,12 @@ export class Colours {
 
     switch (format) {
       case 'rgb':
-        const rgb = Colours.hexToRgb(colour.substring(1, 7));
+        const rgb = Colours.hexToRgb(colour.substring(1));
         colour = `rgb(${rgb.join(', ')})`;
         break;
 
       case 'hsl':
-        const hsl = Colours.hexToHsl(colour.substring(1, 7));
+        const hsl = Colours.hexToHsl(colour.substring(1));
         colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
         break;
     }
