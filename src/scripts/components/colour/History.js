@@ -26,12 +26,14 @@ export class History extends React.Component {
   }
 
   pushToStack (item) {
-    let stack = this.state.history;
+    if (item !== this.state.history[this.state.history.length - 1]) {
+      let stack = this.state.history;
 
-    stack.push(item);
+      stack.push(item);
 
-    // Only keep newest max amount of items
-    stack.splice(0, stack.length - this.max);
+      // Only keep newest max amount of items
+      stack.splice(0, stack.length - this.max);
+    }
   }
 
   render () {
