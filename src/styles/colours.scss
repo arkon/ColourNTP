@@ -90,9 +90,12 @@
 
   span {
     display: inline-block;
-    width: 1em;
   }
 }
+
+  .colours__time__colon {
+    margin: 0 0.25em;
+  }
 
   .colours__time__postfix {
     bottom: 1.5rem;

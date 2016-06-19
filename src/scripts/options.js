@@ -97,6 +97,11 @@ class Options extends React.Component {
                 optkey='time24hr'
                 value={settings.time24hr} />
 
+              <Checkbox label='Pad hour'
+                tooltip='1:00:00 padded to 01:00:00.'
+                optkey='padHour'
+                value={settings.padHour} />
+
               <Checkbox label='Show AM/PM (12-hour format)'
                 optkey='showTimePost'
                 value={settings.showTimePost} />
@@ -111,16 +116,16 @@ class Options extends React.Component {
               value={settings.showColour}>
               <RadioGroup group='colourFormat'
                 optkey='colourFormat' value={settings.colourFormat}>
-                <Radio label='Hexadecimal'
-                  tooltip='#123456'
+                <Radio label='HEX'
+                  tooltip='Hexadecimal: #123456'
                   value={ColourFormats.HEX} />
 
                 <Radio label='RGB'
-                  tooltip='rgb(18, 52, 86)'
+                  tooltip='Red/green/blue: rgb(18, 52, 86)'
                   value={ColourFormats.RGB} />
 
                 <Radio label='HSL'
-                  tooltip='hsl(210, 65%, 20%)'
+                  tooltip='Hue/saturation/lightness: hsl(210, 65%, 20%)'
                   value={ColourFormats.HSL} />
               </RadioGroup>
             </Checkbox>

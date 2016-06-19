@@ -20,10 +20,10 @@ export const Time = (props) => {
 
   return (
     <h1 className='colours__time'>
-      <span>{TimeHelper.pad(hour)}</span>
-      <span> : </span>
+      <span>{props.padHour ? TimeHelper.pad(hour) : hour}</span>
+      <span className='colours__time__colon'> : </span>
       <span>{TimeHelper.pad(time.minute)}</span>
-      { props.showSeconds && <span> : </span> }
+      { props.showSeconds && <span className='colours__time__colon'> : </span> }
       { props.showSeconds && <span>{TimeHelper.pad(time.second)}</span> }
 
       { !props.hourFormat24 && props.showPostFix &&

@@ -317,6 +317,7 @@ class NewTab extends React.Component {
               <Time
                 time={this.state.time}
                 hourFormat24={settings.time24hr}
+                padHour={settings.padHour}
                 showSeconds={settings.showTimeSec}
                 showPostFix={settings.showTimePost} />
             }
