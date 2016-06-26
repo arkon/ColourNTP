@@ -33,6 +33,7 @@
   top: 0;
   transition: opacity 0.3s;
   width: 2rem;
+  z-index: 100;
 
   &:hover {
     opacity: 1;
