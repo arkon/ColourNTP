@@ -1,5 +1,33 @@
 import { Defaults } from '../constants/defaults';
 
+const _SHORTCUTS = [
+  {
+    title : 'Bookmarks',
+    url   : 'chrome://bookmarks/',
+    img   : 'chrome://favicon/chrome://bookmarks/'
+  },
+  {
+    title : 'History',
+    url   : 'chrome://history/',
+    img   : 'chrome://favicon/chrome://history/'
+  },
+  {
+    title : 'Downloads',
+    url   : 'chrome://downloads/',
+    img   : 'chrome://favicon/chrome://downloads/'
+  },
+  {
+    title : 'Extensions',
+    url   : 'chrome://extensions/',
+    img   : 'chrome://favicon/chrome://extensions/'
+  },
+  {
+    title : 'Settings',
+    url   : 'chrome://settings/',
+    img   : 'chrome://favicon/chrome://settings/'
+  }
+];
+
 export class Chrome {
   // Panel helpers
   // ============================================================================================
@@ -55,7 +83,7 @@ export class Chrome {
           else                      { return 0; }
         });
 
-        let items = list.map((extInf => ({
+        let items = list.map(((extInf) => ({
           title : extInf.name,
           id    : extInf.id,
           img   : Chrome._find128Image(extInf.icons)
@@ -81,36 +109,8 @@ export class Chrome {
   }
 
   static getShortcuts () {
-    const SHORTCUTS = [
-      {
-        title : 'Bookmarks',
-        url   : 'chrome://bookmarks/',
-        img   : 'chrome://favicon/chrome://bookmarks/'
-      },
-      {
-        title : 'History',
-        url   : 'chrome://history/',
-        img   : 'chrome://favicon/chrome://history/'
-      },
-      {
-        title : 'Downloads',
-        url   : 'chrome://downloads/',
-        img   : 'chrome://favicon/chrome://downloads/'
-      },
-      {
-        title : 'Extensions',
-        url   : 'chrome://extensions/',
-        img   : 'chrome://favicon/chrome://extensions/'
-      },
-      {
-        title : 'Settings',
-        url   : 'chrome://settings/',
-        img   : 'chrome://favicon/chrome://settings/'
-      }
-    ];
-
     return new Promise((resolve, reject) => {
-      resolve(SHORTCUTS);
+      resolve(_SHORTCUTS);
     })
   }
 
@@ -179,6 +179,9 @@ export class Chrome {
     });
 
     // Used to trigger components to fetch updated settings
-    chrome.runtime.sendMessage({ msg: 'saved', key: key });
+    chrome.runtime.sendMessage({
+      msg : 'saved',
+      key : key
+    });
   }
 }
