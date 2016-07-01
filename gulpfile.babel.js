@@ -4,6 +4,7 @@ import del from 'del';
 import glob from 'glob';
 import gulp from 'gulp';
 import gulpZip from 'gulp-zip';
+import htmlmin from 'gulp-htmlmin';
 import merge2 from 'merge2';
 import nano from 'gulp-cssnano';
 import sass from 'gulp-sass';
@@ -19,6 +20,7 @@ const PATHS = {
   root           : './',
 
   src_root       : 'src/*',
+  src_html       : 'src/html/*.html',
   src_assets_dir : 'src/assets',
   src_assets     : 'src/assets/**/*',
   src_styles     : 'src/styles/**/*.scss',
@@ -55,6 +57,16 @@ export function copy_root () {
 export function copy_assets () {
   return gulp.src(PATHS.src_assets, { base: PATHS.src_assets_dir })
     .pipe(gulp.dest(PATHS.dest_assets));
+}
+
+// Process HTML files
+export function html () {
+  return gulp.src(PATHS.src_html)
+    .pipe(htmlmin({
+      removeComments: true,
+      collapseWhitespace: true,
+    }))
+    .pipe(gulp.dest(PATHS.dest));
 }
 
 // Process SCSS files
@@ -95,11 +107,12 @@ export function js (done) {
 }
 
 // Build project
-export const build = gulp.series(clean, gulp.parallel(copy_root, copy_assets, scss, js));
+export const build = gulp.series(clean, gulp.parallel(copy_root, copy_assets, html, scss, js));
 
 // Watch for changes
 export const watch = gulp.series(build, () => {
   gulp.watch(PATHS.src_root, copy_root);
+  gulp.watch(PATHS.src_html, html);
   gulp.watch(PATHS.src_assets, copy_assets);
   gulp.watch(PATHS.src_styles, scss);
   gulp.watch(PATHS.src_scripts, js);
