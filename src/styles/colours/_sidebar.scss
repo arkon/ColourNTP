@@ -12,7 +12,7 @@
   transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
   width: 100%;
   will-change: transform;
-  z-index: 100000;
+  z-index: var(--z-sidebar);
 }
 
 .sidebar--open {
@@ -33,7 +33,7 @@
   top: 0;
   transition: opacity 0.3s;
   width: 2rem;
-  z-index: 100;
+  z-index: var(--z-top);
 
   &:hover {
     opacity: 1;

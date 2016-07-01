@@ -57,7 +57,7 @@ abbr {
     margin-top: -1em;
     max-width: 25em;
     padding: 0.5em 1.25em;
-    z-index: 10;
+    z-index: var(--z-above);
   }
 
   &::after {

@@ -65,7 +65,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 0;
+    z-index: var(--z-default);
   }
 
   .colours__bg {
