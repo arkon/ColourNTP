@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React from 'react'
 
-import { Colours } from '../../modules/colours';
+import Colours from '../../modules/colours';
 
-export const SavedColour = (props) => {
+export default (props) => {
   const savedColourClass = classNames('saved_colour', 'copy', {
     'is_dark': Colours.isDark(...Colours.hexToRgb(props.colour.substring(1)))
   });

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Colours } from '../../modules/colours';
-import { Saved } from '../../modules/saved';
+import Colours from '../../modules/colours';
+import Saved from '../../modules/saved';
 
-export const Colour = (props) => {
+export default (props) => {
   const formattedColour = Colours.format(props.colour, props.format);
 
   return (

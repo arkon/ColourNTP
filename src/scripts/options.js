@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import { Checkbox } from './components/options/Checkbox';
-import { Colour } from './components/options/Colour';
-import { Dropdown } from './components/options/Dropdown';
-import { FontPreview } from './components/options/FontPreview';
-import { Number } from './components/options/Number';
-import { Radio } from './components/options/Radio';
-import { RadioGroup } from './components/options/RadioGroup';
-import { Range } from './components/options/Range';
-import { Textbox } from './components/options/Textbox';
+import Checkbox from './components/options/Checkbox';
+import Colour from './components/options/Colour';
+import Dropdown from './components/options/Dropdown';
+import FontPreview from './components/options/FontPreview';
+import Number from './components/options/Number';
+import Radio from './components/options/Radio';
+import RadioGroup from './components/options/RadioGroup';
+import Range from './components/options/Range';
+import Textbox from './components/options/Textbox';
 
-import { Tabs } from './components/layout/Tabs';
-import { Tab } from './components/layout/Tab';
+import Tabs from './components/layout/Tabs';
+import Tab from './components/layout/Tab';
 
-import { Fonts } from './constants/fonts';
+import { FONTS } from './constants/fonts';
 import {
   ColourFormats,
   ColourTypes,
@@ -23,10 +23,10 @@ import {
   FontType
 } from './constants/settings';
 
-import { Chrome } from './modules/chrome';
-import { Colours } from './modules/colours';
+import Chrome from './modules/chrome';
+import Colours from './modules/colours';
 
-class Options extends React.Component {
+class Options extends Component {
   constructor (props) {
     super(props);
 
@@ -219,7 +219,7 @@ class Options extends React.Component {
                 tooltip='Custom font from Google Fonts.'
                 value={FontType.WEB}>
                 <Dropdown label='Font'
-                  options={Fonts}
+                  options={FONTS}
                   optkey='fontWeb'
                   value={settings.fontWeb} />
 

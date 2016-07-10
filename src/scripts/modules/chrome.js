@@ -1,4 +1,4 @@
-import { Defaults } from '../constants/defaults';
+import { DEFAULTS } from '../constants/defaults';
 
 const _SHORTCUTS = [
   {
@@ -28,7 +28,7 @@ const _SHORTCUTS = [
   }
 ];
 
-export class Chrome {
+export default class Chrome {
   // Panel helpers
   // ============================================================================================
 
@@ -165,7 +165,7 @@ export class Chrome {
     return new Promise((resolve, reject) => {
       chrome.storage.sync.get(key, (results) => {
         if (key === null) {
-          results = Object.assign({}, Defaults, results);
+          results = Object.assign({}, DEFAULTS, results);
         }
 
         resolve(results);

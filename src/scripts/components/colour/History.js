@@ -1,10 +1,10 @@
 import Clipboard from 'clipboard';
-import React from 'react';
+import React, { Component } from 'react';
 
-import { Colours } from '../../modules/colours';
-import { Saved } from '../../modules/saved';
+import Colours from '../../modules/colours';
+import Saved from '../../modules/saved';
 
-export class History extends React.Component {
+export default class History extends Component {
   constructor (props) {
     super(props);
 

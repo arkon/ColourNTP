@@ -1,4 +1,4 @@
-export const Fonts = [
+export const FONTS = [
   'Anonymous Pro',
   'Arial',
   'Arvo',

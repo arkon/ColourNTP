@@ -1,6 +1,6 @@
 import { UnsplashFrequency } from '../constants/settings';
 
-export class Unsplash {
+export default class Unsplash {
   static getImage (frequency) {
     return new Promise((resolve, reject) => {
       // Set proper frequency in URL + screen size

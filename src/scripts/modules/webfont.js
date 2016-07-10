@@ -1,4 +1,4 @@
-export class WebFont {
+export default class WebFont {
   static loadFont (font) {
     if (navigator.onLine) {
       let elLinkFont = document.getElementById('webfont');

@@ -6,7 +6,7 @@ import {
   FontType
 } from './settings';
 
-export const Defaults = {
+export const DEFAULTS = {
   time24hr       : true,
   animations     : true,
   showTime       : true,

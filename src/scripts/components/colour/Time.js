@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { TimeHelper } from '../../modules/timehelper';
+import TimeHelper from '../../modules/timehelper';
 
-export const Time = (props) => {
+export default (props) => {
   const time = props.time;
 
   let hour = time.hour;

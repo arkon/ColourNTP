@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Toast = (props) => {
+export default (props) => {
   return props.visible ?
     <div className='toast'>{props.children}</div> :
     null;

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Option } from './Option';
-import { Chrome } from '../../modules/chrome';
+import Option from './Option';
+import Chrome from '../../modules/chrome';
 
-export class RadioGroup extends Option {
+export default class RadioGroup extends Option {
   constructor (props) {
     super(props);
 

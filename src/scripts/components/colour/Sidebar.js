@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-export const Sidebar = (props) => {
+export default (props) => {
   const sidebarClass = classNames('sidebar', {
     'sidebar--open': props.open
   });

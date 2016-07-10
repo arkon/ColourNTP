@@ -1,12 +1,12 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { Component } from 'react';
 
-import { Tabs } from '../layout/Tabs';
-import { Tab } from '../layout/Tab';
+import Tabs from '../layout/Tabs';
+import Tab from '../layout/Tab';
 
-import { Chrome } from '../../modules/chrome';
+import Chrome from '../../modules/chrome';
 
-export class Panels extends React.Component {
+export default class Panels extends Component {
   constructor (props) {
     super(props);
 

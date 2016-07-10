@@ -1,6 +1,6 @@
-import { Chrome } from './chrome';
+import Chrome from './chrome';
 
-export class Saved {
+export default class Saved {
   static data = [];
   static _fetchedFromStorage = false;
 

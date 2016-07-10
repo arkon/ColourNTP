@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Radio = (props) => {
+export default (props) => {
   const onCheck = (e) => {
     props.onChange(props.value);
   };

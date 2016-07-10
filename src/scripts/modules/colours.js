@@ -1,4 +1,4 @@
-export class Colours {
+export default class Colours {
   /**
    * Converts the second to a hex value, from 0x000000 to 0xFFFFFF.
    * 00:00:00 corresponds to #000000 and 23:59:59 corresponds to #ffffff.
