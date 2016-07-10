@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default (props) => {
-  return props.visible ?
-    <div className='toast'>{props.children}</div> :
+export default ({ visible, children }) => {
+  return visible ?
+    <div className='toast'>{children}</div> :
     null;
 };

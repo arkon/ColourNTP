@@ -1,20 +1,20 @@
 import classNames from 'classnames';
 import React from 'react';
 
-export default (props) => {
+export default ({ open, onClose, children }) => {
   const sidebarClass = classNames('sidebar', {
-    'sidebar--open': props.open
+    'sidebar--open': open
   });
 
   return (
     <div className={sidebarClass}>
-      { props.open &&
+      { open &&
         <div>
-          <button className='sidebar__toggle' onClick={() => props.onClose()}>
+          <button className='sidebar__toggle' onClick={() => onClose()}>
             Close
           </button>
 
-          {props.children}
+          {children}
         </div>
       }
     </div>

@@ -3,21 +3,21 @@ import React from 'react'
 
 import Colours from '../../modules/colours';
 
-export default (props) => {
+export default ({ index, colour, format, onRemove }) => {
   const savedColourClass = classNames('saved_colour', 'copy', {
-    'is_dark': Colours.isDark(...Colours.hexToRgb(props.colour.substring(1)))
+    'is_dark': Colours.isDark(...Colours.hexToRgb(colour.substring(1)))
   });
 
-  const formattedColour = Colours.format(props.colour, props.format);
+  const formattedColour = Colours.format(colour, format);
 
   const remove = (e) => {
     e.stopPropagation();
-    props.onRemove(props.index);
+    onRemove(index);
   };
 
   return (
     <div className={savedColourClass}
-      style={{ backgroundColor: props.colour }}
+      style={{ backgroundColor: colour }}
       title='Copy to clipboard'
       data-clipboard-text={formattedColour}>
       {formattedColour}

@@ -1,30 +1,30 @@
 import React from 'react';
 
-export default (props) => {
+export default ({ value, group, checked, onChange, tooltip, label, children }) => {
   const onCheck = (e) => {
-    props.onChange(props.value);
+    onChange(value);
   };
 
   return (
     <div>
       <label>
-        <input type='radio' name={props.group}
-          checked={props.checked} onChange={onCheck} />
+        <input type='radio' name={group}
+          checked={checked} onChange={onCheck} />
 
-        { props.tooltip ?
+        { tooltip ?
           <abbr>
-            <span>{props.label}</span>
+            <span>{label}</span>
             <div>
-              <strong>{props.label}</strong>
-              <p>{props.tooltip}</p>
+              <strong>{label}</strong>
+              <p>{tooltip}</p>
             </div>
           </abbr> :
-          <span>{props.label}</span>
+          <span>{label}</span>
         }
       </label>
 
-      { props.checked &&
-        <div className='options__content'>{props.children}</div>
+      { checked &&
+        <div className='options__content'>{children}</div>
       }
     </div>
   );

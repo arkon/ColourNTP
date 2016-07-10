@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default (props) => (
+export default ({ children }) => (
   <div className='tabs__tab__content'>
-    {props.children}
+    {children}
   </div>
 );

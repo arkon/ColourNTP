@@ -3,15 +3,15 @@ import React from 'react';
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';
 
-export default (props) => {
-  const formattedColour = Colours.format(props.colour, props.format);
+export default ({ colour, format }) => {
+  const formattedColour = Colours.format(colour, format);
 
   return (
     <h2 className='colours__hex'>
       <span className='copy'
         title='Copy to clipboard'
         data-clipboard-text={formattedColour}
-        onClick={() => Saved.add(props.colour)}>
+        onClick={() => Saved.add(colour)}>
         {formattedColour}
       </span>
     </h2>

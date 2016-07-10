@@ -2,13 +2,11 @@ import React from 'react';
 
 import TimeHelper from '../../modules/timehelper';
 
-export default (props) => {
-  const time = props.time;
-
+export default ({ time, hourFormat24, padHour, showSeconds, showPostFix }) => {
   let hour = time.hour;
-  let afterNoon = hour >= 12;
+  const afterNoon = hour >= 12;
 
-  if (!props.hourFormat24) {
+  if (!hourFormat24) {
     if (afterNoon) {
       hour -= 12;
     }
@@ -20,13 +18,13 @@ export default (props) => {
 
   return (
     <h1 className='colours__time'>
-      <span>{props.padHour ? TimeHelper.pad(hour) : hour}</span>
+      <span>{padHour ? TimeHelper.pad(hour) : hour}</span>
       <span className='colours__time__colon'> : </span>
       <span>{TimeHelper.pad(time.minute)}</span>
-      { props.showSeconds && <span className='colours__time__colon'> : </span> }
-      { props.showSeconds && <span>{TimeHelper.pad(time.second)}</span> }
+      { showSeconds && <span className='colours__time__colon'> : </span> }
+      { showSeconds && <span>{TimeHelper.pad(time.second)}</span> }
 
-      { !props.hourFormat24 && props.showPostFix &&
+      { !hourFormat24 && showPostFix &&
         <span className='colours__time__postfix'>{afterNoon ? 'PM' : 'AM'}</span>
       }
     </h1>
