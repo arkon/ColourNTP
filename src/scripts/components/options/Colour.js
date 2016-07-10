@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Option from './Option';
 import Chrome from '../../modules/chrome';

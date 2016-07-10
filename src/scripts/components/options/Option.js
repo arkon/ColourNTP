@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Chrome from '../../modules/chrome';
 
 export default class Option extends Component {
+  state = {
+    value: this.props.value
+  };
+
   constructor (props) {
     super(props);
-
-    this.state = {
-      value: this.props.value
-    };
   }
 
   componentWillReceiveProps (nextProps) {

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Option from './Option';
 import Chrome from '../../modules/chrome';
 
 export default class Textbox extends Option {
+  static propTypes = {
+    label: PropTypes.string.isRequired
+  };
+
   constructor (props) {
     super(props);
 

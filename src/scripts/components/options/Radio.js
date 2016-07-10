@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default ({ value, group, checked, onChange, tooltip, label, children }) => {
+const Radio = ({ value, group, checked, onChange, tooltip, label, children }) => {
   const onCheck = (e) => {
     onChange(value);
   };
@@ -29,3 +29,15 @@ export default ({ value, group, checked, onChange, tooltip, label, children }) =
     </div>
   );
 };
+
+Radio.propTypes = {
+  value: PropTypes.any.isRequired,
+  group: PropTypes.string,
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
+  tooltip: PropTypes.string,
+  label: PropTypes.string,
+  children: PropTypes.node
+};
+
+export default Radio;
