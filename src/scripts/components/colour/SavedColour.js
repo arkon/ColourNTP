@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import Colours from '../../modules/colours';
 
-export default ({ index, colour, format, onRemove }) => {
+const SavedColour = ({ index, colour, format, onRemove }) => {
   const savedColourClass = classNames('saved_colour', 'copy', {
     'is_dark': Colours.isDark(...Colours.hexToRgb(colour.substring(1)))
   });
@@ -25,3 +25,12 @@ export default ({ index, colour, format, onRemove }) => {
     </div>
   );
 };
+
+SavedColour.propTypes = {
+  index: PropTypes.number.isRequired,
+  colour: PropTypes.string.isRequired,
+  format: PropTypes.string.isRequired,
+  onRemove: PropTypes.func.isRequired
+};
+
+export default SavedColour;

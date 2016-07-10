@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import TimeHelper from '../../modules/timehelper';
 
-export default ({ time, hourFormat24, padHour, showSeconds, showPostFix }) => {
+const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix }) => {
   let hour = time.hour;
   const afterNoon = hour >= 12;
 
@@ -30,3 +30,17 @@ export default ({ time, hourFormat24, padHour, showSeconds, showPostFix }) => {
     </h1>
   );
 };
+
+Time.propTypes = {
+  time: PropTypes.shape({
+    hour: PropTypes.number.isRequired,
+    minute: PropTypes.number.isRequired,
+    second: PropTypes.number.isRequired,
+  }).isRequired,
+  hourFormat24: PropTypes.bool.isRequired,
+  padHour: PropTypes.bool.isRequired,
+  showSeconds: PropTypes.bool.isRequired,
+  showPostFix: PropTypes.bool.isRequired
+};
+
+export default Time;

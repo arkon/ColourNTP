@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import SavedColour from './SavedColour';
 
@@ -7,13 +7,16 @@ import { ColourFormats } from '../../constants/settings';
 import Saved from '../../modules/saved';
 
 export default class SavedColours extends Component {
+  static propTypes = {
+    format: PropTypes.string.isRequired
+  };
+
+  state = {
+    colours: []
+  };
+
   constructor (props) {
     super(props);
-
-    this.state = {
-      colours: [],
-      format: ColourFormats.HEX
-    };
 
     this.fetchSaved = this.fetchSaved.bind(this);
     this.removeSaved = this.removeSaved.bind(this);
@@ -22,18 +25,6 @@ export default class SavedColours extends Component {
 
   componentDidMount () {
     this.fetchSaved();
-  }
-
-  shouldComponentUpdate (nextProps, nextState) {
-    return nextState !== this.state;
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.format !== this.state.format) {
-      this.setState({
-        format: nextProps.format
-      });
-    }
   }
 
   fetchSaved () {
@@ -74,7 +65,7 @@ export default class SavedColours extends Component {
             key={i}
             index={i}
             colour={colour}
-            format={this.state.format}
+            format={this.props.format}
             onRemove={this.removeSaved} />
         )) }
       </div>

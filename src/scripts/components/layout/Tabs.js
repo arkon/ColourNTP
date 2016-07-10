@@ -1,15 +1,20 @@
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Tab from './Tab';
 
 export default class Tabs extends Component {
+  static propTypes = {
+    activeTab: PropTypes.number.isRequired,
+    children: PropTypes.arrayOf(PropTypes.shape({ type: PropTypes.oneOf([Tab]) })).isRequired
+  };
+
+  state = {
+    activeTab: this.props.activeTab
+  };
+
   constructor (props) {
     super(props);
-
-    this.state = {
-      activeTab: this.props.activeTab
-    };
   }
 
   handleTab (tab) {

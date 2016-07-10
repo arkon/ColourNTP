@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';
 
-export default ({ colour, format }) => {
+const Colour = ({ colour, format }) => {
   const formattedColour = Colours.format(colour, format);
 
   return (
@@ -17,3 +17,10 @@ export default ({ colour, format }) => {
     </h2>
   );
 };
+
+Colour.propTypes = {
+  colour: PropTypes.string.isRequired,
+  format: PropTypes.string.isRequired
+};
+
+export default Colour;

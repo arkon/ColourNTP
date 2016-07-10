@@ -7,31 +7,31 @@ import Tab from '../layout/Tab';
 import Chrome from '../../modules/chrome';
 
 export default class Panels extends Component {
+  state = {
+    open           : -1,
+
+    showVisited    : true,
+    topSites       : [],
+
+    showClosed     : true,
+    recentlyClosed : [],
+
+    showDevices    : true,
+    devices        : [],
+
+    showApps       : true,
+    showAllApps    : true,
+    showWebStore   : true,
+    apps           : [],
+
+    showShortcuts  : true,
+    shortcuts      : [],
+
+    showFavicons   : true
+  };
+
   constructor (props) {
     super(props);
-
-    this.state = {
-      open           : -1,
-
-      showVisited    : true,
-      topSites       : [],
-
-      showClosed     : true,
-      recentlyClosed : [],
-
-      showDevices    : true,
-      devices        : [],
-
-      showApps       : true,
-      showAllApps    : true,
-      showWebStore   : true,
-      apps           : [],
-
-      showShortcuts  : true,
-      shortcuts      : [],
-
-      showFavicons   : true
-    };
 
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);

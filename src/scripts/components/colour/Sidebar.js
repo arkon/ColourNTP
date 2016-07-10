@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default ({ open, onClose, children }) => {
+const Sidebar = ({ open, onClose, children }) => {
   const sidebarClass = classNames('sidebar', {
     'sidebar--open': open
   });
@@ -20,3 +20,11 @@ export default ({ open, onClose, children }) => {
     </div>
   );
 };
+
+Sidebar.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node
+};
+
+export default Sidebar;

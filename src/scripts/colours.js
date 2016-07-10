@@ -22,24 +22,24 @@ import Time from './components/colour/Time';
 import Toast from './components/colour/Toast';
 
 class NewTab extends Component {
+  state = {
+    settings     : {},
+    time         : {},
+    date         : '',
+    colour       : '',
+
+    coloursClass : 'colours colours--hidden',
+    bgImage      : null,
+    bgOpacity    : 1,
+
+    toastVisible : false,
+    toastText    : '',
+
+    sidebarOpen  : false
+  };
+
   constructor (props) {
     super(props);
-
-    this.state = {
-      settings     : {},
-      time         : {},
-      date         : '',
-      colour       : '',
-
-      coloursClass : 'colours colours--hidden',
-      bgImage      : null,
-      bgOpacity    : 1,
-
-      toastVisible : false,
-      toastText    : '',
-
-      sidebarOpen  : false
-    };
 
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);

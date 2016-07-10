@@ -1,18 +1,25 @@
 import Clipboard from 'clipboard';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';
 
 export default class History extends Component {
+  static propTypes = {
+    colour: PropTypes.string.isRequired,
+    max: PropTypes.number
+  };
+
+  static defaultProps = {
+    max: 10
+  };
+
+  state = {
+    history: new Array(this.props.max)
+  };
+
   constructor (props) {
     super(props);
-
-    this.max = 10;
-
-    this.state = {
-      history: new Array(this.max)
-    };
 
     this.pushToStack = this.pushToStack.bind(this);
   }
@@ -32,7 +39,7 @@ export default class History extends Component {
       stack.push(item);
 
       // Only keep newest max amount of items
-      stack.splice(0, stack.length - this.max);
+      stack.splice(0, stack.length - this.props.max);
     }
   }
 
@@ -40,7 +47,7 @@ export default class History extends Component {
     return (
       <div className='history'>
         { this.state.history.map((colour, i) => {
-          let formattedColour = Colours.format(colour, this.props.format);
+          const formattedColour = Colours.format(colour, this.props.format);
 
           return (
             <div key={i} className='history__item copy'
