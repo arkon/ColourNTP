@@ -34,9 +34,8 @@
 
     &::before {
       content: '';
-      border-left: 0.75em solid transparent;
-      border-right: 0.75em solid transparent;
-      border-top: 0.75em solid $dark-grey;
+      border: 0.75em solid transparent;
+      border-top-color: $dark-grey;
       height: 0;
       width: 0;
     }
