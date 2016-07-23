@@ -1,15 +1,12 @@
-import babelify from 'babelify';
-import browserify from 'browserify';
 import del from 'del';
-import glob from 'glob';
 import gulp from 'gulp';
 import gulpZip from 'gulp-zip';
 import htmlmin from 'gulp-htmlmin';
-import merge2 from 'merge2';
 import nano from 'gulp-cssnano';
 import sass from 'gulp-sass';
-import source from 'vinyl-source-stream';
-import transform from 'vinyl-transform';
+import webpack from 'webpack';
+
+import webpackConfig from './webpack.config';
 
 
 // ========================================================================== //
@@ -84,26 +81,34 @@ export function prod (done) {
 
 // Process JS files
 export function js (done) {
-  glob(PATHS.src_bundles, (err, files) => {
-    if (err) { done(err); }
-
-    const stream = merge2(files.map((entry) => {
-      return browserify(entry)
-        .transform(babelify, {
-          babelrc: false,
-          presets: ['react'],
-          plugins: [
-            'transform-class-properties',
-            'transform-es2015-modules-commonjs'
-          ]
-        })
-        .bundle()
-        .pipe(source(`${entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '')}.bundle.js`))
-        .pipe(gulp.dest(PATHS.dest_scripts));
+  webpack(webpackConfig, (err, stats) => {
+    if (err) throw new Error('webpack', err);
+    console.log('[webpack]', stats.toString({
     }));
 
-    stream.on('queueDrain', done);
+    done();
   });
+
+  // glob(PATHS.src_bundles, (err, files) => {
+  //   if (err) { done(err); }
+
+  //   const stream = merge2(files.map((entry) => {
+  //     return browserify(entry)
+  //       .transform(babelify, {
+  //         babelrc: false,
+  //         presets: ['react'],
+  //         plugins: [
+  //           'transform-class-properties',
+  //           'transform-es2015-modules-commonjs'
+  //         ]
+  //       })
+  //       .bundle()
+  //       .pipe(source(`${entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '')}.bundle.js`))
+  //       .pipe(gulp.dest(PATHS.dest_scripts));
+  //   }));
+
+  //   stream.on('queueDrain', done);
+  // });
 }
 
 // Build project
