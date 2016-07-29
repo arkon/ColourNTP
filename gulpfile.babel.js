@@ -82,33 +82,14 @@ export function prod (done) {
 // Process JS files
 export function js (done) {
   webpack(webpackConfig, (err, stats) => {
-    if (err) throw new Error('webpack', err);
+    if (err) { throw new Error('webpack', err); }
+
     console.log('[webpack]', stats.toString({
+      chunkModules: false
     }));
 
     done();
   });
-
-  // glob(PATHS.src_bundles, (err, files) => {
-  //   if (err) { done(err); }
-
-  //   const stream = merge2(files.map((entry) => {
-  //     return browserify(entry)
-  //       .transform(babelify, {
-  //         babelrc: false,
-  //         presets: ['react'],
-  //         plugins: [
-  //           'transform-class-properties',
-  //           'transform-es2015-modules-commonjs'
-  //         ]
-  //       })
-  //       .bundle()
-  //       .pipe(source(`${entry.substring(entry.lastIndexOf('/') + 1).replace('.js', '')}.bundle.js`))
-  //       .pipe(gulp.dest(PATHS.dest_scripts));
-  //   }));
-
-  //   stream.on('queueDrain', done);
-  // });
 }
 
 // Build project
