@@ -4,6 +4,12 @@ import Option from './Option';
 import Chrome from '../../modules/chrome';
 
 export default class Number extends Option {
+  static propTypes = {
+    value: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+    optkey: PropTypes.string.isRequired
+  };
+
   constructor (props) {
     super(props);
 

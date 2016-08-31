@@ -5,7 +5,9 @@ import Chrome from '../../modules/chrome';
 
 export default class Textbox extends Option {
   static propTypes = {
-    label: PropTypes.string.isRequired
+    value: PropTypes.boolean.isRequired,
+    label: PropTypes.string.isRequired,
+    optkey: PropTypes.string.isRequired
   };
 
   constructor (props) {

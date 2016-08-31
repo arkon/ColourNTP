@@ -19,11 +19,11 @@ export default class Unsplash {
       // Follow redirect to get actual image URL
       fetch(unsplashUrl)
         .then((res) => {
-          if (res.ok && (res.status >= 200 && res.status < 300)) {
-            resolve(res.url);
-          } else {
+          if (!res.ok || res.status < 200 || res.status >= 300) {
             reject('Fetching Unsplash image failed');
           }
+
+          resolve(res.url);
         });
     });
   }

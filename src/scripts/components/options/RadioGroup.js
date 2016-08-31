@@ -1,9 +1,18 @@
 import React, { PropTypes } from 'react';
 
 import Option from './Option';
+import Radio from './Radio';
 import Chrome from '../../modules/chrome';
 
 export default class RadioGroup extends Option {
+  static propTypes = {
+    value: PropTypes.boolean.isRequired,
+    label: PropTypes.string.isRequired,
+    optkey: PropTypes.string.isRequired,
+    group: PropTypes.string.isRequired,
+    children: PropTypes.arrayOf(PropTypes.shape({ type: PropTypes.oneOf([Radio]) })).isRequired
+  };
+
   constructor (props) {
     super(props);
 
