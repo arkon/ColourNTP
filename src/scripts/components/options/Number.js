@@ -5,7 +5,7 @@ import Chrome from '../../modules/chrome';
 
 export default class Number extends Option {
   static propTypes = {
-    value: PropTypes.number.isRequired,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     label: PropTypes.string.isRequired,
     optkey: PropTypes.string.isRequired
   };

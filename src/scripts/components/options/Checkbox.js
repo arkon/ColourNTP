@@ -5,7 +5,7 @@ import Chrome from '../../modules/chrome';
 
 export default class Checkbox extends Option {
   static propTypes = {
-    value: PropTypes.boolean.isRequired,
+    value: PropTypes.bool,
     label: PropTypes.string.isRequired,
     optkey: PropTypes.string.isRequired,
     tooltip: PropTypes.string,

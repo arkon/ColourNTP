@@ -5,7 +5,7 @@ import Chrome from '../../modules/chrome';
 
 export default class Colour extends Option {
   static propTypes = {
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     label: PropTypes.string.isRequired,
     optkey: PropTypes.string.isRequired
   };

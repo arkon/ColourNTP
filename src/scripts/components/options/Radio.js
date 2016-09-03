@@ -31,7 +31,7 @@ const Radio = ({ value, group, checked, onChange, tooltip, label, children }) =>
 };
 
 Radio.propTypes = {
-  value: PropTypes.any.isRequired,
+  value: PropTypes.string,
   group: PropTypes.string,
   checked: PropTypes.bool,
   onChange: PropTypes.func,

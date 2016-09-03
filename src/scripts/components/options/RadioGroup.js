@@ -6,8 +6,7 @@ import Chrome from '../../modules/chrome';
 
 export default class RadioGroup extends Option {
   static propTypes = {
-    value: PropTypes.boolean.isRequired,
-    label: PropTypes.string.isRequired,
+    value: PropTypes.string,
     optkey: PropTypes.string.isRequired,
     group: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(PropTypes.shape({ type: PropTypes.oneOf([Radio]) })).isRequired
