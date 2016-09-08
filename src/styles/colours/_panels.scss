@@ -50,10 +50,6 @@
     flex-direction: column;
     text-align: left;
 
-    &:active {
-      transform: scale(0.95);
-    }
-
     a {
       background-color: #eee;
       border: 1px solid #ddd;
@@ -67,6 +63,10 @@
       &:hover {
         box-shadow: 0 0 0 2px #777;
         color: #0e0e0e;
+      }
+
+      &:active {
+        transform: scale(0.95);
       }
     }
   }
