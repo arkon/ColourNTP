@@ -144,7 +144,8 @@ export default class Chrome {
   }
 
   static _favicon (url) {
-    return `chrome://favicon/size/16@2x/${url}`;
+    const prefix = window.devicePixelRatio > 1.5 ? 'chrome://favicon/size/16@2x' : 'chrome://favicon';
+    return `${prefix}/${url}`;
   }
 
   static _find128Image (icons) {
