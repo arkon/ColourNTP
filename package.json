@@ -20,14 +20,14 @@
   },
   "devDependencies": {
     "babel-loader": "^6.2.5",
-    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-plugin-transform-class-properties": "^6.16.0",
     "babel-preset-node6": "^11.0.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-register": "^6.14.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.16.3",
     "del": "^2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.2",
-    "gulp-htmlmin": "^2.0.0",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-sass": "^2.3.2",
     "gulp-zip": "^3.2.0",
     "webpack": "2.1.0-beta.20"
