@@ -5,7 +5,7 @@
   "description": "Chrome new tab page based on http://whatcolourisit.scn9a.org/",
   "version": "4.1.0",
   "options_page": "options.html",
-  "chrome_url_overrides" : {
+  "chrome_url_overrides": {
     "newtab": "colours.html"
   },
   "permissions": [

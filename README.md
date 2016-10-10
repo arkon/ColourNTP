@@ -8,12 +8,12 @@ Requires Chrome 49+.
 
 
 ## Development
+
 ### Prerequisites
 - [Node.js 6+](https://nodejs.org/en/)
 - [Gulp 4](https://github.com/gulpjs/gulp/tree/4.0)
 
 ### Contributors
-
 - [Spencer Elliott](http://github.com/elliottsj/): Full Spectrum Hexadecimal/Hue options
 - [Alexander Biggs](https://github.com/akbiggs): 12-hour option
 - [Alec Brunelle](https://github.com/aleccool213): Options page tooltips
