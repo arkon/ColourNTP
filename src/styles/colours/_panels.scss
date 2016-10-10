@@ -5,17 +5,17 @@
   width: auto;
 
   .tabs {
-    color: rgba($white, 0.4);
     display: block;
     font-size: 0.9em;
     margin: 4em 0 1em;
+    opacity: 0.4;
   }
 
   .tabs__tab {
-    color: rgba($white, 0.5);
     contain: content;
     cursor: pointer;
     display: inline-block;
+    opacity: 0.5;
     padding: 0.25em;
     transition: color 0.3s;
     will-change: color;
@@ -30,6 +30,7 @@
   .tabs__tab:hover,
   .tabs__tab--active {
     color: $white;
+    opacity: 1;
   }
 }
 

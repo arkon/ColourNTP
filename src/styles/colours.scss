@@ -8,7 +8,6 @@
 @import 'colours/sidebar';
 @import 'colours/toast';
 
-
 .notransition {
   *,
   *::before,
@@ -166,5 +165,13 @@
 
   .panels__panel {
     box-shadow: 0 1px 0.35rem rgba($dark-grey, 0.5);
+  }
+}
+
+.is-dark{
+  color: $dark-grey;
+  .tabs__tab:hover,
+  .tabs__tab--active {
+    color: $dark-grey;
   }
 }

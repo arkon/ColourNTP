@@ -276,8 +276,10 @@ class NewTab extends Component {
         this.state.colour
     };
 
+    // Text styles
+    let colourClass = Colours.isDark(...(Colours.hexToRgb(this.state.colour.substring(1))))?'':'is-dark';
     return (
-      <div id='newtab__content'>
+      <div id='newtab__content' className={colourClass}>
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
           <SavedColours format={settings.colourFormat} />
         </Sidebar>
@@ -319,7 +321,7 @@ class NewTab extends Component {
                 hourFormat24={settings.time24hr}
                 padHour={settings.padHour}
                 showSeconds={settings.showTimeSec}
-                showPostFix={settings.showTimePost} />
+                showPostFix={settings.showTimePost}/>
             }
 
             { settings.showDate &&
@@ -327,7 +329,7 @@ class NewTab extends Component {
             }
 
             { settings.showColour && this.state.bgOpacity !== 0 &&
-              <Colour colour={this.state.colour} format={settings.colourFormat} />
+              <Colour colour={this.state.colour} format={settings.colourFormat}/>
             }
 
             <Panels />
