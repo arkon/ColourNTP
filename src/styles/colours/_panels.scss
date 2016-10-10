@@ -29,6 +29,7 @@
 
   .tabs__tab:hover,
   .tabs__tab--active {
+    color: $white;
     opacity: 1;
   }
 }

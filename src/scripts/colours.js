@@ -277,7 +277,7 @@ class NewTab extends Component {
     };
 
     // Text styles
-    let colourClass = Colours.isDark(...(Colours.hexToRgb(this.state.colour.substring(1))))?'is-white':'is-dark';
+    let colourClass = Colours.isDark(...(Colours.hexToRgb(this.state.colour.substring(1))))?'':'is-dark';
     return (
       <div id='newtab__content' className={colourClass}>
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
