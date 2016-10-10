@@ -8,6 +8,7 @@
 @import 'colours/sidebar';
 @import 'colours/toast';
 
+
 .notransition {
   *,
   *::before,
@@ -168,8 +169,9 @@
   }
 }
 
-.is-dark{
+.is-dark {
   color: $dark-grey;
+
   .tabs__tab:hover,
   .tabs__tab--active {
     color: $dark-grey;
