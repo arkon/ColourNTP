@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import TimeHelper from '../../modules/timehelper';
 
-const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix, textClass }) => {
+const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix }) => {
   let hour = time.hour;
   const afterNoon = hour >= 12;
 
@@ -17,7 +17,7 @@ const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix, textClass
   }
 
   return (
-    <h1 className={`colours__time ${textClass}`}>
+    <h1 className='colours__time'>
       <span>{padHour ? TimeHelper.pad(hour) : hour}</span>
       <span className='colours__time__colon'> : </span>
       <span>{TimeHelper.pad(time.minute)}</span>
