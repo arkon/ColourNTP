@@ -154,11 +154,11 @@ export default class Panels extends Component {
     e.preventDefault();
     e.stopPropagation();
 
-    let url = e.target.getAttribute("data-url");
+    let url = e.target.dataset.url;
     let blacklist = this.state.blacklist;
     blacklist[url] = Date.now();
 
-    Chrome.setSetting("blacklist", blacklist);
+    Chrome.setSetting('blacklist', blacklist);
     this.setState({
       topSites: this.state.topSites.filter((item) => !blacklist[item.url]),
       blacklist: blacklist
@@ -183,7 +183,7 @@ export default class Panels extends Component {
                       <a className={`item-${i}`} title={site.title} href={site.url}
                         style={{ backgroundImage: `url('${site.img}')` }}>
                         {site.title}
-                        <button className={`item--remove`} data-url={site.url} onClick={this.blacklistSite}>Remove</button>
+                        <button className='item--remove' data-url={site.url} onClick={this.blacklistSite}>Remove</button>
                       </a>
                     </li>
                 )) }
