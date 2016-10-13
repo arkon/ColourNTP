@@ -4,27 +4,27 @@ const _SHORTCUTS = [
   {
     title : 'Bookmarks',
     url   : 'chrome://bookmarks/',
-    img   : 'chrome://favicon/chrome://bookmarks/'
+    img   : 'chrome://favicon/size/16@2x/chrome://bookmarks/'
   },
   {
     title : 'History',
     url   : 'chrome://history/',
-    img   : 'chrome://favicon/chrome://history/'
+    img   : 'chrome://favicon/size/16@2x/chrome://history/'
   },
   {
     title : 'Downloads',
     url   : 'chrome://downloads/',
-    img   : 'chrome://favicon/chrome://downloads/'
+    img   : 'chrome://favicon/size/16@2x/chrome://downloads/'
   },
   {
     title : 'Extensions',
     url   : 'chrome://extensions/',
-    img   : 'chrome://favicon/chrome://extensions/'
+    img   : 'chrome://favicon/size/16@2x/chrome://extensions/'
   },
   {
     title : 'Settings',
     url   : 'chrome://settings/',
-    img   : 'chrome://favicon/chrome://settings/'
+    img   : 'chrome://favicon/size/16@2x/chrome://settings/'
   }
 ];
 
@@ -40,7 +40,7 @@ export default class Chrome {
         let items = visitedURLs.map((site) => ({
           title : site.title,
           url   : site.url,
-          img   : `chrome://favicon/size/16@2x/${site.url}`
+          img   : Chrome._favicon(site.url)
         }));
 
         resolve(items);
@@ -61,7 +61,7 @@ export default class Chrome {
           return {
             title   : session.tab ? session.tab.title : `${session.window.tabs.length} Tabs`,
             session : session.window ? session.window.sessionId : session.tab.sessionId,
-            img     : session.tab ? `chrome://favicon/${session.tab.url}` : null
+            img     : session.tab ? Chrome._favicon(session.tab.url) : null
           };
         });
 
@@ -127,7 +127,7 @@ export default class Chrome {
               tabs.push({
                 title : tab.title,
                 url   : tab.url,
-                img   : `chrome://favicon/${tab.url}`
+                img   : Chrome._favicon(tab.url)
               });
             }
           }
@@ -141,6 +141,11 @@ export default class Chrome {
         resolve(items);
       });
     });
+  }
+
+  static _favicon (url) {
+    const prefix = window.devicePixelRatio > 1.5 ? 'chrome://favicon/size/16@2x' : 'chrome://favicon';
+    return `${prefix}/${url}`;
   }
 
   static _find128Image (icons) {

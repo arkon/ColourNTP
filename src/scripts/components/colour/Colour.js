@@ -4,7 +4,8 @@ import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';
 
 
-const Colour = ({ colour, format}) => {
+
+const Colour = ({ colour, format }) => {
   const formattedColour = Colours.format(colour, format);
 
   return (

@@ -12,13 +12,14 @@
   }
 
   .tabs__tab {
+    color: $white;
     contain: content;
     cursor: pointer;
     display: inline-block;
     opacity: 0.5;
     padding: 0.25em;
-    transition: color 0.3s;
-    will-change: color;
+    transition: opacity 0.3s;
+    will-change: opacity;
 
     & + .tabs__tab::before {
       color: inherit;
@@ -29,7 +30,6 @@
 
   .tabs__tab:hover,
   .tabs__tab--active {
-    color: $white;
     opacity: 1;
   }
 }

@@ -168,10 +168,10 @@
   }
 }
 
-.is-dark{
+.is-dark {
   color: $dark-grey;
-  .tabs__tab:hover,
-  .tabs__tab--active {
+
+  .tabs__tab {
     color: $dark-grey;
   }
 }
