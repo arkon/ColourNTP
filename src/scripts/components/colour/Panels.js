@@ -38,7 +38,7 @@ export default class Panels extends Component {
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
     this.onClickTab = this.onClickTab.bind(this);
-    this.blacklist = this.blacklist.bind(this);
+    this.blacklistSite = this.blacklistSite.bind(this);
   }
 
   componentDidMount () {
@@ -76,16 +76,8 @@ export default class Panels extends Component {
         if (settings.panelVisited) {
           Chrome.getTopSites(settings.maxVisited)
             .then((items) => {
-              let filtered = [];
-
-              for(var i = 0; i < items.length; i++){
-                if(!settings.blacklist[items[i].url]){
-                  filtered.push(items[i])
-                }
-              }
-
               this.setState({
-                topSites: filtered
+                topSites: items.filter((item) => !settings.blacklist[item.url])
               });
             });
         }
@@ -158,30 +150,18 @@ export default class Panels extends Component {
     };
   }
 
-  blacklist (e) {
-    e.preventDefault()
-    e.stopPropagation()
+  blacklistSite (e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-    let url = e.target.getAttribute("data-url")
-    let blacklist = this.state.blacklist
-    blacklist[url] = Date.now()
+    let url = e.target.getAttribute("data-url");
+    let blacklist = this.state.blacklist;
+    blacklist[url] = Date.now();
 
-    Chrome.setSetting("blacklist", blacklist)
-
+    Chrome.setSetting("blacklist", blacklist);
     this.setState({
+      topSites: this.state.topSites.filter((item) => !blacklist[item.url]),
       blacklist: blacklist
-    })
-
-    let filtered = [];
-
-    for(var i = 0; i < this.state.topSites.length; i++){
-      if(!blacklist[this.state.topSites[i].url]){
-        filtered.push(this.state.topSites[i]);
-      }
-    }
-
-    this.setState({
-      topSites: filtered
     });
   }
 
@@ -203,7 +183,7 @@ export default class Panels extends Component {
                       <a className={`item-${i}`} title={site.title} href={site.url}
                         style={{ backgroundImage: `url('${site.img}')` }}>
                         {site.title}
-                        <button className={`item-${i}--remove`} data-url={site.url} onClick={this.blacklist}>Remove</button>
+                        <button className={`item-${i}--remove`} data-url={site.url} onClick={this.blacklistSite}>Remove</button>
                       </a>
                     </li>
                 )) }
