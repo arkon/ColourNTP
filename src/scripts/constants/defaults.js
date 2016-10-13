@@ -46,5 +46,7 @@ export const DEFAULTS = {
   maxVisited     : 10,
   maxClosed      : 10,
 
-  showFavicons   : true
+  showFavicons   : true,
+
+  blacklist      : {}
 };

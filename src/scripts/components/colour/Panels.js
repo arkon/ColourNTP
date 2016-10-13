@@ -27,7 +27,9 @@ export default class Panels extends Component {
     showShortcuts  : true,
     shortcuts      : [],
 
-    showFavicons   : true
+    showFavicons   : true,
+
+    blacklist      : {},
   };
 
   constructor (props) {
@@ -36,6 +38,7 @@ export default class Panels extends Component {
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
     this.onClickTab = this.onClickTab.bind(this);
+    this.blacklist = this.blacklist.bind(this);
   }
 
   componentDidMount () {
@@ -67,14 +70,22 @@ export default class Panels extends Component {
           showAllApps   : settings.showAllApps,
           showWebStore  : settings.showWebStore,
           showShortcuts : settings.panelShortcuts,
-          showFavicons  : settings.showFavicons
+          showFavicons  : settings.showFavicons,
+          blacklist     : settings.blacklist
         });
-
         if (settings.panelVisited) {
           Chrome.getTopSites(settings.maxVisited)
             .then((items) => {
+              let filtered = [];
+
+              for(var i = 0; i < items.length; i++){
+                if(!settings.blacklist[items[i].url]){
+                  filtered.push(items[i])
+                }
+              }
+
               this.setState({
-                topSites: items
+                topSites: filtered
               });
             });
         }
@@ -147,6 +158,33 @@ export default class Panels extends Component {
     };
   }
 
+  blacklist (e) {
+    e.preventDefault()
+    e.stopPropagation()
+
+    let url = e.target.getAttribute("data-url")
+    let blacklist = this.state.blacklist
+    blacklist[url] = Date.now()
+
+    Chrome.setSetting("blacklist", blacklist)
+
+    this.setState({
+      blacklist: blacklist
+    })
+
+    let filtered = [];
+
+    for(var i = 0; i < this.state.topSites.length; i++){
+      if(!blacklist[this.state.topSites[i].url]){
+        filtered.push(this.state.topSites[i]);
+      }
+    }
+
+    this.setState({
+      topSites: filtered
+    });
+  }
+
   render () {
     const state = this.state;
 
@@ -161,12 +199,13 @@ export default class Panels extends Component {
             <Tab name='Most visited'>
               <ul className='panels__panel'>
                 { state.topSites.map((site, i) => (
-                  <li key={i}>
-                    <a className={`item-${i}`} title={site.title} href={site.url}
-                      style={{ backgroundImage: `url('${site.img}')` }}>
-                      {site.title}
-                    </a>
-                  </li>
+                    <li key={i}>
+                      <a className={`item-${i}`} title={site.title} href={site.url}
+                        style={{ backgroundImage: `url('${site.img}')` }}>
+                        {site.title}
+                        <button className={`item-${i}--remove`} data-url={site.url} onClick={this.blacklist}>Remove</button>
+                      </a>
+                    </li>
                 )) }
               </ul>
             </Tab>
