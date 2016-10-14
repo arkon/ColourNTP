@@ -179,13 +179,13 @@ export default class Panels extends Component {
             <Tab name='Most visited'>
               <ul className='panels__panel'>
                 { state.topSites.map((site, i) => (
-                    <li key={i}>
-                      <a className={`item-${i}`} title={site.title} href={site.url}
-                        style={{ backgroundImage: `url('${site.img}')` }}>
-                        {site.title}
-                        <button className='item--remove' data-url={site.url} onClick={this.blacklistSite}>Remove</button>
-                      </a>
-                    </li>
+                  <li key={i}>
+                    <a className={`item-${i}`} title={site.title} href={site.url}
+                      style={{ backgroundImage: `url('${site.img}')` }}>
+                      {site.title}
+                      <button className='item--remove' data-url={site.url} onClick={this.blacklistSite}>Remove</button>
+                    </a>
+                  </li>
                 )) }
               </ul>
             </Tab>
