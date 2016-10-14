@@ -7,7 +7,7 @@ export default class Colours {
    *
    * @return {String}  The hex colour value (e.g. #1fd531).
    */
-  static secondToHexColour (seconds) {
+  static secondToHexColour(seconds) {
     return Colours._valueToHex(seconds / (24 * 60 * 60 - 1));
   }
 
@@ -15,7 +15,7 @@ export default class Colours {
    * Converts the second to a hex value, as a point along the hue spectrum.
    * 00:00:00 corresponds to #FF0000, 12:00:00 corresponds to #00FEFF.
    */
-  static secondToHueColour (seconds) {
+  static secondToHueColour(seconds) {
     let hue = seconds / (24 * 60 * 60);
 
     return Colours.rgbToHex(...Colours.hslToRgb(hue, 1, 0.5));
@@ -33,7 +33,7 @@ export default class Colours {
    *
    * @return {Array}  The RGB representation.
    */
-  static hslToRgb (h, s, l) {
+  static hslToRgb(h, s, l) {
     let r, g, b;
 
     if (s === 0){
@@ -65,11 +65,11 @@ export default class Colours {
   /**
    * Converts RGB values to a hex colour string.
    */
-  static rgbToHex (r, g, b) {
+  static rgbToHex(r, g, b) {
     return `#${(((1 << 24) + (r << 16) + (g << 8) + b) | 0).toString(16).slice(1)}`;
   }
 
-  static rgbToHsl (r, g, b) {
+  static rgbToHsl(r, g, b) {
     r /= 255, g /= 255, b /= 255;
 
     const max = Math.max(r, g, b),
@@ -94,14 +94,14 @@ export default class Colours {
     return [(h * 100 + 0.5) | 0, (s * 100 + 0.5) | 0, (l * 100 + 0.5) | 0];
   }
 
-  static hexToHsl (hex) {
+  static hexToHsl(hex) {
     return Colours.rgbToHsl(...Colours.hexToRgb(hex));
   }
 
   /**
    * Converts a hex colour string to an array of RGB values.
    */
-  static hexToRgb (hex) {
+  static hexToRgb(hex) {
     const r = parseInt(hex, 16) >> 16,
       g = parseInt(hex, 16) >> 8 & 0xFF,
       b = parseInt(hex, 16) & 0xFF;
@@ -112,7 +112,7 @@ export default class Colours {
   /**
    * Converts a hex colour to an RGBA string with the provided alpha value.
    */
-  static rgba (hex, alpha) {
+  static rgba(hex, alpha) {
     const colour = Colours.hexToRgb(hex.substring(1));
 
     return `rgba(${colour[0]}, ${colour[1]}, ${colour[2]}, ${alpha})`;
@@ -121,7 +121,7 @@ export default class Colours {
   /**
    * Returns a random hex colour string.
    */
-  static random () {
+  static random() {
     return Colours._valueToHex(Math.random());
   }
 
@@ -129,7 +129,7 @@ export default class Colours {
    * Calculates whether a colour (given the RGB values) is considered dark.
    * Based on http://stackoverflow.com/a/12043228.
    */
-  static isDark (r, g, b) {
+  static isDark(r, g, b) {
     const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
     return luma < 128;
@@ -139,7 +139,7 @@ export default class Colours {
    * Converts a hex colour string to RGB or HSL format, of that format
    * is specified.
    */
-  static format (hex, format) {
+  static format(hex, format) {
     let colour = hex;
 
     switch (format) {
@@ -152,6 +152,9 @@ export default class Colours {
         const hsl = Colours.hexToHsl(colour.substring(1));
         colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
         break;
+
+      default:
+        break;
     }
 
     return colour;
@@ -160,7 +163,7 @@ export default class Colours {
   /**
    * Returns American-localized "colour" if needed.
    */
-  static localize (capitalize, american = false) {
+  static localize(capitalize, american = false) {
     let word = american ? 'color' : 'colour';
 
     if (capitalize) {
@@ -173,7 +176,7 @@ export default class Colours {
   /**
    * PRIVATE: returns a hex colour string using the given number.
    */
-  static _valueToHex (value) {
+  static _valueToHex(value) {
     return `#${('000000' + (value * 0xFFFFFF | 0).toString(16)).slice(-6)}`;
   }
 }

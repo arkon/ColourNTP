@@ -1,7 +1,7 @@
 import { UnsplashFrequency } from '../constants/settings';
 
 export default class Unsplash {
-  static getImage (frequency) {
+  static getImage(frequency) {
     return new Promise((resolve, reject) => {
       // Set proper frequency in URL + screen size
       let unsplashUrl = `https://source.unsplash.com/${screen.width}x${screen.height}/`;
@@ -13,6 +13,9 @@ export default class Unsplash {
 
         case UnsplashFrequency.WEEKLY:
           unsplashUrl += 'weekly';
+          break;
+
+        default:
           break;
       }
 
