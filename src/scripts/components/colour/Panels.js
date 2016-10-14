@@ -27,7 +27,9 @@ export default class Panels extends Component {
     showShortcuts  : true,
     shortcuts      : [],
 
-    showFavicons   : true
+    showFavicons   : true,
+
+    blacklist      : {},
   };
 
   constructor (props) {
@@ -36,6 +38,7 @@ export default class Panels extends Component {
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
     this.onClickTab = this.onClickTab.bind(this);
+    this.blacklistSite = this.blacklistSite.bind(this);
   }
 
   componentDidMount () {
@@ -67,14 +70,14 @@ export default class Panels extends Component {
           showAllApps   : settings.showAllApps,
           showWebStore  : settings.showWebStore,
           showShortcuts : settings.panelShortcuts,
-          showFavicons  : settings.showFavicons
+          showFavicons  : settings.showFavicons,
+          blacklist     : settings.blacklist
         });
-
         if (settings.panelVisited) {
           Chrome.getTopSites(settings.maxVisited)
             .then((items) => {
               this.setState({
-                topSites: items
+                topSites: items.filter((item) => !settings.blacklist[item.url])
               });
             });
         }
@@ -147,6 +150,21 @@ export default class Panels extends Component {
     };
   }
 
+  blacklistSite (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let url = e.target.dataset.url;
+    let blacklist = this.state.blacklist;
+    blacklist[url] = Date.now();
+
+    Chrome.setSetting('blacklist', blacklist);
+    this.setState({
+      topSites: this.state.topSites.filter((item) => !blacklist[item.url]),
+      blacklist: blacklist
+    });
+  }
+
   render () {
     const state = this.state;
 
@@ -165,6 +183,7 @@ export default class Panels extends Component {
                     <a className={`item-${i}`} title={site.title} href={site.url}
                       style={{ backgroundImage: `url('${site.img}')` }}>
                       {site.title}
+                      <button className='item--remove' data-url={site.url} onClick={this.blacklistSite}>Remove</button>
                     </a>
                   </li>
                 )) }

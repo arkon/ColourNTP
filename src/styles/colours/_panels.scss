@@ -8,6 +8,7 @@
     display: block;
     font-size: 0.9em;
     margin: 4em 0 1em;
+    opacity: 0.4;
   }
 
   .tabs__tab {
@@ -162,6 +163,24 @@
   .item-#{$i} {
     animation: fadeIn 0.3s ease-in ($i * 0.03s) forwards;
     opacity: 0;
+  }
+}
+
+.item--remove {
+  background: url('../assets/img/close.svg') no-repeat center center / 0.5rem 0.5rem;
+  border: 0;
+  cursor: pointer;
+  font-size: 0;
+  height: 1.5rem;
+  opacity: 0.5;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  transition: opacity 0.3s;
+  width: 1.5rem;
+
+  &:hover {
+    opacity: 1;
   }
 }
 
