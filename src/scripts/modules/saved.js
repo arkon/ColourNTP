@@ -8,7 +8,7 @@ export default class Saved {
    * Returns a promise
    */
   static get() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (Saved._fetchedFromStorage) {
         resolve(Saved.data);
       }

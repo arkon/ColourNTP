@@ -33,7 +33,7 @@ export default class Chrome {
   // ============================================================================================
 
   static getTopSites (max = 10) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       chrome.topSites.get((visitedURLs) => {
         visitedURLs = visitedURLs.slice(0, parseInt(max, 10));
 
@@ -49,7 +49,7 @@ export default class Chrome {
   }
 
   static getRecentlyClosed (max = 10) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       chrome.sessions.getRecentlyClosed((sessions) => {
         sessions = sessions.slice(0, parseInt(max, 10));
 
@@ -71,7 +71,7 @@ export default class Chrome {
   }
 
   static getApps () {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       chrome.management.getAll((list) => {
         // Only get active apps (no extensions)
         list = list.filter((a) => a.enabled && a.type !== 'extension' && a.type !== 'theme' && a.isApp);
@@ -109,13 +109,13 @@ export default class Chrome {
   }
 
   static getShortcuts () {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve(_SHORTCUTS);
     })
   }
 
   static getDevices () {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       chrome.sessions.getDevices((devices) => {
         let items = devices.map((device) => {
           let tabs = [];
@@ -167,7 +167,7 @@ export default class Chrome {
   }
 
   static getSetting (key) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       chrome.storage.sync.get(key, (results) => {
         if (key === null) {
           results = Object.assign({}, DEFAULTS, results);

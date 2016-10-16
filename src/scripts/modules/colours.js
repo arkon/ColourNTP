@@ -143,18 +143,21 @@ export default class Colours {
     let colour = hex;
 
     switch (format) {
-      case 'rgb':
+      case 'rgb': {
         const rgb = Colours.hexToRgb(colour.substring(1));
         colour = `rgb(${rgb.join(', ')})`;
         break;
+      }
 
-      case 'hsl':
+      case 'hsl': {
         const hsl = Colours.hexToHsl(colour.substring(1));
         colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
         break;
+      }
 
-      default:
+      default: {
         break;
+      }
     }
 
     return colour;
