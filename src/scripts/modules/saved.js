@@ -1,9 +1,6 @@
 import Chrome from './chrome';
 
 export default class Saved {
-  static data = [];
-  static _fetchedFromStorage = false;
-
   /**
    * Returns a promise
    */
@@ -65,3 +62,7 @@ export default class Saved {
     return Saved.data;
   }
 }
+
+// Static properties
+Saved.data = [];
+Saved._fetchedFromStorage = false;
