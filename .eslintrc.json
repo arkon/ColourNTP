@@ -1,0 +1,19 @@
+{
+    "extends": "eslint:recommended",
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module"
+    },
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "globals": {
+        "chrome": true
+    }
+}

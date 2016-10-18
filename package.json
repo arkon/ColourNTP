@@ -12,6 +12,9 @@
   "engines": {
     "node": ">=6"
   },
+  "scripts": {
+    "lint": "eslint src/scripts/**/*.js"
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "clipboard": "^1.5.12",
@@ -25,6 +28,10 @@
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.16.3",
     "del": "^2.2.2",
+    "eslint": "^3.8.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-htmlmin": "^3.0.0",

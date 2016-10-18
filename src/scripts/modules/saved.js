@@ -1,14 +1,11 @@
 import Chrome from './chrome';
 
 export default class Saved {
-  static data = [];
-  static _fetchedFromStorage = false;
-
   /**
    * Returns a promise
    */
-  static get () {
-    return new Promise((resolve, reject) => {
+  static get() {
+    return new Promise((resolve) => {
       if (Saved._fetchedFromStorage) {
         resolve(Saved.data);
       }
@@ -29,7 +26,7 @@ export default class Saved {
   /**
    * colour should be a hex value
    */
-  static add (colour) {
+  static add(colour) {
     if (!Saved._fetchedFromStorage) {
       Saved.get()
         .then(() => {
@@ -41,7 +38,7 @@ export default class Saved {
   }
 
   // Private method
-  static _add (colour) {
+  static _add(colour) {
     if (Saved.data.indexOf(colour) === -1) {
       Saved.data.push(colour);
 
@@ -49,7 +46,7 @@ export default class Saved {
     }
   }
 
-  static remove (index) {
+  static remove(index) {
     Saved.data.splice(index, 1);
 
     Chrome.setSetting('saved', Saved.data);
@@ -57,7 +54,7 @@ export default class Saved {
     return Saved.data;
   }
 
-  static clear () {
+  static clear() {
     Saved.data = [];
 
     Chrome.setSetting('saved', Saved.data);
@@ -65,3 +62,7 @@ export default class Saved {
     return Saved.data;
   }
 }
+
+// Static properties
+Saved.data = [];
+Saved._fetchedFromStorage = false;

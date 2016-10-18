@@ -1,5 +1,5 @@
 export default class TimeHelper {
-  static pad (num) {
+  static pad(num) {
     return (num < 10) ? `0${num}` : num.toString();
   }
 }

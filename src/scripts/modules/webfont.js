@@ -1,12 +1,12 @@
 export default class WebFont {
-  static loadFont (font) {
+  static loadFont(font) {
     if (navigator.onLine) {
       let elLinkFont = document.getElementById('webfont');
 
       if (!elLinkFont) {
-        elLinkFont  = document.createElement('link');
+        elLinkFont = document.createElement('link');
         elLinkFont.rel = 'stylesheet';
-        elLinkFont.id  = 'webfont';
+        elLinkFont.id = 'webfont';
 
         document.head.appendChild(elLinkFont);
       }
