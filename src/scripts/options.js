@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 
 import Checkbox from './components/options/Checkbox';
 import Colour from './components/options/Colour';
+import DeleteList from './components/options/DeleteList';
 import Dropdown from './components/options/Dropdown';
 import FontPreview from './components/options/FontPreview';
 import Number from './components/options/Number';
@@ -38,6 +39,7 @@ class Options extends Component {
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
     this.onToggleTab = this.onToggleTab.bind(this);
+    this.onDeleteBlacklistItem = this.onDeleteBlacklistItem.bind(this);
   }
 
   componentDidMount () {
@@ -69,6 +71,11 @@ class Options extends Component {
     this.setState({
       activeTab: tab
     });
+  }
+
+  onDeleteBlacklistItem(url) {
+    delete this.state.settings.blacklist[url];
+    Chrome.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());    
   }
 
   render () {
@@ -253,8 +260,7 @@ class Options extends Component {
               <Number label='Max number of most visited pages'
                 optkey='maxVisited'
                 value={settings.maxVisited} />
-            </Checkbox>
-
+            </Checkbox> 
             <Checkbox label='Recently closed'
               tooltip='Recently closed tabs and windows.'
               optkey='panelClosed'
@@ -294,6 +300,9 @@ class Options extends Component {
             <Checkbox label='Show favicons'
               optkey='showFavicons'
               value={settings.showFavicons} />
+            <DeleteList 
+              data={settings.blacklist}
+              onDelete={this.onDeleteBlacklistItem} />
           </Tab>
         </Tabs>
       </div>

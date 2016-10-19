@@ -12,6 +12,29 @@
   width: 100%;
 }
 
+.options__button {
+  padding: 0.5em;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.options__remove {
+  background: url('../assets/img/close.svg') no-repeat center center / 0.5rem 0.5rem;
+  border: 0;
+  cursor: pointer;
+  font-size: 0;
+  height: 0.5rem;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  width: 0.5rem;
+  margin-right: 5px;
+  
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .options__credits {
   margin-top: 2em;
 
@@ -41,6 +64,11 @@
 
 .options__content {
   margin-left: 1.5em;
+  ul {
+    li{
+      position: relative;
+    }
+  }
 }
 
 abbr {
