@@ -260,10 +260,7 @@ class Options extends Component {
               <Number label='Max number of most visited pages'
                 optkey='maxVisited'
                 value={settings.maxVisited} />
-            </Checkbox>
-            <DeleteList 
-              data={settings.blacklist}
-              onDelete={this.onDeleteBlacklistItem} />
+            </Checkbox> 
             <Checkbox label='Recently closed'
               tooltip='Recently closed tabs and windows.'
               optkey='panelClosed'
@@ -303,6 +300,9 @@ class Options extends Component {
             <Checkbox label='Show favicons'
               optkey='showFavicons'
               value={settings.showFavicons} />
+            <DeleteList 
+              data={settings.blacklist}
+              onDelete={this.onDeleteBlacklistItem} />
           </Tab>
         </Tabs>
       </div>
