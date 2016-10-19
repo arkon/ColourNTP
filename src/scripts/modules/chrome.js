@@ -179,14 +179,19 @@ export default class Chrome {
   }
 
   static setSetting (key, value) {
-    chrome.storage.sync.set({
-      [key]: value
-    });
+    return new Promise((resolve) => {
+      chrome.storage.sync.set({
+        [key]: value
+      }, () => {
+        // Used to trigger components to fetch updated settings
+        chrome.runtime.sendMessage({
+          msg : 'saved',
+          key : key
+        });
 
-    // Used to trigger components to fetch updated settings
-    chrome.runtime.sendMessage({
-      msg : 'saved',
-      key : key
+        console.log("set setting")
+        resolve(true)
+      });
     });
   }
 }

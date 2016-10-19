@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 
 import Checkbox from './components/options/Checkbox';
 import Colour from './components/options/Colour';
+import DeleteList from './components/options/DeleteList';
 import Dropdown from './components/options/Dropdown';
 import FontPreview from './components/options/FontPreview';
 import Number from './components/options/Number';
@@ -38,6 +39,7 @@ class Options extends Component {
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
     this.onToggleTab = this.onToggleTab.bind(this);
+    this.onDeleteBlacklistItem = this.onDeleteBlacklistItem.bind(this);
   }
 
   componentDidMount () {
@@ -59,6 +61,8 @@ class Options extends Component {
   fetchSettings () {
     Chrome.getSettings()
       .then((settings) => {
+        console.log("fetch settings")
+        console.log(settings)
         this.setState({
           settings: settings
         })
@@ -71,12 +75,17 @@ class Options extends Component {
     });
   }
 
+  onDeleteBlacklistItem(url){
+    delete this.state.settings.blacklist[url]
+    Chrome.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());    
+  }
+
   render () {
     const settings = this.state.settings;
 
     const colourUpper = Colours.localize(true, settings.american);
     const colourLower = Colours.localize(false, settings.american);
-
+    
     return (
       <div>
         <header className='options__header'>
@@ -254,7 +263,9 @@ class Options extends Component {
                 optkey='maxVisited'
                 value={settings.maxVisited} />
             </Checkbox>
-
+            <DeleteList 
+              data={settings.blacklist}
+              onDelete={this.onDeleteBlacklistItem} />
             <Checkbox label='Recently closed'
               tooltip='Recently closed tabs and windows.'
               optkey='panelClosed'
