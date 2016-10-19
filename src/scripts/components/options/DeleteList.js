@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class DeleteList extends Component {
   state = {
-	  show: false,
+    show: false,
     sortedList: []
   };
 
@@ -15,7 +15,7 @@ export default class DeleteList extends Component {
   
   getSortedBlackList (blacklist) {
     let list = Object.keys(blacklist).map((key) => {{ date: blacklist[key], url: key }});
-    return list.sort((a, b) => {return a.date > b.date})
+    return list.sort((a, b) => a.date > b.date);
   }
   
   componentDidMount () {
@@ -26,14 +26,14 @@ export default class DeleteList extends Component {
 
   componentWillReceiveProps (nextProps) {
     this.setState({
-      sortedList: this.getSortedBlackList(this.props.data)
+      sortedList: this.getSortedBlackList(nextProps.data)
     });
   }
 
   toggleShowHide () {
     this.setState({
       show: !this.state.show
-    })
+    });
   }
 
   render () {

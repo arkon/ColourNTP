@@ -73,7 +73,7 @@ class Options extends Component {
     });
   }
 
-  onDeleteBlacklistItem(url){
+  onDeleteBlacklistItem(url) {
     delete this.state.settings.blacklist[url];
     Chrome.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());    
   }
