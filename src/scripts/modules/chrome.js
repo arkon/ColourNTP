@@ -32,10 +32,10 @@ export default class Chrome {
   // Panel helpers
   // ============================================================================================
 
-  static getTopSites (max = 10) {
+  static getTopSites (max = 10, blacklist = {}) {
     return new Promise((resolve) => {
       chrome.topSites.get((visitedURLs) => {
-        visitedURLs = visitedURLs.slice(0, parseInt(max, 10));
+        visitedURLs = visitedURLs.filter((site) => !blacklist[site.url]);
 
         let items = visitedURLs.map((site) => ({
           title : site.title,
@@ -43,7 +43,7 @@ export default class Chrome {
           img   : Chrome._favicon(site.url)
         }));
 
-        resolve(items);
+        resolve(items.slice(0, parseInt(max, 10)));
       });
     });
   }

@@ -75,10 +75,10 @@ export default class Panels extends Component {
         });
 
         if (settings.panelVisited) {
-          Chrome.getTopSites(settings.maxVisited)
+          Chrome.getTopSites(settings.maxVisited, settings.blacklist)
             .then((items) => {
               this.setState({
-                topSites: items.filter((item) => !settings.blacklist[item.url])
+                topSites: items
               });
             });
         }
