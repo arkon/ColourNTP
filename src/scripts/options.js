@@ -40,6 +40,7 @@ class Options extends Component {
     this.fetchSettings = this.fetchSettings.bind(this);
     this.onToggleTab = this.onToggleTab.bind(this);
     this.onDeleteBlacklistItem = this.onDeleteBlacklistItem.bind(this);
+    this.onClearBlacklist = this.onClearBlacklist.bind(this);
   }
 
   componentDidMount () {
@@ -76,6 +77,10 @@ class Options extends Component {
   onDeleteBlacklistItem(url) {
     delete this.state.settings.blacklist[url];
     Chrome.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());
+  }
+
+  onClearBlacklist() {
+    Chrome.setSetting('blacklist', {}).then(this.fetchSettings);    
   }
 
   render () {
@@ -304,7 +309,8 @@ class Options extends Component {
 
             <DeleteList
               data={settings.blacklist}
-              onDelete={this.onDeleteBlacklistItem} />
+              onDelete={this.onDeleteBlacklistItem}
+              onDeleteAll={this.onClearBlacklist} />
           </Tab>
         </Tabs>
       </div>
