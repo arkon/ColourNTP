@@ -2,37 +2,38 @@ import React, { Component } from 'react';
 
 export default class DeleteList extends Component {
   state = {
-	 show: false,
-   sortedList: []
-  }
+	  show: false,
+    sortedList: []
+  };
 
   constructor (props) {
     super(props);
 
     this.getSortedBlackList = this.getSortedBlackList.bind(this);
+    this.toggleShowHide = this.toggleShowHide.bind(this);
   }
   
-  getSortedBlackList (blacklist){
-    let list = [];
-    for (var key in blacklist) {
-      if (blacklist.hasOwnProperty(key)) {
-        list.push({date: blacklist[key], url: key})
-      }
-    }
-
+  getSortedBlackList (blacklist) {
+    let list = Object.keys(blacklist).map((key) => {{ date: blacklist[key], url: key }});
     return list.sort((a, b) => {return a.date > b.date})
   }
   
-  componentDidMount (){
+  componentDidMount () {
     this.setState({
       sortedList: this.getSortedBlackList(this.props.data)
     });  
   }
 
-  componentWillReceiveProps (nextProps){
+  componentWillReceiveProps (nextProps) {
     this.setState({
       sortedList: this.getSortedBlackList(this.props.data)
     });
+  }
+
+  toggleShowHide () {
+    this.setState({
+      show: !this.state.show
+    })
   }
 
   render () {
@@ -40,7 +41,7 @@ export default class DeleteList extends Component {
       <div className="options__content">
         <button 
           className="options__button" 
-          onClick={()=>this.setState({show: !this.state.show})}>
+          onClick={this.toggleShowHide}>
           show/hide removed sites
         </button>
         {this.state.show && 

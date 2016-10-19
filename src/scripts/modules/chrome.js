@@ -189,8 +189,7 @@ export default class Chrome {
           key : key
         });
 
-        console.log("set setting")
-        resolve(true)
+        resolve();
       });
     });
   }

@@ -61,8 +61,6 @@ class Options extends Component {
   fetchSettings () {
     Chrome.getSettings()
       .then((settings) => {
-        console.log("fetch settings")
-        console.log(settings)
         this.setState({
           settings: settings
         })
@@ -76,7 +74,7 @@ class Options extends Component {
   }
 
   onDeleteBlacklistItem(url){
-    delete this.state.settings.blacklist[url]
+    delete this.state.settings.blacklist[url];
     Chrome.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());    
   }
 
@@ -85,7 +83,7 @@ class Options extends Component {
 
     const colourUpper = Colours.localize(true, settings.american);
     const colourLower = Colours.localize(false, settings.american);
-    
+
     return (
       <div>
         <header className='options__header'>
