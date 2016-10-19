@@ -14,7 +14,7 @@ export default class DeleteList extends Component {
   }
   
   getSortedBlackList (blacklist) {
-    let list = Object.keys(blacklist).map((key) => {{ date: blacklist[key], url: key }});
+    let list = Object.keys(blacklist).map((key) => {return { date: blacklist[key], url: key }});
     return list.sort((a, b) => a.date > b.date);
   }
   
