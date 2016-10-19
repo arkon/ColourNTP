@@ -13,10 +13,8 @@
 }
 
 .options__button {
+  cursor: pointer;
   padding: 0.5em;
-  &:hover{
-    cursor: pointer;
-  }
 }
 
 .options__remove {
@@ -25,11 +23,11 @@
   cursor: pointer;
   font-size: 0;
   height: 0.5rem;
+  margin-right: 0.5rem;
   opacity: 0.5;
   transition: opacity 0.3s;
   width: 0.5rem;
-  margin-right: 5px;
-  
+
   &:hover {
     opacity: 1;
   }
@@ -64,10 +62,9 @@
 
 .options__content {
   margin-left: 1.5em;
-  ul {
-    li{
-      position: relative;
-    }
+
+  li {
+    position: relative;
   }
 }
 

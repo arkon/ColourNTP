@@ -75,7 +75,7 @@ class Options extends Component {
 
   onDeleteBlacklistItem(url) {
     delete this.state.settings.blacklist[url];
-    Chrome.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());    
+    Chrome.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());
   }
 
   render () {
@@ -260,7 +260,8 @@ class Options extends Component {
               <Number label='Max number of most visited pages'
                 optkey='maxVisited'
                 value={settings.maxVisited} />
-            </Checkbox> 
+            </Checkbox>
+
             <Checkbox label='Recently closed'
               tooltip='Recently closed tabs and windows.'
               optkey='panelClosed'
@@ -300,7 +301,8 @@ class Options extends Component {
             <Checkbox label='Show favicons'
               optkey='showFavicons'
               value={settings.showFavicons} />
-            <DeleteList 
+
+            <DeleteList
               data={settings.blacklist}
               onDelete={this.onDeleteBlacklistItem} />
           </Tab>

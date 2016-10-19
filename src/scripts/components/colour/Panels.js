@@ -73,6 +73,7 @@ export default class Panels extends Component {
           showFavicons  : settings.showFavicons,
           blacklist     : settings.blacklist
         });
+
         if (settings.panelVisited) {
           Chrome.getTopSites(settings.maxVisited)
             .then((items) => {
@@ -159,6 +160,7 @@ export default class Panels extends Component {
     blacklist[url] = Date.now();
 
     Chrome.setSetting('blacklist', blacklist);
+
     this.setState({
       topSites: this.state.topSites.filter((item) => !blacklist[item.url]),
       blacklist: blacklist

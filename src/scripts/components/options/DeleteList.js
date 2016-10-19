@@ -12,22 +12,22 @@ export default class DeleteList extends Component {
     this.getSortedBlackList = this.getSortedBlackList.bind(this);
     this.toggleShowHide = this.toggleShowHide.bind(this);
   }
-  
-  getSortedBlackList (blacklist) {
-    let list = Object.keys(blacklist).map((key) => {return { date: blacklist[key], url: key }});
-    return list.sort((a, b) => a.date > b.date);
-  }
-  
+
   componentDidMount () {
     this.setState({
       sortedList: this.getSortedBlackList(this.props.data)
-    });  
+    });
   }
 
   componentWillReceiveProps (nextProps) {
     this.setState({
       sortedList: this.getSortedBlackList(nextProps.data)
     });
+  }
+
+  getSortedBlackList (blacklist) {
+    let list = Object.keys(blacklist).map((key) => ({ date: blacklist[key], url: key }));
+    return list.sort((a, b) => a.date > b.date);
   }
 
   toggleShowHide () {
@@ -39,28 +39,27 @@ export default class DeleteList extends Component {
   render () {
     return (
       <div className="options__content">
-        <button 
-          className="options__button" 
+        <button
+          className="options__button"
           onClick={this.toggleShowHide}>
-          show/hide removed sites
+          Show/hide removed sites
         </button>
-        {this.state.show && 
+        {this.state.show &&
           <ul>
             {this.state.sortedList.map((data, i) => {
               return (
                 <li key={i}>
-                  <button 
+                  <button
                     onClick={() => this.props.onDelete(data.url)}
                     className="options__remove">
                   </button>
                   <span>{data.url}</span>
                 </li>
-                );
+              );
             })}
           </ul>
         }
       </div>
     )
   };
-
 }
