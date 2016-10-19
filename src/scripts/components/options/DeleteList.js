@@ -46,6 +46,11 @@ export default class DeleteList extends Component {
         </button>
         {this.state.show && 
           <ul>
+            <button 
+              onClick={this.props.onDeleteAll}
+              className="options__button">
+              clear list
+            </button>
             {this.state.sortedList.map((data, i) => {
               return (
                 <li key={i}>
