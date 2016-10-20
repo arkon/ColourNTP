@@ -183,6 +183,11 @@ class Options extends Component {
               tooltip='Incorrectly spell everything as "color".'
               optkey='american'
               value={settings.american} />
+
+            <Checkbox label='Adjust text colour based on background'
+              tooltip='Makes text more readable'
+              optkey='adjustColour'
+              value={settings.adjustColour} />
           </Tab>
 
           <Tab name='Background'>
