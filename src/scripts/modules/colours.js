@@ -95,6 +95,10 @@ export default class Colours {
   }
 
   static hexToHsl(hex) {
+    if (hex.startsWith('#')) {
+      hex = hex.substring(1);
+    }
+
     return Colours.rgbToHsl(...Colours.hexToRgb(hex));
   }
 
@@ -102,6 +106,10 @@ export default class Colours {
    * Converts a hex colour string to an array of RGB values.
    */
   static hexToRgb(hex) {
+    if (hex.startsWith('#')) {
+      hex = hex.substring(1);
+    }
+
     const r = parseInt(hex, 16) >> 16,
       g = parseInt(hex, 16) >> 8 & 0xFF,
       b = parseInt(hex, 16) & 0xFF;
@@ -113,7 +121,11 @@ export default class Colours {
    * Converts a hex colour to an RGBA string with the provided alpha value.
    */
   static rgba(hex, alpha) {
-    const colour = Colours.hexToRgb(hex.substring(1));
+    if (hex.startsWith('#')) {
+      hex = hex.substring(1);
+    }
+
+    const colour = Colours.hexToRgb(hex);
 
     return `rgba(${colour[0]}, ${colour[1]}, ${colour[2]}, ${alpha})`;
   }
@@ -140,17 +152,21 @@ export default class Colours {
    * is specified.
    */
   static format(hex, format) {
+    if (hex.startsWith('#')) {
+      hex = hex.substring(1);
+    }
+
     let colour = hex;
 
     switch (format) {
       case 'rgb': {
-        const rgb = Colours.hexToRgb(colour.substring(1));
+        const rgb = Colours.hexToRgb(colour);
         colour = `rgb(${rgb.join(', ')})`;
         break;
       }
 
       case 'hsl': {
-        const hsl = Colours.hexToHsl(colour.substring(1));
+        const hsl = Colours.hexToHsl(colour);
         colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
         break;
       }

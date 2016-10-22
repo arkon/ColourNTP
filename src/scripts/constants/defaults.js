@@ -9,7 +9,7 @@ import {
 export const DEFAULTS = {
   time24hr       : true,
   animations     : true,
-  adjustColour   : true,
+  adjustColour   : false,
   showTime       : true,
   showTimeSec    : true,
   showTimePost   : true,

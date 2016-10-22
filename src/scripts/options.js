@@ -80,7 +80,7 @@ class Options extends Component {
   }
 
   onClearBlacklist() {
-    Chrome.setSetting('blacklist', {}).then(this.fetchSettings);    
+    Chrome.setSetting('blacklist', {}).then(this.fetchSettings);
   }
 
   render () {
@@ -179,15 +179,15 @@ class Options extends Component {
               optkey='ticker'
               value={settings.ticker} />
 
+            <Checkbox label={`Automatically adjust text ${colourLower}`}
+              tooltip='Black text on light backgrounds and vice versa.'
+              optkey='adjustColour'
+              value={settings.adjustColour} />
+
             <Checkbox label='American spelling'
               tooltip='Incorrectly spell everything as "color".'
               optkey='american'
               value={settings.american} />
-
-            <Checkbox label='Adjust text colour based on background'
-              tooltip='Makes text more readable'
-              optkey='adjustColour'
-              value={settings.adjustColour} />
           </Tab>
 
           <Tab name='Background'>

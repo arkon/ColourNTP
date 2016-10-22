@@ -5,7 +5,7 @@ import Colours from '../../modules/colours';
 
 const SavedColour = ({ index, colour, format, onRemove }) => {
   const savedColourClass = classNames('saved_colour', 'copy', {
-    'is_dark': Colours.isDark(...Colours.hexToRgb(colour.substring(1)))
+    'is_dark': Colours.isDark(...Colours.hexToRgb(colour))
   });
 
   const formattedColour = Colours.format(colour, format);
