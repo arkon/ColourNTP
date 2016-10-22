@@ -152,21 +152,17 @@ export default class Colours {
    * is specified.
    */
   static format(hex, format) {
-    if (hex.startsWith('#')) {
-      hex = hex.substring(1);
-    }
-
     let colour = hex;
 
     switch (format) {
       case 'rgb': {
-        const rgb = Colours.hexToRgb(colour);
+        const rgb = Colours.hexToRgb(colour.substring(1));
         colour = `rgb(${rgb.join(', ')})`;
         break;
       }
 
       case 'hsl': {
-        const hsl = Colours.hexToHsl(colour);
+        const hsl = Colours.hexToHsl(colour.substring(1));
         colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
         break;
       }
