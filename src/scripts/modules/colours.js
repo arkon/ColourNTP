@@ -1,3 +1,5 @@
+import { ColourFormats } from '../constants/settings';
+
 export default class Colours {
   /**
    * Converts the second to a hex value, from 0x000000 to 0xFFFFFF.
@@ -69,6 +71,9 @@ export default class Colours {
     return `#${(((1 << 24) + (r << 16) + (g << 8) + b) | 0).toString(16).slice(1)}`;
   }
 
+  /**
+   * Converts RGB to HSL.
+   */
   static rgbToHsl(r, g, b) {
     r /= 255, g /= 255, b /= 255;
 
@@ -94,6 +99,50 @@ export default class Colours {
     return [(h * 100 + 0.5) | 0, (s * 100 + 0.5) | 0, (l * 100 + 0.5) | 0];
   }
 
+  /**
+   * Converts RGB to HSV.
+   */
+  static rgbToHsv (r, g, b) {
+    var rr, gg, bb,
+      r = r / 255,
+      g = g / 255,
+      b = b / 255,
+      h, s,
+      v = Math.max(r, g, b),
+      diff = v - Math.min(r, g, b),
+      diffc = function (c) {
+        return (v - c) / 6 / diff + 1 / 2;
+      };
+
+    if (diff == 0) {
+      h = s = 0;
+    } else {
+      s = diff / v;
+      rr = diffc(r);
+      gg = diffc(g);
+      bb = diffc(b);
+
+      if (r === v) {
+        h = bb - gg;
+      } else if (g === v) {
+        h = (1 / 3) + rr - bb;
+      } else if (b === v) {
+        h = (2 / 3) + gg - rr;
+      }
+
+      if (h < 0) {
+        h += 1;
+      } else if (h > 1) {
+        h -= 1;
+      }
+    }
+
+    return [Math.round(h * 360), Math.round(s * 100), Math.round(v * 100)];
+  }
+
+  /**
+   * Converts hex to HSL.
+   */
   static hexToHsl(hex) {
     if (hex.startsWith('#')) {
       hex = hex.substring(1);
@@ -155,15 +204,21 @@ export default class Colours {
     let colour = hex;
 
     switch (format) {
-      case 'rgb': {
-        const rgb = Colours.hexToRgb(colour.substring(1));
+      case ColourFormats.RGB: {
+        const rgb = Colours.hexToRgb(colour);
         colour = `rgb(${rgb.join(', ')})`;
         break;
       }
 
-      case 'hsl': {
+      case ColourFormats.HSL: {
         const hsl = Colours.hexToHsl(colour.substring(1));
         colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
+        break;
+      }
+
+      case ColourFormats.HSV: {
+        const hsv = Colours.rgbToHsv(...Colours.hexToRgb(colour));
+        colour = `hsv(${hsv[0]}, ${hsv[1]}, ${hsv[2]})`;
         break;
       }
 

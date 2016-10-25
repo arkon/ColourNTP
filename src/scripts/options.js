@@ -139,6 +139,10 @@ class Options extends Component {
                 <Radio label='HSL'
                   tooltip='Hue/saturation/lightness: hsl(210, 65%, 20%)'
                   value={ColourFormats.HSL} />
+
+                <Radio label='HSV'
+                  tooltip='Hue/saturation/value: hsv(210, 79%, 33%)'
+                  value={ColourFormats.HSV} />
               </RadioGroup>
             </Checkbox>
 
