@@ -22,13 +22,13 @@
     "react-dom": "^15.3.2"
   },
   "devDependencies": {
-    "babel-loader": "^6.2.5",
+    "babel-loader": "^6.2.7",
     "babel-plugin-transform-class-properties": "^6.18.0",
     "babel-preset-node6": "^11.0.0",
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.18.0",
     "del": "^2.2.2",
-    "eslint": "^3.8.1",
+    "eslint": "^3.9.0",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",

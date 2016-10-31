@@ -143,6 +143,10 @@ class Options extends Component {
                 <Radio label='HSV'
                   tooltip='Hue/saturation/value: hsv(210, 79%, 33%)'
                   value={ColourFormats.HSV} />
+
+                <Radio label='CMYK'
+                  tooltip='Cyan/magenta/yellow/key: cmyk(79, 40, 0, 66)'
+                  value={ColourFormats.CMYK} />
               </RadioGroup>
             </Checkbox>
 

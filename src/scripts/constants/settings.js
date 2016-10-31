@@ -2,7 +2,8 @@ export const ColourFormats = {
   HEX: 'hex',
   RGB: 'rgb',
   HSL: 'hsl',
-  HSV: 'hsv'
+  HSV: 'hsv',
+  CMYK: 'cmyk'
 };
 
 export const ColourTypes = {

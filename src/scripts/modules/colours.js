@@ -141,6 +141,27 @@ export default class Colours {
   }
 
   /**
+   * Converts RGB to CMYK.
+   */
+  static rgbToCmyk(r, g, b) {
+    r = r / 255;
+    g = g / 255;
+    b = b / 255;
+
+    let k = Math.min(1 - r, 1 - g, 1 - b);
+    let c = (1 - r - k) / (1 - k);
+    let m = (1 - g - k) / (1 - k);
+    let y = (1 - b - k) / (1 - k);
+
+    c = Math.round(c * 100);
+    m = Math.round(m * 100);
+    y = Math.round(y * 100);
+    k = Math.round(k * 100);
+
+    return [c, m, y, k];
+  }
+
+  /**
    * Converts hex to HSL.
    */
   static hexToHsl(hex) {
@@ -219,6 +240,12 @@ export default class Colours {
       case ColourFormats.HSV: {
         const hsv = Colours.rgbToHsv(...Colours.hexToRgb(colour));
         colour = `hsv(${hsv[0]}, ${hsv[1]}, ${hsv[2]})`;
+        break;
+      }
+
+      case ColourFormats.CMYK: {
+        const cmyk = Colours.rgbToCmyk(...Colours.hexToRgb(colour));
+        colour = `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
         break;
       }
 
