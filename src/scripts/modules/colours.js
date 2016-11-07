@@ -55,11 +55,21 @@ export default class Colours {
    * Converts a hue color value to RGB.
    */
   static hueToRgb (p, q, t) {
-    if (t < 0) t++;
-    if (t > 1) t--;
-    if (t < 1/6) return p + (q - p) * 6 * t;
-    if (t < 1/2) return q;
-    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+    if (t < 0) {
+      t++;
+    }
+    if (t > 1) {
+      t--;
+    }
+    if (t < 1/6) {
+      return p + (q - p) * 6 * t;
+    }
+    if (t < 1/2) {
+      return q;
+    }
+    if (t < 2/3) {
+      return p + (q - p) * (2/3 - t) * 6;
+    }
 
     return p;
   }
@@ -82,15 +92,25 @@ export default class Colours {
 
     let h, s, l = (max + min) / 2;
 
-    if (max == min) { h = s = 0; }
-    else {
+    if (max === min) {
+      h = s = 0;
+    } else {
       const d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
 
       switch (max) {
-        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-        case g: h = (b - r) / d + 2; break;
-        case b: h = (r - g) / d + 4; break;
+      case r: {
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      }
+      case g: {
+        h = (b - r) / d + 2;
+        break;
+      }
+      case b: {
+        h = (r - g) / d + 4;
+        break;
+      }
       }
 
       h /= 6;
@@ -103,10 +123,11 @@ export default class Colours {
    * Converts RGB to HSV.
    */
   static rgbToHsv (r, g, b) {
-    var rr, gg, bb,
-      r = r / 255,
-      g = g / 255,
-      b = b / 255,
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    let rr, gg, bb,
       h, s,
       v = Math.max(r, g, b),
       diff = v - Math.min(r, g, b),
@@ -114,7 +135,7 @@ export default class Colours {
         return (v - c) / 6 / diff + 1 / 2;
       };
 
-    if (diff == 0) {
+    if (diff === 0) {
       h = s = 0;
     } else {
       s = diff / v;
@@ -144,9 +165,9 @@ export default class Colours {
    * Converts RGB to CMYK.
    */
   static rgbToCmyk(r, g, b) {
-    r = r / 255;
-    g = g / 255;
-    b = b / 255;
+    r /= 255;
+    g /= 255;
+    b /= 255;
 
     let k = Math.min(1 - r, 1 - g, 1 - b);
     let c = (1 - r - k) / (1 - k);
@@ -225,33 +246,33 @@ export default class Colours {
     let colour = hex;
 
     switch (format) {
-      case ColourFormats.RGB: {
-        const rgb = Colours.hexToRgb(colour);
-        colour = `rgb(${rgb.join(', ')})`;
-        break;
-      }
+    case ColourFormats.RGB: {
+      const rgb = Colours.hexToRgb(colour);
+      colour = `rgb(${rgb.join(', ')})`;
+      break;
+    }
 
-      case ColourFormats.HSL: {
-        const hsl = Colours.hexToHsl(colour.substring(1));
-        colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
-        break;
-      }
+    case ColourFormats.HSL: {
+      const hsl = Colours.hexToHsl(colour.substring(1));
+      colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
+      break;
+    }
 
-      case ColourFormats.HSV: {
-        const hsv = Colours.rgbToHsv(...Colours.hexToRgb(colour));
-        colour = `hsv(${hsv[0]}, ${hsv[1]}, ${hsv[2]})`;
-        break;
-      }
+    case ColourFormats.HSV: {
+      const hsv = Colours.rgbToHsv(...Colours.hexToRgb(colour));
+      colour = `hsv(${hsv[0]}, ${hsv[1]}, ${hsv[2]})`;
+      break;
+    }
 
-      case ColourFormats.CMYK: {
-        const cmyk = Colours.rgbToCmyk(...Colours.hexToRgb(colour));
-        colour = `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
-        break;
-      }
+    case ColourFormats.CMYK: {
+      const cmyk = Colours.rgbToCmyk(...Colours.hexToRgb(colour));
+      colour = `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
+      break;
+    }
 
-      default: {
-        break;
-      }
+    default: {
+      break;
+    }
     }
 
     return colour;
