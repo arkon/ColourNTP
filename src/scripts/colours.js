@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import Clipboard from 'clipboard';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import SVGInline from 'react-svg-inline';
 
 import Chrome from './modules/chrome';
 import Colours from './modules/colours';
@@ -20,6 +21,12 @@ import SavedColours from './components/colour/SavedColours';
 import Sidebar from './components/colour/Sidebar';
 import Time from './components/colour/Time';
 import Toast from './components/colour/Toast';
+
+import svgBookmark from '../assets/img/bookmark.svg';
+import svgClose from '../assets/img/close.svg';
+import svgGear from '../assets/img/gear.svg';
+import svgImage from '../assets/img/image.svg';
+import svgNewTab from '../assets/img/newtab.svg';
 
 class NewTab extends Component {
   state = {
@@ -299,22 +306,30 @@ class NewTab extends Component {
           }
 
           <div className='colours__btns'>
-            <a className='colours__btn--saved' title='Open sidebar'
-              onClick={this.toggleSidebar} />
+            <a className='colours__btn' title='Open sidebar'
+              onClick={this.toggleSidebar}>
+              <SVGInline svg={svgBookmark} />
+            </a>
 
             { settings.shortcutOpts &&
-              <a target='_blank' className='colours__btn--options'
-                href='options.html' title='Options' />
+              <a target='_blank' className='colours__btn colours__btn--options'
+                href='options.html' title='Options'>
+                <SVGInline svg={svgGear} />
+              </a>
             }
 
             { settings.shortcutNewTab &&
-              <a className='colours__btn--newtab' title='Default new tab'
-                onClick={this.onClickNewTab} />
+              <a className='colours__btn' title='Default new tab'
+                onClick={this.onClickNewTab}>
+                <SVGInline svg={svgNewTab} />
+              </a>
             }
 
             { settings.shortcutImage && this.state.bgImage &&
-              <a target='_blank' className='colours__btn--download'
-                href={this.state.bgImage} title='Open image' />
+              <a target='_blank' className='colours__btn'
+                href={this.state.bgImage} title='Open image'>
+                <SVGInline svg={svgImage} />
+              </a>
             }
           </div>
 

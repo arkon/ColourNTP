@@ -19,7 +19,8 @@
     "classnames": "^2.2.5",
     "clipboard": "^1.5.15",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "react-svg-inline": "^1.2.0"
   },
   "devDependencies": {
     "babel-loader": "^6.2.7",
@@ -28,15 +29,16 @@
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.18.0",
     "del": "^2.2.2",
-    "eslint": "^3.10.0",
+    "eslint": "^3.10.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.1",
-    "eslint-plugin-react": "^6.6.0",
+    "eslint-plugin-react": "^6.7.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-htmlmin": "^3.0.0",
     "gulp-sass": "^2.3.2",
     "gulp-zip": "^3.2.0",
+    "raw-loader": "^0.5.1",
     "webpack": "2.1.0-beta.20"
   }
 }

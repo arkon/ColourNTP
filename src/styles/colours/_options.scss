@@ -4,53 +4,33 @@
   right: 0;
   top: 0;
   z-index: var(--z-above);
+}
 
-  a {
+  .colours__btn {
     display: block;
+    height: 2.25em;
     opacity: 0.4;
     transition: opacity 0.3s;
+    width: 2.5em;
 
-    &::before {
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: 0.75em 0.75em;
-      content: '';
-      display: block;
-      height: 2.25em;
-      width: 2.5em;
+    svg {
+      height: 0.7em;
+      width: 0.7em;
+
+      > * {
+        fill: #fff;
+      }
     }
 
     &:hover {
       opacity: 1;
     }
   }
-}
 
-.colours__btn--saved {
-  &::before {
-    background-image: url('../assets/img/bookmark.svg');
-  }
-}
-
-.colours__btn--options {
-  &::before {
-    background-image: url('../assets/img/gear.svg');
+  .colours__btn--options {
     transition: transform 0.35s ease-out;
-  }
 
-  &:hover::before {
-    transform: rotate(180deg);
+    &:hover {
+      transform: rotate(180deg);
+    }
   }
-}
-
-.colours__btn--newtab {
-  &::before {
-    background-image: url('../assets/img/newtab.svg');
-  }
-}
-
-.colours__btn--download {
-  &::before {
-    background-image: url('../assets/img/image.svg');
-  }
-}

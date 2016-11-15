@@ -23,7 +23,11 @@ module.exports = {
           plugins: ['transform-class-properties']
         }
       },
-    ],
+      {
+        test: /\.svg$/,
+        loader: 'raw'
+      }
+    ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
