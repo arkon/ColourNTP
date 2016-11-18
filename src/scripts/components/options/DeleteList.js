@@ -42,11 +42,11 @@ export default class DeleteList extends Component {
         <button
           className="options__button"
           onClick={this.toggleShowHide}>
-          Show/hide removed sites
+          {this.props.toggleText}
         </button>
         {this.state.show &&
           <ul>
-            <button 
+            <button
               onClick={this.props.onDeleteAll}
               className="options__button">
               clear list

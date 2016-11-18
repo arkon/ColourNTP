@@ -322,6 +322,7 @@ class Options extends Component {
 
             <DeleteList
               data={settings.blacklist}
+              toggleText='Show/hide removed sites'
               onDelete={this.onDeleteBlacklistItem}
               onDeleteAll={this.onClearBlacklist} />
           </Tab>
