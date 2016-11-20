@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import SVGInline from 'react-svg-inline';
+
+import svgClose from '../../../assets/img/close.svg';
 
 export default class DeleteList extends Component {
   state = {
-    show: false,
     sortedList: []
   };
 
@@ -10,7 +12,6 @@ export default class DeleteList extends Component {
     super(props);
 
     this.getSortedBlackList = this.getSortedBlackList.bind(this);
-    this.toggleShowHide = this.toggleShowHide.bind(this);
   }
 
   componentDidMount () {
@@ -30,40 +31,31 @@ export default class DeleteList extends Component {
     return list.sort((a, b) => a.date > b.date);
   }
 
-  toggleShowHide () {
-    this.setState({
-      show: !this.state.show
-    });
-  }
-
   render () {
     return (
-      <div className="options__content">
+      <div>
         <button
-          className="options__button"
-          onClick={this.toggleShowHide}>
-          {this.props.toggleText}
+          onClick={this.props.onDeleteAll}
+          className="options__button">
+          Clear list
         </button>
-        {this.state.show &&
-          <ul>
-            <button
-              onClick={this.props.onDeleteAll}
-              className="options__button">
-              clear list
-            </button>
-            {this.state.sortedList.map((data, i) => {
-              return (
-                <li key={i}>
+
+        <table className="options__list__table">
+          <tbody>
+            {this.state.sortedList.map((data, i) => (
+              <tr key={i}>
+                <td>{data.url}</td>
+                <td>
                   <button
                     onClick={() => this.props.onDelete(data.url)}
-                    className="options__remove">
+                    className="options__list__remove">
+                    <SVGInline svg={svgClose} />
                   </button>
-                  <span>{data.url}</span>
-                </li>
-              );
-            })}
-          </ul>
-        }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     )
   };

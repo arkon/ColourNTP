@@ -320,11 +320,16 @@ class Options extends Component {
               optkey='showFavicons'
               value={settings.showFavicons} />
 
-            <DeleteList
-              data={settings.blacklist}
-              toggleText='Show/hide removed sites'
-              onDelete={this.onDeleteBlacklistItem}
-              onDeleteAll={this.onClearBlacklist} />
+            <hr />
+
+            <div className='options__list'>
+              <p>Manage hidden most visited sites:</p>
+
+              <DeleteList
+                data={settings.blacklist}
+                onDelete={this.onDeleteBlacklistItem}
+                onDeleteAll={this.onClearBlacklist} />
+            </div>
           </Tab>
         </Tabs>
       </div>

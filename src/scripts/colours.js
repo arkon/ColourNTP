@@ -23,7 +23,6 @@ import Time from './components/colour/Time';
 import Toast from './components/colour/Toast';
 
 import svgBookmark from '../assets/img/bookmark.svg';
-import svgClose from '../assets/img/close.svg';
 import svgGear from '../assets/img/gear.svg';
 import svgImage from '../assets/img/image.svg';
 import svgNewTab from '../assets/img/newtab.svg';

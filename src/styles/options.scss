@@ -12,27 +12,6 @@
   width: 100%;
 }
 
-.options__button {
-  cursor: pointer;
-  padding: 0.5em;
-}
-
-.options__remove {
-  background: url('../assets/img/close.svg') no-repeat center center / 0.5rem 0.5rem;
-  border: 0;
-  cursor: pointer;
-  font-size: 0;
-  height: 0.5rem;
-  margin-right: 0.5rem;
-  opacity: 0.5;
-  transition: opacity 0.3s;
-  width: 0.5rem;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 .options__credits {
   margin-top: 2em;
 
@@ -111,4 +90,48 @@ abbr {
       width: 0;
     }
   }
+}
+
+.options__list {
+  margin-top: 0.5em;
+}
+
+  .options__list__table {
+    border-collapse: collapse;
+    width: 100%;
+
+    td {
+      border-bottom: 1px solid rgba($light-grey, 0.5);
+      border-top: 1px solid rgba($light-grey, 0.5);
+      padding: 0.5em 0;
+    }
+  }
+
+  .options__list__remove {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    height: 1em;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    width: 1em;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    svg {
+      fill: $white;
+    }
+  }
+
+.options__button {
+  background: none;
+  border: 1px solid $white;
+  color: $white;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85em;
+  margin: 0.5em 0;
+  padding: 0.5em;
 }
