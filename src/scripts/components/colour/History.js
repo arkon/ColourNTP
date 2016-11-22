@@ -45,12 +45,12 @@ export default class History extends Component {
 
   render () {
     return (
-      <div className='history'>
+      <div className="history">
         { this.state.history.map((colour, i) => {
           const formattedColour = Colours.format(colour, this.props.format);
 
           return (
-            <div key={i} className='history__item copy'
+            <div key={i} className="history__item copy"
               style={{ backgroundColor: colour }}
               data-colour={formattedColour}
               data-clipboard-text={formattedColour}

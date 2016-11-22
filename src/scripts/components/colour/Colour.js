@@ -8,9 +8,9 @@ const Colour = ({ colour, format }) => {
   const formattedColour = Colours.format(colour, format);
 
   return (
-    <h2 className='colours__hex'>
-      <span className='copy'
-        title='Copy to clipboard'
+    <h2 className="colours__hex">
+      <span className="copy"
+        title="Copy to clipboard"
         data-clipboard-text={formattedColour}
         onClick={() => Saved.add(colour)}>
         {formattedColour}

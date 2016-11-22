@@ -52,11 +52,11 @@ export default class SavedColours extends Component {
 
   render () {
     return (
-      <div className='saved_colours'>
+      <div className="saved_colours">
         <h1>Saved</h1>
 
         { this.state.colours.length > 0 ?
-          <button className='btn' onClick={this.clearSaved}>Remove all</button> :
+          <button className="btn" onClick={this.clearSaved}>Remove all</button> :
           <p>You don't have anything saved!<br />Click on a code to save it.</p>
         }
 

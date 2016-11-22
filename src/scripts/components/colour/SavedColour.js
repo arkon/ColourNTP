@@ -18,10 +18,10 @@ const SavedColour = ({ index, colour, format, onRemove }) => {
   return (
     <div className={savedColourClass}
       style={{ backgroundColor: colour }}
-      title='Copy to clipboard'
+      title="Copy to clipboard"
       data-clipboard-text={formattedColour}>
       {formattedColour}
-      <button className='saved_colour--remove' onClick={remove}>Remove</button>
+      <button className="saved_colour--remove" onClick={remove}>Remove</button>
     </div>
   );
 };

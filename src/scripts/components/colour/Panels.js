@@ -76,7 +76,7 @@ export default class Panels extends Component {
 
         if (settings.panelVisited) {
           Chrome.getTopSites(settings.maxVisited, settings.blacklist)
-            .then((items) => {
+            .then(items => {
               this.setState({
                 topSites: items
               });
@@ -85,7 +85,7 @@ export default class Panels extends Component {
 
         if (settings.panelClosed) {
           Chrome.getRecentlyClosed(settings.maxClosed)
-            .then((items) => {
+            .then(items => {
               this.setState({
                 recentlyClosed: items
               });
@@ -94,7 +94,7 @@ export default class Panels extends Component {
 
         if (settings.panelDevices) {
           Chrome.getDevices()
-            .then((items) => {
+            .then(items => {
               this.setState({
                 devices: items
               });
@@ -103,7 +103,7 @@ export default class Panels extends Component {
 
         if (settings.panelApps) {
           Chrome.getApps()
-            .then((items) => {
+            .then(items => {
               this.setState({
                 apps: items
               });
@@ -155,14 +155,15 @@ export default class Panels extends Component {
     e.preventDefault();
     e.stopPropagation();
 
-    let url = e.target.dataset.url;
+    const url = e.target.dataset.url;
+
     let blacklist = this.state.blacklist;
     blacklist[url] = Date.now();
 
     Chrome.setSetting('blacklist', blacklist);
 
     this.setState({
-      topSites: this.state.topSites.filter((item) => !blacklist[item.url]),
+      topSites: this.state.topSites.filter(item => !blacklist[item.url]),
       blacklist: blacklist
     });
   }
@@ -178,14 +179,18 @@ export default class Panels extends Component {
       <div className={panelsClass}>
         <Tabs onToggle={this.onClickTab} activeTab={state.open} canToggle>
           { state.showVisited &&
-            <Tab name='Most visited'>
-              <ul className='panels__panel'>
+            <Tab name="Most visited">
+              <ul className="panels__panel">
                 { state.topSites.map((site, i) => (
                   <li key={i}>
                     <a className={`item-${i}`} title={site.title} href={site.url}
                       style={{ backgroundImage: `url('${site.img}')` }}>
                       {site.title}
-                      <button className='item--remove' data-url={site.url} onClick={this.blacklistSite}>Remove</button>
+                      <button
+                        className="item--remove"
+                        title="Hide"
+                        data-url={site.url}
+                        onClick={this.blacklistSite} />
                     </a>
                   </li>
                 )) }
@@ -194,10 +199,10 @@ export default class Panels extends Component {
           }
 
           { state.showClosed &&
-            <Tab name='Recently closed'>
-              <ul className='panels__panel'>
+            <Tab name="Recently closed">
+              <ul className="panels__panel">
                 { (state.recentlyClosed.length === 0) ?
-                  <p className='panels__panel__message'>No recently closed sessions</p> :
+                  <p className="panels__panel__message">No recently closed sessions</p> :
                   state.recentlyClosed.map((session, i) => (
                     <li key={i} onClick={this.onClickSession(session.session)}>
                       <a className={`item-${i}`} title={session.title}
@@ -212,14 +217,14 @@ export default class Panels extends Component {
           }
 
           { state.showDevices &&
-            <Tab name='Other devices'>
-              <ul className='panels__panel panels__panel--devices'>
+            <Tab name="Other devices">
+              <ul className="panels__panel panels__panel--devices">
                 { (state.devices.length === 0) ?
-                  <p className='panels__panel__message'>No tabs from other devices</p> :
+                  <p className="panels__panel__message">No tabs from other devices</p> :
                   state.devices.map((device, i) => {
                     return (
                       <li key={i} className={`item-${i}`} >
-                        <p className='panels__panel--devices__name'>{device.title}</p>
+                        <p className="panels__panel--devices__name">{device.title}</p>
                         <ul>
                           { device.tabs.map((tab, j) => (
                             <li key={j}>
@@ -239,11 +244,11 @@ export default class Panels extends Component {
           }
 
           { state.showApps &&
-            <Tab name='Apps'>
-              <ul className='panels__panel panels__panel--apps'>
+            <Tab name="Apps">
+              <ul className="panels__panel panels__panel--apps">
                 { state.apps.map((app, i) => {
-                  if ((app.id === 'ntp-apps' && !this.state.showAllApps) ||
-                    (app.id === 'ntp-webstore' && !this.state.showWebStore)) {
+                  if ((app.id === "ntp-apps" && !this.state.showAllApps) ||
+                    (app.id === "ntp-webstore" && !this.state.showWebStore)) {
                     return null;
                   }
 
@@ -251,7 +256,7 @@ export default class Panels extends Component {
                     <li key={i} onClick={this.onClickApp(app.id, app.href)}>
                       <a className={`item-${i}`}>
                         <img src={app.img} alt={app.title} />
-                        <div className='panels__panel--apps__name'>{app.title}</div>
+                        <div className="panels__panel--apps__name">{app.title}</div>
                       </a>
                     </li>
                   );
@@ -261,8 +266,8 @@ export default class Panels extends Component {
           }
 
           { state.showShortcuts &&
-            <Tab name='Shortcuts'>
-              <ul className='panels__panel'>
+            <Tab name="Shortcuts">
+              <ul className="panels__panel">
                 { state.shortcuts.map((shortcut, i) => (
                   <li key={i} onClick={this.onClickShortcut(shortcut.url)}>
                     <a className={`item-${i}`} title={shortcut.title}

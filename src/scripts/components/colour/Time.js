@@ -17,15 +17,15 @@ const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix }) => {
   }
 
   return (
-    <h1 className='colours__time'>
+    <h1 className="colours__time">
       <span>{padHour ? TimeHelper.pad(hour) : hour}</span>
-      <span className='colours__time__colon'> : </span>
+      <span className="colours__time__colon"> : </span>
       <span>{TimeHelper.pad(time.minute)}</span>
-      { showSeconds && <span className='colours__time__colon'> : </span> }
+      { showSeconds && <span className="colours__time__colon"> : </span> }
       { showSeconds && <span>{TimeHelper.pad(time.second)}</span> }
 
       { !hourFormat24 && showPostFix &&
-        <span className='colours__time__postfix'>{afterNoon ? 'PM' : 'AM'}</span>
+        <span className="colours__time__postfix">{afterNoon ? 'PM' : 'AM'}</span>
       }
     </h1>
   );

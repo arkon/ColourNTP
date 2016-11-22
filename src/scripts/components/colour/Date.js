@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const Date = ({ date }) => (
-  <h2 className='colours__date'>{date}</h2>
+  <h2 className="colours__date">{date}</h2>
 );
 
 Date.propTypes = {

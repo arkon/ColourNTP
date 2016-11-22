@@ -10,7 +10,7 @@ const Sidebar = ({ open, onClose, children }) => {
     <div className={sidebarClass}>
       { open &&
         <div>
-          <button className='sidebar__toggle' onClick={() => onClose()}>
+          <button className="sidebar__toggle" onClick={() => onClose()}>
             Close
           </button>
 
