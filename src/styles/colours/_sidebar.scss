@@ -22,14 +22,16 @@
 }
 
 .sidebar__toggle {
-  background: url('../assets/img/close.svg') no-repeat center center / 0.75rem 0.75rem;
+  background: none;
   border: 0;
   cursor: pointer;
   font-size: 0;
   height: 2rem;
+  line-height: 2;
   opacity: 0.5;
   position: fixed;
   right: 0;
+  text-align: center;
   top: 0;
   transition: opacity 0.3s;
   width: 2rem;
@@ -37,5 +39,11 @@
 
   &:hover {
     opacity: 1;
+  }
+
+  svg {
+    fill: $white;
+    height: 0.75rem;
+    width: 0.75rem;
   }
 }

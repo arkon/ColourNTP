@@ -1,5 +1,8 @@
 import classNames from 'classnames';
 import React, { PropTypes } from 'react';
+import SVGInline from 'react-svg-inline';
+
+import svgClose from '../../../assets/img/close.svg';
 
 const Sidebar = ({ open, onClose, children }) => {
   const sidebarClass = classNames('sidebar', {
@@ -11,7 +14,7 @@ const Sidebar = ({ open, onClose, children }) => {
       { open &&
         <div>
           <button className="sidebar__toggle" onClick={() => onClose()}>
-            Close
+            <SVGInline svg={svgClose} />
           </button>
 
           {children}

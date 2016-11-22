@@ -1,7 +1,10 @@
 import classNames from 'classnames';
 import React, { PropTypes } from 'react'
+import SVGInline from 'react-svg-inline';
 
 import Colours from '../../modules/colours';
+
+import svgClose from '../../../assets/img/close.svg';
 
 const SavedColour = ({ index, colour, format, onRemove }) => {
   const savedColourClass = classNames('saved_colour', 'copy', {
@@ -21,7 +24,9 @@ const SavedColour = ({ index, colour, format, onRemove }) => {
       title="Copy to clipboard"
       data-clipboard-text={formattedColour}>
       {formattedColour}
-      <button className="saved_colour--remove" onClick={remove}>Remove</button>
+      <button className="saved_colour--remove" title="Remove" onClick={remove}>
+        <SVGInline svg={svgClose} />
+      </button>
     </div>
   );
 };
