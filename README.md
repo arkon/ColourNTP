@@ -19,6 +19,7 @@ Requires Chrome 49+.
 - [Alec Brunelle](https://github.com/aleccool213): Options page tooltips
 - [Jonathan Webb](https://github.com/jwebbed): Building the project in production mode
 - [Kashav Madan](https://github.com/kshvmdn): Fixing 12am/pm
+- [Ivan Zhang](https://github.com/1vn): Automatic text colour shift and top sites blacklist
 
 
 [chrome-store]: https://chrome.google.com/webstore/detail/colour-new-tab-page/hniakoleggfkjjoncnnhinhdbgffkdmd
