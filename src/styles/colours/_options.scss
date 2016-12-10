@@ -7,7 +7,10 @@
 }
 
   .colours__btn {
+    background: none;
+    border: none;
     display: block;
+    font: inherit;
     height: 2.25em;
     line-height: 2.25;
     opacity: 0.4;

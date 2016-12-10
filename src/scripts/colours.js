@@ -289,50 +289,50 @@ class NewTab extends Component {
     };
 
     return (
-      <div id='newtab__content' className={textClass}>
+      <div id="newtab__content" className={textClass}>
         <Sidebar open={this.state.sidebarOpen} onClose={this.toggleSidebar}>
           <SavedColours format={settings.colourFormat} />
         </Sidebar>
 
         <div className={coloursClass} onClick={this.state.sidebarOpen ? this.toggleSidebar : null}>
           { this.state.bgImage &&
-            <div className='colours__bg_img'
+            <div className="colours__bg_img"
               style={{ backgroundImage: `url(${this.state.bgImage})`}} />
           }
 
           { this.state.bgOpacity !== 0 &&
-            <div className='colours__bg' style={bgColourStyle} />
+            <div className="colours__bg" style={bgColourStyle} />
           }
 
-          <div className='colours__btns'>
-            <a className='colours__btn' title='Open sidebar'
+          <div className="colours__btns">
+            <button className="colours__btn" title="Open sidebar"
               onClick={this.toggleSidebar}>
               <SVGInline svg={svgBookmark} />
-            </a>
+            </button>
 
             { settings.shortcutOpts &&
-              <a target='_blank' className='colours__btn colours__btn--options'
-                href='options.html' title='Options'>
+              <a className="colours__btn colours__btn--options"
+                href="options.html" title="Options">
                 <SVGInline svg={svgGear} />
               </a>
             }
 
             { settings.shortcutNewTab &&
-              <a className='colours__btn' title='Default new tab'
+              <button className="colours__btn" title="Default new tab"
                 onClick={this.onClickNewTab}>
                 <SVGInline svg={svgNewTab} />
-              </a>
+              </button>
             }
 
             { settings.shortcutImage && this.state.bgImage &&
-              <a target='_blank' className='colours__btn'
-                href={this.state.bgImage} title='Open image'>
+              <a className="colours__btn"
+                href={this.state.bgImage} title="Open image">
                 <SVGInline svg={svgImage} />
               </a>
             }
           </div>
 
-          <div className='info'>
+          <div className="info">
             { settings.showTime &&
               <Time
                 time={this.state.time}
