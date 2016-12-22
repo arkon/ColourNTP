@@ -23,15 +23,15 @@
     "react-svg-inline": "^1.2.0"
   },
   "devDependencies": {
-    "babel-loader": "^6.2.9",
+    "babel-loader": "^6.2.10",
     "babel-plugin-transform-class-properties": "^6.19.0",
     "babel-preset-node6": "^11.0.0",
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.18.0",
     "del": "^2.2.2",
-    "eslint": "^3.12.1",
+    "eslint": "^3.12.2",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.1",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.8.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.2",
