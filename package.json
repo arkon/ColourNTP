@@ -18,8 +18,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "clipboard": "^1.5.16",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-svg-inline": "^1.2.0"
   },
   "devDependencies": {
@@ -29,7 +29,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.18.0",
     "del": "^2.2.2",
-    "eslint": "^3.12.2",
+    "eslint": "^3.13.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.8.0",

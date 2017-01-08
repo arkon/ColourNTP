@@ -50,6 +50,12 @@
     flex-direction: column;
     text-align: left;
 
+    &:hover {
+      .item--remove {
+        opacity: 1;
+      }
+    }
+
     a {
       background-color: #eee;
       border: 1px solid #ddd;
@@ -171,7 +177,7 @@
   cursor: pointer;
   font-size: 0;
   height: 1.5rem;
-  opacity: 0.25;
+  opacity: 0.5;
   position: absolute;
   right: 5px;
   top: 5px;
