@@ -121,6 +121,10 @@ class Options extends Component {
               <Checkbox label='Show seconds'
                 optkey='showTimeSec'
                 value={settings.showTimeSec} />
+
+              <Checkbox label='Flash the time separators'
+                optkey='flashSeparators'
+                value={settings.flashSeparators} />
             </Checkbox>
 
             <Checkbox label={`Show ${colourLower} value`}

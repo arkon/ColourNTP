@@ -1,8 +1,9 @@
+import classNames from 'classnames';
 import React, { PropTypes } from 'react';
 
 import TimeHelper from '../../modules/timehelper';
 
-const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix }) => {
+const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix, flashSeparators }) => {
   let hour = time.hour;
   const afterNoon = hour >= 12;
 
@@ -16,8 +17,12 @@ const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix }) => {
     }
   }
 
+  const timeClass = classNames('colours__time', {
+    'colours__time--flash': flashSeparators && time.second % 2 === 0
+  });
+
   return (
-    <h1 className="colours__time">
+    <h1 className={timeClass}>
       <span>{padHour ? TimeHelper.pad(hour) : hour}</span>
       <span className="colours__time__colon"> : </span>
       <span>{TimeHelper.pad(time.minute)}</span>
@@ -40,7 +45,8 @@ Time.propTypes = {
   hourFormat24: PropTypes.bool.isRequired,
   padHour: PropTypes.bool.isRequired,
   showSeconds: PropTypes.bool.isRequired,
-  showPostFix: PropTypes.bool.isRequired
+  showPostFix: PropTypes.bool.isRequired,
+  flashSeparators: PropTypes.bool.isRequired
 };
 
 export default Time;

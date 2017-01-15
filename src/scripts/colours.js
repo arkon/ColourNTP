@@ -339,7 +339,8 @@ class NewTab extends Component {
                 hourFormat24={settings.time24hr}
                 padHour={settings.padHour}
                 showSeconds={settings.showTimeSec}
-                showPostFix={settings.showTimePost}/>
+                showPostFix={settings.showTimePost}
+                flashSeparators={settings.flashSeparators} />
             }
 
             { settings.showDate &&
