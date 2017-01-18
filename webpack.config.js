@@ -2,22 +2,22 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  context: path.join(__dirname, './src/scripts'),
+  context: path.join(__dirname, 'src/scripts'),
   entry: {
     colours: './colours.js',
     options: './options.js'
   },
   output: {
-    path: path.join(__dirname, './build/scripts'),
+    path: path.join(__dirname, 'build/scripts'),
     filename: '[name].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
+        loader: 'babel-loader',
+        options: {
           babelrc: false,
           presets: ['react'],
           plugins: ['transform-class-properties']
@@ -25,23 +25,17 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'raw'
+        loader: 'raw-loader'
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
     modules: [
-      path.resolve('./src/scripts'),
+      path.join(__dirname, 'src/scripts'),
       'node_modules'
     ]
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor'),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    })
+    new webpack.optimize.CommonsChunkPlugin('vendor')
   ]
 };
