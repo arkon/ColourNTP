@@ -17,28 +17,28 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "clipboard": "^1.5.16",
+    "clipboard": "^1.6.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-svg-inline": "^1.2.0"
   },
   "devDependencies": {
     "babel-loader": "^6.2.10",
-    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-class-properties": "^6.22.0",
     "babel-preset-node6": "^11.0.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-register": "^6.18.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-register": "^6.22.0",
     "del": "^2.2.2",
-    "eslint": "^3.13.1",
+    "eslint": "^3.15.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-htmlmin": "^3.0.0",
     "gulp-sass": "^3.1.0",
-    "gulp-zip": "^3.2.0",
+    "gulp-zip": "^4.0.0",
     "raw-loader": "^0.5.1",
-    "webpack": "^2.2.0"
+    "webpack": "^2.2.1"
   }
 }
