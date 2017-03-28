@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import React, { PropTypes } from 'react';
-import SVGInline from 'react-svg-inline';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import svgClose from '../../../assets/img/close.svg';
 
@@ -13,21 +13,13 @@ const Sidebar = ({ open, onClose, children }) => {
     <div className={sidebarClass}>
       { open &&
         <div>
-          <button className="sidebar__toggle" onClick={() => onClose()}>
-            <SVGInline svg={svgClose} />
-          </button>
+          <button className="sidebar__toggle" onClick={() => onClose()} dangerouslySetInnerHTML={{ __html: svgClose }} />
 
           {children}
         </div>
       }
     </div>
   );
-};
-
-Sidebar.propTypes = {
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  children: PropTypes.node
 };
 
 export default Sidebar;

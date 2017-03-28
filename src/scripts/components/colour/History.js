@@ -1,25 +1,21 @@
 import Clipboard from 'clipboard';
-import React, { Component, PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';
 
 export default class History extends Component {
-  static propTypes = {
-    colour: PropTypes.string.isRequired,
-    max: PropTypes.number
-  };
-
   static defaultProps = {
     max: 10
   };
 
-  state = {
-    history: new Array(this.props.max)
-  };
-
   constructor (props) {
     super(props);
+
+    this.state = {
+      history: new Array(this.props.max)
+    };
 
     this.pushToStack = this.pushToStack.bind(this);
   }

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import Inferno, { render } from 'inferno';
+import Component from 'inferno-component';
 
 import Checkbox from './components/options/Checkbox';
 import Colour from './components/options/Colour';
@@ -28,13 +28,13 @@ import Chrome from './modules/chrome';
 import Colours from './modules/colours';
 
 class Options extends Component {
-  state = {
-    activeTab : 0,
-    settings  : {}
-  };
-
   constructor (props) {
     super(props);
+
+    this.state = {
+      activeTab : 0,
+      settings  : {}
+    };
 
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Tabs from '../layout/Tabs';
 import Tab from '../layout/Tab';
@@ -7,33 +8,33 @@ import Tab from '../layout/Tab';
 import Chrome from '../../modules/chrome';
 
 export default class Panels extends Component {
-  state = {
-    open           : -1,
-
-    showVisited    : true,
-    topSites       : [],
-
-    showClosed     : true,
-    recentlyClosed : [],
-
-    showDevices    : true,
-    devices        : [],
-
-    showApps       : true,
-    showAllApps    : true,
-    showWebStore   : true,
-    apps           : [],
-
-    showShortcuts  : true,
-    shortcuts      : [],
-
-    showFavicons   : true,
-
-    blacklist      : {},
-  };
-
   constructor (props) {
     super(props);
+
+    this.state = {
+      open           : -1,
+
+      showVisited    : true,
+      topSites       : [],
+
+      showClosed     : true,
+      recentlyClosed : [],
+
+      showDevices    : true,
+      devices        : [],
+
+      showApps       : true,
+      showAllApps    : true,
+      showWebStore   : true,
+      apps           : [],
+
+      showShortcuts  : true,
+      shortcuts      : [],
+
+      showFavicons   : true,
+
+      blacklist      : {},
+    };
 
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);

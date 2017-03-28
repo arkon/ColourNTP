@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import React, { PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import TimeHelper from '../../modules/timehelper';
 
@@ -34,19 +35,6 @@ const Time = ({ time, hourFormat24, padHour, showSeconds, showPostFix, flashSepa
       }
     </h1>
   );
-};
-
-Time.propTypes = {
-  time: PropTypes.shape({
-    hour: PropTypes.number.isRequired,
-    minute: PropTypes.number.isRequired,
-    second: PropTypes.number.isRequired,
-  }).isRequired,
-  hourFormat24: PropTypes.bool.isRequired,
-  padHour: PropTypes.bool.isRequired,
-  showSeconds: PropTypes.bool.isRequired,
-  showPostFix: PropTypes.bool.isRequired,
-  flashSeparators: PropTypes.bool.isRequired
 };
 
 export default Time;

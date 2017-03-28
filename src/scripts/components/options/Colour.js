@@ -1,15 +1,10 @@
-import React, { PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Option from './Option';
 import Chrome from '../../modules/chrome';
 
 export default class Colour extends Option {
-  static propTypes = {
-    value: PropTypes.string,
-    label: PropTypes.string.isRequired,
-    optkey: PropTypes.string.isRequired
-  };
-
   constructor (props) {
     super(props);
 

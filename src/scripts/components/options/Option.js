@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Chrome from '../../modules/chrome';
 
 export default class Option extends Component {
-  state = {
-    value: this.props.value
-  };
-
   constructor (props) {
     super(props);
+
+    this.state = {
+      value: this.props.value
+    };
   }
 
   componentWillReceiveProps (nextProps) {

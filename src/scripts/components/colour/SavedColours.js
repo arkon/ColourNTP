@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import SavedColour from './SavedColour';
 
@@ -7,16 +8,12 @@ import { ColourFormats } from '../../constants/settings';
 import Saved from '../../modules/saved';
 
 export default class SavedColours extends Component {
-  static propTypes = {
-    format: PropTypes.string.isRequired
-  };
-
-  state = {
-    colours: []
-  };
-
   constructor (props) {
     super(props);
+
+    this.state = {
+      colours: []
+    };
 
     this.fetchSaved = this.fetchSaved.bind(this);
     this.removeSaved = this.removeSaved.bind(this);

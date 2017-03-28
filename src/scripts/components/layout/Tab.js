@@ -1,13 +1,10 @@
-import React, { PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 const Tab = ({ children }) => (
   <div className='tabs__tab__content'>
     {children}
   </div>
 );
-
-Tab.propTypes = {
-  children: PropTypes.node.isRequired
-};
 
 export default Tab;

@@ -1,8 +1,7 @@
 import classNames from 'classnames';
 import Clipboard from 'clipboard';
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import SVGInline from 'react-svg-inline';
+import Inferno, { render } from 'inferno';
+import Component from 'inferno-component';
 
 import Chrome from './modules/chrome';
 import Colours from './modules/colours';
@@ -28,24 +27,24 @@ import svgImage from '../assets/img/image.svg';
 import svgNewTab from '../assets/img/newtab.svg';
 
 class NewTab extends Component {
-  state = {
-    settings     : {},
-    time         : {},
-    date         : '',
-    colour       : '',
-
-    coloursClass : 'colours colours--hidden',
-    bgImage      : null,
-    bgOpacity    : 1,
-
-    toastVisible : false,
-    toastText    : '',
-
-    sidebarOpen  : false
-  };
-
   constructor (props) {
     super(props);
+
+    this.state = {
+      settings     : {},
+      time         : {},
+      date         : '',
+      colour       : '',
+
+      coloursClass : 'colours colours--hidden',
+      bgImage      : null,
+      bgOpacity    : 1,
+
+      toastVisible : false,
+      toastText    : '',
+
+      sidebarOpen  : false
+    };
 
     this.messageListener = this.messageListener.bind(this);
     this.fetchSettings = this.fetchSettings.bind(this);
@@ -306,29 +305,21 @@ class NewTab extends Component {
 
           <div className="colours__btns">
             <button className="colours__btn" title="Open sidebar"
-              onClick={this.toggleSidebar}>
-              <SVGInline svg={svgBookmark} />
-            </button>
+              onClick={this.toggleSidebar} dangerouslySetInnerHTML={{ __html: svgBookmark}} />
 
             { settings.shortcutOpts &&
               <a className="colours__btn colours__btn--options"
-                href="options.html" title="Options">
-                <SVGInline svg={svgGear} />
-              </a>
+                href="options.html" title="Options" dangerouslySetInnerHTML={{ __html: svgGear}} />
             }
 
             { settings.shortcutNewTab &&
               <button className="colours__btn" title="Default new tab"
-                onClick={this.onClickNewTab}>
-                <SVGInline svg={svgNewTab} />
-              </button>
+                onClick={this.onClickNewTab} dangerouslySetInnerHTML={{ __html: svgNewTab}} />
             }
 
             { settings.shortcutImage && this.state.bgImage &&
               <a className="colours__btn"
-                href={this.state.bgImage} title="Open image">
-                <SVGInline svg={svgImage} />
-              </a>
+                href={this.state.bgImage} title="Open image" dangerouslySetInnerHTML={{ __html: svgImage}} />
             }
           </div>
 

@@ -19,8 +19,12 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          presets: ['react'],
-          plugins: ['transform-class-properties']
+          // presets: ['es2015', { 'loose': true, 'modules': false }],
+          plugins: [
+            'transform-class-properties',
+            'syntax-jsx',
+            ['inferno', { 'imports': true }]
+          ]
         }
       },
       {

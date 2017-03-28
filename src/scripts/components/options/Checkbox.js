@@ -1,17 +1,10 @@
-import React, { PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Option from './Option';
 import Chrome from '../../modules/chrome';
 
 export default class Checkbox extends Option {
-  static propTypes = {
-    value: PropTypes.bool,
-    label: PropTypes.string.isRequired,
-    optkey: PropTypes.string.isRequired,
-    tooltip: PropTypes.string,
-    children: PropTypes.any
-  };
-
   constructor (props) {
     super(props);
 

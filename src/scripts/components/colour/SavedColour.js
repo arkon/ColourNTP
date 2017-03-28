@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import React, { PropTypes } from 'react'
-import SVGInline from 'react-svg-inline';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Colours from '../../modules/colours';
 
@@ -25,17 +25,10 @@ const SavedColour = ({ index, colour, format, onRemove }) => {
       data-clipboard-text={formattedColour}>
       {formattedColour}
       <button className="saved_colour--remove" title="Remove" onClick={remove}>
-        <SVGInline svg={svgClose} />
+        {svgClose}
       </button>
     </div>
   );
-};
-
-SavedColour.propTypes = {
-  index: PropTypes.number.isRequired,
-  colour: PropTypes.string.isRequired,
-  format: PropTypes.string.isRequired,
-  onRemove: PropTypes.func.isRequired
 };
 
 export default SavedColour;

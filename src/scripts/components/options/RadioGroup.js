@@ -1,17 +1,11 @@
-import React, { PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Option from './Option';
 import Radio from './Radio';
 import Chrome from '../../modules/chrome';
 
 export default class RadioGroup extends Option {
-  static propTypes = {
-    value: PropTypes.string,
-    optkey: PropTypes.string.isRequired,
-    group: PropTypes.string.isRequired,
-    children: PropTypes.arrayOf(PropTypes.shape({ type: PropTypes.oneOf([Radio]) })).isRequired
-  };
-
   constructor (props) {
     super(props);
 
@@ -30,12 +24,16 @@ export default class RadioGroup extends Option {
     return (
       <div>
         { this.props.children.map((radio, i) => {
-          return React.cloneElement(radio, {
-            key: i,
-            checked: this.state.value === radio.props.value,
-            group: this.props.group,
-            onChange: this.handleChange
-          });
+          return (
+            <Radio
+              key={i}
+              label={radio.props.label}
+              tooltip={radio.props.tooltip}
+              value={radio.props.value}
+              checked={this.state.value === radio.props.value}
+              group={this.props.group}
+              onChange={this.handleChange} />
+          );
         }) }
       </div>
     );

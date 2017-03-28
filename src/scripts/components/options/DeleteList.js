@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import SVGInline from 'react-svg-inline';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import svgClose from '../../../assets/img/close.svg';
 
 export default class DeleteList extends Component {
-  state = {
-    sortedList: []
-  };
-
   constructor (props) {
     super(props);
+
+    this.state = {
+      sortedList: []
+    };
 
     this.getSortedBlackList = this.getSortedBlackList.bind(this);
   }
@@ -48,9 +48,8 @@ export default class DeleteList extends Component {
                 <td>
                   <button
                     onClick={() => this.props.onDelete(data.url)}
-                    className="options__list__remove">
-                    <SVGInline svg={svgClose} />
-                  </button>
+                    className="options__list__remove"
+                    dangerouslySetInnerHTML={{ __html: svgClose }} />
                 </td>
               </tr>
             ))}

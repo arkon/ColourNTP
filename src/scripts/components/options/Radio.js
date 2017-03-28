@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 const Radio = ({ value, group, checked, onChange, tooltip, label, children }) => {
   const onCheck = (e) => {
@@ -28,16 +29,6 @@ const Radio = ({ value, group, checked, onChange, tooltip, label, children }) =>
       }
     </div>
   );
-};
-
-Radio.propTypes = {
-  value: PropTypes.string,
-  group: PropTypes.string,
-  checked: PropTypes.bool,
-  onChange: PropTypes.func,
-  tooltip: PropTypes.string,
-  label: PropTypes.string,
-  children: PropTypes.node
 };
 
 export default Radio;

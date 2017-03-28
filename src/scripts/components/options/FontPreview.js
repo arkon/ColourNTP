@@ -1,19 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Chrome from '../../modules/chrome';
 import WebFont from '../../modules/webfont';
 
 export default class FontPreview extends Component {
-  static propTypes = {
-    font: PropTypes.string
-  };
-
-  state = {
-    font: this.props.font
-  };
-
   constructor (props) {
     super(props);
+
+    this.state = {
+      font: this.props.font
+    };
 
     WebFont.loadFont(this.state.font);
 

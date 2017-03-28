@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';
-
 
 const Colour = ({ colour, format }) => {
   const formattedColour = Colours.format(colour, format);
@@ -17,11 +17,6 @@ const Colour = ({ colour, format }) => {
       </span>
     </h2>
   );
-};
-
-Colour.propTypes = {
-  colour: PropTypes.string.isRequired,
-  format: PropTypes.string.isRequired
 };
 
 export default Colour;
