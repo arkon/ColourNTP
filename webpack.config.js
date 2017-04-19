@@ -19,6 +19,9 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           babelrc: false,
+          presets: [
+            'babili'
+          ],
           plugins: [
             'transform-class-properties',
             'syntax-jsx',
