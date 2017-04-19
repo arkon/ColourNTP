@@ -257,7 +257,9 @@ class NewTab extends Component {
     });
   }
 
-  toggleSidebar () {
+  toggleSidebar (e) {
+    e.stopPropagation();
+
     this.setState({
       sidebarOpen: !this.state.sidebarOpen
     });

@@ -13,7 +13,7 @@ const Sidebar = ({ open, onClose, children }) => {
     <div className={sidebarClass}>
       { open &&
         <div>
-          <button className="sidebar__toggle" onClick={() => onClose()} dangerouslySetInnerHTML={{ __html: svgClose }} />
+          <button className="sidebar__toggle" onClick={onClose} dangerouslySetInnerHTML={{ __html: svgClose }} />
 
           {children}
         </div>
