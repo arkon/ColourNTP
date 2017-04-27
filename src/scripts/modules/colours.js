@@ -254,19 +254,19 @@ export default class Colours {
 
     case ColourFormats.HSL: {
       const hsl = Colours.hexToHsl(colour.substring(1));
-      colour = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
+      colour = `hsl(${hsl[0]}°, ${hsl[1]}%, ${hsl[2]}%)`;
       break;
     }
 
     case ColourFormats.HSV: {
       const hsv = Colours.rgbToHsv(...Colours.hexToRgb(colour));
-      colour = `hsv(${hsv[0]}, ${hsv[1]}, ${hsv[2]})`;
+      colour = `hsv(${hsv[0]}°, ${hsv[1]}%, ${hsv[2]}%)`;
       break;
     }
 
     case ColourFormats.CMYK: {
       const cmyk = Colours.rgbToCmyk(...Colours.hexToRgb(colour));
-      colour = `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
+      colour = `cmyk(${cmyk[0]}%, ${cmyk[1]}%, ${cmyk[2]}%, ${cmyk[3]}%)`;
       break;
     }
 
