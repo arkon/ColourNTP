@@ -32,7 +32,9 @@ export default class RadioGroup extends Option {
               value={radio.props.value}
               checked={this.state.value === radio.props.value}
               group={this.props.group}
-              onChange={this.handleChange} />
+              onChange={this.handleChange}>
+              {radio.props.children}
+            </Radio>
           );
         }) }
       </div>
