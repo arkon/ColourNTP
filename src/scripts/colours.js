@@ -311,7 +311,8 @@ class NewTab extends Component {
 
             { settings.shortcutOpts &&
               <a className="colours__btn colours__btn--options"
-                href="options.html" title="Options" dangerouslySetInnerHTML={{ __html: svgGear}} />
+                href="options.html" title="Options" dangerouslySetInnerHTML={{ __html: svgGear}}
+                target="_blank" />
             }
 
             { settings.shortcutNewTab &&
@@ -321,7 +322,8 @@ class NewTab extends Component {
 
             { settings.shortcutImage && this.state.bgImage &&
               <a className="colours__btn"
-                href={this.state.bgImage} title="Open image" dangerouslySetInnerHTML={{ __html: svgImage}} />
+                href={this.state.bgImage} title="Open image" dangerouslySetInnerHTML={{ __html: svgImage}}
+                target="_blank" rel="noopener" />
             }
           </div>
 
