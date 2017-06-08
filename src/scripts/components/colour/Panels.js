@@ -161,12 +161,10 @@ export default class Panels extends Component {
     let blacklist = this.state.blacklist;
     blacklist[url] = Date.now();
 
-    Chrome.setSetting('blacklist', blacklist);
-
-    this.setState({
-      topSites: this.state.topSites.filter(item => !blacklist[item.url]),
-      blacklist: blacklist
-    });
+    Chrome.setSetting('blacklist', blacklist)
+      .then(() => {
+        this.fetchSettings();
+      })
   }
 
   render () {
