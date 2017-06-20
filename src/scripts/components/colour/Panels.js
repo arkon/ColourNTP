@@ -8,7 +8,7 @@ import Tab from '../layout/Tab';
 import Chrome from '../../modules/chrome';
 
 export default class Panels extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -42,24 +42,24 @@ export default class Panels extends Component {
     this.blacklistSite = this.blacklistSite.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.fetchSettings();
 
     // Fetch new settings when changed
     chrome.runtime.onMessage.addListener(this.messageListener);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     chrome.runtime.onMessage.removeListener(this.messageListener);
   }
 
-  messageListener (request, sender, sendResponse) {
+  messageListener(request, sender, sendResponse) {
     if (request.msg === 'saved') {
       this.fetchSettings();
     }
   }
 
-  fetchSettings () {
+  fetchSettings() {
     Chrome.getSettings()
       .then((settings) => {
         this.setState({
@@ -122,7 +122,7 @@ export default class Panels extends Component {
       });
   }
 
-  onClickTab (tab) {
+  onClickTab(tab) {
     Chrome.setSetting('openPanel', tab);
 
     this.setState({
@@ -130,13 +130,13 @@ export default class Panels extends Component {
     });
   }
 
-  onClickSession (session) {
+  onClickSession(session) {
     return () => {
       chrome.sessions.restore(session, null);
     };
   }
 
-  onClickApp (id, href) {
+  onClickApp(id, href) {
     return () => {
       if (href) {
         chrome.tabs.update(null, { url: href });
@@ -146,13 +146,13 @@ export default class Panels extends Component {
     };
   }
 
-  onClickShortcut (url) {
+  onClickShortcut(url) {
     return () => {
       chrome.tabs.update(null, { url: url });
     };
   }
 
-  blacklistSite (e) {
+  blacklistSite(e) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -167,7 +167,7 @@ export default class Panels extends Component {
       })
   }
 
-  render () {
+  render() {
     const state = this.state;
 
     const panelsClass = classNames('panels', {

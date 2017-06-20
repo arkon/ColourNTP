@@ -32,7 +32,7 @@ export default class Chrome {
   // Panel helpers
   // ============================================================================================
 
-  static getTopSites (max = 10, blacklist = {}) {
+  static getTopSites(max = 10, blacklist = {}) {
     return new Promise((resolve) => {
       chrome.topSites.get((visitedURLs) => {
         visitedURLs = visitedURLs.filter((site) => !blacklist[site.url]);
@@ -48,7 +48,7 @@ export default class Chrome {
     });
   }
 
-  static getRecentlyClosed (max = 10) {
+  static getRecentlyClosed(max = 10) {
     return new Promise((resolve) => {
       chrome.sessions.getRecentlyClosed((sessions) => {
         sessions = sessions.slice(0, parseInt(max, 10));
@@ -70,7 +70,7 @@ export default class Chrome {
     });
   }
 
-  static getApps () {
+  static getApps() {
     return new Promise((resolve) => {
       chrome.management.getAll((list) => {
         // Only get active apps (no extensions)
@@ -112,13 +112,13 @@ export default class Chrome {
     });
   }
 
-  static getShortcuts () {
+  static getShortcuts() {
     return new Promise((resolve) => {
       resolve(_SHORTCUTS);
     })
   }
 
-  static getDevices () {
+  static getDevices() {
     return new Promise((resolve) => {
       chrome.sessions.getDevices((devices) => {
         let items = devices.map((device) => {
@@ -147,12 +147,12 @@ export default class Chrome {
     });
   }
 
-  static _favicon (url) {
+  static _favicon(url) {
     const prefix = window.devicePixelRatio > 1.5 ? 'chrome://favicon/size/16@2x' : 'chrome://favicon';
     return `${prefix}/${url}`;
   }
 
-  static _find128Image (icons) {
+  static _find128Image(icons) {
     for (let icon of icons) {
       if (icon.size === 128) {
         return icon.url;
@@ -166,11 +166,11 @@ export default class Chrome {
   // Settings helpers (Chrome extension storage)
   // ============================================================================================
 
-  static getSettings () {
+  static getSettings() {
     return Chrome.getSetting(null);
   }
 
-  static getSetting (key) {
+  static getSetting(key) {
     return new Promise((resolve) => {
       chrome.storage.sync.get(key, (results) => {
         if (key === null) {
@@ -182,7 +182,7 @@ export default class Chrome {
     });
   }
 
-  static setSetting (key, value) {
+  static setSetting(key, value) {
     return new Promise((resolve) => {
       chrome.storage.sync.set({
         [key]: value

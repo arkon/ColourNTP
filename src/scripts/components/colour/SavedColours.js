@@ -8,7 +8,7 @@ import { ColourFormats } from '../../constants/settings';
 import Saved from '../../modules/saved';
 
 export default class SavedColours extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -20,11 +20,11 @@ export default class SavedColours extends Component {
     this.clearSaved = this.clearSaved.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.fetchSaved();
   }
 
-  fetchSaved () {
+  fetchSaved() {
     Saved.get()
       .then((colours) => {
         this.setState({
@@ -33,13 +33,13 @@ export default class SavedColours extends Component {
       });
   }
 
-  removeSaved (index) {
+  removeSaved(index) {
     this.setState({
       colours: Saved.remove(index)
     });
   }
 
-  clearSaved () {
+  clearSaved() {
     if (window.confirm('Are you sure you want to remove all of your saved colours?')) {
       this.setState({
         colours: Saved.clear()
@@ -47,7 +47,7 @@ export default class SavedColours extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div className="saved_colours">
         <h1>Saved</h1>

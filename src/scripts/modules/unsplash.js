@@ -7,16 +7,16 @@ export default class Unsplash {
       let unsplashUrl = `https://source.unsplash.com/${screen.width}x${screen.height}/`;
 
       switch (frequency) {
-      case UnsplashFrequency.DAILY:
-        unsplashUrl += 'daily';
-        break;
+        case UnsplashFrequency.DAILY:
+          unsplashUrl += 'daily';
+          break;
 
-      case UnsplashFrequency.WEEKLY:
-        unsplashUrl += 'weekly';
-        break;
+        case UnsplashFrequency.WEEKLY:
+          unsplashUrl += 'weekly';
+          break;
 
-      default:
-        break;
+        default:
+          break;
       }
 
       // Follow redirect to get actual image URL

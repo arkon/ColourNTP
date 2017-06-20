@@ -5,7 +5,7 @@ import Component from 'inferno-component';
 import Tab from './Tab';
 
 export default class Tabs extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -13,7 +13,7 @@ export default class Tabs extends Component {
     };
   }
 
-  handleTab (tab) {
+  handleTab(tab) {
     // Close tab if open
     if (this.props.canToggle) {
       tab = this.state.activeTab === tab ? null : tab;
@@ -28,7 +28,7 @@ export default class Tabs extends Component {
     });
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.activeTab !== this.state.activeTab) {
       this.setState({
         activeTab: nextProps.activeTab
@@ -36,7 +36,7 @@ export default class Tabs extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
         <ul className='tabs'>

@@ -99,18 +99,18 @@ export default class Colours {
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
 
       switch (max) {
-      case r: {
-        h = (g - b) / d + (g < b ? 6 : 0);
-        break;
-      }
-      case g: {
-        h = (b - r) / d + 2;
-        break;
-      }
-      case b: {
-        h = (r - g) / d + 4;
-        break;
-      }
+        case r: {
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        }
+        case g: {
+          h = (b - r) / d + 2;
+          break;
+        }
+        case b: {
+          h = (r - g) / d + 4;
+          break;
+        }
       }
 
       h /= 6;
@@ -122,7 +122,7 @@ export default class Colours {
   /**
    * Converts RGB to HSV.
    */
-  static rgbToHsv (r, g, b) {
+  static rgbToHsv(r, g, b) {
     r /= 255;
     g /= 255;
     b /= 255;
@@ -246,33 +246,33 @@ export default class Colours {
     let colour = hex;
 
     switch (format) {
-    case ColourFormats.RGB: {
-      const rgb = Colours.hexToRgb(colour);
-      colour = `rgb(${rgb.join(', ')})`;
-      break;
-    }
+      case ColourFormats.RGB: {
+        const rgb = Colours.hexToRgb(colour);
+        colour = `rgb(${rgb.join(', ')})`;
+        break;
+      }
 
-    case ColourFormats.HSL: {
-      const hsl = Colours.hexToHsl(colour.substring(1));
-      colour = `hsl(${hsl[0]}°, ${hsl[1]}%, ${hsl[2]}%)`;
-      break;
-    }
+      case ColourFormats.HSL: {
+        const hsl = Colours.hexToHsl(colour.substring(1));
+        colour = `hsl(${hsl[0]}°, ${hsl[1]}%, ${hsl[2]}%)`;
+        break;
+      }
 
-    case ColourFormats.HSV: {
-      const hsv = Colours.rgbToHsv(...Colours.hexToRgb(colour));
-      colour = `hsv(${hsv[0]}°, ${hsv[1]}%, ${hsv[2]}%)`;
-      break;
-    }
+      case ColourFormats.HSV: {
+        const hsv = Colours.rgbToHsv(...Colours.hexToRgb(colour));
+        colour = `hsv(${hsv[0]}°, ${hsv[1]}%, ${hsv[2]}%)`;
+        break;
+      }
 
-    case ColourFormats.CMYK: {
-      const cmyk = Colours.rgbToCmyk(...Colours.hexToRgb(colour));
-      colour = `cmyk(${cmyk[0]}%, ${cmyk[1]}%, ${cmyk[2]}%, ${cmyk[3]}%)`;
-      break;
-    }
+      case ColourFormats.CMYK: {
+        const cmyk = Colours.rgbToCmyk(...Colours.hexToRgb(colour));
+        colour = `cmyk(${cmyk[0]}%, ${cmyk[1]}%, ${cmyk[2]}%, ${cmyk[3]}%)`;
+        break;
+      }
 
-    default: {
-      break;
-    }
+      default: {
+        break;
+      }
     }
 
     return colour;

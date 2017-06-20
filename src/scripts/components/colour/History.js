@@ -10,7 +10,7 @@ export default class History extends Component {
     max: 10
   };
 
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -20,15 +20,15 @@ export default class History extends Component {
     this.pushToStack = this.pushToStack.bind(this);
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.pushToStack(this.props.colour);
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.pushToStack(nextProps.colour);
   }
 
-  pushToStack (item) {
+  pushToStack(item) {
     if (item !== this.state.history[this.state.history.length - 1]) {
       let stack = this.state.history;
 
@@ -39,7 +39,7 @@ export default class History extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div className="history">
         { this.state.history.map((colour, i) => {
