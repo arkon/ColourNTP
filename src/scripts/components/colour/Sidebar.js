@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import React, { Component } from 'react';
 
 import svgClose from '../../../assets/img/close.svg';
 

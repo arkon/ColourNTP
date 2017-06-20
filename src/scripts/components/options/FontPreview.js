@@ -1,11 +1,10 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import React, { Component } from 'react';
 
 import Chrome from '../../modules/chrome';
 import WebFont from '../../modules/webfont';
 
 export default class FontPreview extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -18,24 +17,24 @@ export default class FontPreview extends Component {
     this.fetchSettings = this.fetchSettings.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.fetchSettings();
 
     // Fetch new settings when changed
     chrome.runtime.onMessage.addListener(this.messageListener);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     chrome.runtime.onMessage.removeListener(this.messageListener);
   }
 
-  messageListener (request, sender, sendResponse) {
+  messageListener(request, sender, sendResponse) {
     if (request.msg === 'saved') {
       this.fetchSettings();
     }
   }
 
-  fetchSettings () {
+  fetchSettings() {
     Chrome.getSettings()
       .then((settings) => {
         WebFont.loadFont(settings.fontWeb);
@@ -46,7 +45,7 @@ export default class FontPreview extends Component {
       });
   }
 
-  render () {
+  render() {
     return (
       <p>Preview: <span style={{ fontFamily: this.state.font }}>12:34:56</span></p>
     );

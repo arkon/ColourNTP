@@ -1,6 +1,5 @@
 import Clipboard from 'clipboard';
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import React, { Component } from 'react';
 
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';

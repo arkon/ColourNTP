@@ -20,12 +20,11 @@ module.exports = {
         options: {
           babelrc: false,
           presets: [
+            'react',
             'babili'
           ],
           plugins: [
-            'transform-class-properties',
-            'syntax-jsx',
-            ['inferno', { 'imports': true }]
+            'transform-class-properties'
           ]
         }
       },

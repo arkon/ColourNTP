@@ -1,5 +1,5 @@
-import Inferno, { render } from 'inferno';
-import Component from 'inferno-component';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 import Checkbox from './components/options/Checkbox';
 import Colour from './components/options/Colour';

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Clipboard from 'clipboard';
-import Inferno, { render } from 'inferno';
-import Component from 'inferno-component';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 import Chrome from './modules/chrome';
 import Colours from './modules/colours';

@@ -1,5 +1,4 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import React, { Component } from 'react';
 
 const Tab = ({ children }) => (
   <div className='tabs__tab__content'>

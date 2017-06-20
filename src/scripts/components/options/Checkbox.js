@@ -1,31 +1,15 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import React, { Component } from 'react';
 
 import Option from './Option';
 import Chrome from '../../modules/chrome';
 
 export default class Checkbox extends Option {
-  constructor (props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange (e) {
-    const key = this.props.optkey,
-      value = e.target.checked;
-
-    Chrome.setSetting(key, value);
-
-    this.setState({ value: value });
-  }
-
-  render () {
+  render() {
     return (
       <div>
         <label>
           <input type='checkbox' checked={this.state.value}
-            onChange={this.handleChange} />
+            onChange={this.handleChangeCheck} />
 
           { this.props.tooltip ?
             <abbr>

@@ -1,10 +1,9 @@
-import Inferno from 'inferno';
-import Component from 'inferno-component';
+import React, { Component } from 'react';
 
 import svgClose from '../../../assets/img/close.svg';
 
 export default class DeleteList extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -14,24 +13,24 @@ export default class DeleteList extends Component {
     this.getSortedBlackList = this.getSortedBlackList.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
       sortedList: this.getSortedBlackList(this.props.data)
     });
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       sortedList: this.getSortedBlackList(nextProps.data)
     });
   }
 
-  getSortedBlackList (blacklist) {
+  getSortedBlackList(blacklist) {
     let list = Object.keys(blacklist).map((key) => ({ date: blacklist[key], url: key }));
     return list.sort((a, b) => a.date > b.date);
   }
 
-  render () {
+  render() {
     return (
       <div>
         <button
