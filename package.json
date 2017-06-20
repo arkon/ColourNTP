@@ -12,6 +12,11 @@
   "engines": {
     "node": ">=6"
   },
+  "scripts": {
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "zip": "gulp zip"
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "clipboard": "^1.7.1",
