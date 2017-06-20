@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import Tabs from '../layout/Tabs';
 import Tab from '../layout/Tab';

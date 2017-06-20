@@ -1,5 +1,5 @@
-import Clipboard from 'clipboard';
 import React, { Component } from 'react';
+import Clipboard from 'clipboard';
 
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';

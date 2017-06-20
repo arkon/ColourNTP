@@ -1,5 +1,4 @@
 import React from 'react';
-import { Component } from 'react';
 
 import Option from './Option';
 import Chrome from '../../modules/chrome';

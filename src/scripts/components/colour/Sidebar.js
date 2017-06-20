@@ -1,5 +1,5 @@
+import React from 'react';
 import classNames from 'classnames';
-import React, { Component } from 'react';
 
 import svgClose from '../../../assets/img/close.svg';
 

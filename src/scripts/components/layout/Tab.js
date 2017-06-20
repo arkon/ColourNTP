@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Tab = ({ children }) => (
   <div className='tabs__tab__content'>

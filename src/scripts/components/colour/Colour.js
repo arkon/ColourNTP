@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';

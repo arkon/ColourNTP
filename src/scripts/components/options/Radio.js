@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Radio = ({ value, group, checked, onChange, tooltip, label, children }) => (
   <div>
