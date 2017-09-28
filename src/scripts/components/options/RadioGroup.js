@@ -6,23 +6,17 @@ import Chrome from '../../modules/chrome';
 
 export default class RadioGroup extends Option {
   render() {
-    return (
-      <div>
-        { this.props.children.map((radio, i) => {
-          return (
-            <Radio
-              key={i}
-              label={radio.props.label}
-              tooltip={radio.props.tooltip}
-              value={radio.props.value}
-              checked={this.state.value === radio.props.value}
-              group={this.props.group}
-              onChange={this.handleChange}>
-              {radio.props.children}
-            </Radio>
-          );
-        }) }
-      </div>
-    );
+    return this.props.children.map((radio, i) => (
+      <Radio
+        key={i}
+        label={radio.props.label}
+        tooltip={radio.props.tooltip}
+        value={radio.props.value}
+        checked={this.state.value === radio.props.value}
+        group={this.props.group}
+        onChange={this.handleChange}>
+        {radio.props.children}
+      </Radio>
+    ));
   }
 }

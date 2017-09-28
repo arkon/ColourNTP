@@ -31,30 +31,28 @@ export default class DeleteList extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <button
-          onClick={this.props.onDeleteAll}
-          className="options__button">
-          Clear list
-        </button>
-
-        <table className="options__list__table">
-          <tbody>
-            {this.state.sortedList.map((data, i) => (
-              <tr key={i}>
-                <td>{data.url}</td>
-                <td>
-                  <button
-                    onClick={() => this.props.onDelete(data.url)}
-                    className="options__list__remove"
-                    dangerouslySetInnerHTML={{ __html: svgClose }} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    )
+    return [
+      <button
+        key="clear"
+        onClick={this.props.onDeleteAll}
+        className="options__button">
+        Clear list
+      </button>,
+      <table key="list" className="options__list__table">
+        <tbody>
+          {this.state.sortedList.map((data, i) => (
+            <tr key={i}>
+              <td>{data.url}</td>
+              <td>
+                <button
+                  onClick={() => this.props.onDelete(data.url)}
+                  className="options__list__remove"
+                  dangerouslySetInnerHTML={{ __html: svgClose }} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ];
   };
 }
