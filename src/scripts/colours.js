@@ -50,6 +50,7 @@ class NewTab extends Component {
     this.fetchSettings = this.fetchSettings.bind(this);
     this.tick = this.tick.bind(this);
     this.tickColour = this.tickColour.bind(this);
+    this.startClock = this.startClock.bind(this);
     this.setDate = this.setDate.bind(this);
     this.loadFont = this.loadFont.bind(this);
     this.loadBgImage = this.loadBgImage.bind(this);
@@ -139,25 +140,23 @@ class NewTab extends Component {
           this.setDate();
         }
 
-        // Check if the clock was already started
-        if (this.interval) {
-          this.setState({
-            coloursClass : coloursClass,
-            settings     : settings
-          });
-        } else {
-          // Start the clock when we hit the next second
-          setTimeout(() => {
-            this.tick();
-            this.interval = setInterval(this.tick, 1000);
-
-            this.setState({
-              coloursClass : coloursClass,
-              settings     : settings
-            });
-          }, 1000 - (Date.now() % 1000));
-        }
+        this.setState({
+          coloursClass : coloursClass,
+          settings     : settings
+        }, this.startClock);
       });
+  }
+
+  startClock() {
+    if (!this.interval) {
+      this.tick();
+
+      // Start clock when we we hit the next second
+      setTimeout(() => {
+        this.tick();
+        this.interval = setInterval(this.tick, 1000);
+      }, 1000 - (Date.now() % 1000));
+    }
   }
 
   tick () {
