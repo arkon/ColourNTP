@@ -8,7 +8,7 @@ export default class Textbox extends Option {
     return (
       <label>
         <span>{this.props.label}:</span>
-        <input type='text' value={this.state.value} onChange={this.handleChangeEvent} />
+        <input type="text" value={this.state.value} onChange={this.handleChangeEvent} />
       </label>
     );
   }

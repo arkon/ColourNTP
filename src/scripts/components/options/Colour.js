@@ -8,7 +8,7 @@ export default class Colour extends Option {
     return (
       <label>
         <span>{this.props.label}:</span>
-        <input type='color' value={this.state.value} onChange={this.handleChangeEvent} />
+        <input type="color" value={this.state.value} onChange={this.handleChangeEvent} />
       </label>
     );
   }
