@@ -19,12 +19,9 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          presets: [
-            'react',
-            'babili'
-          ],
           plugins: [
-            'transform-class-properties'
+            'transform-class-properties',
+            '@babel/transform-react-jsx'
           ]
         }
       },

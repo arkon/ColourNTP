@@ -36,25 +36,27 @@ export default class Tabs extends Component {
   }
 
   render() {
-    return [
-      <ul key="tabs" className='tabs'>
-        { this.props.children.map((tab, i) => {
-          if (tab) {
-            let tabClass = classNames('tabs__tab', {
-              'tabs__tab--active': this.state.activeTab === i
-            });
+    return (
+      <>
+        <ul key="tabs" className="tabs">
+          { this.props.children.map((tab, i) => {
+            if (tab) {
+              let tabClass = classNames('tabs__tab', {
+                'tabs__tab--active': this.state.activeTab === i
+              });
 
-            return (
-              <li key={i}
-                className={tabClass}
-                onClick={this.handleTab.bind(this, i)}>
-                {tab.props.name}
-              </li>
-            );
-          }
-        }) }
-      </ul>,
-      this.props.children[this.state.activeTab]
-    ];
+              return (
+                <li key={i}
+                  className={tabClass}
+                  onClick={this.handleTab.bind(this, i)}>
+                  {tab.props.name}
+                </li>
+              );
+            }
+          }) }
+        </ul>
+        {this.props.children[this.state.activeTab]}
+      </>
+    );
   }
 }
