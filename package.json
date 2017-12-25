@@ -24,19 +24,19 @@
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.32",
-    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.32",
-    "@babel/preset-env": "^7.0.0-beta.32",
-    "@babel/register": "^7.0.0-beta.32",
+    "@babel/core": "^7.0.0-beta.35",
+    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.35",
+    "@babel/preset-env": "^7.0.0-beta.35",
+    "@babel/register": "^7.0.0-beta.35",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "del": "^3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.2",
-    "gulp-htmlmin": "^3.0.0",
+    "gulp-htmlmin": "^4.0.0",
     "gulp-sass": "^3.1.0",
     "gulp-zip": "^4.0.0",
     "raw-loader": "^0.5.1",
-    "webpack": "^3.9.1"
+    "webpack": "^3.10.0"
   }
 }
