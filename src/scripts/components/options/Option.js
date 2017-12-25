@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Chrome from '../../modules/chrome';
+import Browser from '../../modules/browser';
 
 export default class Option extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class Option extends Component {
   handleChange(value) {
     const key = this.props.optkey;
 
-    Chrome.setSetting(key, value);
+    Browser.setSetting(key, value);
     this.setState({ value: value });
   }
 

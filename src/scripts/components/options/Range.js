@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Option from './Option';
-import Chrome from '../../modules/chrome';
+import Browser from '../../modules/browser';
 
 export default class Range extends Option {
   render() {

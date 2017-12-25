@@ -24,7 +24,7 @@ import {
   FontType
 } from './constants/settings';
 
-import Chrome from './modules/chrome';
+import Browser from './modules/browser';
 import Colours from './modules/colours';
 
 class Options extends Component {
@@ -60,7 +60,7 @@ class Options extends Component {
   }
 
   fetchSettings () {
-    Chrome.getSettings()
+    Browser.getSettings()
       .then((settings) => {
         this.setState({
           settings: settings
@@ -76,11 +76,11 @@ class Options extends Component {
 
   onDeleteBlacklistItem(url) {
     delete this.state.settings.blacklist[url];
-    Chrome.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());
+    Browser.setSetting('blacklist', this.state.settings.blacklist).then(() => this.fetchSettings());
   }
 
   onClearBlacklist() {
-    Chrome.setSetting('blacklist', {}).then(this.fetchSettings);
+    Browser.setSetting('blacklist', {}).then(this.fetchSettings);
   }
 
   render () {

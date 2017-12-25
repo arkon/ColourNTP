@@ -28,7 +28,7 @@ const _SHORTCUTS = [
   }
 ];
 
-export default class Chrome {
+export default class Browser {
   // Panel helpers
   // ============================================================================================
 
@@ -40,7 +40,7 @@ export default class Chrome {
         let items = visitedURLs.map((site) => ({
           title : site.title,
           url   : site.url,
-          img   : Chrome._favicon(site.url)
+          img   : Browser._favicon(site.url)
         }));
 
         resolve(items.slice(0, parseInt(max, 10)));
@@ -61,7 +61,7 @@ export default class Chrome {
           return {
             title   : session.tab ? session.tab.title : `${session.window.tabs.length} Tabs`,
             session : session.window ? session.window.sessionId : session.tab.sessionId,
-            img     : session.tab ? Chrome._favicon(session.tab.url) : null
+            img     : session.tab ? Browser._favicon(session.tab.url) : null
           };
         });
 
@@ -90,7 +90,7 @@ export default class Chrome {
         let items = list.map(((extInf) => ({
           title : extInf.name,
           id    : extInf.id,
-          img   : Chrome._find128Image(extInf.icons)
+          img   : Browser._find128Image(extInf.icons)
         })));
 
         items.push({
@@ -131,7 +131,7 @@ export default class Chrome {
               tabs.push({
                 title : tab.title,
                 url   : tab.url,
-                img   : Chrome._favicon(tab.url)
+                img   : Browser._favicon(tab.url)
               });
             }
           }
@@ -167,7 +167,7 @@ export default class Chrome {
   // ============================================================================================
 
   static getSettings() {
-    return Chrome.getSetting(null);
+    return Browser.getSetting(null);
   }
 
   static getSetting(key) {

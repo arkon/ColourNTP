@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Chrome from '../../modules/chrome';
+import Browser from '../../modules/browser';
 import WebFont from '../../modules/webfont';
 
 export default class FontPreview extends Component {
@@ -35,7 +35,7 @@ export default class FontPreview extends Component {
   }
 
   fetchSettings() {
-    Chrome.getSettings()
+    Browser.getSettings()
       .then((settings) => {
         WebFont.loadFont(settings.fontWeb);
 

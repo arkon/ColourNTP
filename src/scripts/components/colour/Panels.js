@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Tabs from '../layout/Tabs';
 import Tab from '../layout/Tab';
 
-import Chrome from '../../modules/chrome';
+import Browser from '../../modules/browser';
 
 export default class Panels extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export default class Panels extends Component {
   }
 
   fetchSettings() {
-    Chrome.getSettings()
+    Browser.getSettings()
       .then((settings) => {
         this.setState({
           open          : settings.openPanel,
@@ -75,7 +75,7 @@ export default class Panels extends Component {
         });
 
         if (settings.panelVisited) {
-          Chrome.getTopSites(settings.maxVisited, settings.blacklist)
+          Browser.getTopSites(settings.maxVisited, settings.blacklist)
             .then(items => {
               this.setState({
                 topSites: items
@@ -84,7 +84,7 @@ export default class Panels extends Component {
         }
 
         if (settings.panelClosed) {
-          Chrome.getRecentlyClosed(settings.maxClosed)
+          Browser.getRecentlyClosed(settings.maxClosed)
             .then(items => {
               this.setState({
                 recentlyClosed: items
@@ -93,7 +93,7 @@ export default class Panels extends Component {
         }
 
         if (settings.panelDevices) {
-          Chrome.getDevices()
+          Browser.getDevices()
             .then(items => {
               this.setState({
                 devices: items
@@ -102,7 +102,7 @@ export default class Panels extends Component {
         }
 
         if (settings.panelApps) {
-          Chrome.getApps()
+          Browser.getApps()
             .then(items => {
               this.setState({
                 apps: items
@@ -111,7 +111,7 @@ export default class Panels extends Component {
         }
 
         if (settings.panelShortcuts) {
-          Chrome.getShortcuts()
+          Browser.getShortcuts()
             .then((items) => {
               this.setState({
                 shortcuts: items
@@ -122,7 +122,7 @@ export default class Panels extends Component {
   }
 
   onClickTab(tab) {
-    Chrome.setSetting('openPanel', tab);
+    Browser.setSetting('openPanel', tab);
 
     this.setState({
       open: tab
@@ -160,7 +160,7 @@ export default class Panels extends Component {
     let blacklist = this.state.blacklist;
     blacklist[url] = Date.now();
 
-    Chrome.setSetting('blacklist', blacklist)
+    Browser.setSetting('blacklist', blacklist)
       .then(() => {
         this.fetchSettings();
       })

@@ -3,7 +3,7 @@ import Clipboard from 'clipboard';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import Chrome from './modules/chrome';
+import Browser from './modules/browser';
 import Colours from './modules/colours';
 import Saved from './modules/saved';
 import TimeHelper from './modules/timehelper';
@@ -90,7 +90,7 @@ class NewTab extends Component {
   }
 
   fetchSettings () {
-    Chrome.getSettings()
+    Browser.getSettings()
       .then((settings) => {
         const coloursClass = classNames('colours', {
           // No animations

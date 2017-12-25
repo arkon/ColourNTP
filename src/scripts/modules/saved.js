@@ -1,4 +1,4 @@
-import Chrome from './chrome';
+import Browser from './browser';
 
 export default class Saved {
   /**
@@ -10,7 +10,7 @@ export default class Saved {
         resolve(Saved.data);
       }
 
-      Chrome.getSetting('saved')
+      Browser.getSetting('saved')
         .then((results) => {
           if (results.saved) {
             Saved.data = results.saved;
@@ -42,14 +42,14 @@ export default class Saved {
     if (Saved.data.indexOf(colour) === -1) {
       Saved.data.push(colour);
 
-      Chrome.setSetting('saved', Saved.data);
+      Browser.setSetting('saved', Saved.data);
     }
   }
 
   static remove(index) {
     Saved.data.splice(index, 1);
 
-    Chrome.setSetting('saved', Saved.data);
+    Browser.setSetting('saved', Saved.data);
 
     return Saved.data;
   }
@@ -57,7 +57,7 @@ export default class Saved {
   static clear() {
     Saved.data = [];
 
-    Chrome.setSetting('saved', Saved.data);
+    Browser.setSetting('saved', Saved.data);
 
     return Saved.data;
   }
