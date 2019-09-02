@@ -4,14 +4,13 @@
 
 A Chrome new tab page extension based on [What colour is it?][original] by [J.E. Murphy][author].
 
-Requires Chrome 49+.
+Requires Chrome 70+.
 
 
 ## Development
 
 ### Prerequisites
-- [Node.js 6+](https://nodejs.org/en/)
-- [Gulp 4](https://github.com/gulpjs/gulp/tree/4.0)
+- [Node.js 10+](https://nodejs.org/en/)
 
 ### Contributors
 - [Spencer Elliott](http://github.com/elliottsj/): Full Spectrum Hexadecimal/Hue options

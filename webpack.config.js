@@ -1,7 +1,7 @@
-const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
+  mode: 'production',
   context: path.join(__dirname, 'src/scripts'),
   entry: {
     colours: './colours.js',
@@ -19,9 +19,12 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           babelrc: false,
+          presets: [
+            '@babel/preset-env'
+          ],
           plugins: [
-            'transform-class-properties',
-            '@babel/transform-react-jsx'
+            '@babel/plugin-proposal-class-properties',
+            '@babel/plugin-transform-react-jsx'
           ]
         }
       },
@@ -36,9 +39,5 @@ module.exports = {
       path.join(__dirname, 'src/scripts'),
       'node_modules'
     ]
-  },
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor')
-  ]
+  }
 };
