@@ -20,7 +20,14 @@ module.exports = {
         options: {
           babelrc: false,
           presets: [
-            '@babel/preset-env'
+            [
+              '@babel/preset-env',
+              {
+                targets: {
+                  esmodules: true
+                }
+              }
+            ]
           ],
           plugins: [
             '@babel/plugin-proposal-class-properties',
