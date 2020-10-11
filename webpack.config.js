@@ -24,14 +24,14 @@ module.exports = {
               '@babel/preset-env',
               {
                 targets: {
-                  esmodules: true
-                }
+                  chrome: '82'
+                },
               }
-            ]
+            ],
+            '@babel/preset-react'
           ],
           plugins: [
-            '@babel/plugin-proposal-class-properties',
-            '@babel/plugin-transform-react-jsx'
+            '@babel/plugin-proposal-class-properties'
           ]
         }
       },
