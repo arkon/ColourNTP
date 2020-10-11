@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import svgClose from '../../../assets/img/close.svg';
 
-export default class DeleteList extends Component {
+export default class DeleteList extends React.Component {
   constructor(props) {
     super(props);
 

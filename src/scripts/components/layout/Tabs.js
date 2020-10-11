@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
-import Tab from './Tab';
-
-export default class Tabs extends Component {
+export default class Tabs extends React.Component {
   constructor(props) {
     super(props);
 

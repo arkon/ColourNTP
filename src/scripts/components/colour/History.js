@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import Clipboard from 'clipboard';
+import React from 'react';
 
 import Colours from '../../modules/colours';
 import Saved from '../../modules/saved';
 
-export default class History extends Component {
+export default class History extends React.Component {
   static defaultProps = {
     max: 10
   };

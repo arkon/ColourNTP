@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import Tabs from '../layout/Tabs';
@@ -6,7 +6,7 @@ import Tab from '../layout/Tab';
 
 import Browser from '../../modules/browser';
 
-export default class Panels extends Component {
+export default class Panels extends React.Component {
   constructor(props) {
     super(props);
 

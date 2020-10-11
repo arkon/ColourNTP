@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
 import Checkbox from './components/options/Checkbox';
@@ -27,7 +27,7 @@ import {
 import Browser from './modules/browser';
 import Colours from './modules/colours';
 
-class Options extends Component {
+class Options extends React.Component {
   constructor (props) {
     super(props);
 

@@ -1,11 +1,10 @@
 import classNames from 'classnames';
 import Clipboard from 'clipboard';
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
 import Browser from './modules/browser';
 import Colours from './modules/colours';
-import Saved from './modules/saved';
 import TimeHelper from './modules/timehelper';
 import Unsplash from './modules/unsplash';
 import WebFont from './modules/webfont';
@@ -26,7 +25,7 @@ import svgGear from '../assets/img/gear.svg';
 import svgImage from '../assets/img/image.svg';
 import svgNewTab from '../assets/img/newtab.svg';
 
-class NewTab extends Component {
+class NewTab extends React.Component {
   constructor (props) {
     super(props);
 

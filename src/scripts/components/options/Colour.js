@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Option from './Option';
-import Browser from '../../modules/browser';
 
 export default class Colour extends Option {
   render() {

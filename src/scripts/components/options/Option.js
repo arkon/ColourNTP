@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Browser from '../../modules/browser';
 
-export default class Option extends Component {
+export default class Option extends React.Component {
   constructor(props) {
     super(props);
 

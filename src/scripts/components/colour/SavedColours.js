@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import SavedColour from './SavedColour';
 
-import { ColourFormats } from '../../constants/settings';
-
 import Saved from '../../modules/saved';
 
-export default class SavedColours extends Component {
+export default class SavedColours extends React.Component {
   constructor(props) {
     super(props);
 

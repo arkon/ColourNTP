@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Browser from '../../modules/browser';
 import WebFont from '../../modules/webfont';
 
-export default class FontPreview extends Component {
+export default class FontPreview extends React.Component {
   constructor(props) {
     super(props);
 
