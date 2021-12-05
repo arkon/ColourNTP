@@ -3,11 +3,13 @@ import gulp from 'gulp';
 import gulpZip from 'gulp-zip';
 import htmlmin from 'gulp-htmlmin';
 import nano from 'gulp-cssnano';
-import sass from 'gulp-sass';
+import sassPlugin from 'gulp-sass';
+import sassCompiler from 'sass';
 import webpack from 'webpack';
 
 import webpackConfig from './webpack.config';
 
+const sass = sassPlugin(sassCompiler);
 
 // ========================================================================== //
 // Configuration                                                              //
