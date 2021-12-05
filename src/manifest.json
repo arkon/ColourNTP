@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Colour New Tab",
   "short_name": "ColourNTP",
   "description": "Chrome new tab page based on http://whatcolourisit.scn9a.org/",
@@ -9,13 +9,15 @@
     "newtab": "colours.html"
   },
   "permissions": [
-    "<all_urls>",
     "chrome://favicon/",
     "management",
     "sessions",
     "storage",
     "tabs",
     "topSites"
+  ],
+  "host_permissions": [
+    "*://*/*"
   ],
   "icons": {
     "16": "assets/img/icon/icon16.png",
