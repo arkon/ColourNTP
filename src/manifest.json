@@ -9,7 +9,7 @@
     "newtab": "colours.html"
   },
   "permissions": [
-    "chrome://favicon/",
+    "favicon",
     "management",
     "sessions",
     "storage",

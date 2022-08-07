@@ -1,33 +1,5 @@
 import { DEFAULTS } from '../constants/defaults';
 
-const _SHORTCUTS = [
-  {
-    title : 'Bookmarks',
-    url   : 'chrome://bookmarks/',
-    img   : 'chrome://favicon/size/16@2x/chrome://bookmarks/'
-  },
-  {
-    title : 'History',
-    url   : 'chrome://history/',
-    img   : 'chrome://favicon/size/16@2x/chrome://history/'
-  },
-  {
-    title : 'Downloads',
-    url   : 'chrome://downloads/',
-    img   : 'chrome://favicon/size/16@2x/chrome://downloads/'
-  },
-  {
-    title : 'Extensions',
-    url   : 'chrome://extensions/',
-    img   : 'chrome://favicon/size/16@2x/chrome://extensions/'
-  },
-  {
-    title : 'Settings',
-    url   : 'chrome://settings/',
-    img   : 'chrome://favicon/size/16@2x/chrome://settings/'
-  }
-];
-
 export default class Browser {
   // Panel helpers
   // ============================================================================================
@@ -148,8 +120,7 @@ export default class Browser {
   }
 
   static _favicon(url) {
-    const prefix = window.devicePixelRatio > 1.5 ? 'chrome://favicon/size/16@2x' : 'chrome://favicon';
-    return `${prefix}/${url}`;
+    return `/_favicon/?pageUrl=${encodeURIComponent(url)}&size=32`;
   }
 
   static _find128Image(icons) {
@@ -198,3 +169,31 @@ export default class Browser {
     });
   }
 }
+
+const _SHORTCUTS = [
+  {
+    title : 'Bookmarks',
+    url   : 'chrome://bookmarks/',
+    img   : Browser._favicon('chrome://bookmarks/')
+  },
+  {
+    title : 'History',
+    url   : 'chrome://history/',
+    img   : Browser._favicon('chrome://history/')
+  },
+  {
+    title : 'Downloads',
+    url   : 'chrome://downloads/',
+    img   : Browser._favicon('chrome://downloads/')
+  },
+  {
+    title : 'Extensions',
+    url   : 'chrome://extensions/',
+    img   : Browser._favicon('chrome://extensions/')
+  },
+  {
+    title : 'Settings',
+    url   : 'chrome://settings/',
+    img   : Browser._favicon('chrome://settings/')
+  }
+];
