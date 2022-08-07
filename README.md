@@ -1,10 +1,10 @@
 # Colour New Tab
 
-[<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png" alt="Available in the Chrome Web Store">][chrome-store]
+[<img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" alt="Available in the Chrome Web Store">][chrome-store]
 
 A Chrome new tab page extension based on [What colour is it?][original] by [J.E. Murphy][author].
 
-Requires a Chromium-based browser on v82+.
+Requires a Chromium-based browser on v104+.
 
 
 ## Development
