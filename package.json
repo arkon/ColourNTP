@@ -2,7 +2,7 @@
   "name": "ColourNTP",
   "version": "0.0.0",
   "description": "Chrome new tab page based on http://whatcolourisit.scn9a.org/",
-  "author": "Eugene Cheung",
+  "author": "arkon",
   "repository": {
     "type": "git",
     "url": "https://github.com/arkon/ColourNTP"
