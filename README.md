@@ -2,7 +2,7 @@
 
 [<img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" alt="Available in the Chrome Web Store">][chrome-store]
 
-A Chrome new tab page extension based on [What colour is it?][original] by [J.E. Murphy][author].
+A Chrome new tab page extension with a hex-based clock.
 
 Requires a Chromium-based browser on v104+.
 
