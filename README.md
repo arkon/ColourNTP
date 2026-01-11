@@ -10,7 +10,30 @@ Requires a Chromium-based browser on v104+.
 ## Development
 
 ### Prerequisites
-- [Node.js 16+](https://nodejs.org/en/)
+- [Node.js 20+](https://nodejs.org/en/)
+
+### Setup
+```bash
+npm install
+```
+
+### Build
+```bash
+# Development build with hot reload
+npm run dev
+
+# Production build
+npm run build
+
+# Create ZIP for Chrome Web Store
+npm run zip
+```
+
+### Tech Stack
+- **Vite** - Build tool and dev server
+- **TypeScript** - Type-safe JavaScript
+- **React 19** - UI library with functional components and hooks
+- **styled-components** - CSS-in-JS styling
 
 ### Contributors
 - [Spencer Elliott](http://github.com/elliottsj/): Full Spectrum Hexadecimal/Hue options
