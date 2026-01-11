@@ -1,0 +1,33 @@
+import styled from 'styled-components';
+
+import type { ColourFormat } from '../../constants/settings';
+import { format } from '../../modules/colours';
+import { add } from '../../modules/saved';
+
+const ColourWrapper = styled.h2`
+  animation: shiftUp 0.5s ease-out 0.15s forwards;
+  contain: content;
+  margin-top: 1.5rem;
+  opacity: 0;
+`;
+
+const CopySpan = styled.span`
+  cursor: pointer;
+`;
+
+interface ColourProps {
+    colour: string;
+    format: ColourFormat;
+}
+
+export function Colour({ colour, format: colourFormat }: ColourProps) {
+    const formattedColour = format(colour, colourFormat);
+
+    return (
+        <ColourWrapper>
+            <CopySpan title="Copy to clipboard" data-clipboard-text={formattedColour} onClick={() => add(colour)}>
+                {formattedColour}
+            </CopySpan>
+        </ColourWrapper>
+    );
+}

@@ -1,0 +1,10 @@
+{
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+    "singleQuote": true,
+    "tabWidth": 4,
+    "printWidth": 120,
+    "experimentalSortImports": {
+        "enabled": true,
+        "groups": ["builtin", ["external"], ["subpath", "internal"]]
+    }
+}
