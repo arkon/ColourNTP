@@ -10,7 +10,7 @@ Requires a Chromium-based browser on v104+.
 ## Development
 
 ### Prerequisites
-- [Node.js 20+](https://nodejs.org/en/)
+- [Node.js 24+](https://nodejs.org/en/)
 
 ### Setup
 ```bash
