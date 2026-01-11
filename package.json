@@ -14,7 +14,7 @@
         "format:check": "npm run format -- --check",
         "format": "oxfmt",
         "dev": "vite",
-        "build": "tsc && vite build",
+        "build": "tsgo && vite build",
         "preview": "vite preview",
         "zip": "npm run build && node scripts/zip.ts"
     },
@@ -30,11 +30,11 @@
         "@types/node": "^24.10.7",
         "@types/react": "^19.2.8",
         "@types/react-dom": "^19.2.3",
+        "@typescript/native-preview": "^7.0.0-dev.20260111.1",
         "@vitejs/plugin-react": "^5.1.2",
         "archiver": "^7.0.1",
         "oxfmt": "^0.23.0",
         "terser": "^5.44.1",
-        "typescript": "^5.9.3",
         "vite": "^7.3.1",
         "vite-plugin-svgr": "^4.5.0"
     },
