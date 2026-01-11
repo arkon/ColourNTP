@@ -26,7 +26,7 @@ export default defineConfig({
                 },
             },
         },
-        target: 'chrome104',
+        target: 'chrome120',
         minify: 'terser',
     },
 });

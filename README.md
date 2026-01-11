@@ -4,7 +4,7 @@
 
 A Chrome new tab page extension with a hex-based clock.
 
-Requires a Chromium-based browser on v104+.
+Requires a Chromium-based browser on v120+.
 
 ## Development
 
@@ -30,13 +30,6 @@ npm run build
 # Create ZIP for Chrome Web Store
 npm run zip
 ```
-
-### Tech Stack
-
-- **Vite** - Build tool and dev server
-- **TypeScript** - Type-safe JavaScript
-- **React 19** - UI library with functional components and hooks
-- **styled-components** - CSS-in-JS styling
 
 ### Contributors
 
