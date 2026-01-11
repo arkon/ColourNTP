@@ -15,7 +15,6 @@
         "format": "oxfmt",
         "dev": "vite build --watch",
         "build": "tsgo && vite build",
-        "preview": "vite preview",
         "zip": "npm run build && node scripts/zip.ts"
     },
     "dependencies": {
