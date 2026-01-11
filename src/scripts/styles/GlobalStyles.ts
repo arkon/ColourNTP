@@ -71,20 +71,6 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 2em;
   }
 
-  .copy {
-    cursor: pointer;
-  }
-
-  .btn {
-    background: none;
-    border: 1px solid ${theme.colors.lightGrey};
-    cursor: pointer;
-    color: ${theme.colors.white};
-    font: inherit;
-    font-size: 0.85em;
-    padding: 0.25em 0.5em;
-  }
-
   @keyframes shiftUp {
     from {
       opacity: 0;

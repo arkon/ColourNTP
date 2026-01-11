@@ -63,7 +63,6 @@ export function SavedColour({ index, colour, format: colourFormat, onRemove }: S
 
     return (
         <SavedColourWrapper
-            className="copy"
             $isDark={colourIsDark}
             style={{ backgroundColor: colour }}
             title="Copy to clipboard"

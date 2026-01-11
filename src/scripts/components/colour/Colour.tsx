@@ -25,12 +25,7 @@ export function Colour({ colour, format: colourFormat }: ColourProps) {
 
     return (
         <ColourWrapper>
-            <CopySpan
-                className="copy"
-                title="Copy to clipboard"
-                data-clipboard-text={formattedColour}
-                onClick={() => add(colour)}
-            >
+            <CopySpan title="Copy to clipboard" data-clipboard-text={formattedColour} onClick={() => add(colour)}>
                 {formattedColour}
             </CopySpan>
         </ColourWrapper>

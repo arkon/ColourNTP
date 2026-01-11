@@ -70,7 +70,6 @@ export function History({ colour, format: colourFormat, max = 10 }: HistoryProps
                 return (
                     <HistoryItem
                         key={i}
-                        className="copy"
                         style={{ backgroundColor: c }}
                         data-colour={formattedColour}
                         data-clipboard-text={formattedColour}
