@@ -1,11 +1,7 @@
-import styled from 'styled-components';
 import { useOption } from './useOption';
 import { Tooltip } from './Tooltip';
+import { NestedContent } from '../../styles';
 import type { Settings } from '../../constants/defaults';
-
-const OptionsContent = styled.div`
-  margin-left: 1.5em;
-`;
 
 interface CheckboxProps {
   label: string;
@@ -32,7 +28,7 @@ export function Checkbox({ label, tooltip, optkey, value: initialValue, children
           <span>{label}</span>
         )}
       </label>
-      {value && children && <OptionsContent>{children}</OptionsContent>}
+      {value && children && <NestedContent>{children}</NestedContent>}
     </>
   );
 }

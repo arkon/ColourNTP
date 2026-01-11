@@ -1,9 +1,5 @@
-import styled from 'styled-components';
 import { Tooltip } from './Tooltip';
-
-const OptionsContent = styled.div`
-  margin-left: 1.5em;
-`;
+import { NestedContent } from '../../styles';
 
 interface RadioProps {
   label: string;
@@ -39,7 +35,7 @@ export function Radio({
           <span>{label}</span>
         )}
       </label>
-      {checked && children && <OptionsContent>{children}</OptionsContent>}
+      {checked && children && <NestedContent>{children}</NestedContent>}
     </>
   );
 }

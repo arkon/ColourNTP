@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import styled from 'styled-components';
 
-import { OptionsGlobalStyles, theme } from './styles';
+import { GlobalStyles, theme } from './styles';
 import { Tabs, Tab } from './components/layout';
 import {
   Checkbox,
@@ -128,7 +128,7 @@ function Options() {
   if (!settings) {
     return (
       <>
-        <OptionsGlobalStyles />
+        <GlobalStyles />
         <OptionsWrapper>Loading...</OptionsWrapper>
       </>
     );
@@ -139,7 +139,7 @@ function Options() {
 
   return (
     <>
-      <OptionsGlobalStyles />
+      <GlobalStyles />
       <OptionsWrapper>
         <Header>
           <h1>{colourUpper} New Tab</h1>

@@ -1,12 +1,6 @@
-import styled from 'styled-components';
 import { useOption } from './useOption';
+import { FormLabel } from '../../styles';
 import type { Settings } from '../../constants/defaults';
-
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-`;
 
 interface DropdownProps {
   label: string;
@@ -19,7 +13,7 @@ export function Dropdown({ label, options, optkey, value: initialValue }: Dropdo
   const { value, handleChange } = useOption(optkey, initialValue);
 
   return (
-    <Label>
+    <FormLabel>
       <span>{label}:</span>
       <select value={value} onChange={(e) => handleChange(e.target.value)}>
         {options.map((item, i) => (
@@ -28,6 +22,6 @@ export function Dropdown({ label, options, optkey, value: initialValue }: Dropdo
           </option>
         ))}
       </select>
-    </Label>
+    </FormLabel>
   );
 }

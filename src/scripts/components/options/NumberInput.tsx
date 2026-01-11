@@ -1,12 +1,6 @@
-import styled from 'styled-components';
 import { useOption } from './useOption';
+import { FormLabel } from '../../styles';
 import type { Settings } from '../../constants/defaults';
-
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-`;
 
 interface NumberInputProps {
   label: string;
@@ -18,7 +12,7 @@ export function NumberInput({ label, optkey, value: initialValue }: NumberInputP
   const { value, handleChange } = useOption(optkey, initialValue);
 
   return (
-    <Label>
+    <FormLabel>
       <span>{label}:</span>
       <input
         type="number"
@@ -27,6 +21,6 @@ export function NumberInput({ label, optkey, value: initialValue }: NumberInputP
         value={value.toString()}
         onChange={(e) => handleChange(parseInt(e.target.value, 10))}
       />
-    </Label>
+    </FormLabel>
   );
 }
