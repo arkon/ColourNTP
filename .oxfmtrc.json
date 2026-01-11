@@ -4,6 +4,7 @@
     "tabWidth": 4,
     "printWidth": 120,
     "experimentalSortImports": {
-        "enabled": true
+        "enabled": true,
+        "groups": ["builtin", ["external"], ["subpath", "internal"]]
     }
 }

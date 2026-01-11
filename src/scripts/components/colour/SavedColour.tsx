@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-import type { ColourFormat } from '../../constants/settings';
-
 import closeSvg from '../../../assets/img/close.svg?raw';
+import type { ColourFormat } from '../../constants/settings';
 import { format, isDark, hexToRgb } from '../../modules/colours';
 
 const SavedColourWrapper = styled.div<{ $isDark: boolean }>`

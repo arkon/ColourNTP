@@ -1,5 +1,4 @@
 import type { Settings } from '../../constants/defaults';
-
 import { FormLabel } from '../../styles';
 import { useOption } from './useOption';
 

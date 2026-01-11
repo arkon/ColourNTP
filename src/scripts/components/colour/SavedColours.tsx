@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import type { ColourFormat } from '../../constants/settings';
-
 import { get, remove, clear } from '../../modules/saved';
 import { theme } from '../../styles/theme';
 import { SavedColour } from './SavedColour';

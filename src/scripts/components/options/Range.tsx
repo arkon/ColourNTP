@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import type { Settings } from '../../constants/defaults';
-
 import { useOption } from './useOption';
 
 const Label = styled.label`

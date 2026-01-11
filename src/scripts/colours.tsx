@@ -3,13 +3,12 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import styled from 'styled-components';
 
-import type { Settings } from './constants/defaults';
-
 import bookmarkSvg from '../assets/img/bookmark.svg?raw';
 import gearSvg from '../assets/img/gear.svg?raw';
 import imageSvg from '../assets/img/image.svg?raw';
 import newTabSvg from '../assets/img/newtab.svg?raw';
 import { Colour, DateDisplay, History, Panels, SavedColours, Sidebar, Time, Toast } from './components/colour';
+import type { Settings } from './constants/defaults';
 import { ColourTypes, BackgroundImage, FontType, type ColourType } from './constants/settings';
 import { getSettings } from './modules/browser';
 import * as Colours from './modules/colours';

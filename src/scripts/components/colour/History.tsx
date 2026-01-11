@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import type { ColourFormat } from '../../constants/settings';
-
 import { format } from '../../modules/colours';
 import { add } from '../../modules/saved';
 import { theme } from '../../styles/theme';

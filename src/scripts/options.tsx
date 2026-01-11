@@ -2,8 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import styled from 'styled-components';
 
-import type { Settings } from './constants/defaults';
-
 import { Tabs, Tab } from './components/layout';
 import {
     Checkbox,
@@ -17,6 +15,7 @@ import {
     Range,
     Textbox,
 } from './components/options';
+import type { Settings } from './constants/defaults';
 import { FONTS } from './constants/fonts';
 import { ColourFormats, ColourTypes, BackgroundImage, UnsplashFrequency, FontType } from './constants/settings';
 import { getSettings, setSetting } from './modules/browser';

@@ -1,7 +1,6 @@
 import { type ReactElement } from 'react';
 
 import type { Settings } from '../../constants/defaults';
-
 import { Radio } from './Radio';
 import { useOption } from './useOption';
 

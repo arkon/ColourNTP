@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import type { Settings } from '../../constants/defaults';
-
 import { setSetting } from '../../modules/browser';
 
 export function useOption<T>(optkey: keyof Settings, initialValue: T) {

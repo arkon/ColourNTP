@@ -1,5 +1,4 @@
 import type { Settings } from '../../constants/defaults';
-
 import { NestedContent } from '../../styles';
 import { Tooltip } from './Tooltip';
 import { useOption } from './useOption';
