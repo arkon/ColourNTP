@@ -104,7 +104,6 @@ const AppsPanel = styled(Panel)`
 
   li a {
     align-items: center;
-    background: none;
     display: flex;
     flex-flow: column nowrap;
     height: 100%;
@@ -157,11 +156,6 @@ const RemoveButton = styled.button`
   transition: opacity 0.3s;
   width: 1.5rem;
 
-  svg {
-    height: 100%;
-    width: 100%;
-  }
-
   li:hover & {
     opacity: 1;
   }
@@ -169,6 +163,11 @@ const RemoveButton = styled.button`
   &:hover {
     opacity: 1;
   }
+`;
+
+const RemoveButtonCloseIcon = styled(CloseIcon)`
+  height: 50%;
+  width: 50%;
 `;
 
 const AppName = styled.div`
@@ -293,7 +292,7 @@ export function Panels() {
                             <a title={site.title} href={site.url} style={{ backgroundImage: `url('${site.img}')` }}>
                                 {site.title}
                                 <RemoveButton title="Hide" data-url={site.url} onClick={handleBlacklist}>
-                                    <CloseIcon />
+                                    <RemoveButtonCloseIcon />
                                 </RemoveButton>
                             </a>
                         </li>
