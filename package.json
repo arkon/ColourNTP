@@ -19,7 +19,6 @@
         "zip": "npm run build && node scripts/zip.ts"
     },
     "dependencies": {
-        "classnames": "^2.5.1",
         "clipboard": "^2.0.11",
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
