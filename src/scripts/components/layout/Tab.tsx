@@ -1,14 +1,27 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const TabContent = styled.div`
-  padding: 1em 0;
+import { theme } from '../../styles/theme';
+
+type TabVariant = 'panels' | 'options';
+
+const TabContent = styled.div<{ $variant: TabVariant }>`
+  ${({ $variant }) =>
+      $variant === 'options'
+          ? css`
+                background: ${theme.colors.grey};
+                padding: 1em;
+            `
+          : css`
+                padding: 1em 0;
+            `}
 `;
 
 interface TabProps {
     name: string;
+    variant?: TabVariant;
     children?: React.ReactNode;
 }
 
-export function Tab({ children }: TabProps) {
-    return <TabContent>{children}</TabContent>;
+export function Tab({ variant = 'options', children }: TabProps) {
+    return <TabContent $variant={variant}>{children}</TabContent>;
 }

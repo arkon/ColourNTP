@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
+import CloseIcon from '../../../assets/img/close.svg?react';
 import {
     getSettings,
     getTopSites,
@@ -20,121 +21,159 @@ import { Tab } from '../layout/Tab';
 import { Tabs } from '../layout/Tabs';
 
 const PanelsWrapper = styled.div`
-  margin-top: 2em;
+  margin: 1em auto 0;
+  max-width: 60em;
   position: relative;
+  width: auto;
   z-index: ${theme.zIndex.above};
 `;
 
 const Panel = styled.ul<{ $noFavicons?: boolean }>`
-  animation: shiftUp 0.3s ease-out forwards;
-  background-color: rgba(17, 17, 17, 0.85);
-  border-radius: 3px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 5px;
+  contain: content;
   display: flex;
-  flex-wrap: wrap;
-  max-height: 300px;
-  overflow: auto;
-  padding: 0.5em;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 0.5rem;
 
   li {
-    flex: 1 0 50%;
-    max-width: 50%;
+    contain: content;
+    display: flex;
+    flex-direction: column;
     position: relative;
-
-    @media (min-width: 700px) {
-      flex: 1 0 33.33%;
-      max-width: 33.33%;
-    }
+    text-align: left;
   }
 
   li a {
-    background-position: 0.5em center;
+    background-color: #eee;
+    background-position: 0.5rem center;
     background-repeat: no-repeat;
-    background-size: 16px;
-    border-radius: 3px;
-    display: block;
+    background-size: 1rem 1rem;
+    border: 1px solid #ddd;
+    color: ${theme.colors.darkGrey};
+    display: inline-block;
+    font-size: 1rem;
+    height: 4rem;
+    line-height: 2rem;
+    margin: 0.5rem;
     overflow: hidden;
-    padding: ${({ $noFavicons }) => ($noFavicons ? '0.5em' : '0.5em 0.5em 0.5em 2em')};
+    padding: ${({ $noFavicons }) => ($noFavicons ? '1rem 0.5rem' : '1rem 0.5rem 1rem 1.85rem')};
     text-overflow: ellipsis;
-    transition: background-color 0.2s;
+    transition: box-shadow 0.3s;
     white-space: nowrap;
+    width: 10rem;
+    will-change: box-shadow;
     ${({ $noFavicons }) => $noFavicons && 'background-image: none !important;'}
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 0 2px #777;
+      color: #0e0e0e;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    @media (max-width: 600px) {
+      background-position: center 0.5rem;
+      font-size: 0.85rem;
+      margin: 0.25rem;
+      padding: 1.75rem 0.5rem;
+      text-align: center;
+      width: 6rem;
     }
   }
 `;
 
 const PanelMessage = styled.p`
-  color: ${theme.colors.lightGrey};
-  padding: 0.5em;
+  color: ${theme.colors.darkGrey};
+  display: block;
+  font-size: 0.9rem;
+  padding: 0.5em 1em;
   text-align: center;
   width: 100%;
 `;
 
 const AppsPanel = styled(Panel)`
   li {
-    flex: 0 0 100px;
-    max-width: 100px;
-    padding: 0.5em;
+    height: 10em;
     text-align: center;
   }
 
   li a {
+    align-items: center;
     background: none;
-    padding: 0.5em;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    justify-content: center;
+    line-height: 1.25;
+    padding: 1em;
+    white-space: normal;
+    width: 15em;
   }
 
   img {
-    display: block;
-    height: 48px;
-    margin: 0 auto 0.5em;
-    width: 48px;
+    height: 3em;
+    margin-bottom: 0.5em;
+    width: 3em;
   }
 `;
 
 const DevicesPanel = styled(Panel)`
-  flex-direction: column;
+  > li {
+    width: 100%;
+
+    & + li {
+      margin-top: 1em;
+    }
+  }
 `;
 
 const DeviceName = styled.p`
-  font-weight: bold;
-  padding: 0.5em;
+  color: ${theme.colors.darkGrey};
+  text-align: center;
 `;
 
 const DeviceTabs = styled.ul`
+  align-items: center;
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-flow: row wrap;
+  justify-content: center;
 `;
 
 const RemoveButton = styled.button`
   background: none;
   border: 0;
   cursor: pointer;
-  font-size: 0.8em;
-  opacity: 0;
-  padding: 0.25em 0.5em;
+  font-size: 0;
+  height: 1.5rem;
+  opacity: 0.5;
   position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: opacity 0.2s;
+  right: 5px;
+  top: 5px;
+  transition: opacity 0.3s;
+  width: 1.5rem;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 
   li:hover & {
-    opacity: 0.5;
+    opacity: 1;
   }
 
   &:hover {
-    opacity: 1 !important;
+    opacity: 1;
   }
 `;
 
 const AppName = styled.div`
-  font-size: 0.75em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  color: ${theme.colors.darkGrey};
+  font-size: 1rem;
 `;
 
 export function Panels() {
@@ -247,14 +286,14 @@ export function Panels() {
 
     if (showVisited) {
         tabs.push(
-            <Tab key="visited" name="Most visited">
+            <Tab key="visited" name="Most visited" variant="panels">
                 <Panel $noFavicons={!showFavicons}>
                     {topSites.map((site, i) => (
                         <li key={i}>
                             <a title={site.title} href={site.url} style={{ backgroundImage: `url('${site.img}')` }}>
                                 {site.title}
                                 <RemoveButton title="Hide" data-url={site.url} onClick={handleBlacklist}>
-                                    ×
+                                    <CloseIcon />
                                 </RemoveButton>
                             </a>
                         </li>
@@ -266,7 +305,7 @@ export function Panels() {
 
     if (showClosed) {
         tabs.push(
-            <Tab key="closed" name="Recently closed">
+            <Tab key="closed" name="Recently closed" variant="panels">
                 <Panel $noFavicons={!showFavicons}>
                     {recentlyClosed.length === 0 ? (
                         <PanelMessage>No recently closed sessions</PanelMessage>
@@ -289,7 +328,7 @@ export function Panels() {
 
     if (showDevices) {
         tabs.push(
-            <Tab key="devices" name="Other devices">
+            <Tab key="devices" name="Other devices" variant="panels">
                 <DevicesPanel $noFavicons={!showFavicons}>
                     {devices.length === 0 ? (
                         <PanelMessage>No tabs from other devices</PanelMessage>
@@ -320,7 +359,7 @@ export function Panels() {
 
     if (showApps) {
         tabs.push(
-            <Tab key="apps" name="Apps">
+            <Tab key="apps" name="Apps" variant="panels">
                 <AppsPanel>
                     {apps.map((app, i) => {
                         if ((app.id === 'ntp-apps' && !showAllApps) || (app.id === 'ntp-webstore' && !showWebStore)) {
@@ -343,7 +382,7 @@ export function Panels() {
 
     if (showShortcuts) {
         tabs.push(
-            <Tab key="shortcuts" name="Shortcuts">
+            <Tab key="shortcuts" name="Shortcuts" variant="panels">
                 <Panel $noFavicons={!showFavicons}>
                     {shortcuts.map((shortcut, i) => (
                         <li key={i} onClick={handleShortcut(shortcut.url)}>
@@ -363,7 +402,7 @@ export function Panels() {
 
     return (
         <PanelsWrapper>
-            <Tabs onToggle={handleTabClick} activeTab={open} canToggle>
+            <Tabs onToggle={handleTabClick} activeTab={open} canToggle variant="panels">
                 {tabs}
             </Tabs>
         </PanelsWrapper>

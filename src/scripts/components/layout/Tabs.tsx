@@ -1,32 +1,69 @@
 import { useState, useEffect, type ReactElement } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { theme } from '../../styles/theme';
 
-const TabsList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25em;
-  margin-top: 1em;
+type TabVariant = 'panels' | 'options';
+
+const TabsList = styled.ul<{ $variant: TabVariant }>`
+  display: block;
+  list-style: none;
+
+  ${({ $variant }) =>
+      $variant === 'panels'
+          ? css`
+                font-size: 0.9em;
+                margin: 4em 0 1em;
+            `
+          : css`
+                margin-top: 2em;
+            `}
 `;
 
-export const TabItem = styled.li<{ $active: boolean }>`
-  border: 1px solid ${theme.colors.lightGrey};
+const TabItemBase = styled.li<{ $variant: TabVariant }>`
   cursor: pointer;
-  font-size: 0.85em;
-  padding: 0.35em 0.75em;
-  transition: background-color 0.2s, color 0.2s;
+  display: inline-block;
+
+  ${({ $variant }) =>
+      $variant === 'panels' &&
+      css`
+          & + &::before {
+              content: '•';
+              margin-right: 0.5em;
+          }
+      `};
+`;
+
+export const TabItem = styled(TabItemBase)<{ $active: boolean }>`
+  color: inherit;
+  contain: content;
+  padding: 0.25em;
+
+  span {
+    opacity: ${({ $active }) => ($active ? 1 : 0.5)};
+    transition: opacity 0.3s;
+    will-change: opacity;
+  }
+
+  &:hover span {
+    opacity: 1;
+  }
+`;
+
+const OptionsTabItem = styled(TabItemBase)<{ $active: boolean }>`
+  margin-right: 1px;
+  padding: 0.5em 1em;
 
   ${({ $active }) =>
       $active &&
-      `
-    background-color: ${theme.colors.white};
-    color: ${theme.colors.darkGrey};
-  `}
+      css`
+          background: ${theme.colors.grey};
+          color: ${theme.colors.white};
+      `}
 
   &:hover {
-    background-color: ${theme.colors.white};
-    color: ${theme.colors.darkGrey};
+    background: ${theme.colors.grey};
+    color: ${theme.colors.white};
   }
 `;
 
@@ -34,10 +71,11 @@ interface TabsProps {
     activeTab: number | null;
     canToggle?: boolean;
     onToggle?: (tab: number | null) => void;
+    variant?: TabVariant;
     children: ReactElement<{ name: string }>[] | ReactElement<{ name: string }>;
 }
 
-export function Tabs({ activeTab: initialTab, canToggle, onToggle, children }: TabsProps) {
+export function Tabs({ activeTab: initialTab, canToggle, onToggle, variant = 'options', children }: TabsProps) {
     const [activeTab, setActiveTab] = useState<number | null>(initialTab);
 
     useEffect(() => {
@@ -60,13 +98,15 @@ export function Tabs({ activeTab: initialTab, canToggle, onToggle, children }: T
     const childArray = Array.isArray(children) ? children : [children];
     const validChildren = childArray.filter(Boolean);
 
+    const Item = variant === 'panels' ? TabItem : OptionsTabItem;
+
     return (
         <>
-            <TabsList>
+            <TabsList $variant={variant}>
                 {validChildren.map((tab, i) => (
-                    <TabItem key={i} $active={activeTab === i} onClick={() => handleTab(i)}>
-                        {tab.props.name}
-                    </TabItem>
+                    <Item key={i} $active={activeTab === i} $variant={variant} onClick={() => handleTab(i)}>
+                        {variant === 'panels' ? <span>{tab.props.name}</span> : tab.props.name}
+                    </Item>
                 ))}
             </TabsList>
             {activeTab !== null && validChildren[activeTab]}
