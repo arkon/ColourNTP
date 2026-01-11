@@ -66,7 +66,8 @@ const BgBase = styled.div`
   z-index: ${theme.zIndex.default};
 `;
 
-const BgColour = styled(BgBase)`
+const BgColour = styled(BgBase)<{ $color: string }>`
+  background-color: ${({ $color }) => $color};
   transition: background-color 0.8s;
   will-change: transform;
 `;
@@ -77,6 +78,10 @@ const BgImage = styled(BgBase)`
 `;
 
 const ButtonsWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   position: absolute;
   right: 1em;
   top: 1em;
@@ -340,10 +345,6 @@ function NewTab() {
         );
     }
 
-    const bgColourStyle = {
-        backgroundColor: bgOpacity < 1 ? Colours.rgba(colour, bgOpacity) : colour,
-    };
-
     const textIsDark = Boolean(settings.adjustColour && colour && Colours.isDark(...Colours.hexToRgb(colour)));
     const needsTextShadow = settings.colour !== ColourTypes.REGULAR || settings.bg !== BackgroundImage.NONE;
 
@@ -363,7 +364,7 @@ function NewTab() {
                 >
                     {bgImage && <BgImage style={{ backgroundImage: `url(${bgImage})` }} />}
 
-                    {bgOpacity !== 0 && <BgColour style={bgColourStyle} />}
+                    {bgOpacity !== 0 && <BgColour $color={bgOpacity < 1 ? Colours.rgba(colour, bgOpacity) : colour} />}
 
                     <ButtonsWrapper>
                         <IconButton

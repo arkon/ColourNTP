@@ -4,7 +4,8 @@ import closeSvg from '../../../assets/img/close.svg?raw';
 import type { ColourFormat } from '../../constants/settings';
 import { format, isDark, hexToRgb } from '../../modules/colours';
 
-const SavedColourWrapper = styled.div<{ $isDark: boolean }>`
+const SavedColourWrapper = styled.div<{ $isDark: boolean; $color?: string }>`
+  background-color: ${({ $color }) => $color || 'transparent'};
   border-radius: 3px;
   cursor: pointer;
   margin-top: 0.5em;
@@ -64,7 +65,7 @@ export function SavedColour({ index, colour, format: colourFormat, onRemove }: S
     return (
         <SavedColourWrapper
             $isDark={colourIsDark}
-            style={{ backgroundColor: colour }}
+            $color={colour}
             title="Copy to clipboard"
             data-clipboard-text={formattedColour}
         >

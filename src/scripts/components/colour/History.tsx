@@ -16,7 +16,8 @@ const HistoryWrapper = styled.div`
   z-index: ${theme.zIndex.above};
 `;
 
-const HistoryItem = styled.div`
+const HistoryItem = styled.div<{ $color?: string }>`
+  background-color: ${({ $color }) => $color || 'transparent'};
   cursor: pointer;
   flex: 1;
   transition: background-color 0.8s;
@@ -70,7 +71,7 @@ export function History({ colour, format: colourFormat, max = 10 }: HistoryProps
                 return (
                     <HistoryItem
                         key={i}
-                        style={{ backgroundColor: c }}
+                        $color={c}
                         data-colour={formattedColour}
                         data-clipboard-text={formattedColour}
                         onClick={() => add(c)}
