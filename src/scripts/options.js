@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Checkbox from './components/options/Checkbox';
 import Colour from './components/options/Colour';
@@ -341,4 +341,4 @@ class Options extends React.Component {
   }
 };
 
-render(<Options />, document.getElementById('options'));
+createRoot(document.getElementById('options')).render(<Options />);

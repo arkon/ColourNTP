@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Clipboard from 'clipboard';
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Browser from './modules/browser';
 import Colours from './modules/colours';
@@ -358,4 +358,4 @@ class NewTab extends React.Component {
   }
 }
 
-render(<NewTab />, document.getElementById('newtab'));
+createRoot(document.getElementById('newtab')).render(<NewTab />);

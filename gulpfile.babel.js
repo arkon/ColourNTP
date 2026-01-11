@@ -1,4 +1,4 @@
-import del from 'del';
+import { deleteAsync } from 'del';
 import gulp from 'gulp';
 import gulpZip from 'gulp-zip';
 import htmlmin from 'gulp-htmlmin';
@@ -41,10 +41,10 @@ const PATHS = {
 // ========================================================================== //
 
 // Delete all built files/folders
-export const clean = () => del(PATHS.dest, { force: true });
+export const clean = async () => await deleteAsync([PATHS.dest], { force: true });
 
 // Delete ZIP of built files
-export const clean_zip = () => del(PATHS.dest_zip, { force: true });
+export const clean_zip = async () => await deleteAsync([PATHS.dest_zip], { force: true });
 
 // Copy root files such as HTML views and the manifest
 export function copy_root () {
