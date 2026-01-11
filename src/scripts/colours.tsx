@@ -78,50 +78,60 @@ const ButtonsWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  position: absolute;
-  right: 1em;
-  top: 1em;
+  position: fixed;
+  right: 0;
+  top: 0;
   z-index: ${theme.zIndex.above};
 `;
 
 const IconButton = styled.button`
   background: none;
   border: 0;
+  color: inherit;
   cursor: pointer;
-  height: 1.5em;
-  margin-left: 0.5em;
-  opacity: 0.5;
-  transition: opacity 0.2s;
-  width: 1.5em;
+  display: block;
+  height: 2.25em;
+  line-height: 2.25;
+  opacity: 0.4;
+  text-align: center;
+  transition: opacity 0.3s;
+  width: 2.5em;
 
   &:hover {
     opacity: 1;
   }
 
   svg {
-    fill: currentColor;
-    height: 100%;
-    width: 100%;
+    height: 0.7em;
+    width: 0.7em;
   }
 `;
 
 const IconLink = styled.a`
-  display: inline-block;
-  height: 1.5em;
-  margin-left: 0.5em;
-  opacity: 0.5;
-  transition: opacity 0.2s;
-  width: 1.5em;
+  color: inherit;
+  display: block;
+  height: 2.25em;
+  line-height: 2.25;
+  opacity: 0.4;
+  text-align: center;
+  transition: opacity 0.3s;
+  width: 2.5em;
 
   &:hover {
     opacity: 1;
   }
 
   svg {
-    fill: currentColor;
-    height: 100%;
-    width: 100%;
+    height: 0.7em;
+    width: 0.7em;
+  }
+`;
+
+const OptionsLink = styled(IconLink)`
+  transition: opacity 0.3s, transform 0.35s ease-out;
+
+  &:hover {
+    transform: rotate(180deg);
   }
 `;
 
@@ -377,9 +387,9 @@ function NewTab() {
                         </IconButton>
 
                         {settings.shortcutOpts && (
-                            <IconLink href="options.html" title="Options" target="_blank">
+                            <OptionsLink href="options.html" title="Options" target="_blank">
                                 <GearIcon />
-                            </IconLink>
+                            </OptionsLink>
                         )}
 
                         {settings.shortcutNewTab && (
