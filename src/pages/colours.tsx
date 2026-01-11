@@ -3,20 +3,20 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import styled, { css } from 'styled-components';
 
-import BookmarkIcon from '../assets/img/bookmark.svg?react';
-import GearIcon from '../assets/img/gear.svg?react';
-import ImageIcon from '../assets/img/image.svg?react';
-import NewTabIcon from '../assets/img/newtab.svg?react';
-import { Colour, DateDisplay, History, Panels, SavedColours, Sidebar, Time, Toast } from './components/colour';
-import { TabItem } from './components/layout/Tabs';
-import type { Settings } from './constants/defaults';
-import { ColourTypes, BackgroundImage, FontType, type ColourType } from './constants/settings';
-import { getSettings } from './modules/browser';
-import * as Colours from './modules/colours';
-import { pad } from './modules/timehelper';
-import { getImage } from './modules/unsplash';
-import { loadFont } from './modules/webfont';
-import { GlobalStyles, theme } from './styles';
+import { Colour, DateDisplay, History, Panels, SavedColours, Sidebar, Time, Toast } from '../components/colour';
+import { TabItem } from '../components/layout/Tabs';
+import type { Settings } from '../constants/defaults';
+import { ColourTypes, BackgroundImage, FontType, type ColourType } from '../constants/settings';
+import BookmarkIcon from '../icons/bookmark.svg?react';
+import GearIcon from '../icons/gear.svg?react';
+import ImageIcon from '../icons/image.svg?react';
+import NewTabIcon from '../icons/newtab.svg?react';
+import { getSettings } from '../modules/browser';
+import * as Colours from '../modules/colours';
+import { pad } from '../modules/timehelper';
+import { getImage } from '../modules/unsplash';
+import { loadFont } from '../modules/webfont';
+import { GlobalStyles, theme } from '../styles';
 
 const NewTabContent = styled.div<{ $isDark: boolean }>`
   height: 100%;

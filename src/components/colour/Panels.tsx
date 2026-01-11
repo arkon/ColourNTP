@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
-import CloseIcon from '../../../assets/img/close.svg?react';
+import CloseIcon from '../../icons/close.svg?react';
 import {
     getSettings,
     getTopSites,

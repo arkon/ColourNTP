@@ -13,8 +13,8 @@ export default defineConfig({
         emptyOutDir: true,
         rollupOptions: {
             input: {
-                colours: resolve(__dirname, 'src/colours.html'),
-                options: resolve(__dirname, 'src/options.html'),
+                colours: resolve(__dirname, 'src/pages/colours.html'),
+                options: resolve(__dirname, 'src/pages/options.html'),
             },
             output: {
                 entryFileNames: 'scripts/[name].js',

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import styled from 'styled-components';
 
-import { Tabs, Tab } from './components/layout';
+import { Tabs, Tab } from '../components/layout';
 import {
     Checkbox,
     ColourPicker,
@@ -14,13 +14,13 @@ import {
     RadioGroup,
     Range,
     Textbox,
-} from './components/options';
-import type { Settings } from './constants/defaults';
-import { FONTS } from './constants/fonts';
-import { ColourFormats, ColourTypes, BackgroundImage, UnsplashFrequency, FontType } from './constants/settings';
-import { getSettings, setSetting } from './modules/browser';
-import { localize } from './modules/colours';
-import { GlobalStyles, theme } from './styles';
+} from '../components/options';
+import type { Settings } from '../constants/defaults';
+import { FONTS } from '../constants/fonts';
+import { ColourFormats, ColourTypes, BackgroundImage, UnsplashFrequency, FontType } from '../constants/settings';
+import { getSettings, setSetting } from '../modules/browser';
+import { localize } from '../modules/colours';
+import { GlobalStyles, theme } from '../styles';
 
 const OptionsWrapper = styled.div`
   contain: content;

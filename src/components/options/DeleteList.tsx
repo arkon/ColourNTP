@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import CloseIcon from '../../../assets/img/close.svg?react';
+import CloseIcon from '../../icons/close.svg?react';
 import { theme } from '../../styles/theme';
 
 const ClearButton = styled.button`

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import CloseIcon from '../../../assets/img/close.svg?react';
 import type { ColourFormat } from '../../constants/settings';
+import CloseIcon from '../../icons/close.svg?react';
 import { format, isDark, hexToRgb } from '../../modules/colours';
 
 const SavedColourWrapper = styled.div<{ $isDark: boolean; $color?: string }>`

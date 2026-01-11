@@ -4,9 +4,9 @@
     "short_name": "ColourNTP",
     "description": "New tab page with a hex-based clock",
     "version": "6.0.0",
-    "options_page": "options.html",
+    "options_page": "pages/options.html",
     "chrome_url_overrides": {
-        "newtab": "colours.html"
+        "newtab": "pages/colours.html"
     },
     "permissions": ["favicon", "management", "sessions", "storage", "tabs", "topSites"],
     "host_permissions": ["*://*/*"],
