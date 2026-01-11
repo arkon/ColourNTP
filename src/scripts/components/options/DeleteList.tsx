@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { theme } from '../../styles/theme';
+
 import closeSvg from '../../../assets/img/close.svg?raw';
+import { theme } from '../../styles/theme';
 
 const ClearButton = styled.button`
   background: none;
@@ -44,45 +45,45 @@ const RemoveButton = styled.button`
 `;
 
 interface DeleteListProps {
-  data: Record<string, number>;
-  onDelete: (url: string) => void;
-  onDeleteAll: () => void;
+    data: Record<string, number>;
+    onDelete: (url: string) => void;
+    onDeleteAll: () => void;
 }
 
 interface SortedItem {
-  date: number;
-  url: string;
+    date: number;
+    url: string;
 }
 
 export function DeleteList({ data, onDelete, onDeleteAll }: DeleteListProps) {
-  const [sortedList, setSortedList] = useState<SortedItem[]>([]);
+    const [sortedList, setSortedList] = useState<SortedItem[]>([]);
 
-  useEffect(() => {
-    const list = Object.keys(data || {}).map((key) => ({
-      date: data[key],
-      url: key,
-    }));
-    setSortedList(list.sort((a, b) => b.date - a.date));
-  }, [data]);
+    useEffect(() => {
+        const list = Object.keys(data || {}).map((key) => ({
+            date: data[key],
+            url: key,
+        }));
+        setSortedList(list.sort((a, b) => b.date - a.date));
+    }, [data]);
 
-  return (
-    <>
-      <ClearButton onClick={onDeleteAll}>Clear list</ClearButton>
-      <Table>
-        <tbody>
-          {sortedList.map((item, i) => (
-            <tr key={i}>
-              <td>{item.url}</td>
-              <td>
-                <RemoveButton
-                  onClick={() => onDelete(item.url)}
-                  dangerouslySetInnerHTML={{ __html: closeSvg }}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </>
-  );
+    return (
+        <>
+            <ClearButton onClick={onDeleteAll}>Clear list</ClearButton>
+            <Table>
+                <tbody>
+                    {sortedList.map((item, i) => (
+                        <tr key={i}>
+                            <td>{item.url}</td>
+                            <td>
+                                <RemoveButton
+                                    onClick={() => onDelete(item.url)}
+                                    dangerouslySetInnerHTML={{ __html: closeSvg }}
+                                />
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+        </>
+    );
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 const TooltipWrapper = styled.abbr`
@@ -48,18 +49,18 @@ const TooltipContent = styled.div`
 `;
 
 interface TooltipProps {
-  label: string;
-  content: string;
+    label: string;
+    content: string;
 }
 
 export function Tooltip({ label, content }: TooltipProps) {
-  return (
-    <TooltipWrapper>
-      <span>{label}</span>
-      <TooltipContent>
-        <strong>{label}</strong>
-        <p>{content}</p>
-      </TooltipContent>
-    </TooltipWrapper>
-  );
+    return (
+        <TooltipWrapper>
+            <span>{label}</span>
+            <TooltipContent>
+                <strong>{label}</strong>
+                <p>{content}</p>
+            </TooltipContent>
+        </TooltipWrapper>
+    );
 }

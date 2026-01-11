@@ -5,10 +5,10 @@ const TabContent = styled.div`
 `;
 
 interface TabProps {
-  name: string;
-  children?: React.ReactNode;
+    name: string;
+    children?: React.ReactNode;
 }
 
 export function Tab({ children }: TabProps) {
-  return <TabContent>{children}</TabContent>;
+    return <TabContent>{children}</TabContent>;
 }

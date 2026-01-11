@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 const ToastWrapper = styled.div`
@@ -16,11 +17,11 @@ const ToastWrapper = styled.div`
 `;
 
 interface ToastProps {
-  visible: boolean;
-  children?: React.ReactNode;
+    visible: boolean;
+    children?: React.ReactNode;
 }
 
 export function Toast({ visible, children }: ToastProps) {
-  if (!visible) return null;
-  return <ToastWrapper>{children}</ToastWrapper>;
+    if (!visible) return null;
+    return <ToastWrapper>{children}</ToastWrapper>;
 }

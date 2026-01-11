@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { theme } from '../../styles/theme';
+
 import closeSvg from '../../../assets/img/close.svg?raw';
+import { theme } from '../../styles/theme';
 
 const SidebarWrapper = styled.div<{ $open: boolean }>`
   background-color: ${theme.colors.darkGrey};
@@ -40,20 +41,20 @@ const CloseButton = styled.button`
 `;
 
 interface SidebarProps {
-  open: boolean;
-  onClose: (e: React.MouseEvent) => void;
-  children?: React.ReactNode;
+    open: boolean;
+    onClose: (e: React.MouseEvent) => void;
+    children?: React.ReactNode;
 }
 
 export function Sidebar({ open, onClose, children }: SidebarProps) {
-  return (
-    <SidebarWrapper $open={open}>
-      {open && (
-        <div>
-          <CloseButton onClick={onClose} dangerouslySetInnerHTML={{ __html: closeSvg }} />
-          {children}
-        </div>
-      )}
-    </SidebarWrapper>
-  );
+    return (
+        <SidebarWrapper $open={open}>
+            {open && (
+                <div>
+                    <CloseButton onClick={onClose} dangerouslySetInnerHTML={{ __html: closeSvg }} />
+                    {children}
+                </div>
+            )}
+        </SidebarWrapper>
+    );
 }

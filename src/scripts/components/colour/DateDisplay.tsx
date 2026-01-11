@@ -13,9 +13,9 @@ const DateText = styled.h2`
 `;
 
 interface DateDisplayProps {
-  date: string;
+    date: string;
 }
 
 export function DateDisplay({ date }: DateDisplayProps) {
-  return <DateText>{date}</DateText>;
+    return <DateText>{date}</DateText>;
 }

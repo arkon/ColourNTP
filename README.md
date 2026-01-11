@@ -6,18 +6,20 @@ A Chrome new tab page extension with a hex-based clock.
 
 Requires a Chromium-based browser on v104+.
 
-
 ## Development
 
 ### Prerequisites
+
 - [Node.js 24+](https://nodejs.org/en/)
 
 ### Setup
+
 ```bash
 npm install
 ```
 
 ### Build
+
 ```bash
 # Development build with hot reload
 npm run dev
@@ -30,19 +32,20 @@ npm run zip
 ```
 
 ### Tech Stack
+
 - **Vite** - Build tool and dev server
 - **TypeScript** - Type-safe JavaScript
 - **React 19** - UI library with functional components and hooks
 - **styled-components** - CSS-in-JS styling
 
 ### Contributors
+
 - [Spencer Elliott](http://github.com/elliottsj/): Full Spectrum Hexadecimal/Hue options
 - [Alexander Biggs](https://github.com/akbiggs): 12-hour option
 - [Alec Brunelle](https://github.com/aleccool213): Options page tooltips
 - [Jonathan Webb](https://github.com/jwebbed): Building the project in production mode
 - [Kashav Madan](https://github.com/kshvmdn): Fixing 12am/pm
 - [Ivan Zhang](https://github.com/1vn): Automatic text colour shift and top sites blacklist
-
 
 [chrome-store]: https://chrome.google.com/webstore/detail/colour-new-tab-page/hniakoleggfkjjoncnnhinhdbgffkdmd
 [original]: http://whatcolourisit.scn9a.org

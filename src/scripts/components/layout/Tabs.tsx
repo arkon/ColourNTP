@@ -1,5 +1,6 @@
 import { useState, useEffect, type ReactElement } from 'react';
 import styled from 'styled-components';
+
 import { theme } from '../../styles/theme';
 
 const TabsList = styled.ul`
@@ -17,8 +18,8 @@ const TabItem = styled.li<{ $active: boolean }>`
   transition: background-color 0.2s, color 0.2s;
 
   ${({ $active }) =>
-    $active &&
-    `
+      $active &&
+      `
     background-color: ${theme.colors.white};
     color: ${theme.colors.darkGrey};
   `}
@@ -30,45 +31,45 @@ const TabItem = styled.li<{ $active: boolean }>`
 `;
 
 interface TabsProps {
-  activeTab: number | null;
-  canToggle?: boolean;
-  onToggle?: (tab: number | null) => void;
-  children: ReactElement<{ name: string }>[] | ReactElement<{ name: string }>;
+    activeTab: number | null;
+    canToggle?: boolean;
+    onToggle?: (tab: number | null) => void;
+    children: ReactElement<{ name: string }>[] | ReactElement<{ name: string }>;
 }
 
 export function Tabs({ activeTab: initialTab, canToggle, onToggle, children }: TabsProps) {
-  const [activeTab, setActiveTab] = useState<number | null>(initialTab);
+    const [activeTab, setActiveTab] = useState<number | null>(initialTab);
 
-  useEffect(() => {
-    if (initialTab !== activeTab) {
-      setActiveTab(initialTab);
-    }
-  }, [initialTab]);
+    useEffect(() => {
+        if (initialTab !== activeTab) {
+            setActiveTab(initialTab);
+        }
+    }, [initialTab]);
 
-  const handleTab = (tab: number) => {
-    let newTab: number | null = tab;
+    const handleTab = (tab: number) => {
+        let newTab: number | null = tab;
 
-    if (canToggle) {
-      newTab = activeTab === tab ? null : tab;
-    }
+        if (canToggle) {
+            newTab = activeTab === tab ? null : tab;
+        }
 
-    setActiveTab(newTab);
-    onToggle?.(newTab);
-  };
+        setActiveTab(newTab);
+        onToggle?.(newTab);
+    };
 
-  const childArray = Array.isArray(children) ? children : [children];
-  const validChildren = childArray.filter(Boolean);
+    const childArray = Array.isArray(children) ? children : [children];
+    const validChildren = childArray.filter(Boolean);
 
-  return (
-    <>
-      <TabsList>
-        {validChildren.map((tab, i) => (
-          <TabItem key={i} $active={activeTab === i} onClick={() => handleTab(i)}>
-            {tab.props.name}
-          </TabItem>
-        ))}
-      </TabsList>
-      {activeTab !== null && validChildren[activeTab]}
-    </>
-  );
+    return (
+        <>
+            <TabsList>
+                {validChildren.map((tab, i) => (
+                    <TabItem key={i} $active={activeTab === i} onClick={() => handleTab(i)}>
+                        {tab.props.name}
+                    </TabItem>
+                ))}
+            </TabsList>
+            {activeTab !== null && validChildren[activeTab]}
+        </>
+    );
 }

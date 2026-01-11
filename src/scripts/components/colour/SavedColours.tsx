@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { SavedColour } from './SavedColour';
-import { get, remove, clear } from '../../modules/saved';
+
 import type { ColourFormat } from '../../constants/settings';
+
+import { get, remove, clear } from '../../modules/saved';
 import { theme } from '../../styles/theme';
+import { SavedColour } from './SavedColour';
 
 const SavedColoursWrapper = styled.div`
   h1 {
@@ -27,49 +29,43 @@ const EmptyMessage = styled.p`
 `;
 
 interface SavedColoursProps {
-  format: ColourFormat;
+    format: ColourFormat;
 }
 
 export function SavedColours({ format }: SavedColoursProps) {
-  const [colours, setColours] = useState<string[]>([]);
+    const [colours, setColours] = useState<string[]>([]);
 
-  useEffect(() => {
-    get().then(setColours);
-  }, []);
+    useEffect(() => {
+        get().then(setColours);
+    }, []);
 
-  const handleRemove = (index: number) => {
-    setColours(remove(index));
-  };
+    const handleRemove = (index: number) => {
+        setColours(remove(index));
+    };
 
-  const handleClear = () => {
-    if (window.confirm('Are you sure you want to remove all of your saved colours?')) {
-      setColours(clear());
-    }
-  };
+    const handleClear = () => {
+        if (window.confirm('Are you sure you want to remove all of your saved colours?')) {
+            setColours(clear());
+        }
+    };
 
-  return (
-    <SavedColoursWrapper>
-      <h1>Saved</h1>
+    return (
+        <SavedColoursWrapper>
+            <h1>Saved</h1>
 
-      {colours.length > 0 ? (
-        <Button onClick={handleClear}>Remove all</Button>
-      ) : (
-        <EmptyMessage>
-          You don't have anything saved!
-          <br />
-          Click on a code to save it.
-        </EmptyMessage>
-      )}
+            {colours.length > 0 ? (
+                <Button onClick={handleClear}>Remove all</Button>
+            ) : (
+                <EmptyMessage>
+                    You don't have anything saved!
+                    <br />
+                    Click on a code to save it.
+                </EmptyMessage>
+            )}
 
-      {colours.map((colour, i) => (
-        <SavedColour
-          key={i}
-          index={i}
-          colour={colour}
-          format={format}
-          onRemove={handleRemove}
-        />
-      ))}
-    </SavedColoursWrapper>
-  );
+            {colours.map((colour, i) => (
+                <SavedColour key={i} index={i} colour={colour} format={format} onRemove={handleRemove} />
+            ))}
+        </SavedColoursWrapper>
+    );
 }

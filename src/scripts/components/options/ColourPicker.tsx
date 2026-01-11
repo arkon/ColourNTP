@@ -1,24 +1,21 @@
-import { useOption } from './useOption';
-import { FormLabel } from '../../styles';
 import type { Settings } from '../../constants/defaults';
 
+import { FormLabel } from '../../styles';
+import { useOption } from './useOption';
+
 interface ColourPickerProps {
-  label: string;
-  optkey: keyof Settings;
-  value: string;
+    label: string;
+    optkey: keyof Settings;
+    value: string;
 }
 
 export function ColourPicker({ label, optkey, value: initialValue }: ColourPickerProps) {
-  const { value, handleChange } = useOption(optkey, initialValue);
+    const { value, handleChange } = useOption(optkey, initialValue);
 
-  return (
-    <FormLabel>
-      <span>{label}:</span>
-      <input
-        type="color"
-        value={value}
-        onChange={(e) => handleChange(e.target.value)}
-      />
-    </FormLabel>
-  );
+    return (
+        <FormLabel>
+            <span>{label}:</span>
+            <input type="color" value={value} onChange={(e) => handleChange(e.target.value)} />
+        </FormLabel>
+    );
 }

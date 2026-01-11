@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+
+import type { ColourFormat } from '../../constants/settings';
+
 import { format } from '../../modules/colours';
 import { add } from '../../modules/saved';
-import type { ColourFormat } from '../../constants/settings';
 
 const ColourWrapper = styled.h2`
   animation: shiftUp 0.5s ease-out 0.15s forwards;
@@ -15,23 +17,23 @@ const CopySpan = styled.span`
 `;
 
 interface ColourProps {
-  colour: string;
-  format: ColourFormat;
+    colour: string;
+    format: ColourFormat;
 }
 
 export function Colour({ colour, format: colourFormat }: ColourProps) {
-  const formattedColour = format(colour, colourFormat);
+    const formattedColour = format(colour, colourFormat);
 
-  return (
-    <ColourWrapper>
-      <CopySpan
-        className="copy"
-        title="Copy to clipboard"
-        data-clipboard-text={formattedColour}
-        onClick={() => add(colour)}
-      >
-        {formattedColour}
-      </CopySpan>
-    </ColourWrapper>
-  );
+    return (
+        <ColourWrapper>
+            <CopySpan
+                className="copy"
+                title="Copy to clipboard"
+                data-clipboard-text={formattedColour}
+                onClick={() => add(colour)}
+            >
+                {formattedColour}
+            </CopySpan>
+        </ColourWrapper>
+    );
 }

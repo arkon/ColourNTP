@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { format, isDark, hexToRgb } from '../../modules/colours';
+
 import type { ColourFormat } from '../../constants/settings';
+
 import closeSvg from '../../../assets/img/close.svg?raw';
+import { format, isDark, hexToRgb } from '../../modules/colours';
 
 const SavedColourWrapper = styled.div<{ $isDark: boolean }>`
   border-radius: 3px;
@@ -45,31 +47,31 @@ const RemoveButton = styled.button`
 `;
 
 interface SavedColourProps {
-  index: number;
-  colour: string;
-  format: ColourFormat;
-  onRemove: (index: number) => void;
+    index: number;
+    colour: string;
+    format: ColourFormat;
+    onRemove: (index: number) => void;
 }
 
 export function SavedColour({ index, colour, format: colourFormat, onRemove }: SavedColourProps) {
-  const formattedColour = format(colour, colourFormat);
-  const colourIsDark = isDark(...hexToRgb(colour));
+    const formattedColour = format(colour, colourFormat);
+    const colourIsDark = isDark(...hexToRgb(colour));
 
-  const handleRemove = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onRemove(index);
-  };
+    const handleRemove = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onRemove(index);
+    };
 
-  return (
-    <SavedColourWrapper
-      className="copy"
-      $isDark={colourIsDark}
-      style={{ backgroundColor: colour }}
-      title="Copy to clipboard"
-      data-clipboard-text={formattedColour}
-    >
-      {formattedColour}
-      <RemoveButton title="Remove" onClick={handleRemove} dangerouslySetInnerHTML={{ __html: closeSvg }} />
-    </SavedColourWrapper>
-  );
+    return (
+        <SavedColourWrapper
+            className="copy"
+            $isDark={colourIsDark}
+            style={{ backgroundColor: colour }}
+            title="Copy to clipboard"
+            data-clipboard-text={formattedColour}
+        >
+            {formattedColour}
+            <RemoveButton title="Remove" onClick={handleRemove} dangerouslySetInnerHTML={{ __html: closeSvg }} />
+        </SavedColourWrapper>
+    );
 }

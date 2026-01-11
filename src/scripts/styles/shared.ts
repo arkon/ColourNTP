@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { theme } from './theme';
 
 /** Shared label for form inputs with inline layout */
