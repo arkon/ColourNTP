@@ -84,6 +84,22 @@ const ListSection = styled.div`
   margin-top: 0.5em;
 `;
 
+const Footer = styled.footer`
+  margin-top: 2em;
+
+  a {
+    color: ${theme.colors.lightGrey};
+    display: block;
+    font-size: 0.85em;
+    margin: 0.5em 0;
+    transition: color 0.25s;
+
+    &:hover {
+      color: ${theme.colors.white};
+    }
+  }
+`;
+
 function Options() {
   const [activeTab, setActiveTab] = useState(0);
   const [settings, setSettings] = useState<Settings | null>(null);
@@ -403,6 +419,11 @@ function Options() {
             </ListSection>
           </Tab>
         </Tabs>
+
+        <Footer>
+          <a href="https://github.com/arkon/ColourNTP">Source code on GitHub</a>
+          <a href="https://dribbble.com/shots/2524993-What-Colour-Is-It">Original concept by J.E. Murphy</a>
+        </Footer>
       </OptionsWrapper>
     </>
   );
