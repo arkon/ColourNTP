@@ -19,13 +19,6 @@ export default defineConfig({
             output: {
                 entryFileNames: 'scripts/[name].js',
                 chunkFileNames: 'scripts/[name]-[hash].js',
-                assetFileNames: (assetInfo) => {
-                    const name = assetInfo.name || '';
-                    if (name.endsWith('.css')) {
-                        return 'styles/[name][extname]';
-                    }
-                    return 'assets/[name][extname]';
-                },
             },
         },
         target: 'chrome120',
