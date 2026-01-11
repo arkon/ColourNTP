@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import closeSvg from '../../../assets/img/close.svg?raw';
+import CloseIcon from '../../../assets/img/close.svg?react';
 import { theme } from '../../styles/theme';
 
 const ClearButton = styled.button`
@@ -75,10 +75,9 @@ export function DeleteList({ data, onDelete, onDeleteAll }: DeleteListProps) {
                         <tr key={i}>
                             <td>{item.url}</td>
                             <td>
-                                <RemoveButton
-                                    onClick={() => onDelete(item.url)}
-                                    dangerouslySetInnerHTML={{ __html: closeSvg }}
-                                />
+                                <RemoveButton onClick={() => onDelete(item.url)}>
+                                    <CloseIcon />
+                                </RemoveButton>
                             </td>
                         </tr>
                     ))}

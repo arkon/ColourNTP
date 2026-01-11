@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import closeSvg from '../../../assets/img/close.svg?raw';
+import CloseIcon from '../../../assets/img/close.svg?react';
 import { theme } from '../../styles/theme';
 
 const SidebarWrapper = styled.div<{ $open: boolean }>`
@@ -51,7 +51,9 @@ export function Sidebar({ open, onClose, children }: SidebarProps) {
         <SidebarWrapper $open={open}>
             {open && (
                 <div>
-                    <CloseButton onClick={onClose} dangerouslySetInnerHTML={{ __html: closeSvg }} />
+                    <CloseButton onClick={onClose}>
+                        <CloseIcon />
+                    </CloseButton>
                     {children}
                 </div>
             )}

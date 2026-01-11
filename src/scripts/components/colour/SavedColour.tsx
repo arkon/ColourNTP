@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import closeSvg from '../../../assets/img/close.svg?raw';
+import CloseIcon from '../../../assets/img/close.svg?react';
 import type { ColourFormat } from '../../constants/settings';
 import { format, isDark, hexToRgb } from '../../modules/colours';
 
@@ -70,7 +70,9 @@ export function SavedColour({ index, colour, format: colourFormat, onRemove }: S
             data-clipboard-text={formattedColour}
         >
             {formattedColour}
-            <RemoveButton title="Remove" onClick={handleRemove} dangerouslySetInnerHTML={{ __html: closeSvg }} />
+            <RemoveButton title="Remove" onClick={handleRemove}>
+                <CloseIcon />
+            </RemoveButton>
         </SavedColourWrapper>
     );
 }

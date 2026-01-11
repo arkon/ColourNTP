@@ -3,10 +3,10 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import styled from 'styled-components';
 
-import bookmarkSvg from '../assets/img/bookmark.svg?raw';
-import gearSvg from '../assets/img/gear.svg?raw';
-import imageSvg from '../assets/img/image.svg?raw';
-import newTabSvg from '../assets/img/newtab.svg?raw';
+import BookmarkIcon from '../assets/img/bookmark.svg?react';
+import GearIcon from '../assets/img/gear.svg?react';
+import ImageIcon from '../assets/img/image.svg?react';
+import NewTabIcon from '../assets/img/newtab.svg?react';
 import { Colour, DateDisplay, History, Panels, SavedColours, Sidebar, Time, Toast } from './components/colour';
 import type { Settings } from './constants/defaults';
 import { ColourTypes, BackgroundImage, FontType, type ColourType } from './constants/settings';
@@ -367,37 +367,26 @@ function NewTab() {
                     {bgOpacity !== 0 && <BgColour $color={bgOpacity < 1 ? Colours.rgba(colour, bgOpacity) : colour} />}
 
                     <ButtonsWrapper>
-                        <IconButton
-                            title="Open sidebar"
-                            onClick={toggleSidebar}
-                            dangerouslySetInnerHTML={{ __html: bookmarkSvg }}
-                        />
+                        <IconButton title="Open sidebar" onClick={toggleSidebar}>
+                            <BookmarkIcon />
+                        </IconButton>
 
                         {settings.shortcutOpts && (
-                            <IconLink
-                                href="options.html"
-                                title="Options"
-                                target="_blank"
-                                dangerouslySetInnerHTML={{ __html: gearSvg }}
-                            />
+                            <IconLink href="options.html" title="Options" target="_blank">
+                                <GearIcon />
+                            </IconLink>
                         )}
 
                         {settings.shortcutNewTab && (
-                            <IconButton
-                                title="Default new tab"
-                                onClick={onClickNewTab}
-                                dangerouslySetInnerHTML={{ __html: newTabSvg }}
-                            />
+                            <IconButton title="Default new tab" onClick={onClickNewTab}>
+                                <NewTabIcon />
+                            </IconButton>
                         )}
 
                         {settings.shortcutImage && bgImage && (
-                            <IconLink
-                                href={bgImage}
-                                title="Open image"
-                                target="_blank"
-                                rel="noopener"
-                                dangerouslySetInnerHTML={{ __html: imageSvg }}
-                            />
+                            <IconLink href={bgImage} title="Open image" target="_blank" rel="noopener">
+                                <ImageIcon />
+                            </IconLink>
                         )}
                     </ButtonsWrapper>
 

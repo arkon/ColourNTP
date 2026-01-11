@@ -2,9 +2,10 @@ import { resolve } from 'node:path';
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
-    plugins: [react()],
+    plugins: [react(), svgr()],
     root: 'src',
     publicDir: '../public',
     build: {
