@@ -22,7 +22,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html,
-  body {
+  body,
+  main {
     height: 100%;
     width: 100%;
   }
