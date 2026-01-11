@@ -1,13 +1,14 @@
 import Clipboard from 'clipboard';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import BookmarkIcon from '../assets/img/bookmark.svg?react';
 import GearIcon from '../assets/img/gear.svg?react';
 import ImageIcon from '../assets/img/image.svg?react';
 import NewTabIcon from '../assets/img/newtab.svg?react';
 import { Colour, DateDisplay, History, Panels, SavedColours, Sidebar, Time, Toast } from './components/colour';
+import { TabItem } from './components/layout/Tabs';
 import type { Settings } from './constants/defaults';
 import { ColourTypes, BackgroundImage, FontType, type ColourType } from './constants/settings';
 import { getSettings } from './modules/browser';
@@ -21,10 +22,6 @@ const NewTabContent = styled.div<{ $isDark: boolean }>`
   height: 100%;
   width: 100%;
   color: ${({ $isDark }) => ($isDark ? theme.colors.darkGrey : theme.colors.white)};
-
-  .tabs__tab {
-    color: ${({ $isDark }) => ($isDark ? theme.colors.darkGrey : theme.colors.white)};
-  }
 `;
 
 const ColoursWrapper = styled.div<{ $hidden: boolean; $shrink: boolean; $noTransition: boolean }>`
@@ -139,10 +136,18 @@ const Info = styled.div<{ $textShadow: boolean }>`
   ${({ $textShadow }) =>
       $textShadow &&
       `
-    h1, h2, .panels__toggles a {
+    h1, h2 {
       text-shadow: 0 1px 0.35rem rgba(17, 17, 17, 0.5);
     }
   `}
+
+  ${({ $textShadow }) =>
+      $textShadow &&
+      css`
+        ${TabItem} {
+          text-shadow: 0 1px 0.35rem rgba(17, 17, 17, 0.5);
+        }
+      `}
 `;
 
 interface TimeState {

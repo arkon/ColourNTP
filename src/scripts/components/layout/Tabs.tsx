@@ -10,7 +10,7 @@ const TabsList = styled.ul`
   margin-top: 1em;
 `;
 
-const TabItem = styled.li<{ $active: boolean }>`
+export const TabItem = styled.li<{ $active: boolean }>`
   border: 1px solid ${theme.colors.lightGrey};
   cursor: pointer;
   font-size: 0.85em;

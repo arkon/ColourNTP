@@ -19,22 +19,13 @@ import { theme } from '../../styles/theme';
 import { Tab } from '../layout/Tab';
 import { Tabs } from '../layout/Tabs';
 
-const PanelsWrapper = styled.div<{ $noFavicons: boolean }>`
+const PanelsWrapper = styled.div`
   margin-top: 2em;
   position: relative;
   z-index: ${theme.zIndex.above};
-
-  ${({ $noFavicons }) =>
-      $noFavicons &&
-      `
-    .panels__panel li a {
-      padding-left: 0.5em;
-      background-image: none !important;
-    }
-  `}
 `;
 
-const Panel = styled.ul`
+const Panel = styled.ul<{ $noFavicons?: boolean }>`
   animation: shiftUp 0.3s ease-out forwards;
   background-color: rgba(17, 17, 17, 0.85);
   border-radius: 3px;
@@ -62,10 +53,11 @@ const Panel = styled.ul`
     border-radius: 3px;
     display: block;
     overflow: hidden;
-    padding: 0.5em 0.5em 0.5em 2em;
+    padding: ${({ $noFavicons }) => ($noFavicons ? '0.5em' : '0.5em 0.5em 0.5em 2em')};
     text-overflow: ellipsis;
     transition: background-color 0.2s;
     white-space: nowrap;
+    ${({ $noFavicons }) => $noFavicons && 'background-image: none !important;'}
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
@@ -256,7 +248,7 @@ export function Panels() {
     if (showVisited) {
         tabs.push(
             <Tab key="visited" name="Most visited">
-                <Panel className="panels__panel">
+                <Panel $noFavicons={!showFavicons}>
                     {topSites.map((site, i) => (
                         <li key={i}>
                             <a title={site.title} href={site.url} style={{ backgroundImage: `url('${site.img}')` }}>
@@ -275,7 +267,7 @@ export function Panels() {
     if (showClosed) {
         tabs.push(
             <Tab key="closed" name="Recently closed">
-                <Panel className="panels__panel">
+                <Panel $noFavicons={!showFavicons}>
                     {recentlyClosed.length === 0 ? (
                         <PanelMessage>No recently closed sessions</PanelMessage>
                     ) : (
@@ -298,7 +290,7 @@ export function Panels() {
     if (showDevices) {
         tabs.push(
             <Tab key="devices" name="Other devices">
-                <DevicesPanel className="panels__panel panels__panel--devices">
+                <DevicesPanel $noFavicons={!showFavicons}>
                     {devices.length === 0 ? (
                         <PanelMessage>No tabs from other devices</PanelMessage>
                     ) : (
@@ -329,7 +321,7 @@ export function Panels() {
     if (showApps) {
         tabs.push(
             <Tab key="apps" name="Apps">
-                <AppsPanel className="panels__panel panels__panel--apps">
+                <AppsPanel>
                     {apps.map((app, i) => {
                         if ((app.id === 'ntp-apps' && !showAllApps) || (app.id === 'ntp-webstore' && !showWebStore)) {
                             return null;
@@ -352,7 +344,7 @@ export function Panels() {
     if (showShortcuts) {
         tabs.push(
             <Tab key="shortcuts" name="Shortcuts">
-                <Panel className="panels__panel">
+                <Panel $noFavicons={!showFavicons}>
                     {shortcuts.map((shortcut, i) => (
                         <li key={i} onClick={handleShortcut(shortcut.url)}>
                             <a title={shortcut.title} style={{ backgroundImage: `url('${shortcut.img}')` }}>
@@ -370,7 +362,7 @@ export function Panels() {
     }
 
     return (
-        <PanelsWrapper $noFavicons={!showFavicons}>
+        <PanelsWrapper>
             <Tabs onToggle={handleTabClick} activeTab={open} canToggle>
                 {tabs}
             </Tabs>
