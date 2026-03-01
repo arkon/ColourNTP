@@ -7,9 +7,9 @@ import { theme } from '../../styles/theme';
 import { SavedColour } from './SavedColour';
 
 const SavedColoursWrapper = styled.div`
-  h1 {
-    margin-bottom: 0.5em;
-  }
+    h1 {
+        margin-bottom: 0.5em;
+    }
 `;
 
 const Button = styled.button`

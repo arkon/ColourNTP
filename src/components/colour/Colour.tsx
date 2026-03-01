@@ -5,14 +5,14 @@ import { format } from '../../modules/colours';
 import { add } from '../../modules/saved';
 
 const ColourWrapper = styled.h2`
-  animation: shiftUp 0.5s ease-out 0.15s forwards;
-  contain: content;
-  margin-top: 1.5rem;
-  opacity: 0;
+    animation: shiftUp 0.5s ease-out 0.15s forwards;
+    contain: content;
+    margin-top: 1.5rem;
+    opacity: 0;
 `;
 
 const CopySpan = styled.span`
-  cursor: pointer;
+    cursor: pointer;
 `;
 
 interface ColourProps {

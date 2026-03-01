@@ -16,14 +16,14 @@ const ClearButton = styled.button`
 `;
 
 const Table = styled.table`
-  border-collapse: collapse;
-  width: 100%;
+    border-collapse: collapse;
+    width: 100%;
 
-  td {
-    border-bottom: 1px solid rgba(107, 107, 107, 0.5);
-    border-top: 1px solid rgba(107, 107, 107, 0.5);
-    padding: 0.5em 0;
-  }
+    td {
+        border-bottom: 1px solid rgba(107, 107, 107, 0.5);
+        border-top: 1px solid rgba(107, 107, 107, 0.5);
+        padding: 0.5em 0;
+    }
 `;
 
 const RemoveButton = styled.button`

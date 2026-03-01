@@ -4,14 +4,14 @@ import type { Settings } from '../../constants/defaults';
 import { useOption } from './useOption';
 
 const Label = styled.label`
-  display: block;
+    display: block;
 `;
 
 const RangeRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  margin-top: 0.25em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.25em;
 `;
 
 interface RangeProps {

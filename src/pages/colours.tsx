@@ -70,8 +70,8 @@ const BgColour = styled(BgBase)<{ $color: string }>`
 `;
 
 const BgImage = styled(BgBase)`
-  background-position: center center;
-  background-size: cover;
+    background-position: center center;
+    background-size: cover;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -85,54 +85,56 @@ const ButtonsWrapper = styled.div`
 `;
 
 const IconButton = styled.button`
-  background: none;
-  border: 0;
-  color: inherit;
-  cursor: pointer;
-  display: block;
-  height: 2.25em;
-  line-height: 2.25;
-  opacity: 0.4;
-  text-align: center;
-  transition: opacity 0.3s;
-  width: 2.5em;
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    height: 2.25em;
+    line-height: 2.25;
+    opacity: 0.4;
+    text-align: center;
+    transition: opacity 0.3s;
+    width: 2.5em;
 
-  &:hover {
-    opacity: 1;
-  }
+    &:hover {
+        opacity: 1;
+    }
 
-  svg {
-    height: 0.7em;
-    width: 0.7em;
-  }
+    svg {
+        height: 0.7em;
+        width: 0.7em;
+    }
 `;
 
 const IconLink = styled.a`
-  color: inherit;
-  display: block;
-  height: 2.25em;
-  line-height: 2.25;
-  opacity: 0.4;
-  text-align: center;
-  transition: opacity 0.3s;
-  width: 2.5em;
+    color: inherit;
+    display: block;
+    height: 2.25em;
+    line-height: 2.25;
+    opacity: 0.4;
+    text-align: center;
+    transition: opacity 0.3s;
+    width: 2.5em;
 
-  &:hover {
-    opacity: 1;
-  }
+    &:hover {
+        opacity: 1;
+    }
 
-  svg {
-    height: 0.7em;
-    width: 0.7em;
-  }
+    svg {
+        height: 0.7em;
+        width: 0.7em;
+    }
 `;
 
 const OptionsLink = styled(IconLink)`
-  transition: opacity 0.3s, transform 0.35s ease-out;
+    transition:
+        opacity 0.3s,
+        transform 0.35s ease-out;
 
-  &:hover {
-    transform: rotate(180deg);
-  }
+    &:hover {
+        transform: rotate(180deg);
+    }
 `;
 
 const Info = styled.div<{ $textShadow: boolean }>`
