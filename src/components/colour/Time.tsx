@@ -3,24 +3,24 @@ import styled from 'styled-components';
 import { pad } from '../../modules/timehelper';
 
 const TimeWrapper = styled.h1`
-  animation: shiftUp 0.5s ease-out forwards;
-  contain: content;
-  font-size: 7em;
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  position: relative;
+    animation: shiftUp 0.5s ease-out forwards;
+    contain: content;
+    font-size: 7em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    position: relative;
 
-  span {
-    display: inline-block;
-  }
+    span {
+        display: inline-block;
+    }
 
-  @media (max-width: 700px) {
-    font-size: 4em;
-  }
+    @media (max-width: 700px) {
+        font-size: 4em;
+    }
 
-  @media (max-width: 600px) {
-    font-size: 3em;
-  }
+    @media (max-width: 600px) {
+        font-size: 3em;
+    }
 `;
 
 const Colon = styled.span<{ $flash: boolean }>`
@@ -29,16 +29,16 @@ const Colon = styled.span<{ $flash: boolean }>`
 `;
 
 const PostFix = styled.span`
-  bottom: 1.5rem;
-  contain: content;
-  font-size: 0.4em;
-  margin-left: 1.75rem;
-  position: absolute;
-  width: 0;
+    bottom: 1.5rem;
+    contain: content;
+    font-size: 0.4em;
+    margin-left: 1.75rem;
+    position: absolute;
+    width: 0;
 
-  @media (max-width: 700px) {
-    margin-left: 1rem;
-  }
+    @media (max-width: 700px) {
+        margin-left: 1rem;
+    }
 `;
 
 interface TimeProps {

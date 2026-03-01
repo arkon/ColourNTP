@@ -4,14 +4,14 @@ import { theme } from './theme';
 
 /** Shared label for form inputs with inline layout */
 export const FormLabel = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
 `;
 
 /** Container for nested options with indentation */
 export const NestedContent = styled.div`
-  margin-left: 1.5em;
+    margin-left: 1.5em;
 `;
 
 /** Standard button styling */

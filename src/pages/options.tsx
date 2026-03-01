@@ -75,7 +75,7 @@ const Subtitle = styled.p`
 `;
 
 const ListSection = styled.div`
-  margin-top: 0.5em;
+    margin-top: 0.5em;
 `;
 
 const Footer = styled.footer`

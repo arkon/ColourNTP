@@ -97,38 +97,38 @@ const PanelMessage = styled.p`
 `;
 
 const AppsPanel = styled(Panel)`
-  li {
-    height: 10em;
-    text-align: center;
-  }
+    li {
+        height: 10em;
+        text-align: center;
+    }
 
-  li a {
-    align-items: center;
-    display: flex;
-    flex-flow: column nowrap;
-    height: 100%;
-    justify-content: center;
-    line-height: 1.25;
-    padding: 1em;
-    white-space: normal;
-    width: 15em;
-  }
+    li a {
+        align-items: center;
+        display: flex;
+        flex-flow: column nowrap;
+        height: 100%;
+        justify-content: center;
+        line-height: 1.25;
+        padding: 1em;
+        white-space: normal;
+        width: 15em;
+    }
 
-  img {
-    height: 3em;
-    margin-bottom: 0.5em;
-    width: 3em;
-  }
+    img {
+        height: 3em;
+        margin-bottom: 0.5em;
+        width: 3em;
+    }
 `;
 
 const DevicesPanel = styled(Panel)`
-  > li {
-    width: 100%;
+    > li {
+        width: 100%;
 
-    & + li {
-      margin-top: 1em;
+        & + li {
+            margin-top: 1em;
+        }
     }
-  }
 `;
 
 const DeviceName = styled.p`
@@ -137,37 +137,37 @@ const DeviceName = styled.p`
 `;
 
 const DeviceTabs = styled.ul`
-  align-items: center;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 `;
 
 const RemoveButton = styled.button`
-  background: none;
-  border: 0;
-  cursor: pointer;
-  font-size: 0;
-  height: 1.5rem;
-  opacity: 0.5;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  transition: opacity 0.3s;
-  width: 1.5rem;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-size: 0;
+    height: 1.5rem;
+    opacity: 0.5;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    transition: opacity 0.3s;
+    width: 1.5rem;
 
-  li:hover & {
-    opacity: 1;
-  }
+    li:hover & {
+        opacity: 1;
+    }
 
-  &:hover {
-    opacity: 1;
-  }
+    &:hover {
+        opacity: 1;
+    }
 `;
 
 const RemoveButtonCloseIcon = styled(CloseIcon)`
-  height: 50%;
-  width: 50%;
+    height: 50%;
+    width: 50%;
 `;
 
 const AppName = styled.div`
