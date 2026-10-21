@@ -32,7 +32,7 @@
         "@typescript/native-preview": "^7.0.0-dev.20260111.1",
         "@vitejs/plugin-react": "^5.2.0",
         "archiver": "^7.0.1",
-        "oxfmt": "^0.35.0",
+        "oxfmt": "^0.74.0",
         "terser": "^5.44.1",
         "vite": "^8.3.5",
         "vite-plugin-svgr": "^4.5.0"
